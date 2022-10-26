@@ -1,4 +1,11 @@
-<button mat-stroked-button color="accent" aria-label="icon button with an apps icon">
+<button
+  mat-stroked-button
+  color="accent"
+  aria-label="icon button with an apps icon"
+  [class]="'button'"
+  routerLink="/boards"
+  routerLinkActive="active"
+  ariaCurrentWhenActive="page"
+>
   <mat-icon aria-hidden="false" aria-label="apps icon" fontIcon="apps">apps</mat-icon> Boards
 </button>
-

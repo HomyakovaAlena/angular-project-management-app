@@ -16,6 +16,9 @@ import { EditProfileButtonComponent } from './components/edit-profile-button/edi
 import { MatIconModule } from '@angular/material/icon';
 import { AllBoardsButtonComponent } from './components/all-boards-button/all-boards-button.component';
 import { CreateBoardItemComponent } from './components/create-board-item/create-board-item.component';
+import { ApiInterceptor } from './interceptors/api.interceptor';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { CoreRoutingModule } from './core-routing.module';
 
 @NgModule({
   declarations: [
@@ -38,7 +41,15 @@ import { CreateBoardItemComponent } from './components/create-board-item/create-
     MatButtonModule,
     MatSlideToggleModule,
     MatIconModule,
+    CoreRoutingModule
   ],
   exports: [HeaderComponent, FooterComponent, NotFoundPageComponent, ProgressBarComponent],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: ApiInterceptor,
+      multi: true,
+    },
+  ],
 })
 export class CoreModule {}

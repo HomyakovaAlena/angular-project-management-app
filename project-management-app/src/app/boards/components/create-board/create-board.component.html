@@ -1,0 +1,10 @@
+<!-- <button mat-raised-button color="accent" type="button">Create Board</button> -->
+
+<form (submit)="onSubmit()">
+  <!-- <mat-form-field> -->
+    <input  type="text" placeholder="board title" [(ngModel)]="boardTitle" name="boardTitle">
+    <input  type="text" placeholder="board owner" [(ngModel)]="boardOwner" name="boardOwner">
+    <input  type="text" placeholder="board users" [(ngModel)]="boardUsers" name="boardUsers">
+  <!-- </mat-form-field> -->
+  <button mat-raised-button color="accent" type="submit">Submit</button>
+</form>

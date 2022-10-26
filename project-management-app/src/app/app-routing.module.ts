@@ -8,6 +8,10 @@ const routes: Routes = [
     path: 'pm-app',
     loadChildren: () => import('./pm-app/pm-app.module').then((m) => m.PmAppModule),
   },
+  {
+    path: 'boards',
+    loadChildren: () => import('./boards/boards.module').then((m) => m.BoardsModule),
+  },
   { path: '**', component: NotFoundPageComponent },
 ];
 

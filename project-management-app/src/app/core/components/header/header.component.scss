@@ -6,12 +6,17 @@
   align-items: center;
   padding: 10px;
 
-  &__logo-block {
+  &__logo-link {
     display: flex;
     flex-direction: row;
     gap: 10px;
     justify-content: space-between;
     align-items: center;
+    color: white;
+
+    &:visited {
+      color: white;
+    }
   }
 
   &__nav-block {
@@ -22,7 +27,7 @@
     align-items: center;
   }
 
-    &__board-block {
+  &__board-block {
     display: flex;
     flex-direction: row;
     gap: 10px;
