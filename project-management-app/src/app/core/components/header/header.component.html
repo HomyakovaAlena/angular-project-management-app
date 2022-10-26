@@ -1,0 +1,26 @@
+<mat-toolbar color="primary">
+  <header [class]="'header'">
+    <div [class]="'header__logo-block'">
+      <mat-icon> terrain</mat-icon>
+      <h1 [innerText]="appTitle"></h1>
+    </div>
+    <nav>
+      <ul [class]="'header__nav-block'">
+        <li [class]="'header__board-block'">
+          <app-all-boards-button></app-all-boards-button>
+          <app-create-board-item></app-create-board-item>
+        </li>
+        <li [class]="'header__localization-block'">
+          <app-localization-switcher></app-localization-switcher>
+        </li>
+        <li [class]="'header__user-block'">
+          <app-edit-profile-button></app-edit-profile-button>
+          <app-login-button></app-login-button>
+          <app-signup-button></app-signup-button>
+          <app-logout-button></app-logout-button>
+        </li>
+      </ul>
+    </nav>
+  </header>
+</mat-toolbar>
+<!-- <app-progress-bar></app-progress-bar> -->
