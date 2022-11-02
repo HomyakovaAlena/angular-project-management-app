@@ -8,6 +8,14 @@ import { AppComponent } from './app.component';
 import { PmAppModule } from './pm-app/pm-app.module';
 import { CoreModule } from './core/core.module';
 import { BoardsModule } from './boards/boards.module';
+import { StoreModule } from '@ngrx/store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { environment } from '../environments/environment';
+import { EffectsModule } from '@ngrx/effects';
+import { StoreRouterConnectingModule } from '@ngrx/router-store';
+import { appReducer } from './store/reducers/app.reducer';
+import { SharedModule } from './shared/shared.module';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [AppComponent],
@@ -19,6 +27,12 @@ import { BoardsModule } from './boards/boards.module';
     PmAppModule,
     CoreModule,
     BoardsModule,
+    StoreModule.forRoot({ app: appReducer }, {}),
+    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
+    EffectsModule.forRoot([]),
+    StoreRouterConnectingModule.forRoot(),
+    SharedModule,
+    ReactiveFormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

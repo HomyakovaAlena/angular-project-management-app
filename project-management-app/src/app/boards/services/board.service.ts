@@ -20,10 +20,10 @@ export class BoardService {
     return this.httpClient.post<Board>(this.url, board);
   }
 
-  // toggleComplete(changedBoard: Board): Observable<Board> {
-  //   return this.httpClient.put<Board>(`${this.url}/${changedBoard.id}`, {
-  //     ...changedBoard,
-  //     isCompleted: !changedBoard.isCompleted,
-  //   });
-  // }
+  deleteBoard(id: string) {
+    const url = `${this.url}/${id}`;
+    console.log(url,  this.httpClient.delete<Board>(url));
+    return this.httpClient.delete<Board>(url);
+  }
+
 }

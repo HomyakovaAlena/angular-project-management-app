@@ -1,29 +1,45 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Board } from '../../models/board.model';
+import {
+  AbstractControl,
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  FormGroupDirective,
+  ValidationErrors,
+} from '@angular/forms';
+import { Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-create-board',
   templateUrl: './create-board.component.html',
   styleUrls: ['./create-board.component.scss'],
 })
-export class CreateBoardComponent implements OnInit {
-  boardTitle = '';
-  boardOwner = '';
-  boardUsers = [];
-  idCounter = 0;
-
+export class CreateBoardComponent {
   @Output() createBoard = new EventEmitter<Board>();
-  constructor() {}
 
-  ngOnInit(): void {}
-  onSubmit() {
+  createBoardForm: FormGroup = this.fb.group({
+    title: ['', [Validators.required, Validators.maxLength(50)]],
+    owner: ['', [Validators.required, this.customValidator]],
+    users: ['', [Validators.required]],
+  });
+
+  constructor(private fb: FormBuilder) {}
+
+  onSubmit(ngForm: FormGroupDirective) {
+    console.log('reactive form submitted');
+    console.log(this.createBoardForm);
     this.createBoard.emit({
-      // id: this.idCounter,
-      title: this.boardTitle,
-      owner: this.boardOwner,
-      users: this.boardUsers,
+      ...this.createBoardForm.value,
     });
-    this.idCounter++;
-    this.boardTitle = '';
+
+    this.createBoardForm.reset();
+    ngForm.resetForm();
+  }
+
+  private customValidator(control: AbstractControl): ValidationErrors | null {
+    // console.log(control);
+    // return { customValue: true }
+    return null;
   }
 }

@@ -2,34 +2,47 @@ import { Component, OnInit } from '@angular/core';
 import { Board } from '../../models/board.model';
 import { BoardService } from '../../services/board.service';
 
+import * as fromBoards from '../../store/reducers/boards.reducer';
+import * as BoardsActions from '../../store/actions/boards.actions';
+import { Store } from '@ngrx/store';
+import * as SharedActions from '../../../shared/store/actions/shared.actions';
+import { ModalConfirmComponent } from 'src/app/shared/components/modal-confirm/modal-confirm.component';
+import { MatDialogConfig } from '@angular/material/dialog';
+import { ModalData } from 'src/app/shared/models/shared.model';
+import { SharedService } from 'src/app/shared/services/shared.service';
+
 @Component({
   selector: 'app-boards-page',
   templateUrl: './boards-page.component.html',
-  styleUrls: ['./boards-page.component.scss']
+  styleUrls: ['./boards-page.component.scss'],
 })
 export class BoardsPageComponent implements OnInit {
+  boardsList$ = this.store.select(fromBoards.getBoards);
 
-  boardsList: Board[] = [];
-  constructor(private boardService: BoardService) {}
+  constructor(private store: Store<fromBoards.BoardsState>, private sharedService: SharedService) {}
 
   ngOnInit(): void {
-    this.getBoards();
+    this.store.dispatch(BoardsActions.loadBoards());
   }
 
   createBoard(board: Board) {
-    this.boardService.createBoard(board).subscribe(() => this.getBoards());
+    this.store.dispatch(BoardsActions.createBoard({ board }));
   }
 
-  private getBoards() {
-    this.boardService
-      .getBoards()
-      .subscribe((boardsList) => (this.boardsList = boardsList));
+  deleteBoard(id: string) {
+    const dialogConfig = this.sharedService.createConfigDialog({
+      name: 'confirmDelete',
+      title: 'Are you sure you want to delete this item?',
+      description: 'If you continue, the item with ID ' + id + ' will be deleted.',
+      actionButtonText: 'Delete',
+      id: id,
+      action: 'deleteBoard',
+    });
+    
+    this.store.dispatch(
+      SharedActions.openDialog({ data: dialogConfig } as MatDialogConfig<
+        ModalData | null | undefined
+      >),
+    );
   }
-
-  // onToggleComplete(changedBoard: Board) {
-  //   this.boardService.toggleComplete(changedBoard).subscribe(() => {
-  //     this.getTodos();
-  //   })
-  // }
-
 }

@@ -1,2 +1,2 @@
-<app-boards-list [boardsList]="boardsList"></app-boards-list>
+<app-boards-list [boardsList]="boardsList$ | async" (deleteBoard)="deleteBoard($event)"></app-boards-list>
 <app-create-board (createBoard)="createBoard($event)"></app-create-board>

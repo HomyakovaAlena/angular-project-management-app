@@ -1,4 +1,4 @@
 <h2>Boards List</h2>
 <div class="boards-list">
-  <app-board-preview *ngFor="let board of boardsList" [board]="board"> </app-board-preview>
+  <app-board-preview *ngFor="let board of boardsList" [board]="board" (deleteBoard)="onDelete(board?._id!)"> </app-board-preview>
 </div>

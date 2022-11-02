@@ -19,6 +19,7 @@ import { CreateBoardItemComponent } from './components/create-board-item/create-
 import { ApiInterceptor } from './interceptors/api.interceptor';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { CoreRoutingModule } from './core-routing.module';
+import { AuthInterceptor } from './interceptors/auth.interceptor';
 
 @NgModule({
   declarations: [
@@ -41,13 +42,18 @@ import { CoreRoutingModule } from './core-routing.module';
     MatButtonModule,
     MatSlideToggleModule,
     MatIconModule,
-    CoreRoutingModule
+    CoreRoutingModule,
   ],
   exports: [HeaderComponent, FooterComponent, NotFoundPageComponent, ProgressBarComponent],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,
       useClass: ApiInterceptor,
+      multi: true,
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
       multi: true,
     },
   ],

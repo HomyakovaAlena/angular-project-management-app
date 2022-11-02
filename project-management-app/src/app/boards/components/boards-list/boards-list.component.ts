@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Board } from '../../models/board.model';
 
 @Component({
@@ -7,8 +7,14 @@ import { Board } from '../../models/board.model';
   styleUrls: ['./boards-list.component.scss'],
 })
 export class BoardsListComponent implements OnInit {
-  @Input() boardsList: Board[] = [];
+  @Input() boardsList: Board[] | null = [];
+  @Output() deleteBoard = new EventEmitter<string>();
+
   constructor() {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
+
+  onDelete(id: string) {
+    this.deleteBoard.emit(id);
+  }
 }

@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Board } from '../../models/board.model';
 
 @Component({
@@ -8,7 +8,11 @@ import { Board } from '../../models/board.model';
 })
 export class BoardPreviewComponent implements OnInit {
   @Input() board: Board | null = null;
-  constructor() {}
+  @Output() deleteBoard = new EventEmitter<string>();
 
   ngOnInit(): void {}
+
+  onDelete() {
+    this.deleteBoard.emit(this.board?._id);
+  }
 }

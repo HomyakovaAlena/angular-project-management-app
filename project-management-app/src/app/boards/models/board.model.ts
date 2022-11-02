@@ -1,7 +1,7 @@
 import { User } from "src/app/users/models/user.model";
 
 export interface Board {
-  // id: number;
+  _id?: string;
   title: string;
   owner: string;
   users: string[];
