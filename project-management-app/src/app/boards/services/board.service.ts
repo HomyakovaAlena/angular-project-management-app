@@ -17,13 +17,13 @@ export class BoardService {
   }
 
   createBoard(board: Board): Observable<Board> {
+    console.log({ board }, this.url);
     return this.httpClient.post<Board>(this.url, board);
   }
 
   deleteBoard(id: string) {
     const url = `${this.url}/${id}`;
-    console.log(url,  this.httpClient.delete<Board>(url));
+    console.log(url, this.httpClient.delete<Board>(url));
     return this.httpClient.delete<Board>(url);
   }
-
 }

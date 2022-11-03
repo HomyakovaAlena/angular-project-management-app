@@ -52,3 +52,13 @@ ul {
 a {
   text-decoration: none;
 }
+
+.container {
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  width: 1200px;
+  justify-content: center;
+  align-items: center;
+  min-height: calc(100vh - 128px);
+}

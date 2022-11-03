@@ -4,6 +4,6 @@ export interface ModalData {
   description: string;
   actionButtonText: string;
   action: string;
-  [key: string]: string;
+  [key: string]: any;
   // id: string;
 }

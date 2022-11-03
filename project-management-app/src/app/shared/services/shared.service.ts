@@ -1,6 +1,9 @@
+import { ComponentType } from '@angular/cdk/portal';
 import { Injectable } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { Observable, of } from 'rxjs';
+import { CreateBoardButtonComponent } from 'src/app/boards/components/create-board-button/create-board-button.component';
+import { CreateBoardDialogComponent } from 'src/app/boards/components/create-board-dialog/create-board-dialog.component';
 import { BoardService } from 'src/app/boards/services/board.service';
 import { deleteBoard } from 'src/app/boards/store/actions/boards.actions';
 import { ModalConfirmComponent } from '../components/modal-confirm/modal-confirm.component';
@@ -13,31 +16,26 @@ export class SharedService {
   constructor(public dialog: MatDialog, private boardService: BoardService) {}
 
   openDialog(configMatDialog: MatDialogConfig<ModalData>) {
-    this.dialog.open(ModalConfirmComponent, configMatDialog);
+    console.log({ configMatDialog }, 'from service');
+    switch (configMatDialog.data?.['data'].name) {
+      case 'confirmDelete':
+        this.dialog.open(ModalConfirmComponent, configMatDialog);
+        break;
+      case 'createBoard':
+        this.dialog.open(CreateBoardDialogComponent, configMatDialog);
+        break;
+      default:
+        break;
+    }
   }
 
   createConfigDialog(data: ModalData) {
     const dialogConfig = new MatDialogConfig<ModalData>();
     dialogConfig.disableClose = true;
     dialogConfig.id = 'modal-component';
-    dialogConfig.height = '350px';
-    dialogConfig.width = '600px';
+    dialogConfig.height = '600px';
+    dialogConfig.width = '1000px';
     dialogConfig.data = data;
     return dialogConfig;
   }
-
-  // modalAction(modalData: ModalData) {
-  //   switch (modalData['name']) {
-  //     // case 'logout':
-  //     //   this.logout(modalData);
-  //     //   break;
-
-  //     case 'confirmDelete':
-  //       this.boardService.deleteBoard(modalData['id']);
-  //       break;
-
-  //     default:
-  //       break;
-  //   }
-  // }
 }

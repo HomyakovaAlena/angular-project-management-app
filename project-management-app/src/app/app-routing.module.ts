@@ -12,6 +12,10 @@ const routes: Routes = [
     path: 'boards',
     loadChildren: () => import('./boards/boards.module').then((m) => m.BoardsModule),
   },
+  {
+    path: 'auth',
+    loadChildren: () => import('./auth/auth.module').then((m) => m.AuthModule),
+  },
   { path: '**', component: NotFoundPageComponent },
 ];
 

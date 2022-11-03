@@ -5,10 +5,8 @@ import { Injectable } from '@angular/core';
 import { SharedService } from '../../services/shared.service';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import * as BoardsActions from '../../../boards/store/actions/boards.actions';
-// import * as fromRoot from '../../../store/reducers/app.reducer';
-// import { Store } from '@ngrx/store';
-// import { ModalConfirmComponent } from 'src/app/shared/components/modal-confirm/modal-confirm.component';
-// import { BoardService } from '../../../boards/services/board.service';
+import { ComponentType } from '@angular/cdk/portal';
+import { ModalData } from '../../models/shared.model';
 
 @Injectable()
 export class SharedEffects {
@@ -16,8 +14,6 @@ export class SharedEffects {
     private actions$: Actions,
     private dialog: MatDialog,
     private sharedService: SharedService,
-    // private store: Store<fromRoot.AppState>,
-    // private boardService: BoardService,
   ) {}
 
   openDialog$ = createEffect(

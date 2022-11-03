@@ -1,2 +1,7 @@
-<app-boards-list [boardsList]="boardsList$ | async" (deleteBoard)="deleteBoard($event)"></app-boards-list>
-<app-create-board (createBoard)="createBoard($event)"></app-create-board>
+<div class="container">
+  <app-boards-list
+    [boardsList]="boardsList$ | async"
+    (deleteBoard)="openDialog($event)"
+  ></app-boards-list>
+  <!-- <app-create-board-dialog (createBoard)="createBoard($event)"></app-create-board-dialog> -->
+</div>

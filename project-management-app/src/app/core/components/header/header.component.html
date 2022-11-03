@@ -1,7 +1,11 @@
 <mat-toolbar color="primary">
   <header [class]="'header'">
     <div [class]="'header__logo-block'">
-      <a routerLink="/pm-app" routerLinkActive="active" ariaCurrentWhenActive="page" [class]="'header__logo-link'"
+      <a
+        routerLink="/pm-app"
+        routerLinkActive="active"
+        ariaCurrentWhenActive="page"
+        [class]="'header__logo-link'"
         ><mat-icon> terrain</mat-icon>
         <h1 [innerText]="appTitle"></h1
       ></a>
@@ -10,16 +14,16 @@
       <ul [class]="'header__nav-block'">
         <li [class]="'header__board-block'">
           <app-all-boards-button></app-all-boards-button>
-          <app-create-board-item></app-create-board-item>
+          <app-create-board-button></app-create-board-button>
         </li>
         <li [class]="'header__localization-block'">
           <app-localization-switcher></app-localization-switcher>
         </li>
         <li [class]="'header__user-block'">
-          <app-edit-profile-button></app-edit-profile-button>
-          <app-login-button></app-login-button>
-          <app-signup-button></app-signup-button>
-          <app-logout-button></app-logout-button>
+          <app-edit-profile></app-edit-profile>
+          <app-login></app-login>
+          <app-signup></app-signup>
+          <app-logout></app-logout>
         </li>
       </ul>
     </nav>

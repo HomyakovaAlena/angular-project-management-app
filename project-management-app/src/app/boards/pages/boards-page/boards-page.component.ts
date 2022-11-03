@@ -10,6 +10,7 @@ import { ModalConfirmComponent } from 'src/app/shared/components/modal-confirm/m
 import { MatDialogConfig } from '@angular/material/dialog';
 import { ModalData } from 'src/app/shared/models/shared.model';
 import { SharedService } from 'src/app/shared/services/shared.service';
+import { ComponentType } from '@angular/cdk/portal';
 
 @Component({
   selector: 'app-boards-page',
@@ -25,11 +26,11 @@ export class BoardsPageComponent implements OnInit {
     this.store.dispatch(BoardsActions.loadBoards());
   }
 
-  createBoard(board: Board) {
-    this.store.dispatch(BoardsActions.createBoard({ board }));
-  }
+  // createBoard(board: Board) {
+  //   this.store.dispatch(BoardsActions.createBoard({ board }));
+  // }
 
-  deleteBoard(id: string) {
+  openDialog(id: string) {
     const dialogConfig = this.sharedService.createConfigDialog({
       name: 'confirmDelete',
       title: 'Are you sure you want to delete this item?',
@@ -37,12 +38,7 @@ export class BoardsPageComponent implements OnInit {
       actionButtonText: 'Delete',
       id: id,
       action: 'deleteBoard',
-    });
-    
-    this.store.dispatch(
-      SharedActions.openDialog({ data: dialogConfig } as MatDialogConfig<
-        ModalData | null | undefined
-      >),
-    );
+    }) as ModalData | null | undefined;
+    this.store.dispatch(SharedActions.openDialog({ data: dialogConfig }));
   }
 }

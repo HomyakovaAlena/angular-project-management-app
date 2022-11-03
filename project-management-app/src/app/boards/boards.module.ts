@@ -5,7 +5,7 @@ import { BoardsRoutingModule } from './boards-routing.module';
 import { BoardService } from './services/board.service';
 import { BoardsListComponent } from './components/boards-list/boards-list.component';
 import { BoardPreviewComponent } from './components/board-preview/board-preview.component';
-import { CreateBoardComponent } from './components/create-board/create-board.component';
+import { CreateBoardDialogComponent } from './components/create-board-dialog/create-board-dialog.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { StoreModule } from '@ngrx/store';
@@ -19,13 +19,16 @@ import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { SharedModule } from '../shared/shared.module';
+import { MatDialogModule } from '@angular/material/dialog';
+import { CreateBoardButtonComponent } from './components/create-board-button/create-board-button.component';
 
 @NgModule({
   declarations: [
     BoardsPageComponent,
     BoardsListComponent,
     BoardPreviewComponent,
-    CreateBoardComponent,
+    CreateBoardDialogComponent,
+    CreateBoardButtonComponent,
   ],
   imports: [
     CommonModule,
@@ -40,9 +43,9 @@ import { SharedModule } from '../shared/shared.module';
     MatButtonModule,
     MatIconModule,
     SharedModule,
-
+    MatDialogModule,
   ],
-  exports: [BoardsPageComponent],
+  exports: [BoardsPageComponent, CreateBoardButtonComponent],
   providers: [BoardService],
 })
 export class BoardsModule {}
