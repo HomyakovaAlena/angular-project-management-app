@@ -21,6 +21,12 @@ import { MatIconModule } from '@angular/material/icon';
 import { SharedModule } from '../shared/shared.module';
 import { MatDialogModule } from '@angular/material/dialog';
 import { CreateBoardButtonComponent } from './components/create-board-button/create-board-button.component';
+import { UsersModule } from '../users/users.module';
+import { UsernameByIdPipe } from '../users/pipes/username-by-id.pipe';
+
+// import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
+// import { UsersSearchBarComponent } from '../users/components/users-search-bar/users-search-bar.component';
+// import { UsersModule } from '../users/users.module';
 
 @NgModule({
   declarations: [
@@ -44,6 +50,12 @@ import { CreateBoardButtonComponent } from './components/create-board-button/cre
     MatIconModule,
     SharedModule,
     MatDialogModule,
+
+    UsersModule,
+
+    // MatAutocompleteSelectedEvent,
+    // UsersSearchBarComponent,
+    // UsersModule
   ],
   exports: [BoardsPageComponent, CreateBoardButtonComponent],
   providers: [BoardService],

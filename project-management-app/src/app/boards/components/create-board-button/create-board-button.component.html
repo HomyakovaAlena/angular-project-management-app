@@ -7,6 +7,7 @@
   routerLinkActive="active"
   ariaCurrentWhenActive="page"
   (click)="openDialog()"
+  [disabled]="!(isLoggedIn$ | async)"
 >
   <mat-icon aria-hidden="false" aria-label="create_new_folder icon" fontIcon="create_new_folder"
     >create_new_folder</mat-icon

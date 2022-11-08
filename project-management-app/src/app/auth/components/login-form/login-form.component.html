@@ -1,0 +1,42 @@
+<div class="container">
+  <form (ngSubmit)="onSubmit(ngForm)" #ngForm="ngForm" [formGroup]="loginForm">
+    <p>
+      <mat-form-field>
+        <mat-label for="login">Login: </mat-label>
+        <input
+          matInput
+          id="login"
+          type="text"
+          placeholder="login"
+          name="login"
+          formControlName="login"
+        />
+      </mat-form-field>
+    </p>
+    <p>
+      <mat-form-field>
+        <mat-label for="password">Password: </mat-label>
+        <input
+          matInput
+          id="password"
+          type="password"
+          name="password"
+          placeholder="password"
+          formControlName="password"
+        />
+      </mat-form-field>
+    </p>
+
+    <button
+      mat-stroked-button
+      color="primary"
+      aria-label="icon button with a create_new_folder icon"
+      [class]="'button'"
+      ariaCurrentWhenActive="page"
+      type="submit"
+      [disabled]="!loginForm.valid"
+    >
+      Login
+    </button>
+  </form>
+</div>

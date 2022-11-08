@@ -16,6 +16,7 @@ import { StoreRouterConnectingModule } from '@ngrx/router-store';
 import { appReducer } from './store/reducers/app.reducer';
 import { SharedModule } from './shared/shared.module';
 import { ReactiveFormsModule } from '@angular/forms';
+// import { UsersModule } from './users/users.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -33,6 +34,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     StoreRouterConnectingModule.forRoot(),
     SharedModule,
     ReactiveFormsModule,
+    // UsersModule
   ],
   providers: [],
   bootstrap: [AppComponent],

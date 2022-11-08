@@ -19,10 +19,13 @@ export class SharedService {
     console.log({ configMatDialog }, 'from service');
     switch (configMatDialog.data?.['data'].name) {
       case 'confirmDelete':
-        this.dialog.open(ModalConfirmComponent, configMatDialog);
+        this.dialog.open(ModalConfirmComponent, configMatDialog as MatDialogConfig<ModalData>);
         break;
       case 'createBoard':
-        this.dialog.open(CreateBoardDialogComponent, configMatDialog);
+        this.dialog.open(
+          CreateBoardDialogComponent,
+          configMatDialog.data as MatDialogConfig<ModalData>,
+        );
         break;
       default:
         break;
@@ -33,9 +36,10 @@ export class SharedService {
     const dialogConfig = new MatDialogConfig<ModalData>();
     dialogConfig.disableClose = true;
     dialogConfig.id = 'modal-component';
-    dialogConfig.height = '600px';
-    dialogConfig.width = '1000px';
+    dialogConfig.height = '500px';
+    dialogConfig.width = '900px';
     dialogConfig.data = data;
+    console.log(dialogConfig, 'waiting');
     return dialogConfig;
   }
 }

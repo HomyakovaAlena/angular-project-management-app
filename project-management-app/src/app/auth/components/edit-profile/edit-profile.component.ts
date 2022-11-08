@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthFacade } from '../../store/auth.facade';
 
 @Component({
   selector: 'app-edit-profile',
@@ -7,9 +8,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EditProfileComponent implements OnInit {
 
-  constructor() { }
+  constructor(private authFacade: AuthFacade) { }
 
   ngOnInit(): void {
+    // console.log('get user', this.authFacade.getAuthUser());
+
   }
 
 }

@@ -21,9 +21,10 @@
         </li>
         <li [class]="'header__user-block'">
           <app-edit-profile></app-edit-profile>
-          <app-login></app-login>
-          <app-signup></app-signup>
-          <app-logout></app-logout>
+          <div *ngIf="user$ | async as user">{{ user.name }}</div>
+          <app-login *ngIf="!(isLoggedIn$ | async)"></app-login>
+          <app-signup *ngIf="!(isLoggedIn$ | async)"></app-signup>
+          <app-logout *ngIf="isLoggedIn$ | async"></app-logout>
         </li>
       </ul>
     </nav>

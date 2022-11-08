@@ -7,13 +7,18 @@ import { Board } from '../models/board.model';
   providedIn: 'root',
 })
 export class BoardService {
-  BoardsList: Board[] = [];
+  // BoardsList: Board[] = [];
   private url = 'boards';
 
   constructor(private httpClient: HttpClient) {}
 
-  getBoards(): Observable<Board[]> {
-    return this.httpClient.get<Board[]>(this.url);
+  getBoards(id: string| undefined): Observable<Board[]> {
+    return this.httpClient.get<Board[]>(`${this.url}Set/${id}`);
+  }
+
+  getBoardsByUser(id: string): Observable<Board[]> {
+    const url = `${this.url}/${id}`;
+    return this.httpClient.get<Board[]>(url);
   }
 
   createBoard(board: Board): Observable<Board> {

@@ -1,15 +1,19 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthFacade } from '../../store/auth.facade';
 
 @Component({
   selector: 'app-logout',
   templateUrl: './logout.component.html',
-  styleUrls: ['./logout.component.scss']
+  styleUrls: ['./logout.component.scss'],
 })
 export class LogoutComponent implements OnInit {
+  constructor(private authFacade: AuthFacade) {}
 
-  constructor() { }
+  ngOnInit(): void {}
 
-  ngOnInit(): void {
+  logout() {
+    // console.log('get user', this.authFacade.getAuthUser());
+    this.authFacade.logout();
+    console.log('logged out');
   }
-
 }

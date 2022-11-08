@@ -3,7 +3,9 @@ import { Board } from '../../models/board.model';
 import { BoardService } from '../../services/board.service';
 
 import * as fromBoards from '../../store/reducers/boards.reducer';
+import * as fromUsers from '../../../users/store/reducers/users.reducer';
 import * as BoardsActions from '../../store/actions/boards.actions';
+import * as UsersActions from '../../../users/store/actions/users.actions';
 import { Store } from '@ngrx/store';
 import * as SharedActions from '../../../shared/store/actions/shared.actions';
 import { ModalConfirmComponent } from 'src/app/shared/components/modal-confirm/modal-confirm.component';
@@ -11,6 +13,7 @@ import { MatDialogConfig } from '@angular/material/dialog';
 import { ModalData } from 'src/app/shared/models/shared.model';
 import { SharedService } from 'src/app/shared/services/shared.service';
 import { ComponentType } from '@angular/cdk/portal';
+import { AuthFacade } from 'src/app/auth/store/auth.facade';
 
 @Component({
   selector: 'app-boards-page',
@@ -19,11 +22,24 @@ import { ComponentType } from '@angular/cdk/portal';
 })
 export class BoardsPageComponent implements OnInit {
   boardsList$ = this.store.select(fromBoards.getBoards);
+  user$ = this.authFacade.user$;
+  usersList$ = this.store.select(fromUsers.getUsers);
 
-  constructor(private store: Store<fromBoards.BoardsState>, private sharedService: SharedService) {}
+  constructor(
+    private store: Store<fromBoards.BoardsState>,
+    private usersStore: Store<fromUsers.UsersState>,
+    private sharedService: SharedService,
+    private authFacade: AuthFacade,
+  ) {}
 
   ngOnInit(): void {
-    this.store.dispatch(BoardsActions.loadBoards());
+    this.user$.subscribe((user) =>
+      this.store.dispatch(BoardsActions.loadBoards({ userId: user?._id })),
+    );
+
+    this.boardsList$.subscribe((board) => console.log(board, 'oninit boards'));
+    this.usersList$.subscribe((users) => console.log(users, 'oninit users'));
+    // this.usersStore.dispatch(UsersActions.loadUsers());
   }
 
   // createBoard(board: Board) {
@@ -31,6 +47,8 @@ export class BoardsPageComponent implements OnInit {
   // }
 
   openDialog(id: string) {
+    this.user$.subscribe((user) => console.log(user, 'openDialog user'));
+    this.usersList$.subscribe((users) => console.log(users, 'openDialog users'));
     const dialogConfig = this.sharedService.createConfigDialog({
       name: 'confirmDelete',
       title: 'Are you sure you want to delete this item?',

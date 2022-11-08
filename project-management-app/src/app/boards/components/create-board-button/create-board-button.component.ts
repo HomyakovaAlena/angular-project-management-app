@@ -5,14 +5,19 @@ import { Store } from '@ngrx/store';
 import * as BoardsActions from '../../store/actions/boards.actions';
 import * as fromBoards from '../../store/reducers/boards.reducer';
 import * as SharedActions from '../../../shared/store/actions/shared.actions';
-
+import { AuthFacade } from 'src/app/auth/store/auth.facade';
 @Component({
   selector: 'app-create-board-button',
   templateUrl: './create-board-button.component.html',
   styleUrls: ['./create-board-button.component.scss'],
 })
 export class CreateBoardButtonComponent implements OnInit {
-  constructor(private sharedService: SharedService, private store: Store<fromBoards.BoardsState>) {}
+  isLoggedIn$ = this.authFacade.isLoggedIn$;
+  constructor(
+    private sharedService: SharedService,
+    private store: Store<fromBoards.BoardsState>,
+    private authFacade: AuthFacade,
+  ) {}
 
   ngOnInit(): void {}
   openDialog() {

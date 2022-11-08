@@ -1,0 +1,45 @@
+<div>Board Users:</div>
+<mat-form-field
+  class="example-chip-list"
+  appearance="fill"
+  id="search-component"
+  [formGroup]="parentGroup"
+>
+  <mat-label for="search-box"></mat-label>
+  <mat-chip-list
+    #chipList
+    aria-label="Users selection"
+    cdkDropList
+    cdkDropListOrientation="horizontal"
+    (cdkDropListDropped)="drop($event)"
+    [formControlName]="controlName"
+  >
+    <div class="chips">
+      <mat-chip *ngFor="let selectedUser of selectedUsers" (removed)="remove(selectedUser)" cdkDrag>
+        {{ selectedUser.name }}
+        <button matChipRemove>
+          <mat-icon>cancel</mat-icon>
+        </button>
+      </mat-chip>
+    </div>
+    <!-- <mat-label for="users">Board Users: -->
+    <input
+      matInput
+      #searchBox
+      #usersInput
+      id="search-box users"
+      placeholder="Add user..."
+      [matChipInputFor]="chipList"
+      [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+      [matChipInputAddOnBlur]="addOnBlur"
+      (input)="search(searchBox.value)"
+    />
+    <!-- </mat-label> -->
+  </mat-chip-list>
+  <div class="optionsFound">
+    <mat-option *ngFor="let user of users$ | async" [value]="user"
+      ><option (click)="selected(user)">{{ user.name }}</option></mat-option
+    >
+  </div>
+</mat-form-field>
+<div id="search-message"></div>

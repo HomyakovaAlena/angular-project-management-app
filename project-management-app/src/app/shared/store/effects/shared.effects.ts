@@ -20,8 +20,8 @@ export class SharedEffects {
     () =>
       this.actions$.pipe(
         ofType(SharedActions.openDialog),
-        tap((config) => {
-          this.sharedService.openDialog(config);
+        tap((data) => {
+          this.sharedService.openDialog(data);
         }),
       ),
     { dispatch: false },

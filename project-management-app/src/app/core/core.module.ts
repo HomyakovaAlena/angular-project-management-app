@@ -31,7 +31,6 @@ import { BoardsModule } from '../boards/boards.module';
     ProgressBarComponent,
     LocalizationSwitcherComponent,
     AllBoardsButtonComponent,
-    
   ],
   imports: [
     CommonModule,
@@ -42,7 +41,7 @@ import { BoardsModule } from '../boards/boards.module';
     MatIconModule,
     CoreRoutingModule,
     AuthModule,
-    BoardsModule
+    BoardsModule,
   ],
   exports: [HeaderComponent, FooterComponent, NotFoundPageComponent, ProgressBarComponent],
   providers: [

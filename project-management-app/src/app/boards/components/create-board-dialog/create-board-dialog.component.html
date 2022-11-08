@@ -1,12 +1,13 @@
 <!-- <button mat-raised-button color="accent" type="button">Create Board</button> -->
 
 <form (ngSubmit)="onSubmit(ngForm)" #ngForm="ngForm" [formGroup]="createBoardForm">
-  <h3>{{ configDialog['data']?.['title'] }}</h3>
-  <h5>{{ configDialog['data']?.['description'] }}</h5>
-  <mat-dialog-content class="mat-typography">
-    <p>
-      <mat-form-field>
-        <mat-label for="title">Board Title: </mat-label>
+  <h3>{{ configDialog.title }}</h3>
+  <div class="owner" *ngIf="user$ | async as user" >Board Owner: {{ user.name }}</div>
+  <h5 class="description">{{ configDialog.description }}</h5>
+  <mat-dialog-content class="mat-typography modalContent">
+    <div>
+      <mat-form-field class="form-field" appearance="fill">
+        <mat-label for="title">Board Title</mat-label>
         <input
           matInput
           id="title"
@@ -14,38 +15,28 @@
           placeholder="title"
           name="title"
           formControlName="title"
+          [(ngModel)]="value"
         />
-        <mat-error *ngIf="createBoardForm.get('title')?.errors?.['required']"
-          >Title is required</mat-error
-        >
+        <button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value = ''">
+          <mat-icon>close</mat-icon>
+        </button>
       </mat-form-field>
-    </p>
-    <p>
-      <mat-form-field>
-        <mat-label for="owner">Board Owner: </mat-label>
-        <input
-          matInput
-          id="owner"
-          type="text"
-          placeholder="owner"
-          name="owner"
-          formControlName="owner"
-        />
-      </mat-form-field>
-    </p>
-    <p>
-      <mat-form-field>
-        <mat-label for="users">Board Users: </mat-label>
-        <input
-          matInput
-          id="users"
-          type="text"
-          name="users"
-          placeholder="users"
-          formControlName="users"
-        />
-      </mat-form-field>
-    </p>
+
+      <div *ngIf="createBoardForm.get('title')?.errors?.['required']">Title is required</div>
+    </div>
+    <div>
+      <app-users-search
+        matInput
+        id="users"
+        type="text"
+        name="users"
+        placeholder="users"
+        controlName="users"
+        selectedUsers="selectedUsers"
+        [parentGroup]="createBoardForm"
+        (selectedUsersIdsFromChild)="selected($event)"
+      ></app-users-search>
+    </div>
   </mat-dialog-content>
   <mat-dialog-actions align="end">
     <button mat-button mat-dialog-close (click)="closeModal()">Cancel</button>
@@ -61,7 +52,7 @@
       <mat-icon aria-hidden="false" aria-label="create_new_folder icon" fontIcon="create_new_folder"
         >create_new_folder</mat-icon
       >
-      {{ configDialog['data']?.['actionButtonText'] }}
+      {{ configDialog.actionButtonText }}
     </button>
   </mat-dialog-actions>
 </form>

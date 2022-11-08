@@ -10,7 +10,6 @@ import * as fromRoot from './store/reducers/app.reducer';
 })
 export class AppComponent {
   isLoading$ = this.store.select(fromRoot.getIsLoading).pipe(debounceTime(0));
-  // getDataThroughModal$ = this.store.select(fromRoot.getDataThroughModal);
 
   constructor(private store: Store<fromRoot.AppState>, private cdr: ChangeDetectorRef) {}
 

@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { User } from 'src/app/auth/models/user.model';
 import { Board } from '../../models/board.model';
 
 @Component({
@@ -8,6 +9,8 @@ import { Board } from '../../models/board.model';
 })
 export class BoardsListComponent implements OnInit {
   @Input() boardsList: Board[] | null = [];
+  @Input() user: User | null | undefined;
+  @Input() users: User[] | null | undefined;
   @Output() deleteBoard = new EventEmitter<string>();
 
   constructor() {}

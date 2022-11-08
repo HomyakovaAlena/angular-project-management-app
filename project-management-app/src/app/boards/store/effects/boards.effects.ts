@@ -39,8 +39,8 @@ export class BoardsEffects {
     this.actions$.pipe(
       ofType(BoardsActions.loadBoards),
       tap(() => this.store.dispatch(AppActions.setLoadingState({ isLoading: true }))),
-      switchMap(({}) =>
-        this.boardService.getBoards().pipe(
+      switchMap(({userId}) =>
+        this.boardService.getBoards(userId).pipe(
           map((boards) => BoardsActions.loadBoardsSuccess({ boards })),
           catchError(() => of(BoardsActions.loadBoardsFailed())),
           finalize(() => this.store.dispatch(AppActions.setLoadingState({ isLoading: false }))),

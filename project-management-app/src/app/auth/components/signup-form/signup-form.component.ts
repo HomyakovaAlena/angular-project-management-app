@@ -9,31 +9,33 @@ import {
   ValidationErrors,
 } from '@angular/forms';
 import { Validators } from '@angular/forms';
+import { AuthFacade } from '../../store/auth.facade';
 
 @Component({
-  selector: 'app-login-signup-form',
-  templateUrl: './login-signup-form.component.html',
-  styleUrls: ['./login-signup-form.component.scss'],
+  selector: 'app-signup-form',
+  templateUrl: './signup-form.component.html',
+  styleUrls: ['./signup-form.component.scss'],
 })
-export class LoginSignupFormComponent {
-
-  loginSignupForm: FormGroup = this.fb.group({
+export class SignupFormComponent {
+  signupForm: FormGroup = this.fb.group({
     name: ['', [Validators.required, Validators.maxLength(50)]],
     login: ['', [Validators.required, this.customValidator]],
     password: ['', [Validators.required]],
   });
 
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder, private authFacade: AuthFacade) {}
 
   onSubmit(ngForm: FormGroupDirective) {
     console.log('reactive form submitted - in login');
-    console.log(this.loginSignupForm);
+    console.log(this.signupForm);
     // this.loginSignupForm.emit({
     //   ...this.loginSignupForm.value,
     // });
-
-    this.loginSignupForm.reset();
+    const { name, login, password } = this.signupForm.value;
+    this.authFacade.signup(name, login, password);
+    this.signupForm.reset();
     ngForm.resetForm();
+    console.log('logged in');
   }
 
   private customValidator(control: AbstractControl): ValidationErrors | null {
