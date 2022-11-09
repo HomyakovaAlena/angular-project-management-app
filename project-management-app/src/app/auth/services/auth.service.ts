@@ -31,7 +31,6 @@ export class AuthService {
     private store: Store,
     private httpClient: HttpClient,
     private configService: ConfigService, // private tokenStorageService: TokenStorageService,
-
   ) {
     // this.hostUrl = this.configService.getAPIUrl();
     const authConfig = this.configService.getAuthSettings();
@@ -132,11 +131,12 @@ export class AuthService {
    * @param {('all' | 'allButCurrent' | 'current')} [clients='current']
    * @returns Observable<void>
    */
-  logout(clients: 'all' | 'allButCurrent' | 'current' = 'current'): Observable<void> {
-    const params = new HttpParams().append('clients', clients);
-    console.log(this.httpClient.get<void>(this.url, { params }), 'from logout service');
-    console.log({ params });
-    return this.httpClient.get<void>(this.url, { params });
+  logout(): void {
+    // const params = new HttpParams().append('clients', clients);
+    // console.log(this.httpClient.get<void>(this.url, { params }), 'from logout service');
+    // console.log({ params });
+    // return this.httpClient.get<void>(this.url);
+    console.log('logout');
   }
 
   // /**

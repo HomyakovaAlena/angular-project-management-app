@@ -16,21 +16,31 @@ export const loginRequest = createAction(
 );
 export const loginSuccess = createAction(
   '[Auth] Login Success',
-  props<{ data: {token: string} }>(),
+  props<{ data: { token: string } }>(),
 );
 export const loginFailure = createAction('[Auth] Login Failure', props<{ error: Error }>());
 
 // Logout
 export const logout = createAction('[Auth] Logout');
+export const logoutSuccess = createAction('[Auth] Logout Success');
 
 // Auth User: me
-export const getAuthUserRequest = createAction('[Auth] Auth User Request', props<{ data: {token: string} }>());
+export const getAuthUserRequest = createAction(
+  '[Auth] Auth User Request',
+  props<{ data: { token: string } }>(),
+);
 export const getAuthUserSuccess = createAction('[Auth] Auth User Success', props<{ user: User }>());
 export const getAuthUserFailure = createAction('[Auth] Auth User Failure');
 
 // SignUped User: me
-export const getSignUpedUserRequest = createAction('[Auth] Auth User Request', props<{ user: User }>());
-export const getSignUpedUserSuccess = createAction('[Auth] Auth User Success', props<{ user: User }>());
+export const getSignUpedUserRequest = createAction(
+  '[Auth] Auth User Request',
+  props<{ user: User }>(),
+);
+export const getSignUpedUserSuccess = createAction(
+  '[Auth] Auth User Success',
+  props<{ user: User }>(),
+);
 export const getSignUpedUserFailure = createAction('[Auth] Auth User Failure');
 
 // Refresh token

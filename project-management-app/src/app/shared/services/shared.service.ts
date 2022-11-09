@@ -36,8 +36,8 @@ export class SharedService {
     const dialogConfig = new MatDialogConfig<ModalData>();
     dialogConfig.disableClose = true;
     dialogConfig.id = 'modal-component';
-    dialogConfig.height = '500px';
-    dialogConfig.width = '900px';
+    dialogConfig.height = '600px';
+    dialogConfig.width = '600px';
     dialogConfig.data = data;
     console.log(dialogConfig, 'waiting');
     return dialogConfig;

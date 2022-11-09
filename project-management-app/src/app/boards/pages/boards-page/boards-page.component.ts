@@ -33,9 +33,9 @@ export class BoardsPageComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.user$.subscribe((user) =>
-      this.store.dispatch(BoardsActions.loadBoards({ userId: user?._id })),
-    );
+    this.user$.subscribe((user) => {
+      if (user) this.store.dispatch(BoardsActions.loadBoards({ userId: user?._id }));
+    });
 
     this.boardsList$.subscribe((board) => console.log(board, 'oninit boards'));
     this.usersList$.subscribe((users) => console.log(users, 'oninit users'));

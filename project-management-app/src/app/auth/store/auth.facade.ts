@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
+import { TokenStorageService } from 'src/app/core/services/token-storage.service';
 import { User } from '../models/user.model';
+import * as Utils from '../utils/auth.utils';
 
 import * as AuthActions from './actions/auth.actions';
 import * as AuthSelectors from './selectors/auth.selectors';
@@ -13,7 +15,7 @@ export class AuthFacade {
   isLoadingLogin$ = this.store.select(AuthSelectors.selectIsLoadingLogin);
   hasLoginError$ = this.store.select(AuthSelectors.selectLoginError);
 
-  constructor(private store: Store) {}
+  constructor(private store: Store, private tokenStorageService: TokenStorageService) {}
 
   signup(name: string, login: string, password: string) {
     this.store.dispatch(AuthActions.signupRequest({ name, login, password }));
@@ -29,5 +31,12 @@ export class AuthFacade {
 
   getAuthUser(data: { token: string }) {
     this.store.dispatch(AuthActions.getAuthUserRequest({ data }));
+  }
+
+  authIfTokenNotExpired() {
+    const token = this.tokenStorageService.getToken();
+    if (token && !Utils.isTokenExpired(token)) {
+      this.store.dispatch(AuthActions.loginSuccess({ data: { token: token } }));
+    }
   }
 }

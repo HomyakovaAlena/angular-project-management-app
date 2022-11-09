@@ -25,7 +25,6 @@ export class NoAuthGuardGuard implements CanActivate {
           console.log('isLoggedIn in guard');
           this.router.navigateByUrl('/boards');
         }
-
         return !isLoggedIn;
       }),
     );

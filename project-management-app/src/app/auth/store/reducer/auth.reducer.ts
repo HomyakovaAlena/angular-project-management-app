@@ -44,15 +44,15 @@ const reducer = createReducer(
     }),
   ),
 
-  //   on(
-  //   AuthActions.loginSuccess
-  //   (state): AuthState => ({
-  //     ...state,
-  //     isLoggedIn: true,
-  //     isLoadingLogin: false,
-  //     accessTokenStatus: TokenStatus.VALID,
-  //   }),
-  // ),
+  on(
+    AuthActions.loginSuccess,
+    (state): AuthState => ({
+      ...state,
+      isLoggedIn: true,
+      isLoadingLogin: false,
+      accessTokenStatus: TokenStatus.VALID,
+    }),
+  ),
 
   // // Refresh token
   // on(

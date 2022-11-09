@@ -91,14 +91,11 @@ export class AuthEffects {
     () => {
       return this.actions$.pipe(
         ofType(AuthActions.logout),
-        exhaustMap(() => {
+        map(() => {
           this.router.navigateByUrl('/');
-          return this.authService.logout().pipe(
-            finalize(() => {
-              console.log(this.tokenStorageService.removeToken(), 'from remove tokens');
-              this.tokenStorageService.removeToken();
-            }),
-          );
+          this.authService.logout();
+          this.tokenStorageService.removeToken();
+          return AuthActions.logoutSuccess();
         }),
       );
     },
