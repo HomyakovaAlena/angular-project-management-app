@@ -9,7 +9,7 @@ export class TokenStorageService {
 
   constructor(
     private configService: ConfigService,
-    private localStorageService: LocalStorageService
+    private localStorageService: LocalStorageService,
   ) {
     const authSettings = this.configService.getAuthSettings();
     this.accessTokenKey = authSettings.accessTokenKey || 'accessToken';
@@ -19,12 +19,13 @@ export class TokenStorageService {
     return this.localStorageService.getItem(this.accessTokenKey) as string;
   }
 
-
   saveToken(token: string) {
     this.localStorageService.setItem(this.accessTokenKey, token);
   }
 
   removeToken() {
+    console.log(this.accessTokenKey, 'access token');
     this.localStorageService.removeItem(this.accessTokenKey);
+    console.log('removed token');
   }
 }

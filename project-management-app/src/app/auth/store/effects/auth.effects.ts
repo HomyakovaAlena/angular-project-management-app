@@ -7,6 +7,7 @@ import { catchError, exhaustMap, finalize, map, tap } from 'rxjs/operators';
 import { TokenStorageService } from '../../../core/services/token-storage.service';
 import { AuthService } from '../../services/auth.service';
 import * as AuthActions from '../actions/auth.actions';
+import { AuthFacade } from '../auth.facade';
 
 @Injectable()
 export class AuthEffects {
@@ -16,6 +17,7 @@ export class AuthEffects {
     private authService: AuthService,
     private activatedRoute: ActivatedRoute,
     private tokenStorageService: TokenStorageService,
+    private authFacade: AuthFacade,
   ) {}
 
   signup$ = createEffect(() => {
@@ -36,22 +38,25 @@ export class AuthEffects {
     );
   });
 
-  onSignupSuccess$ = createEffect(() => {
-    return this.actions$.pipe(
-      ofType(AuthActions.signupSuccess),
-      map(({ user }) => {
-        // redirect to return url or home
-        // console.log(
-        //   this.activatedRoute.snapshot.queryParams['returnUrl'] || '/',
-        //   'from signupsuccess activate route',
-        // );
-        console.log({ user }, 'from onsignupedsuccess');
-        this.router.navigate(['/boards']);
-        // this.router.navigateByUrl(this.activatedRoute.snapshot.queryParams['returnUrl'] || '/');
-        return AuthActions.getSignUpedUserRequest({ user });
-      }),
-    );
-  });
+  onSignupSuccess$ = createEffect(
+    () => {
+      return this.actions$.pipe(
+        ofType(AuthActions.signupSuccess),
+        tap(({ user }) => {
+          // redirect to return url or home
+          // console.log(
+          //   this.activatedRoute.snapshot.queryParams['returnUrl'] || '/',
+          //   'from signupsuccess activate route',
+          // );
+          console.log({ user }, 'from onsignupedsuccess');
+          this.router.navigate(['/boards']);
+          // this.router.navigateByUrl(this.activatedRoute.snapshot.queryParams['returnUrl'] || '/');
+          // return AuthActions.getSignUpedUserRequest({ user });
+        }),
+      );
+    },
+    { dispatch: false },
+  );
 
   login$ = createEffect(() => {
     return this.actions$.pipe(
@@ -93,8 +98,8 @@ export class AuthEffects {
         ofType(AuthActions.logout),
         map(() => {
           this.router.navigateByUrl('/');
+          console.log('000');
           this.authService.logout();
-          this.tokenStorageService.removeToken();
           return AuthActions.logoutSuccess();
         }),
       );
@@ -114,44 +119,65 @@ export class AuthEffects {
     );
   });
 
-  // getUser$ = createEffect(() => {
-  //   return this.actions$.pipe(
-  //     ofType(AuthActions.refreshTokenSuccess, AuthActions.getAuthUserRequest),
-  //     exhaustMap(() =>
-  //       this.authService.getAuthUser().pipe(
-  //         map((user) => AuthActions.getAuthUserSuccess({ user })),
-  //         catchError(() => of(AuthActions.getAuthUserFailure())),
-  //       ),
-  //     ),
-  //   );
-  // });
+  editUser$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(AuthActions.editUser),
+      exhaustMap(({ user }) =>
+        this.authService.updateUser(user).pipe(
+          map((user) => {
+            // save tokens
+            // this.tokenStorageService.saveTokens(user.access_token, data.refresh_token);
+            // trigger editUser success action
+            console.log(user, 'from signup effect');
+            return AuthActions.editUserSuccess({ user });
+          }),
+          catchError((error) => of(AuthActions.editUserFailure({ error }))),
+        ),
+      ),
+    );
+  });
 
-  // refreshToken$ = createEffect(() => {
-  //   return this.actions$.pipe(
-  //     ofType(AuthActions.refreshTokenRequest),
-  //     exhaustMap(() =>
-  //       this.authService.refreshToken().pipe(
-  //         map((data) => {
-  //           // save tokens
-  //           this.tokenStorageService.saveTokens(data.access_token, data.refresh_token);
-  //           // trigger refresh token success action
-  //           return AuthActions.refreshTokenSuccess();
-  //         }),
-  //         catchError(() => of(AuthActions.refreshTokenFailure())),
-  //       ),
-  //     ),
-  //   );
-  // });
+  editUserSuccess$ = createEffect(
+    () => {
+      return this.actions$.pipe(
+        ofType(AuthActions.editUserSuccess),
+        tap(({ user }) => {
+          console.log({ user }, 'from editUserSuccess');
+          // this.router.navigate(['boards']);
+          this.authFacade.authIfTokenNotExpired();
+          // this.router.navigateByUrl(this.activatedRoute.snapshot.queryParams['returnUrl'] || '/');
+          // return AuthActions.getAuthUserRequest(user?._id);
+        }),
+      );
+    },
+    { dispatch: false },
+  );
 
-  // onLoginOrRefreshTokenFailure$ = createEffect(
-  //   () => {
-  //     return this.actions$.pipe(
-  //       ofType(AuthActions.loginFailure, AuthActions.refreshTokenFailure),
-  //       tap(() => {
-  //         this.tokenStorageService.removeTokens();
-  //       }),
-  //     );
-  //   },
-  //   { dispatch: false },
-  // );
+  deleteUser$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(AuthActions.deleteUser),
+      exhaustMap(({ id }) =>
+        this.authService.deleteUser(id).pipe(
+          map((user) => {
+            console.log(user, 'from deleteUser effect');
+            return AuthActions.deleteUserSuccess({ user });
+          }),
+          catchError((error) => of(AuthActions.deleteUserFailure({ error }))),
+        ),
+      ),
+    );
+  });
+
+  deleteUserSuccess$ = createEffect(
+    () => {
+      return this.actions$.pipe(
+        ofType(AuthActions.deleteUserSuccess),
+        tap(({ user }) => {
+          this.authFacade.logout();
+          console.log({ user }, 'from deleteUserSuccess');
+        }),
+      );
+    },
+    { dispatch: false },
+  );
 }

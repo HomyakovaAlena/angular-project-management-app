@@ -20,6 +20,7 @@ import { AuthService } from './services/auth.service';
 import { AuthEffects } from './store/effects/auth.effects';
 import { authReducer, AUTH_FEATURE_KEY } from './store/reducer/auth.reducer';
 import { LoginFormComponent } from './components/login-form/login-form.component';
+import { EditProfileFormComponent } from './components/edit-profile-form/edit-profile-form.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { LoginFormComponent } from './components/login-form/login-form.component
     SignupFormComponent,
     AuthComponent,
     LoginFormComponent,
+    EditProfileFormComponent,
   ],
   imports: [
     CommonModule,

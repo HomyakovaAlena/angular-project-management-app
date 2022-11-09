@@ -39,4 +39,12 @@ export class AuthFacade {
       this.store.dispatch(AuthActions.loginSuccess({ data: { token: token } }));
     }
   }
+
+  updateUser(user: User) {
+    this.store.dispatch(AuthActions.editUser({ user }));
+  }
+
+  deleteUser(id: string) {
+    this.store.dispatch(AuthActions.deleteUser({ id }));
+  }
 }

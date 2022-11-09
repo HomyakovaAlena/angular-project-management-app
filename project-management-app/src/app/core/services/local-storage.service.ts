@@ -39,6 +39,7 @@ export class LocalStorageService {
    * @param {string} key
    */
   removeItem(key: string) {
+    console.log(`${LocalStorageService.APP_PREFIX}${key}`);
     localStorage.removeItem(`${LocalStorageService.APP_PREFIX}${key}`);
   }
 }

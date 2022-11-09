@@ -46,15 +46,4 @@ export class UserService {
       // catchError(this.handleError<User[]>('searchUsers', [])),
     );
   }
-
-  deleteUser(id: string): Observable<User> {
-    const url = `${this.url}/${id}`;
-    return this.httpClient.delete<User>(url).pipe(tap((_) => console.log(`deleted hero id=${id}`)));
-  }
-
-  updateUser(user: User): Observable<any> {
-    return this.httpClient
-      .put(this.url, user)
-      .pipe(tap((_) => console.log(`updated user id=${user._id}`)));
-  }
 }

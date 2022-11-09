@@ -21,7 +21,6 @@ export const initialState: AuthState = {
 const reducer = createReducer(
   initialState,
 
-  // Signup
   on(
     AuthActions.signupRequest,
     (state): AuthState => ({
@@ -32,13 +31,11 @@ const reducer = createReducer(
     }),
   ),
 
-  // Login
   on(
     AuthActions.loginRequest,
     (state): AuthState => ({
       ...state,
       accessTokenStatus: TokenStatus.VALIDATING,
-      isLoggedIn: true,
       isLoadingLogin: false,
       hasLoginError: false,
     }),
@@ -54,36 +51,6 @@ const reducer = createReducer(
     }),
   ),
 
-  // // Refresh token
-  // on(
-  //   AuthActions.refreshTokenRequest,
-  //   (state): AuthState => ({
-  //     ...state,
-  //     refreshTokenStatus: TokenStatus.VALIDATING,
-  //   }),
-  // ),
-
-  // Login & Refresh token
-  // on(
-  //   AuthActions.loginSuccess
-  //   (state): AuthState => ({
-  //     ...state,
-  //     isLoggedIn: true,
-  //     isLoadingLogin: false,
-  //     accessTokenStatus: TokenStatus.VALID,
-  //   }),
-  // ),
-  // on(
-  //   AuthActions.loginFailure
-  //   (state, action): AuthState => ({
-  //     ...state,
-  //     isLoadingLogin: false,
-  //     accessTokenStatus: TokenStatus.INVALID,
-  //     hasLoginError: action.type === '[Auth] Login Failure' && !!action.error,
-  //   }),
-  // ),
-
-  // Logout
   on(
     AuthActions.logout,
     (): AuthState => ({
@@ -91,7 +58,6 @@ const reducer = createReducer(
     }),
   ),
 
-  // Auth user
   on(
     AuthActions.getAuthUserSuccess,
     (state, action): AuthState => ({
@@ -101,6 +67,23 @@ const reducer = createReducer(
   ),
   on(
     AuthActions.getAuthUserFailure,
+    (): AuthState => ({
+      ...initialState,
+    }),
+  ),
+
+  on(
+    AuthActions.editUser,
+    (state): AuthState => ({
+      ...state,
+      accessTokenStatus: TokenStatus.VALIDATING,
+      isLoadingLogin: true,
+      hasLoginError: false,
+    }),
+  ),
+
+  on(
+    AuthActions.deleteUser,
     (): AuthState => ({
       ...initialState,
     }),

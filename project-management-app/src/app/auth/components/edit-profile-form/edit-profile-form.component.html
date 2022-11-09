@@ -1,0 +1,129 @@
+<div class="container">
+  <form (ngSubmit)="onSubmit(ngForm)" #ngForm="ngForm" [formGroup]="editProfileForm">
+    <p>
+      <mat-form-field class="input__edit-profile">
+        <mat-label for="name">Username: </mat-label>
+        <input
+          matInput
+          id="name"
+          type="text"
+          placeholder="name"
+          name="name"
+          formControlName="name"
+          [(ngModel)]="name"
+        />
+        <mat-error *ngIf="editProfileForm.get('name')?.errors?.['required']"
+          >Username is required</mat-error
+        >
+        <button *ngIf="name" matSuffix mat-icon-button aria-label="Clear" (click)="name = ''">
+          <mat-icon>close</mat-icon>
+        </button>
+      </mat-form-field>
+    </p>
+    <p>
+      <mat-form-field class="input__edit-profile">
+        <mat-label for="login">Login: </mat-label>
+        <input
+          matInput
+          id="login"
+          type="text"
+          placeholder="login"
+          name="login"
+          formControlName="login"
+          [(ngModel)]="login"
+        />
+        <button *ngIf="login" matSuffix mat-icon-button aria-label="Clear" (click)="login = ''">
+          <mat-icon>close</mat-icon>
+        </button>
+      </mat-form-field>
+    </p>
+    <p>
+      <mat-form-field class="input__edit-profile">
+        <mat-label for="password">Password: </mat-label>
+        <input
+          matInput
+          id="password"
+          [type]="hide ? 'password' : 'text'"
+          name="password"
+          placeholder="password"
+          formControlName="password"
+          [(ngModel)]="password"
+        />
+        <button
+          mat-icon-button
+          matSuffix
+          (click)="hide = !hide"
+          [attr.aria-label]="'Hide password'"
+          [attr.aria-pressed]="hide"
+        >
+          <mat-icon>{{ hide ? 'visibility_off' : 'visibility' }}</mat-icon>
+        </button>
+        <button
+          *ngIf="password"
+          matSuffix
+          mat-icon-button
+          aria-label="Clear"
+          (click)="password = ''"
+        >
+          <mat-icon>close</mat-icon>
+        </button>
+      </mat-form-field>
+    </p>
+    <p>
+      <mat-form-field class="input__edit-profile">
+        <mat-label for="repeatPassword">Repeat password: </mat-label>
+        <input
+          matInput
+          id="repeatPassword"
+          [type]="hide ? 'password' : 'text'"
+          name="repeatPassword"
+          placeholder="repeatPassword"
+          formControlName="repeatPassword"
+          [(ngModel)]="repeatPassword"
+        />
+        <button
+          mat-icon-button
+          matSuffix
+          (click)="hide = !hide"
+          [attr.aria-label]="'Hide password'"
+          [attr.aria-pressed]="hide"
+        >
+          <mat-icon>{{ hide ? 'visibility_off' : 'visibility' }}</mat-icon>
+        </button>
+        <button
+          *ngIf="repeatPassword"
+          matSuffix
+          mat-icon-button
+          aria-label="Clear"
+          (click)="repeatPassword = ''"
+        >
+          <mat-icon>close</mat-icon>
+        </button>
+      </mat-form-field>
+    </p>
+    <div class="edit__controls">
+      <button
+        mat-raised-button
+        color="primary"
+        aria-label="icon button with a create_new_folder icon"
+        [class]="'button'"
+        ariaCurrentWhenActive="page"
+        type="submit"
+        [disabled]="!editProfileForm.valid"
+      >
+        Update
+      </button>
+      <button
+        mat-raised-button
+        color="warn"
+        aria-label="icon button with a create_new_folder icon"
+        [class]="'button'"
+        ariaCurrentWhenActive="page"
+        type="button"
+        (click)="onDelete()"
+      >
+        <mat-icon>close</mat-icon> Delete user
+      </button>
+    </div>
+  </form>
+</div>
