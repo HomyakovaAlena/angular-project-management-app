@@ -26,7 +26,7 @@ export const getAuthUserRequest = createAction(
   props<{ data: { token: string } }>(),
 );
 export const getAuthUserSuccess = createAction('[Auth] Auth User Success', props<{ user: User }>());
-export const getAuthUserFailure = createAction('[Auth] Auth User Failure');
+export const getAuthUserFailure = createAction('[Auth] Auth User Failure',  props<{ error: Error }>());
 
 export const getSignUpedUserRequest = createAction(
   '[Auth] Auth User Request',
@@ -36,7 +36,7 @@ export const getSignUpedUserSuccess = createAction(
   '[Auth] Auth User Success',
   props<{ user: User }>(),
 );
-export const getSignUpedUserFailure = createAction('[Auth] Auth User Failure');
+export const getSignUpedUserFailure = createAction('[Auth] Auth User Failure',  props<{ error: Error }>());
 
 export const editUser = createAction('[Auth] Edit User Request', props<{ user: User }>());
 export const editUserSuccess = createAction('[Auth] Edit User Success', props<{ user: User }>());

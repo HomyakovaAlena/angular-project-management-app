@@ -27,7 +27,7 @@ export class BoardsEffects {
       switchMap(({ userId }) =>
         this.boardService.getBoards(userId).pipe(
           map((boards) => BoardsActions.loadBoardsSuccess({ boards })),
-          catchError(() => of(BoardsActions.loadBoardsFailed())),
+          catchError((error) => of(BoardsActions.loadBoardsFailed({ error }))),
           finalize(() => this.store.dispatch(AppActions.setLoadingState({ isLoading: false }))),
         ),
       ),
@@ -40,19 +40,11 @@ export class BoardsEffects {
       tap(() => this.store.dispatch(AppActions.setLoadingState({ isLoading: true }))),
       switchMap(({ board }) =>
         this.boardService.createBoard(board).pipe(
-          tap((board) => console.log({ board }, 'from effects')),
           map((board) => BoardsActions.createBoardSuccess({ board })),
-          catchError(() => of(BoardsActions.createBoardFailed())),
+          catchError((error) => of(BoardsActions.createBoardFailed({ error }))),
           finalize(() => this.store.dispatch(AppActions.setLoadingState({ isLoading: false }))),
         ),
       ),
-    ),
-  );
-
-  createBoardSuccess$ = createEffect(() =>
-    this.actions$.pipe(
-      ofType(BoardsActions.createBoardSuccess),
-      map(() => SharedActions.closeDialog({ message: 'SUCCESS' })),
     ),
   );
 
@@ -63,10 +55,41 @@ export class BoardsEffects {
       switchMap(({ id }) =>
         this.boardService.deleteBoard(id).pipe(
           map(() => BoardsActions.deleteBoardSuccess({ id })),
-          catchError(() => of(BoardsActions.deleteBoardFailed())),
+          catchError((error) => of(BoardsActions.deleteBoardFailed({ error }))),
           finalize(() => this.store.dispatch(AppActions.setLoadingState({ isLoading: false }))),
         ),
       ),
     ),
+  );
+
+  onSuccededActions$ = createEffect(
+    () =>
+      this.actions$.pipe(
+        ofType(BoardsActions.createBoardSuccess, BoardsActions.deleteBoardSuccess),
+        tap(() => {
+          this.store.dispatch(SharedActions.closeDialog());
+          this.store.dispatch(SharedActions.openSnackBar({ message: 'Success!' }));
+        }),
+      ),
+    { dispatch: false },
+  );
+
+  onFailedActions$ = createEffect(
+    () => {
+      return this.actions$.pipe(
+        ofType(
+          BoardsActions.deleteBoardFailed,
+          BoardsActions.createBoardFailed,
+          BoardsActions.loadBoardsFailed,
+        ),
+        tap(({ error }) => {
+          console.log(error);
+          this.store.dispatch(
+            SharedActions.openSnackBar({ message: `Failed, reason: ${error.message}` }),
+          );
+        }),
+      );
+    },
+    { dispatch: false },
   );
 }

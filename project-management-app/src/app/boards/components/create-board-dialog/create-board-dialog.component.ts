@@ -55,7 +55,7 @@ export class CreateBoardDialogComponent implements OnInit {
   onSubmit(ngForm: FormGroupDirective) {
     this.usersStore.dispatch(UsersActions.loadUsers());
     const { title } = this.createBoardForm.value;
-    this.user$.subscribe((user) => (this.owner = user!._id));
+    this.user$.subscribe((user) => (this.owner = user?._id));
     const owner = this.owner as string;
     const users = this.selectedUsers.map((user) => user._id) as string[];
     this.store.dispatch(BoardsActions.createBoard({ board: { title, owner, users } }));

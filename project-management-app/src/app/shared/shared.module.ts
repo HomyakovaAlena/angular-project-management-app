@@ -12,12 +12,14 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 import { ModalConfirmComponent } from './components/modal-confirm/modal-confirm.component';
+import { SnackBarComponent } from './components/snack-bar/snack-bar.component';
 
 
 @NgModule({
-  declarations: [ModalConfirmComponent],
+  declarations: [ModalConfirmComponent, SnackBarComponent],
   imports: [
     CommonModule,
     MatDialogModule,
@@ -26,6 +28,7 @@ import { ModalConfirmComponent } from './components/modal-confirm/modal-confirm.
     MatSlideToggleModule,
     MatToolbarModule,
     MatProgressBarModule,
+    MatSnackBarModule,
     // StoreModule.forFeature('shared', sharedReducer),
     EffectsModule.forFeature([SharedEffects]),
   ],

@@ -1,18 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import {
-  catchError,
-  debounceTime,
-  distinctUntilChanged,
-  filter,
-  fromEvent,
-  map,
-  Observable,
-  of,
-  switchMap,
-  tap,
-} from 'rxjs';
-import { ajax, AjaxResponse } from 'rxjs/ajax';
+import { Observable, of, tap } from 'rxjs';
 import { User } from 'src/app/auth/models/user.model';
 
 @Injectable({
@@ -37,13 +25,14 @@ export class UserService {
     if (!term.trim()) {
       return of([]);
     }
-    return this.httpClient.get<User[]>(`${this.url}/?name=${term}`).pipe(
-      tap((x) =>
-        x.length
-          ? (searchMessage.textContent = `found ${x.length} user(s) matching "${term}"`)
-          : (searchMessage.textContent = `no users matching "${term}"`),
-      ),
-      // catchError(this.handleError<User[]>('searchUsers', [])),
-    );
+    return this.httpClient
+      .get<User[]>(`${this.url}/?name=${term}`)
+      .pipe(
+        tap((x) =>
+          x.length
+            ? (searchMessage.textContent = `found ${x.length} user(s) matching "${term}"`)
+            : (searchMessage.textContent = `no users matching "${term}"`),
+        ),
+      );
   }
 }

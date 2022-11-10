@@ -11,14 +11,16 @@ import { ModalData } from '../models/shared.model';
 import * as BoardsActions from '../../boards/store/actions/boards.actions';
 import { AuthFacade } from 'src/app/auth/store/auth.facade';
 import { Store } from '@ngrx/store';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { SnackBarComponent } from '../components/snack-bar/snack-bar.component';
 
 @Injectable({
   providedIn: 'root',
 })
 export class SharedService {
   constructor(
-    public dialog: MatDialog,
-    private boardService: BoardService,
+    private dialog: MatDialog,
+    private snackBar: MatSnackBar,
     private authFacade: AuthFacade,
     private store: Store,
   ) {}
@@ -58,5 +60,17 @@ export class SharedService {
       default:
         break;
     }
+  }
+
+  closeDialog() {
+    this.dialog.closeAll();
+  }
+
+  openSnackBar(message: string): void {
+    const durationInSeconds = 3;
+    this.snackBar.openFromComponent(SnackBarComponent, {
+      duration: durationInSeconds * 1000,
+      data: message,
+    });
   }
 }

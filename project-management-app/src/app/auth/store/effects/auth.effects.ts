@@ -47,6 +47,7 @@ export class AuthEffects {
           this.router.navigate(['/boards']);
           // this.router.navigateByUrl(this.activatedRoute.snapshot.queryParams['returnUrl'] || '/');
           // return AuthActions.getSignUpedUserRequest({ user });
+          this.store.dispatch(SharedActions.openSnackBar({ message: `Welcome, ${user.name}!` }));
         }),
       );
     },
@@ -59,7 +60,6 @@ export class AuthEffects {
       exhaustMap((credentials) =>
         this.authService.login(credentials.login, credentials.password).pipe(
           map((data) => {
-            console.log(data, 'from login effect');
             this.tokenStorageService.saveToken(data.token);
             return AuthActions.loginSuccess({ data });
           }),
@@ -106,7 +106,7 @@ export class AuthEffects {
       exhaustMap(({ data }) =>
         this.authService.getAuthUser(data).pipe(
           map((user) => AuthActions.getAuthUserSuccess({ user })),
-          catchError(() => of(AuthActions.getAuthUserFailure())),
+          catchError((error) => of(AuthActions.getAuthUserFailure({ error }))),
         ),
       ),
     );
@@ -118,7 +118,6 @@ export class AuthEffects {
       exhaustMap(({ user }) =>
         this.authService.updateUser(user).pipe(
           map((user) => {
-            console.log(user, 'from signup effect');
             return AuthActions.editUserSuccess({ user });
           }),
           catchError((error) => of(AuthActions.editUserFailure({ error }))),
@@ -134,6 +133,7 @@ export class AuthEffects {
         tap(({ user }) => {
           console.log({ user }, 'from editUserSuccess');
           // this.router.navigate(['boards']);
+          this.store.dispatch(SharedActions.openSnackBar({ message: `Successfully updated!` }));
           this.authFacade.authIfTokenNotExpired();
           // this.router.navigateByUrl(this.activatedRoute.snapshot.queryParams['returnUrl'] || '/');
           // return AuthActions.getAuthUserRequest(user?._id);
@@ -149,7 +149,6 @@ export class AuthEffects {
       exhaustMap(({ id }) =>
         this.authService.deleteUser(id).pipe(
           map((user) => {
-            console.log(user, 'from deleteUser effect');
             return AuthActions.deleteUserSuccess({ user });
           }),
           catchError((error) => of(AuthActions.deleteUserFailure({ error }))),
@@ -163,7 +162,30 @@ export class AuthEffects {
       return this.actions$.pipe(
         ofType(AuthActions.deleteUserSuccess),
         tap(({}) => {
+          this.store.dispatch(SharedActions.openSnackBar({ message: `Come back!` }));
           this.authFacade.logout();
+        }),
+      );
+    },
+    { dispatch: false },
+  );
+
+  onFailedActions$ = createEffect(
+    () => {
+      return this.actions$.pipe(
+        ofType(
+          AuthActions.deleteUserFailure,
+          AuthActions.editUserFailure,
+          AuthActions.getAuthUserFailure,
+          AuthActions.loginFailure,
+          AuthActions.signupFailure,
+          AuthActions.getSignUpedUserFailure,
+        ),
+        tap(({ error }) => {
+          console.log(error);
+          this.store.dispatch(
+            SharedActions.openSnackBar({ message: `Failed, reason: ${error.message}` }),
+          );
         }),
       );
     },
