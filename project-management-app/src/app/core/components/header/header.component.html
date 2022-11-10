@@ -21,7 +21,7 @@
         </li>
         <li [class]="'header__user-block'">
           <app-edit-profile></app-edit-profile>
-          <div *ngIf="user$ | async as user">{{ user.name }}</div>
+
           <app-login *ngIf="!(isLoggedIn$ | async)"></app-login>
           <app-signup *ngIf="!(isLoggedIn$ | async)"></app-signup>
           <app-logout *ngIf="isLoggedIn$ | async"></app-logout>
@@ -30,4 +30,4 @@
     </nav>
   </header>
 </mat-toolbar>
-<!-- <app-progress-bar></app-progress-bar> -->
+

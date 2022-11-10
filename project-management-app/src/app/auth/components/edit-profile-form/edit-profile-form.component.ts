@@ -10,6 +10,10 @@ import {
 } from '@angular/forms';
 import { Validators } from '@angular/forms';
 import { AuthFacade } from '../../store/auth.facade';
+import { SharedService } from 'src/app/shared/services/shared.service';
+import * as FromAuth from '../../models/user.model';
+import { Store } from '@ngrx/store';
+import * as SharedActions from '../../../shared/store/actions/shared.actions';
 
 @Component({
   selector: 'app-edit-profile-form',
@@ -32,7 +36,12 @@ export class EditProfileFormComponent implements OnInit {
     repeatPassword: ['', [Validators.required]],
   });
 
-  constructor(private fb: FormBuilder, private authFacade: AuthFacade) {}
+  constructor(
+    private fb: FormBuilder,
+    private authFacade: AuthFacade,
+    private sharedService: SharedService,
+    private store: Store<FromAuth.AuthState>,
+  ) {}
 
   ngOnInit(): void {
     this.user$.subscribe((user) => {
@@ -58,8 +67,20 @@ export class EditProfileFormComponent implements OnInit {
     return null;
   }
 
-  onDelete() {
+  openDialog() {
     if (!this._id) return;
-    this.authFacade.deleteUser(this._id);
+    // this.authFacade.deleteUser(this._id);
+
+    const [_id, name] = [this._id, this.name];
+    const dialogConfig = this.sharedService.createConfigDialog({
+      name: 'confirmDelete',
+      title: 'Are you sure you want to delete your user?',
+      description: 'If you confirm, the user ' + name + ' will be deleted.',
+      actionButtonText: 'Delete',
+      itemName: name,
+      itemId: _id,
+      action: 'deleteUser',
+    });
+    this.store.dispatch(SharedActions.openDialog({ data: dialogConfig }));
   }
 }

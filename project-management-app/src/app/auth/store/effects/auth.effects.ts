@@ -8,6 +8,8 @@ import { TokenStorageService } from '../../../core/services/token-storage.servic
 import { AuthService } from '../../services/auth.service';
 import * as AuthActions from '../actions/auth.actions';
 import { AuthFacade } from '../auth.facade';
+import * as SharedActions from '../../../shared/store/actions/shared.actions';
+import { Store } from '@ngrx/store';
 
 @Injectable()
 export class AuthEffects {
@@ -18,6 +20,7 @@ export class AuthEffects {
     private activatedRoute: ActivatedRoute,
     private tokenStorageService: TokenStorageService,
     private authFacade: AuthFacade,
+    private store: Store,
   ) {}
 
   signup$ = createEffect(() => {
@@ -26,9 +29,6 @@ export class AuthEffects {
       exhaustMap((credentials) =>
         this.authService.signup(credentials.name, credentials.login, credentials.password).pipe(
           map((user) => {
-            // save tokens
-            // this.tokenStorageService.saveTokens(user.access_token, data.refresh_token);
-            // trigger login success action
             console.log(user, 'from signup effect');
             return AuthActions.signupSuccess({ user });
           }),
@@ -43,11 +43,6 @@ export class AuthEffects {
       return this.actions$.pipe(
         ofType(AuthActions.signupSuccess),
         tap(({ user }) => {
-          // redirect to return url or home
-          // console.log(
-          //   this.activatedRoute.snapshot.queryParams['returnUrl'] || '/',
-          //   'from signupsuccess activate route',
-          // );
           console.log({ user }, 'from onsignupedsuccess');
           this.router.navigate(['/boards']);
           // this.router.navigateByUrl(this.activatedRoute.snapshot.queryParams['returnUrl'] || '/');
@@ -65,9 +60,7 @@ export class AuthEffects {
         this.authService.login(credentials.login, credentials.password).pipe(
           map((data) => {
             console.log(data, 'from login effect');
-            // save tokens
             this.tokenStorageService.saveToken(data.token);
-            // trigger login success action
             return AuthActions.loginSuccess({ data });
           }),
           catchError((error) => of(AuthActions.loginFailure({ error }))),
@@ -125,9 +118,6 @@ export class AuthEffects {
       exhaustMap(({ user }) =>
         this.authService.updateUser(user).pipe(
           map((user) => {
-            // save tokens
-            // this.tokenStorageService.saveTokens(user.access_token, data.refresh_token);
-            // trigger editUser success action
             console.log(user, 'from signup effect');
             return AuthActions.editUserSuccess({ user });
           }),
@@ -172,9 +162,8 @@ export class AuthEffects {
     () => {
       return this.actions$.pipe(
         ofType(AuthActions.deleteUserSuccess),
-        tap(({ user }) => {
+        tap(({}) => {
           this.authFacade.logout();
-          console.log({ user }, 'from deleteUserSuccess');
         }),
       );
     },

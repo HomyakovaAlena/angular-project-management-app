@@ -2,22 +2,7 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { BoardService } from '../../services/board.service';
 import * as BoardsActions from '../actions/boards.actions';
 import * as SharedActions from '../../../shared/store/actions/shared.actions';
-import {
-  catchError,
-  concatMap,
-  exhaustMap,
-  filter,
-  finalize,
-  map,
-  mergeMap,
-  NEVER,
-  Observable,
-  of,
-  single,
-  switchMap,
-  take,
-  tap,
-} from 'rxjs';
+import { catchError, finalize, map, of, switchMap, tap } from 'rxjs';
 import { Injectable } from '@angular/core';
 import * as fromRoot from '../../../store/reducers/app.reducer';
 import * as AppActions from '../../../store/actions/app.actions';
@@ -39,7 +24,7 @@ export class BoardsEffects {
     this.actions$.pipe(
       ofType(BoardsActions.loadBoards),
       tap(() => this.store.dispatch(AppActions.setLoadingState({ isLoading: true }))),
-      switchMap(({userId}) =>
+      switchMap(({ userId }) =>
         this.boardService.getBoards(userId).pipe(
           map((boards) => BoardsActions.loadBoardsSuccess({ boards })),
           catchError(() => of(BoardsActions.loadBoardsFailed())),
@@ -82,13 +67,6 @@ export class BoardsEffects {
           finalize(() => this.store.dispatch(AppActions.setLoadingState({ isLoading: false }))),
         ),
       ),
-    ),
-  );
-
-  deleteBoardSuccess$ = createEffect(() =>
-    this.actions$.pipe(
-      ofType(BoardsActions.deleteBoardSuccess),
-      map(() => SharedActions.closeDialog({ message: 'SUCCESS' })),
     ),
   );
 }

@@ -1,5 +1,4 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { of, take } from 'rxjs';
 import { UserService } from 'src/app/users/services/user.service';
 import { Board } from '../../models/board.model';
 
@@ -9,17 +8,13 @@ import { Board } from '../../models/board.model';
   styleUrls: ['./board-preview.component.scss'],
 })
 export class BoardPreviewComponent implements OnInit {
-  @Input() board: Board | null = null;
-  @Output() deleteBoard = new EventEmitter<string>();
-  // users$ = of(this.board?.users.map((user) => {
-  //   console.log(user, this.board);
-  //   this.userService.getUserById(user).pipe(take(1))
-  // }));
-  // owner$ = this.userService.getUserById(this.board?.owner).pipe(take(1));
+  @Input() board: Board | null | undefined = null;
+  @Output() deleteBoard = new EventEmitter<Board | null>();
+
   constructor(private userService: UserService) {}
   ngOnInit(): void {}
 
   onDelete() {
-    this.deleteBoard.emit(this.board?._id);
+    this.deleteBoard.emit(this.board);
   }
 }

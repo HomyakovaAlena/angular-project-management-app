@@ -18,7 +18,7 @@ import { ModalData } from '../../models/shared.model';
 export class ModalConfirmComponent {
   constructor(
     public dialogRef: MatDialogRef<ModalConfirmComponent>,
-    @Inject(MAT_DIALOG_DATA) public configDialog: MatDialogConfig<ModalData>,
+    @Inject(MAT_DIALOG_DATA) public configDialog: ModalData,
     private sharedService: SharedService,
     private store: Store,
   ) {
@@ -26,7 +26,7 @@ export class ModalConfirmComponent {
   }
 
   actionFunction() {
-    this.store.dispatch(SharedActions.confirmDialog({ data: this.configDialog['data'] }));
+    this.store.dispatch(SharedActions.confirmDialog({ data: this.configDialog }));
   }
 
   closeModal() {

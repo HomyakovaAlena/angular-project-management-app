@@ -7,7 +7,6 @@ import { Board } from '../models/board.model';
   providedIn: 'root',
 })
 export class BoardService {
-  // BoardsList: Board[] = [];
   private url = 'boards';
 
   constructor(private httpClient: HttpClient) {}

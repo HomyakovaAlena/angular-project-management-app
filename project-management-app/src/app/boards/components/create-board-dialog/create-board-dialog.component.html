@@ -1,7 +1,6 @@
-<!-- <button mat-raised-button color="accent" type="button">Create Board</button> -->
+<h2 mat-dialog-title>{{ configDialog.title }}</h2>
 
 <form (ngSubmit)="onSubmit(ngForm)" #ngForm="ngForm" [formGroup]="createBoardForm">
-  <h3>{{ configDialog.title }}</h3>
   <div class="owner" *ngIf="user$ | async as user" >Board Owner: {{ user.name }}</div>
   <h5 class="description">{{ configDialog.description }}</h5>
   <mat-dialog-content class="mat-typography modalContent">

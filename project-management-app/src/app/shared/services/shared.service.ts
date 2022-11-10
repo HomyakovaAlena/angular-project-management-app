@@ -8,38 +8,55 @@ import { BoardService } from 'src/app/boards/services/board.service';
 import { deleteBoard } from 'src/app/boards/store/actions/boards.actions';
 import { ModalConfirmComponent } from '../components/modal-confirm/modal-confirm.component';
 import { ModalData } from '../models/shared.model';
+import * as BoardsActions from '../../boards/store/actions/boards.actions';
+import { AuthFacade } from 'src/app/auth/store/auth.facade';
+import { Store } from '@ngrx/store';
 
 @Injectable({
   providedIn: 'root',
 })
 export class SharedService {
-  constructor(public dialog: MatDialog, private boardService: BoardService) {}
+  constructor(
+    public dialog: MatDialog,
+    private boardService: BoardService,
+    private authFacade: AuthFacade,
+    private store: Store,
+  ) {}
 
-  openDialog(configMatDialog: MatDialogConfig<ModalData>) {
-    console.log({ configMatDialog }, 'from service');
-    switch (configMatDialog.data?.['data'].name) {
+  openDialog(configMatDialog: MatDialogConfig<ModalData> | null | undefined) {
+    switch (configMatDialog?.data?.name) {
       case 'confirmDelete':
-        this.dialog.open(ModalConfirmComponent, configMatDialog as MatDialogConfig<ModalData>);
+        this.dialog.open(ModalConfirmComponent, configMatDialog);
         break;
       case 'createBoard':
-        this.dialog.open(
-          CreateBoardDialogComponent,
-          configMatDialog.data as MatDialogConfig<ModalData>,
-        );
+        this.dialog.open(CreateBoardDialogComponent, configMatDialog);
         break;
       default:
         break;
     }
   }
 
-  createConfigDialog(data: ModalData) {
+  createConfigDialog(data: ModalData): MatDialogConfig<ModalData> {
     const dialogConfig = new MatDialogConfig<ModalData>();
-    dialogConfig.disableClose = true;
+    dialogConfig.disableClose = false;
     dialogConfig.id = 'modal-component';
-    dialogConfig.height = '600px';
-    dialogConfig.width = '600px';
+    // dialogConfig.height = '600px';
+    // dialogConfig.width = '600px';
     dialogConfig.data = data;
-    console.log(dialogConfig, 'waiting');
     return dialogConfig;
+  }
+
+  confirmDialogAction(data: ModalData | null | undefined) {
+    const id = data?.['itemId'] as string;
+    switch (data?.action) {
+      case 'deleteBoard':
+        this.store.dispatch(BoardsActions.deleteBoard({ id: id }));
+        break;
+      case 'deleteUser':
+        this.authFacade.deleteUser(id);
+        break;
+      default:
+        break;
+    }
   }
 }

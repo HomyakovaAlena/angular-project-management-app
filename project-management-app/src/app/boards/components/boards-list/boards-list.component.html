@@ -3,7 +3,7 @@
   <app-board-preview
     *ngFor="let board of boardsList"
     [board]="board"
-    (deleteBoard)="onDelete(board?._id!)"
+    (deleteBoard)="onDelete($event)"
   >
   </app-board-preview>
 </div>

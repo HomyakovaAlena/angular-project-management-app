@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Inject, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Inject, OnInit, Output } from '@angular/core';
 import { Board } from '../../models/board.model';
 import {
   AbstractControl,
@@ -7,10 +7,8 @@ import {
   FormGroupDirective,
   ValidationErrors,
 } from '@angular/forms';
-import { FormControl, Validators } from '@angular/forms';
+import { Validators } from '@angular/forms';
 import {
-  MatDialog,
-  MatDialogConfig,
   MatDialogRef,
   MAT_DIALOG_DATA,
 } from '@angular/material/dialog';
@@ -18,12 +16,9 @@ import { Store } from '@ngrx/store';
 import * as fromBoards from '../../store/reducers/boards.reducer';
 import * as BoardsActions from '../../store/actions/boards.actions';
 import { ModalData } from 'src/app/shared/models/shared.model';
-import { Title } from '@angular/platform-browser';
 import { User } from 'src/app/auth/models/user.model';
 import * as fromUsers from '../../../users/store/reducers/users.reducer';
 import * as UsersActions from '../../../users/store/actions/users.actions';
-import { MatFormFieldControl } from '@angular/material/form-field';
-import { UsersSearchComponent } from 'src/app/users/components/users-search/users-search.component';
 import { AuthFacade } from 'src/app/auth/store/auth.facade';
 
 @Component({
@@ -38,6 +33,7 @@ export class CreateBoardDialogComponent implements OnInit {
   @Output() createBoard = new EventEmitter<Board>();
   usersList$ = this.store.select(fromUsers.getUsers);
   selectedUsers: User[] = [];
+
   createBoardForm: FormGroup = this.fb.group({
     title: ['', [Validators.required, Validators.maxLength(50), this.customValidator]],
     users: [''],
@@ -58,8 +54,6 @@ export class CreateBoardDialogComponent implements OnInit {
 
   onSubmit(ngForm: FormGroupDirective) {
     this.usersStore.dispatch(UsersActions.loadUsers());
-    console.log(this.createBoardForm.value);
-
     const { title } = this.createBoardForm.value;
     this.user$.subscribe((user) => (this.owner = user!._id));
     const owner = this.owner as string;

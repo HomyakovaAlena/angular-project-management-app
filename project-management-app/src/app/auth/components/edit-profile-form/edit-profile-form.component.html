@@ -1,4 +1,5 @@
 <div class="container">
+  <h2>Edit profile</h2>
   <form (ngSubmit)="onSubmit(ngForm)" #ngForm="ngForm" [formGroup]="editProfileForm">
     <p>
       <mat-form-field class="input__edit-profile">
@@ -120,7 +121,7 @@
         [class]="'button'"
         ariaCurrentWhenActive="page"
         type="button"
-        (click)="onDelete()"
+        (click)="openDialog()"
       >
         <mat-icon>close</mat-icon> Delete user
       </button>
