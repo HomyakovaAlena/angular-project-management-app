@@ -17,6 +17,7 @@ import { User } from 'src/app/auth/models/user.model';
 import * as fromUsers from '../../../users/store/reducers/users.reducer';
 import * as UsersActions from '../../../users/store/actions/users.actions';
 import { AuthFacade } from 'src/app/auth/store/auth.facade';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-create-task-dialog',
@@ -26,13 +27,15 @@ import { AuthFacade } from 'src/app/auth/store/auth.facade';
 export class CreateTaskDialogComponent implements OnInit {
   value1 = 'Task #1';
   value2 = 'Description #1';
+  orderStep = 65536;
   user$ = this.authFacade.user$;
   usersList$ = this.store.select(fromUsers.getUsers);
   userId: string | undefined = '';
   selectedUsers: User[] = [];
-  // board$!: Observable<ParamMap>;
-  // private boardId: string | undefined = '';
-  order = 1;
+  tasksList$ = this.store.select(fromTasks.getTasks);
+  orders: number[] = [];
+  order = 65536;
+  subscription!: Subscription;
 
   // @Output() createTask = new EventEmitter<Task>();
 
@@ -49,16 +52,20 @@ export class CreateTaskDialogComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public configDialog: ModalData,
     private usersStore: Store<fromUsers.UsersState>,
     private authFacade: AuthFacade,
-  ) {
-    // console.log(configDialog, 'from constructor');
-  }
+  ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.subscription = this.tasksList$.subscribe((tasks) => {
+      tasks.forEach((task) => {
+        if (task.columnId === this.configDialog.routeParameteres?.columnId)
+          this.orders.push(task.order);
+      });
+    });
+  }
 
   onSubmit(ngForm: FormGroupDirective) {
     const { title, description } = this.createTaskForm.value;
-    const order = this.order;
-    this.order++;
+    const order = this.orders.length ? Math.max(...this.orders) + this.orderStep : this.orderStep;
 
     const boardId = this.configDialog.routeParameteres?.boardId as string;
     const columnId = this.configDialog.routeParameteres?.columnId as string;
@@ -78,8 +85,6 @@ export class CreateTaskDialogComponent implements OnInit {
   }
 
   private customValidator(control: AbstractControl): ValidationErrors | null {
-    // console.log(control);
-    // return { customValue: true }
     return null;
   }
 
@@ -89,5 +94,9 @@ export class CreateTaskDialogComponent implements OnInit {
 
   selected(eventData: { selectedUsers: User[] }) {
     this.selectedUsers = eventData.selectedUsers;
+  }
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
   }
 }

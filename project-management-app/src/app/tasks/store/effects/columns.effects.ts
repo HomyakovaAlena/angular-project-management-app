@@ -60,6 +60,20 @@ export class ColumnsEffects {
     ),
   );
 
+  changeColumnsOrder$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(ColumnsActions.changeColumnsOrder),
+      tap(() => this.store.dispatch(AppActions.setLoadingState({ isLoading: true }))),
+      switchMap(({ columnsArray }) =>
+        this.columnService.changeColumnsOrder(columnsArray).pipe(
+          map(({}) => ColumnsActions.changeColumnsOrderSuccess({ columnsArray })),
+          catchError((error) => of(ColumnsActions.changeColumnsOrderFailed({ error }))),
+          finalize(() => this.store.dispatch(AppActions.setLoadingState({ isLoading: false }))),
+        ),
+      ),
+    ),
+  );
+
   onSuccededLoadActions$ = createEffect(
     () =>
       this.actions$.pipe(
@@ -78,6 +92,7 @@ export class ColumnsEffects {
           ColumnsActions.createColumnSuccess,
           ColumnsActions.deleteColumnSuccess,
           ColumnsActions.updateColumnSuccess,
+          ColumnsActions.changeColumnsOrderSuccess,
         ),
         tap(() => {
           this.store.dispatch(SharedActions.closeDialog());

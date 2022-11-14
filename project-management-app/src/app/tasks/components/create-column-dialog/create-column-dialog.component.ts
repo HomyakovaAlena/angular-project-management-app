@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Inject, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Inject, OnInit, Output, OnDestroy } from '@angular/core';
 import { Column } from '../../models/tasks.model';
 import {
   AbstractControl,
@@ -13,19 +13,19 @@ import { Store } from '@ngrx/store';
 import * as fromColumns from '../..//store/reducers/columns.reducer';
 import * as ColumnsActions from '../../store/actions/columns.actions';
 import { ModalData } from 'src/app/shared/models/shared.model';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-create-column-dialog',
   templateUrl: './create-column-dialog.component.html',
   styleUrls: ['./create-column-dialog.component.scss'],
 })
-export class CreateColumnDialogComponent implements OnInit {
+export class CreateColumnDialogComponent implements OnInit, OnDestroy {
   value = 'Column #1';
-  // board$!: Observable<ParamMap>;
-  // private boardId: string | undefined = '';
-  order = 1;
-
-  // @Output() createColumn = new EventEmitter<Column>();
+  orderStep = 65536;
+  columnsList$ = this.store.select(fromColumns.getColumns);
+  orders: number[] = [];
+  subscription!: Subscription;
 
   createColumnForm: FormGroup = this.fb.group({
     title: ['', [Validators.required, Validators.maxLength(50), this.customValidator]],
@@ -36,18 +36,19 @@ export class CreateColumnDialogComponent implements OnInit {
     public dialogRef: MatDialogRef<CreateColumnDialogComponent>,
     private store: Store<fromColumns.ColumnsState>,
     @Inject(MAT_DIALOG_DATA) public configDialog: ModalData,
-  ) {
-    // console.log(configDialog, 'from constructor');
-  }
+  ) {}
 
   ngOnInit(): void {
+    this.subscription = this.columnsList$.subscribe((columns) => {
+      this.orders = columns.length ? columns.map((column) => column.order) : [];
+      console.log(this.orders);
+    });
   }
 
   onSubmit(ngForm: FormGroupDirective) {
     const { title } = this.createColumnForm.value;
-    const order = this.order;
-    this.order++;
-
+    const order = this.orders.length ? Math.max(...this.orders) + this.orderStep : this.orderStep;
+    console.log({ order }, this.orderStep);
     const boardId = this.configDialog.routeParameteres?.boardId as string;
     console.log({ title, order, boardId });
     this.store.dispatch(ColumnsActions.createColumn({ column: { title, order, boardId } }));
@@ -56,8 +57,6 @@ export class CreateColumnDialogComponent implements OnInit {
   }
 
   private customValidator(control: AbstractControl): ValidationErrors | null {
-    // console.log(control);
-    // return { customValue: true }
     return null;
   }
 
@@ -65,10 +64,7 @@ export class CreateColumnDialogComponent implements OnInit {
     this.dialogRef.close();
   }
 
-  // ngOnDestroy() {
-  //   this.routeSub.unsubscribe();
-  // }
-  // selected(eventData: { selectedUsers: User[] }) {
-  //   this.selectedUsers = eventData.selectedUsers;
-  // }
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
+  }
 }

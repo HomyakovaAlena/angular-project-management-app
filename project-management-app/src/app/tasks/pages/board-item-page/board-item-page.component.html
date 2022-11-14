@@ -1,8 +1,9 @@
 <div class="container">
   <div *ngIf="board"></div>
   <app-create-column-button [board]="board"></app-create-column-button>
+
   <app-columns-list
-    [columnsList]="columnsList$ | async"
+    [columnsList]="sortedColumnsList"
     [board]="board"
     (deleteColumn)="openDialog($event)"
   ></app-columns-list>

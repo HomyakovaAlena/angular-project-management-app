@@ -18,6 +18,7 @@ import * as AppActions from '../../../store/actions/app.actions';
 import { Store } from '@ngrx/store';
 import { MatDialog } from '@angular/material/dialog';
 import { TaskService } from '../../services/task.service';
+// import { ActivatedRoute } from '@angular/router';
 
 @Injectable()
 export class TasksEffects {
@@ -25,15 +26,15 @@ export class TasksEffects {
     private actions$: Actions,
     private store: Store<fromRoot.AppState>,
     private taskService: TaskService,
-    public dialog: MatDialog,
+    public dialog: MatDialog, // private route: ActivatedRoute,
   ) {}
 
   fetchTasks$ = createEffect(() =>
     this.actions$.pipe(
       ofType(TasksActions.loadTasks),
       tap(() => this.store.dispatch(AppActions.setLoadingState({ isLoading: true }))),
-      switchMap(({ boardId, columnId }) =>
-        this.taskService.getTasks(boardId, columnId).pipe(
+      switchMap(({ boardId }) =>
+        this.taskService.getTasks(boardId).pipe(
           map((tasks) => TasksActions.loadTasksSuccess({ tasks })),
           catchError((error) => of(TasksActions.loadTasksFailed({ error }))),
           finalize(() => this.store.dispatch(AppActions.setLoadingState({ isLoading: false }))),
@@ -70,6 +71,20 @@ export class TasksEffects {
     ),
   );
 
+  changeTasksOrder$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(TasksActions.changeTasksOrder),
+      tap(() => this.store.dispatch(AppActions.setLoadingState({ isLoading: true }))),
+      switchMap(({ tasksArray }) =>
+        this.taskService.changeTasksOrder(tasksArray).pipe(
+          map(({}) => TasksActions.changeTasksOrderSuccess({ tasksArray })),
+          catchError((error) => of(TasksActions.changeTasksOrderFailed({ error }))),
+          finalize(() => this.store.dispatch(AppActions.setLoadingState({ isLoading: false }))),
+        ),
+      ),
+    ),
+  );
+
   onSuccededActions$ = createEffect(
     () =>
       this.actions$.pipe(
@@ -77,6 +92,7 @@ export class TasksEffects {
           TasksActions.createTaskSuccess,
           TasksActions.deleteTaskSuccess,
           TasksActions.updateTaskSuccess,
+          TasksActions.changeTasksOrderSuccess,
         ),
         tap(() => {
           this.store.dispatch(SharedActions.closeDialog());
@@ -97,6 +113,23 @@ export class TasksEffects {
         ),
         tap(({ error }) => {
           console.log(error);
+          this.store.dispatch(
+            SharedActions.openSnackBar({ message: `Failed, reason: ${error.message}` }),
+          );
+        }),
+      );
+    },
+    { dispatch: false },
+  );
+
+  onFailedDrop$ = createEffect(
+    () => {
+      return this.actions$.pipe(
+        ofType(TasksActions.changeTasksOrderFailed),
+        tap(({ error }) => {
+          console.log(error);
+          // const id = this.route.snapshot.paramMap.get('id');
+          // console.log(id);
           this.store.dispatch(
             SharedActions.openSnackBar({ message: `Failed, reason: ${error.message}` }),
           );

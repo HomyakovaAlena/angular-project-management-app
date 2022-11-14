@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, OnChanges } from '@angular/core';
 import { Board } from 'src/app/boards/models/board.model';
 import { Task, Column } from '../../models/tasks.model';
 
@@ -8,6 +8,7 @@ import { Task, Column } from '../../models/tasks.model';
   styleUrls: ['./task-item.component.scss'],
 })
 export class TaskItemComponent implements OnInit {
+  @Input() tasksList: Task[] | null | undefined = null;
   @Input() task: Task | null | undefined = null;
   @Input() column: Column | null | undefined = null;
   @Input() board: Board | null | undefined = null;
@@ -15,6 +16,11 @@ export class TaskItemComponent implements OnInit {
 
   constructor() {}
   ngOnInit(): void {}
+
+  // ngOnChanges(): void {
+  //   // this.task = this.task ? this.task : null;
+  //   // console.log(this.task, 'from ngOnChanges tasks');
+  // }
 
   onDelete() {
     this.deleteTask.emit(this.task);

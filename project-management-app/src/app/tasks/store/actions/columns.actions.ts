@@ -43,3 +43,16 @@ export const deleteColumnFailed = createAction(
   '[Columns] Delete Column Failed',
   props<{ error: Error }>(),
 );
+
+export const changeColumnsOrder = createAction(
+  '[Columns] Change Column Order',
+  props<{ columnsArray: { _id: string; order: number }[] }>(),
+);
+export const changeColumnsOrderSuccess = createAction(
+  '[Columns] Change Column Order Success',
+  props<{ columnsArray: { _id: string; order: number }[] }>(),
+);
+export const changeColumnsOrderFailed = createAction(
+  '[Columns] Change Column Order Failed',
+  props<{ error: Error }>(),
+);

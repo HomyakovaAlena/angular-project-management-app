@@ -1,10 +1,11 @@
-<div *ngIf="column">
+<div *ngIf="column" id="{{ column._id }}">
   <mat-card>
     <div [class]="'column-item'">
       <h2>{{ column.title }}</h2>
+      <h4>Order of Column: {{ column.order }}</h4>
       <!-- <h4>BoardId: {{ column.boardId }}</h4> -->
       <!-- <div>
-      <h4>Order of Column: {{ column.order }}</h4>
+
     </div> -->
       <h4>Id: {{ column._id }}</h4>
     </div>
@@ -12,11 +13,13 @@
   </mat-card>
 
   <app-create-task-button [column]="column" [board]="board"></app-create-task-button>
-  <app-tasks-list
-    *ngIf="column._id"
-    [column]="column"
-    [board]="board"
-    [tasksList]="tasksList$ | async | tasksByColumns: column._id"
-    (deleteTask)="openDialog($event)"
-  ></app-tasks-list>
+  <div>
+    <app-tasks-list
+      *ngIf="column._id"
+      [column]="column"
+      [board]="board"
+      [tasksList]="sortedTasksList | tasksByColumns: column._id"
+      (deleteTask)="openDialog($event)"
+    ></app-tasks-list>
+  </div>
 </div>

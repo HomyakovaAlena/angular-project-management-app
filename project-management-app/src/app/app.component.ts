@@ -14,8 +14,9 @@ export class AppComponent implements OnInit {
 
   constructor(
     private store: Store<fromRoot.AppState>,
-    private authFacade: AuthFacade, // private cdr: ChangeDetectorRef
-  ) {}
+    private authFacade: AuthFacade,
+  ) // private cdr: ChangeDetectorRef,
+  {}
 
   ngOnInit(): void {
     this.authFacade.authIfTokenNotExpired();
