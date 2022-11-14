@@ -17,6 +17,7 @@ import { appReducer } from './store/reducers/app.reducer';
 import { SharedModule } from './shared/shared.module';
 import { ReactiveFormsModule } from '@angular/forms';
 // import { UsersModule } from './users/users.module';
+// import { DragDropModule } from '@angular/cdk/drag-drop';
 
 @NgModule({
   declarations: [AppComponent],
@@ -34,7 +35,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     StoreRouterConnectingModule.forRoot(),
     SharedModule,
     ReactiveFormsModule,
-    // UsersModule
+    // UsersModule,
+    // DragDropModule
   ],
   providers: [],
   bootstrap: [AppComponent],

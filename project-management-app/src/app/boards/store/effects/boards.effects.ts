@@ -7,7 +7,6 @@ import { Injectable } from '@angular/core';
 import * as fromRoot from '../../../store/reducers/app.reducer';
 import * as AppActions from '../../../store/actions/app.actions';
 import { Store } from '@ngrx/store';
-import { SharedService } from '../../../shared/services/shared.service';
 import { MatDialog } from '@angular/material/dialog';
 
 @Injectable()
@@ -16,7 +15,6 @@ export class BoardsEffects {
     private actions$: Actions,
     private store: Store<fromRoot.AppState>,
     private boardService: BoardService,
-    private sharedService: SharedService,
     public dialog: MatDialog,
   ) {}
 

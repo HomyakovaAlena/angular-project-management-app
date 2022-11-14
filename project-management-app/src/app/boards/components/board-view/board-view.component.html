@@ -1,0 +1,6 @@
+<div *ngIf="board$ | async as board">
+  <h3>{{ board.title }}</h3>
+  <p>Id: {{ board._id }}</p>
+  <button type="button" (click)="gotoBoards(board)">Back</button>
+  <app-board-item-page [board]="board"></app-board-item-page>
+</div>

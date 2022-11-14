@@ -1,13 +1,15 @@
-<mat-card>
-  <div [class]="'board-preview'" *ngIf="board">
-    <h2>{{ board.title }}</h2>
-    <h4>Owner: {{ board.owner}}</h4>
-    <div>
-      Users:
-      <h4 *ngFor="let user of board.users">{{ user }}</h4>
-    </div>
+<a *ngIf="board" [routerLink]="['/boards', board._id]">
+  <mat-card>
+    <div [class]="'board-preview'">
+      <h2>{{ board.title }}</h2>
+      <h4>Owner: {{ board.owner }}</h4>
+      <div>
+        Users:
+        <h4 *ngFor="let user of board.users">{{ user }}</h4>
+      </div>
 
-    <h4>Id: {{ board._id }}</h4>
-  </div>
-  <button type="button" class="delete" title="delete board" (click)="onDelete()">x</button>
-</mat-card>
+      <h4>Id: {{ board._id }}</h4>
+    </div>
+    <button type="button" class="delete" title="delete board" (click)="onDelete()">x</button>
+  </mat-card>
+</a>

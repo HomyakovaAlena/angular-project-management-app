@@ -1,0 +1,9 @@
+<div class="columns-list">
+  <app-column-item
+    *ngFor="let column of columnsList"
+    [column]="column"
+    [board]="board"
+    (deleteColumn)="onDelete($event)"
+  >
+  </app-column-item>
+</div>

@@ -1,4 +1,4 @@
-<div>Board Users:</div>
+<div>Users:</div>
 <mat-form-field
   class="example-chip-list"
   appearance="fill"
@@ -7,12 +7,12 @@
 >
   <mat-label for="search-box"></mat-label>
   <mat-chip-list
+    [formControlName]="controlName"
     #chipList
     aria-label="Users selection"
     cdkDropList
     cdkDropListOrientation="horizontal"
     (cdkDropListDropped)="drop($event)"
-    [formControlName]="controlName"
   >
     <div class="chips">
       <mat-chip *ngFor="let selectedUser of selectedUsers" (removed)="remove(selectedUser)" cdkDrag>

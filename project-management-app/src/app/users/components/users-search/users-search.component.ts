@@ -14,6 +14,8 @@ import { UserService } from '../../services/user.service';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { FormControl, FormGroup } from '@angular/forms';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
+import { Store } from '@ngrx/store';
+import * as SharedActions from '../../../shared/store/actions/shared.actions';
 
 @Component({
   selector: 'app-users-search',
@@ -24,17 +26,20 @@ export class UsersSearchComponent implements OnInit {
   users$!: Observable<User[]>;
   private searchTerms = new Subject<string>();
 
+  addOnBlur = true;
+  readonly separatorKeysCodes = [ENTER, COMMA] as const;
+
   @Input() parentGroup!: FormGroup;
   @Input() controlName!: string;
-  selectedUsers: User[] = [];
-  user!: User;
   @Output() selectedUsersIdsFromChild = new EventEmitter<{
     selectedUsers: User[];
   }>();
+  selectedUsers: User[] = [];
+  user!: User;
 
   @ViewChild('usersInput') usersInput!: ElementRef<HTMLInputElement>;
 
-  constructor(private userService: UserService) {}
+  constructor(private userService: UserService, private store: Store) {}
 
   search(term: string): void {
     this.searchTerms.next(term);
@@ -49,9 +54,6 @@ export class UsersSearchComponent implements OnInit {
     );
   }
 
-  addOnBlur = true;
-  readonly separatorKeysCodes = [ENTER, COMMA] as const;
-
   remove(selectedUser: User): void {
     const index = this.selectedUsers.indexOf(selectedUser);
 
@@ -61,7 +63,13 @@ export class UsersSearchComponent implements OnInit {
   }
 
   selected(user: User): void {
-    this.selectedUsers.push(user);
+    if (!this.selectedUsers.some((selectedUser) => selectedUser._id === user._id)) {
+      this.selectedUsers.push(user);
+    } else {
+      this.store.dispatch(
+        SharedActions.openSnackBar({ message: `User ${user.name} has already been selected` }),
+      );
+    }
     this.selectedUsersIdsFromChild.emit({
       selectedUsers: this.selectedUsers,
     });
@@ -69,6 +77,9 @@ export class UsersSearchComponent implements OnInit {
     const searchMessage = document.getElementById('search-message') as HTMLElement;
     searchMessage.textContent = '';
     this.ngOnInit();
+
+    // this.editProfileForm.reset();
+    // ngForm.resetForm();
   }
 
   drop(event: CdkDragDrop<string[]>) {

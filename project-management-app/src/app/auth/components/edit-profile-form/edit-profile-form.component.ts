@@ -62,14 +62,12 @@ export class EditProfileFormComponent implements OnInit {
   }
 
   private customValidator(control: AbstractControl): ValidationErrors | null {
-    // console.log(control);
     // return { customValue: true }
     return null;
   }
 
   openDialog() {
     if (!this._id) return;
-    // this.authFacade.deleteUser(this._id);
 
     const [_id, name] = [this._id, this.name];
     const dialogConfig = this.sharedService.createConfigDialog({

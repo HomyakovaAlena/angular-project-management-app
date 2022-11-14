@@ -23,6 +23,8 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { CreateBoardButtonComponent } from './components/create-board-button/create-board-button.component';
 import { UsersModule } from '../users/users.module';
 import { UsernameByIdPipe } from '../users/pipes/username-by-id.pipe';
+import { BoardViewComponent } from './components/board-view/board-view.component';
+import { TasksModule } from '../tasks/tasks.module';
 
 // import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 // import { UsersSearchBarComponent } from '../users/components/users-search-bar/users-search-bar.component';
@@ -35,23 +37,25 @@ import { UsernameByIdPipe } from '../users/pipes/username-by-id.pipe';
     BoardPreviewComponent,
     CreateBoardDialogComponent,
     CreateBoardButtonComponent,
+    BoardViewComponent,
   ],
   imports: [
     CommonModule,
     BoardsRoutingModule,
-    MatInputModule,
-    MatFormFieldModule,
     FormsModule,
-    MatCardModule,
     StoreModule.forFeature('boards', boardsReducer),
     EffectsModule.forFeature([BoardsEffects]),
+    MatFormFieldModule,
+    MatInputModule,
+    MatCardModule,
     ReactiveFormsModule,
     MatButtonModule,
     MatIconModule,
-    SharedModule,
     MatDialogModule,
+    SharedModule,
 
     UsersModule,
+    TasksModule,
 
     // MatAutocompleteSelectedEvent,
     // UsersSearchBarComponent,

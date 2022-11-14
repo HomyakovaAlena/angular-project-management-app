@@ -1,0 +1,44 @@
+<h2 mat-dialog-title>{{ configDialog.title }}</h2>
+
+<form (ngSubmit)="onSubmit(ngForm)" #ngForm="ngForm" [formGroup]="createColumnForm">
+  <!-- <div class="owner" *ngIf="board$ | async as board">Board Title: {{ board.title }}</div> -->
+  <h5 class="description">{{ configDialog.description }}</h5>
+  <mat-dialog-content class="mat-typography modalContent">
+    <div>
+      <mat-form-field class="form-field" appearance="fill">
+        <mat-label for="title">Column Title</mat-label>
+        <input
+          matInput
+          id="title"
+          type="text"
+          placeholder="title"
+          name="title"
+          formControlName="title"
+          [(ngModel)]="value"
+        />
+        <button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value = ''">
+          <mat-icon>close</mat-icon>
+        </button>
+      </mat-form-field>
+
+      <div *ngIf="createColumnForm.get('title')?.errors?.['required']">Title is required</div>
+    </div>
+  </mat-dialog-content>
+  <mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close (click)="closeModal()">Cancel</button>
+    <button
+      mat-stroked-button
+      color="primary"
+      aria-label="icon button with a create_new_folder icon"
+      [class]="'button'"
+      ariaCurrentWhenActive="page"
+      type="submit"
+      [disabled]="!createColumnForm.valid"
+    >
+      <mat-icon aria-hidden="false" aria-label="create_new_folder icon" fontIcon="create_new_folder"
+        >create_new_folder</mat-icon
+      >
+      {{ configDialog.actionButtonText }}
+    </button>
+  </mat-dialog-actions>
+</form>

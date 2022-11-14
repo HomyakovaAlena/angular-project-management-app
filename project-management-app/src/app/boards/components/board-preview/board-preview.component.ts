@@ -1,5 +1,4 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { UserService } from 'src/app/users/services/user.service';
 import { Board } from '../../models/board.model';
 
 @Component({
@@ -11,7 +10,7 @@ export class BoardPreviewComponent implements OnInit {
   @Input() board: Board | null | undefined = null;
   @Output() deleteBoard = new EventEmitter<Board | null>();
 
-  constructor(private userService: UserService) {}
+  constructor() {}
   ngOnInit(): void {}
 
   onDelete() {

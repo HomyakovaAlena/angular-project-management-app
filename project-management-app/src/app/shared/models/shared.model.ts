@@ -1,3 +1,5 @@
+import { ActivatedRoute } from '@angular/router';
+
 export interface ModalData {
   name: string;
   title: string;
@@ -6,4 +8,11 @@ export interface ModalData {
   action: string;
   itemId?: string;
   itemName?: string;
+  routeParameteres?: RouteParameteres;
+}
+
+export interface RouteParameteres {
+  boardId?: string;
+  columnId?: string;
+  taskId?: string;
 }

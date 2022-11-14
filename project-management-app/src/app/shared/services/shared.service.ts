@@ -1,18 +1,17 @@
-import { ComponentType } from '@angular/cdk/portal';
 import { Injectable } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
-import { Observable, of } from 'rxjs';
-import { CreateBoardButtonComponent } from 'src/app/boards/components/create-board-button/create-board-button.component';
 import { CreateBoardDialogComponent } from 'src/app/boards/components/create-board-dialog/create-board-dialog.component';
-import { BoardService } from 'src/app/boards/services/board.service';
-import { deleteBoard } from 'src/app/boards/store/actions/boards.actions';
 import { ModalConfirmComponent } from '../components/modal-confirm/modal-confirm.component';
 import { ModalData } from '../models/shared.model';
 import * as BoardsActions from '../../boards/store/actions/boards.actions';
+import * as ColumnsActions from '../../tasks/store/actions/columns.actions';
+import * as TasksActions from '../../tasks/store/actions/tasks.actions';
 import { AuthFacade } from 'src/app/auth/store/auth.facade';
 import { Store } from '@ngrx/store';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { SnackBarComponent } from '../components/snack-bar/snack-bar.component';
+import { CreateColumnDialogComponent } from 'src/app/tasks/components/create-column-dialog/create-column-dialog.component';
+import { CreateTaskDialogComponent } from 'src/app/tasks/components/create-task-dialog/create-task-dialog.component';
 
 @Injectable({
   providedIn: 'root',
@@ -33,6 +32,12 @@ export class SharedService {
       case 'createBoard':
         this.dialog.open(CreateBoardDialogComponent, configMatDialog);
         break;
+      case 'createColumn':
+        this.dialog.open(CreateColumnDialogComponent, configMatDialog);
+        break;
+      case 'createTask':
+        this.dialog.open(CreateTaskDialogComponent, configMatDialog);
+        break;
       default:
         break;
     }
@@ -50,12 +55,23 @@ export class SharedService {
 
   confirmDialogAction(data: ModalData | null | undefined) {
     const id = data?.['itemId'] as string;
+    const boardId = data?.routeParameteres?.boardId as string;
+    const columnId = data?.routeParameteres?.columnId as string;
+    // const columnId = data?.routeParameteres?.columnId as string;
     switch (data?.action) {
+      case 'deleteUser':
+        this.authFacade.deleteUser(id);
+        break;
       case 'deleteBoard':
         this.store.dispatch(BoardsActions.deleteBoard({ id: id }));
         break;
-      case 'deleteUser':
-        this.authFacade.deleteUser(id);
+      case 'deleteColumn':
+        this.store.dispatch(ColumnsActions.deleteColumn({ boardId: boardId, columnId: id }));
+        break;
+      case 'deleteTask':
+        this.store.dispatch(
+          TasksActions.deleteTask({ boardId: boardId, columnId: columnId, taskId: id }),
+        );
         break;
       default:
         break;
