@@ -1,10 +1,11 @@
 <button
   *ngIf="board"
-  matRipple
-  [matRippleCentered]="false"
   class="button button-ripple"
   type="button"
   (click)="openDialog()"
+  mat-raised-button
+  color="primary"
 >
+  <mat-icon>add_circle</mat-icon>
   Create Column
 </button>

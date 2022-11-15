@@ -1,15 +1,58 @@
-<a *ngIf="board" [routerLink]="['/boards', board._id]">
-  <mat-card>
-    <div [class]="'board-preview'">
-      <h2>{{ board.title }}</h2>
-      <h4>Owner: {{ board.owner }}</h4>
-      <div>
-        Users:
-        <h4 *ngFor="let user of board.users">{{ user }}</h4>
-      </div>
+<mat-card class="card-container" *ngIf="board" [routerLink]="['/boards', board._id]">
+  <div class="card-container__inner">
+    <mat-card-title
+      class="card-container__inner__heading"
+      *ngIf="!formVisible"
+      (click)="update($event)"
+      >{{ board.title }}</mat-card-title
+    >
 
-      <h4>Id: {{ board._id }}</h4>
-    </div>
-    <button type="button" class="delete" title="delete board" (click)="onDelete()">x</button>
-  </mat-card>
-</a>
+    <form
+      (click)="onClick($event)"
+      class="card-container__inner__heading"
+      *ngIf="formVisible"
+      (ngSubmit)="onSubmit(ngForm)"
+      #ngForm="ngForm"
+      [formGroup]="updateBoardForm"
+    >
+      <mat-form-field class="form-field">
+        <input matInput name="title" class="textarea" formControlName="title" required />
+      </mat-form-field>
+      <button (click)="cancel($event)" type="submit" mat-icon-button color="primary">
+        <mat-icon>cancel</mat-icon>
+      </button>
+      <button [disabled]="!updateBoardForm.valid" type="submit" mat-icon-button color="primary">
+        <mat-icon>save</mat-icon>
+      </button>
+    </form>
+  </div>
+
+  <mat-card-content
+    matRipple
+    [matRippleCentered]="true"
+    class="ripple-container"
+    *ngIf="board"
+    [routerLink]="['/boards', board._id]"
+  >
+    <mat-chip-list aria-label="Owner"
+      >Owner:
+      <mat-chip>{{ board.owner | usernameById | async }}</mat-chip>
+    </mat-chip-list>
+    <mat-chip-list aria-label="Users"
+      >Users:
+      <div class="hidden-overflow">
+        <mat-chip *ngFor="let user of board.users">{{ user | usernameById | async }}</mat-chip>
+      </div>
+    </mat-chip-list>
+  </mat-card-content>
+  <button
+    mat-icon-button
+    type="button"
+    class="delete"
+    title="delete board"
+    (click)="onDelete($event)"
+    color="primary"
+  >
+    <mat-icon>delete</mat-icon>
+  </button>
+</mat-card>

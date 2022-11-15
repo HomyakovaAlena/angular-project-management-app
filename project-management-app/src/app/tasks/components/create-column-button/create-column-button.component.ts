@@ -1,5 +1,4 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Board } from 'src/app/boards/models/board.model';
 import { SharedService } from 'src/app/shared/services/shared.service';
@@ -15,7 +14,6 @@ export class CreateColumnButtonComponent implements OnInit {
   constructor(
     private sharedService: SharedService,
     private store: Store,
-    private route: ActivatedRoute,
   ) {}
 
   ngOnInit(): void {}
@@ -27,7 +25,7 @@ export class CreateColumnButtonComponent implements OnInit {
       description: 'Fill in the form to create new column',
       actionButtonText: 'Create new column',
       action: 'createColumn',
-      routeParameteres: { boardId: this.board?._id },
+      parameters: { boardId: this.board?._id },
     });
 
     this.store.dispatch(SharedActions.openDialog({ data: dialogConfig }));

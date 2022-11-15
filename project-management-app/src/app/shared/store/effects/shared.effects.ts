@@ -3,14 +3,9 @@ import * as SharedActions from '../actions/shared.actions';
 import { catchError, concat, exhaustMap, finalize, map, of, switchMap, tap, zip } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { SharedService } from '../../services/shared.service';
-import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
-import * as BoardsActions from '../../../boards/store/actions/boards.actions';
-import { ComponentType } from '@angular/cdk/portal';
-import { ModalData } from '../../models/shared.model';
 import * as fromRoot from '../../../store/reducers/app.reducer';
 import { Store } from '@ngrx/store';
 import * as AppActions from '../../../store/actions/app.actions';
-import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Injectable()
 export class SharedEffects {
@@ -25,6 +20,7 @@ export class SharedEffects {
       this.actions$.pipe(
         ofType(SharedActions.openDialog),
         tap(({ data }) => {
+          console.log('in effects');
           this.sharedService.openDialog(data);
         }),
       ),

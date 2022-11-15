@@ -2,11 +2,6 @@ import { createFeatureSelector, createReducer, createSelector, on } from '@ngrx/
 import * as TasksActions from '../actions/tasks.actions';
 import { Task } from '../../models/tasks.model';
 
-// interface TasksMap {
-//   columnId: string;
-//   tasksByColumn: Task[];
-// }
-
 export interface TasksState {
   tasks: Task[];
 }
@@ -27,7 +22,7 @@ export const tasksReducer = createReducer(
   })),
   on(TasksActions.updateTaskSuccess, (state, { task }) => ({
     ...state,
-    tasks: [...state.tasks, task],
+    tasks: [...state.tasks.filter((taskExisted) => taskExisted._id !== task._id), task],
   })),
   on(TasksActions.deleteTaskSuccess, (state, { boardId, columnId, taskId }) => ({
     ...state,

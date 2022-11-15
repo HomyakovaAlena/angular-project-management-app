@@ -20,15 +20,13 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { SharedModule } from '../shared/shared.module';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatRippleModule } from '@angular/material/core';
 import { CreateBoardButtonComponent } from './components/create-board-button/create-board-button.component';
 import { UsersModule } from '../users/users.module';
 import { UsernameByIdPipe } from '../users/pipes/username-by-id.pipe';
 import { BoardViewComponent } from './components/board-view/board-view.component';
 import { TasksModule } from '../tasks/tasks.module';
-
-// import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
-// import { UsersSearchBarComponent } from '../users/components/users-search-bar/users-search-bar.component';
-// import { UsersModule } from '../users/users.module';
+import { MatChipsModule } from '@angular/material/chips';
 
 @NgModule({
   declarations: [
@@ -52,14 +50,12 @@ import { TasksModule } from '../tasks/tasks.module';
     MatButtonModule,
     MatIconModule,
     MatDialogModule,
+    MatRippleModule,
+    MatChipsModule,
     SharedModule,
 
     UsersModule,
     TasksModule,
-
-    // MatAutocompleteSelectedEvent,
-    // UsersSearchBarComponent,
-    // UsersModule
   ],
   exports: [BoardsPageComponent, CreateBoardButtonComponent],
   providers: [BoardService],

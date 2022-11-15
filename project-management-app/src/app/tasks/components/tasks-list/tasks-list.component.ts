@@ -17,6 +17,7 @@ export class TasksListComponent implements OnChanges {
   @Input() column: Column | null | undefined = null;
   @Input() board: Board | null | undefined = null;
   @Output() deleteTask = new EventEmitter<Task | null>();
+  @Output() editTask = new EventEmitter<Task | null>();
 
   constructor(private store: Store<fromTasks.TasksState>, private taskService: TaskService) {}
 
@@ -26,6 +27,10 @@ export class TasksListComponent implements OnChanges {
 
   onDelete(task: Task | null | undefined) {
     this.deleteTask.emit(task);
+  }
+
+  onEdit(task: Task | null | undefined) {
+    this.editTask.emit(task);
   }
 
   drop(event: CdkDragDrop<Task[]>) {

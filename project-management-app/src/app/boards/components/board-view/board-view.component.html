@@ -1,6 +1,32 @@
-<div *ngIf="board$ | async as board">
-  <h3>{{ board.title }}</h3>
-  <p>Id: {{ board._id }}</p>
-  <button type="button" (click)="gotoBoards(board)">Back</button>
-  <app-board-item-page [board]="board"></app-board-item-page>
+<div class="container">
+  <mat-card class="card-container" *ngIf="board$ | async as board">
+    <mat-card-title class="card-container__inner" class="card-container__inner__heading">{{
+      board.title
+    }}</mat-card-title>
+    <mat-card-content class="ripple-container">
+      <mat-chip-list aria-label="Owner"
+        >Owner:
+        <mat-chip>{{ board.owner | usernameById | async }}</mat-chip>
+      </mat-chip-list>
+      <mat-chip-list aria-label="Users"
+        >Users:
+        <div class="hidden-overflow">
+          <mat-chip *ngFor="let user of board.users">{{ user | usernameById | async }}</mat-chip>
+        </div>
+      </mat-chip-list>
+    </mat-card-content>
+    <mat-card-actions>
+      <button
+        mat-icon-button
+        *ngIf="board$ | async as board"
+        type="button"
+        (click)="gotoBoards(board)"
+        color="primary"
+      >
+        <mat-icon>arrow_back_ios</mat-icon> Back to Boards
+      </button>
+    </mat-card-actions>
+  </mat-card>
+
+  <app-board-item-page *ngIf="board$ | async as board" [board]="board"></app-board-item-page>
 </div>

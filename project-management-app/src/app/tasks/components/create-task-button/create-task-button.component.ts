@@ -30,7 +30,7 @@ export class CreateTaskButtonComponent implements OnInit {
       description: 'Fill in the form to create new task',
       actionButtonText: 'Create new task',
       action: 'createTask',
-      routeParameteres: { boardId: this.board?._id, columnId: this.column?._id },
+      parameters: { boardId: this.board?._id, columnId: this.column?._id },
     });
 
     this.store.dispatch(SharedActions.openDialog({ data: dialogConfig }));

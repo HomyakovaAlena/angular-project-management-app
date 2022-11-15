@@ -46,6 +46,20 @@ export class BoardsEffects {
     ),
   );
 
+  updateBoard$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(BoardsActions.updateBoard),
+      tap(() => this.store.dispatch(AppActions.setLoadingState({ isLoading: true }))),
+      switchMap(({ board }) =>
+        this.boardService.updateBoard(board).pipe(
+          map((board) => BoardsActions.updateBoardSuccess({ board })),
+          catchError((error) => of(BoardsActions.updateBoardFailed({ error }))),
+          finalize(() => this.store.dispatch(AppActions.setLoadingState({ isLoading: false }))),
+        ),
+      ),
+    ),
+  );
+
   deleteBoard$ = createEffect(() =>
     this.actions$.pipe(
       ofType(BoardsActions.deleteBoard),
@@ -63,7 +77,11 @@ export class BoardsEffects {
   onSuccededActions$ = createEffect(
     () =>
       this.actions$.pipe(
-        ofType(BoardsActions.createBoardSuccess, BoardsActions.deleteBoardSuccess),
+        ofType(
+          BoardsActions.createBoardSuccess,
+          BoardsActions.deleteBoardSuccess,
+          BoardsActions.updateBoardSuccess,
+        ),
         tap(() => {
           this.store.dispatch(SharedActions.closeDialog());
           this.store.dispatch(SharedActions.openSnackBar({ message: 'Success!' }));
@@ -79,6 +97,7 @@ export class BoardsEffects {
           BoardsActions.deleteBoardFailed,
           BoardsActions.createBoardFailed,
           BoardsActions.loadBoardsFailed,
+          BoardsActions.updateBoardFailed,
         ),
         tap(({ error }) => {
           console.log(error);

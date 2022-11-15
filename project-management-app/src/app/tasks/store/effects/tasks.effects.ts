@@ -57,6 +57,20 @@ export class TasksEffects {
     ),
   );
 
+  updateTask$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(TasksActions.updateTask),
+      tap(() => this.store.dispatch(AppActions.setLoadingState({ isLoading: true }))),
+      switchMap(({ task }) =>
+        this.taskService.updateTask(task).pipe(
+          map((task) => TasksActions.updateTaskSuccess({ task })),
+          catchError((error) => of(TasksActions.updateTaskFailed({ error }))),
+          finalize(() => this.store.dispatch(AppActions.setLoadingState({ isLoading: false }))),
+        ),
+      ),
+    ),
+  );
+
   deleteTask$ = createEffect(() =>
     this.actions$.pipe(
       ofType(TasksActions.deleteTask),
@@ -122,7 +136,7 @@ export class TasksEffects {
     { dispatch: false },
   );
 
-  onFailedDrop$ = createEffect(
+  onChangeTasksOrderFailed$ = createEffect(
     () => {
       return this.actions$.pipe(
         ofType(TasksActions.changeTasksOrderFailed),

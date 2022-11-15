@@ -1,15 +1,46 @@
 <div *ngIf="column" id="{{ column._id }}">
-  <mat-card>
-    <div [class]="'column-item'">
-      <h2>{{ column.title }}</h2>
-      <h4>Order of Column: {{ column.order }}</h4>
-      <!-- <h4>BoardId: {{ column.boardId }}</h4> -->
-      <!-- <div>
+  <mat-card [class]="'column-item'">
+    <div class="container-header">
+      <h2 class="card-container__inner__heading" *ngIf="!formVisible" (click)="update()">
+        {{ column.title }}
+      </h2>
 
-    </div> -->
-      <h4>Id: {{ column._id }}</h4>
+      <form
+        *ngIf="formVisible"
+        (ngSubmit)="onSubmit(ngForm)"
+        #ngForm="ngForm"
+        [formGroup]="updateColumnForm"
+        class="card-container__inner__heading"
+      >
+        <mat-form-field>
+          <textarea
+            matInput
+            name="title"
+            class="card-container__inner__heading"
+            formControlName="title"
+            required
+          ></textarea>
+        </mat-form-field>
+        <button (click)="cancel()" type="submit" mat-icon-button>
+          <mat-icon>cancel</mat-icon>
+        </button>
+        <button [disabled]="!updateColumnForm.valid" type="submit" mat-icon-button>
+          <mat-icon>save</mat-icon>
+        </button>
+      </form>
+      <!-- <h4>Order of Column: {{ column.order }}</h4>
+      <h4>Id: {{ column._id }}</h4> -->
+      <button
+        mat-icon-button
+        type="button"
+        class="delete"
+        title="delete column"
+        (click)="onDelete()"
+        color="primary"
+      >
+        <mat-icon>delete</mat-icon>
+      </button>
     </div>
-    <button type="button" class="delete" title="delete column" (click)="onDelete()">x</button>
   </mat-card>
 
   <app-create-task-button [column]="column" [board]="board"></app-create-task-button>
@@ -19,7 +50,8 @@
       [column]="column"
       [board]="board"
       [tasksList]="sortedTasksList | tasksByColumns: column._id"
-      (deleteTask)="openDialog($event)"
+      (editTask)="openDialogForEdit($event)"
+      (deleteTask)="openDialogForDelete($event)"
     ></app-tasks-list>
   </div>
 </div>

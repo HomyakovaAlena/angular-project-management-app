@@ -1,5 +1,5 @@
 <mat-card *ngIf="task">
-  <div [class]="'task-item'">
+  <div [class]="'task-item'" (click)="onEdit()">
     <h2>{{ task.title }}</h2>
     <h4>Order of Task: {{ task.order }}</h4>
     <h4>Id: {{ task._id }}</h4>

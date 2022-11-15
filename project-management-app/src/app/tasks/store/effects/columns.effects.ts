@@ -46,6 +46,20 @@ export class ColumnsEffects {
     ),
   );
 
+  updateColumn$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(ColumnsActions.updateColumn),
+      tap(() => this.store.dispatch(AppActions.setLoadingState({ isLoading: true }))),
+      switchMap(({ column }) =>
+        this.columnService.updateColumn(column).pipe(
+          map((column) => ColumnsActions.updateColumnSuccess({ column })),
+          catchError((error) => of(ColumnsActions.updateColumnFailed({ error }))),
+          finalize(() => this.store.dispatch(AppActions.setLoadingState({ isLoading: false }))),
+        ),
+      ),
+    ),
+  );
+
   deleteColumn$ = createEffect(() =>
     this.actions$.pipe(
       ofType(ColumnsActions.deleteColumn),

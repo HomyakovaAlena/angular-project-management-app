@@ -42,7 +42,7 @@ export class BoardItemPageComponent implements OnInit {
       itemName: title,
       itemId: _id,
       action: 'deleteColumn',
-      routeParameteres: { boardId: this.board?._id },
+      parameters: { boardId: this.board?._id },
     });
     this.store.dispatch(SharedActions.openDialog({ data: dialogConfig }));
   }

@@ -38,6 +38,10 @@ export class SharedService {
       case 'createTask':
         this.dialog.open(CreateTaskDialogComponent, configMatDialog);
         break;
+      case 'editTask':
+        console.log('edit in open dialog');
+        this.dialog.open(CreateTaskDialogComponent, configMatDialog);
+        break;
       default:
         break;
     }
@@ -54,10 +58,10 @@ export class SharedService {
   }
 
   confirmDialogAction(data: ModalData | null | undefined) {
+    console.log('in confirm');
     const id = data?.['itemId'] as string;
-    const boardId = data?.routeParameteres?.boardId as string;
-    const columnId = data?.routeParameteres?.columnId as string;
-    // const columnId = data?.routeParameteres?.columnId as string;
+    const boardId = data?.parameters?.boardId as string;
+    const columnId = data?.parameters?.columnId as string;
     switch (data?.action) {
       case 'deleteUser':
         this.authFacade.deleteUser(id);

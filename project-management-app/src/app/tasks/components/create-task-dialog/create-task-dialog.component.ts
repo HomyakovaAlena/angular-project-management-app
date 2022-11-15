@@ -1,5 +1,4 @@
-import { Component, EventEmitter, Inject, OnInit, Output } from '@angular/core';
-import { Column, Task } from '../../models/tasks.model';
+import { Component, EventEmitter, Inject, OnInit, Output, OnDestroy } from '@angular/core';
 import {
   AbstractControl,
   FormBuilder,
@@ -24,7 +23,7 @@ import { Subscription } from 'rxjs';
   templateUrl: './create-task-dialog.component.html',
   styleUrls: ['./create-task-dialog.component.scss'],
 })
-export class CreateTaskDialogComponent implements OnInit {
+export class CreateTaskDialogComponent implements OnInit, OnDestroy {
   value1 = 'Task #1';
   value2 = 'Description #1';
   orderStep = 65536;
@@ -36,8 +35,6 @@ export class CreateTaskDialogComponent implements OnInit {
   orders: number[] = [];
   order = 65536;
   subscription!: Subscription;
-
-  // @Output() createTask = new EventEmitter<Task>();
 
   createTaskForm: FormGroup = this.fb.group({
     title: ['', [Validators.required, Validators.maxLength(50), this.customValidator]],
@@ -55,33 +52,51 @@ export class CreateTaskDialogComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    console.log(this.configDialog);
     this.subscription = this.tasksList$.subscribe((tasks) => {
       tasks.forEach((task) => {
-        if (task.columnId === this.configDialog.routeParameteres?.columnId)
-          this.orders.push(task.order);
+        if (task.columnId === this.configDialog.parameters?.columnId) this.orders.push(task.order);
       });
     });
   }
 
   onSubmit(ngForm: FormGroupDirective) {
+    this.confirmAction();
+    this.createTaskForm.reset();
+    ngForm.resetForm();
+  }
+
+  confirmAction() {
     const { title, description } = this.createTaskForm.value;
     const order = this.orders.length ? Math.max(...this.orders) + this.orderStep : this.orderStep;
 
-    const boardId = this.configDialog.routeParameteres?.boardId as string;
-    const columnId = this.configDialog.routeParameteres?.columnId as string;
+    const boardId = this.configDialog.parameters?.boardId as string;
+    const columnId = this.configDialog.parameters?.columnId as string;
 
     this.usersStore.dispatch(UsersActions.loadUsers());
     this.user$.subscribe((user) => (this.userId = user?._id));
     const userId = this.userId as string;
     const users = this.selectedUsers.map((user) => user._id) as string[];
-
-    this.store.dispatch(
-      TasksActions.createTask({
-        task: { title, description, order, boardId, columnId, userId, users },
-      }),
-    );
-    this.createTaskForm.reset();
-    ngForm.resetForm();
+    this.configDialog.name === 'createTask'
+      ? this.store.dispatch(
+          TasksActions.createTask({
+            task: { title, description, order, boardId, columnId, userId, users },
+          }),
+        )
+      : this.store.dispatch(
+          TasksActions.updateTask({
+            task: {
+              title,
+              description,
+              order: this.configDialog.parameters?.order as number,
+              boardId,
+              columnId,
+              userId,
+              users,
+              _id: this.configDialog.itemId,
+            },
+          }),
+        );
   }
 
   private customValidator(control: AbstractControl): ValidationErrors | null {

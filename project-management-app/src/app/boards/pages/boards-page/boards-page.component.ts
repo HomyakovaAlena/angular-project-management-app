@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnChanges, OnInit } from '@angular/core';
 
 import * as fromBoards from '../../store/reducers/boards.reducer';
 import * as fromUsers from '../../../users/store/reducers/users.reducer';
@@ -26,6 +26,7 @@ export class BoardsPageComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    console.log('on init boards page');
     this.user$.subscribe((user) => {
       if (user) this.store.dispatch(BoardsActions.loadBoards({ userId: user?._id }));
     });

@@ -1,0 +1,44 @@
+.column-item {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  height: 100px;
+  padding: 0;
+  margin: 0;
+}
+
+.card-container {
+  width: 90%;
+  height: 60px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+
+  &__inner {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+
+    &__heading {
+      padding: 0;
+      margin: 0;
+      display: inline-block;
+      width: 250px;
+      font-size: 16px;
+      height: 20px;
+    }
+  }
+}
+
+.ripple-container {
+  padding: 20px;
+  width: 250px;
+
+  cursor: pointer;
+  margin: 0;
+}

@@ -8,11 +8,12 @@ export interface ModalData {
   action: string;
   itemId?: string;
   itemName?: string;
-  routeParameteres?: RouteParameteres;
+  parameters?: Parameteres;
 }
 
-export interface RouteParameteres {
+export interface Parameteres {
   boardId?: string;
   columnId?: string;
   taskId?: string;
+  order?: number;
 }

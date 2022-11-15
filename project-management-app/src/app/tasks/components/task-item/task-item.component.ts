@@ -13,16 +13,16 @@ export class TaskItemComponent implements OnInit {
   @Input() column: Column | null | undefined = null;
   @Input() board: Board | null | undefined = null;
   @Output() deleteTask = new EventEmitter<Task | null>();
+  @Output() editTask = new EventEmitter<Task | null>();
 
   constructor() {}
   ngOnInit(): void {}
 
-  // ngOnChanges(): void {
-  //   // this.task = this.task ? this.task : null;
-  //   // console.log(this.task, 'from ngOnChanges tasks');
-  // }
-
   onDelete() {
     this.deleteTask.emit(this.task);
+  }
+
+  onEdit() {
+    this.editTask.emit(this.task);
   }
 }

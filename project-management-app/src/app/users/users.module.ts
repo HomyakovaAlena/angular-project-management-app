@@ -12,14 +12,13 @@ import { UsersSearchComponent } from './components/users-search/users-search.com
 import { MatChipsModule } from '@angular/material/chips';
 import { MatIconModule } from '@angular/material/icon';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import {MatSelectModule} from '@angular/material/select';
+import { MatSelectModule } from '@angular/material/select';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { DragDropModule } from '@angular/cdk/drag-drop';
-import { UsernameByIdPipe } from './pipes/username-by-id.pipe';
 
 @NgModule({
-  declarations: [UsersSearchComponent, UsernameByIdPipe],
+  declarations: [UsersSearchComponent],
   imports: [
     CommonModule,
     StoreModule.forFeature('users', usersReducer),
@@ -33,9 +32,9 @@ import { UsernameByIdPipe } from './pipes/username-by-id.pipe';
     MatFormFieldModule,
     MatSelectModule,
     MatAutocompleteModule,
-    DragDropModule
+    DragDropModule,
   ],
-  exports: [UsersSearchComponent, UsernameByIdPipe],
+  exports: [UsersSearchComponent],
   providers: [UserService],
 })
 export class UsersModule {}

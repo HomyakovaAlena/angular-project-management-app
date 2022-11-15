@@ -22,7 +22,7 @@ export const columnsReducer = createReducer(
   })),
   on(ColumnsActions.updateColumnSuccess, (state, { column }) => ({
     ...state,
-    columns: [...state.columns, column],
+    columns: [...state.columns.filter((columnExisted) => columnExisted._id !== column._id), column],
   })),
   on(ColumnsActions.deleteColumnSuccess, (state, { boardId, columnId }) => ({
     ...state,

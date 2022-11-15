@@ -1,5 +1,4 @@
 import { Component, EventEmitter, Inject, OnInit, Output, OnDestroy } from '@angular/core';
-import { Column } from '../../models/tasks.model';
 import {
   AbstractControl,
   FormBuilder,
@@ -48,9 +47,7 @@ export class CreateColumnDialogComponent implements OnInit, OnDestroy {
   onSubmit(ngForm: FormGroupDirective) {
     const { title } = this.createColumnForm.value;
     const order = this.orders.length ? Math.max(...this.orders) + this.orderStep : this.orderStep;
-    console.log({ order }, this.orderStep);
-    const boardId = this.configDialog.routeParameteres?.boardId as string;
-    console.log({ title, order, boardId });
+    const boardId = this.configDialog.parameters?.boardId as string;
     this.store.dispatch(ColumnsActions.createColumn({ column: { title, order, boardId } }));
     this.createColumnForm.reset();
     ngForm.resetForm();

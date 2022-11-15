@@ -12,6 +12,7 @@
       *ngFor="let task of tasksList"
       [task]="task"
       (deleteTask)="onDelete($event)"
+      (editTask)="onEdit($event)"
       cdkDrag
     >
     </app-task-item>
