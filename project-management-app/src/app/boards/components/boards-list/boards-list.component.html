@@ -1,9 +1,15 @@
-<h2>Boards List</h2>
-<div class="boards-list">
-  <app-board-preview
-    *ngFor="let board of boardsList"
-    [board]="board"
-    (deleteBoard)="onDelete($event)"
+<mat-card class="title-container">
+  <mat-card-title class="title-container__inner title-container__inner__heading"
+    >Boards List</mat-card-title
   >
-  </app-board-preview>
+</mat-card>
+<div class="container">
+  <div class="boards-list">
+    <app-board-preview
+      *ngFor="let board of boardsList"
+      [board]="board"
+      (deleteBoard)="onDelete($event)"
+    >
+    </app-board-preview>
+  </div>
 </div>

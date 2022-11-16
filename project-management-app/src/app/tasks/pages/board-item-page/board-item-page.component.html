@@ -1,10 +1,11 @@
 <div class="container">
   <div *ngIf="board" class="columns-container">
     <app-columns-list
+      *ngIf="board"
       [columnsList]="sortedColumnsList"
       [board]="board"
       (deleteColumn)="openDialog($event)"
     ></app-columns-list>
-    <app-create-column-button [board]="board"></app-create-column-button>
+
   </div>
 </div>

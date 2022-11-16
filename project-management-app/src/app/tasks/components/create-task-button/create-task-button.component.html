@@ -1,10 +1,10 @@
 <button
   *ngIf="column"
-  matRipple
-  [matRippleCentered]="false"
+  mat-stroked-button
+  color="primary"
   class="button button-ripple"
   type="button"
   (click)="openDialog()"
 >
-  Create Task
+  <mat-icon>add_circle</mat-icon> Create Task
 </button>

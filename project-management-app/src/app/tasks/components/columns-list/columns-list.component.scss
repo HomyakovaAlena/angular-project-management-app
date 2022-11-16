@@ -1,6 +1,10 @@
 .columns-list {
   display: flex;
   flex: row;
+  justify-content: flex-start;
+  // box-sizing: border-box;
+  // max-width: 100%;
+  overflow: hidden;
 }
 
 .cdk-drag-preview {

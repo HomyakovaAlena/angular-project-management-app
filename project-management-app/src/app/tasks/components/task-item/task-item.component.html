@@ -1,8 +1,17 @@
-<mat-card *ngIf="task">
-  <div [class]="'task-item'" (click)="onEdit()">
-    <h2>{{ task.title }}</h2>
-    <h4>Order of Task: {{ task.order }}</h4>
-    <h4>Id: {{ task._id }}</h4>
-  </div>
-  <button type="button" class="delete" title="delete task" (click)="onDelete()">x</button>
+<mat-card *ngIf="task" class="task-item">
+  <!-- <div > -->
+  <h3 (click)="onEdit()" class="task-item__heading">{{ task.title }}</h3>
+  <!-- <h4>Order of Task: {{ task.order }}</h4> -->
+  <!-- <h4>Id: {{ task._id }}</h4> -->
+  <!-- </div> -->
+  <button
+    mat-icon-button
+    type="button"
+    class="delete"
+    title="delete task"
+    (click)="onDelete()"
+    color="primary"
+  >
+    <mat-icon>delete</mat-icon>
+  </button>
 </mat-card>

@@ -1,4 +1,4 @@
-<div *ngIf="column" id="{{ column._id }}">
+<div *ngIf="column" id="{{ column._id }}" class="column-wrapper">
   <mat-card [class]="'column-item'">
     <div class="container-header">
       <h2 class="card-container__inner__heading" *ngIf="!formVisible" (click)="update()">
@@ -10,16 +10,16 @@
         (ngSubmit)="onSubmit(ngForm)"
         #ngForm="ngForm"
         [formGroup]="updateColumnForm"
-        class="card-container__inner__heading"
+        class="formForTitle"
       >
-        <mat-form-field>
-          <textarea
+        <mat-form-field class="formForTitle__textarea">
+          <input
+            class="formForTitle__textarea"
             matInput
             name="title"
-            class="card-container__inner__heading"
             formControlName="title"
             required
-          ></textarea>
+          />
         </mat-form-field>
         <button (click)="cancel()" type="submit" mat-icon-button>
           <mat-icon>cancel</mat-icon>
@@ -28,22 +28,19 @@
           <mat-icon>save</mat-icon>
         </button>
       </form>
-      <!-- <h4>Order of Column: {{ column.order }}</h4>
-      <h4>Id: {{ column._id }}</h4> -->
       <button
         mat-icon-button
         type="button"
         class="delete"
         title="delete column"
         (click)="onDelete()"
-        color="primary"
+        color="secondary"
       >
         <mat-icon>delete</mat-icon>
       </button>
     </div>
   </mat-card>
 
-  <app-create-task-button [column]="column" [board]="board"></app-create-task-button>
   <div>
     <app-tasks-list
       *ngIf="column._id"
