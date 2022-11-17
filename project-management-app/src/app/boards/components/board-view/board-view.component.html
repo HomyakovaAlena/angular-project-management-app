@@ -5,12 +5,28 @@
   <mat-card-content class="ripple-container">
     <mat-chip-list aria-label="Owner"
       >Owner:
-      <mat-chip>{{ board.owner | usernameById | async }}</mat-chip>
+      <mat-chip
+        matTooltip="{{ board.owner | usernameById | async }}"
+        [matTooltipShowDelay]="500"
+        matTooltipPosition="above"
+        >{{ board.owner | usernameById | async | slice: 0:1 | uppercase }}</mat-chip
+      >
     </mat-chip-list>
-    <mat-chip-list aria-label="Users"
-      >Users:
-      <div class="hidden-overflow">
-        <mat-chip *ngFor="let user of board.users">{{ user | usernameById | async }}</mat-chip>
+    <mat-chip-list aria-label="Users">
+      <div class="board-view__mat-chip-list">
+        <span class="to-bottom">Users:</span>
+        <div class="board-view__chips-container">
+          <mat-chip
+            matTooltip="{{ user | usernameById | async }}"
+            [matTooltipShowDelay]="500"
+            matTooltipPosition="above"
+            *ngFor="let user of board.users"
+            >{{ user | usernameById | async | slice: 0:1 | uppercase }}</mat-chip
+          >
+        </div>
+        <div class="to-bottom" *ngIf="board.users.length > 5" (click)="showMore($event)">
+          <mat-icon>more_vert</mat-icon>
+        </div>
       </div>
     </mat-chip-list>
   </mat-card-content>

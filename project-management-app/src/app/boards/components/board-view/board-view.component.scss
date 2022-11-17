@@ -5,10 +5,11 @@
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
+  gap: 30px;
   justify-content: center;
   align-items: center;
   background-color: #dde2ed;
-  margin-bottom: 20px;
+  // margin-bottom: 20px;
 
   &__inner {
     display: flex;
@@ -31,4 +32,41 @@
   width: 300px;
   height: 90%;
   margin: 0;
+  display: flex;
+  flex-direction: column;
+  // justify-content: center;
+  // align-items: center;
+
+  & .board-view__mat-chip-list {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: center;
+    margin-top: 10px;
+    gap: 10px;
+  }
+
+  .board-view__chips-container {
+    max-width: 200px;
+    text-overflow: clip;
+    overflow: hidden;
+    white-space: nowrap;
+    height: 40px;
+    // padding: 10px;
+    align-self: flex-start;
+    &__full {
+      // position: relative;
+      overflow: visible;
+      height: max-content;
+      background-color: darken(#e0e0e0, 60);
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      z-index: 10;
+      border-radius: 7px;
+    }
+  }
+  .to-bottom {
+    margin-top: 10px;
+  }
 }

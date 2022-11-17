@@ -1,9 +1,7 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { User } from '../../models/user.model';
+import { Component, OnInit } from '@angular/core';
 import {
   AbstractControl,
   FormBuilder,
-  FormControl,
   FormGroup,
   FormGroupDirective,
   ValidationErrors,
@@ -14,6 +12,7 @@ import { SharedService } from 'src/app/shared/services/shared.service';
 import * as FromAuth from '../../models/user.model';
 import { Store } from '@ngrx/store';
 import * as SharedActions from '../../../shared/store/actions/shared.actions';
+import { ValidationService } from 'src/app/shared/services/validation.service';
 
 @Component({
   selector: 'app-edit-profile-form',
@@ -27,14 +26,56 @@ export class EditProfileFormComponent implements OnInit {
   protected name: string | undefined = '';
   protected login: string | undefined = '';
   protected password: string | undefined = '';
-  protected repeatPassword: string | undefined = '';
+  protected confirmPassword: string | undefined = '';
 
-  editProfileForm: FormGroup = this.fb.group({
-    name: ['', [Validators.required, Validators.maxLength(50)]],
-    login: ['', [Validators.required, this.customValidator]],
-    password: ['', [Validators.required]],
-    repeatPassword: ['', [Validators.required]],
-  });
+  nameErrors: string[] | undefined = [];
+  loginErrors: string[] | undefined = [];
+  passwordErrors: string[] | undefined = [];
+  confirmPasswordErrors: string[] | undefined = [];
+
+  editProfileForm: FormGroup = this.fb.group(
+    {
+      name: [
+        '',
+        [
+          Validators.required,
+          Validators.minLength(2),
+          Validators.maxLength(20),
+          Validators.pattern('^[a-zA-Z][a-zA-Z0-9-_.]{1,20}$'),
+        ],
+      ],
+      login: [
+        '',
+        [
+          Validators.required,
+          Validators.minLength(2),
+          Validators.maxLength(20),
+          Validators.pattern('^[a-zA-Z][a-zA-Z0-9-_.]{1,20}$'),
+        ],
+      ],
+      password: [
+        '',
+        [
+          Validators.required,
+          Validators.minLength(8),
+          Validators.maxLength(20),
+          Validators.pattern('^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,20}$'),
+        ],
+      ],
+      confirmPassword: [
+        '',
+        [
+          Validators.required,
+          Validators.minLength(8),
+          Validators.maxLength(20),
+          Validators.pattern('^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,20}$'),
+        ],
+      ],
+    },
+    {
+      validator: [this.matchPassword],
+    },
+  );
 
   constructor(
     private fb: FormBuilder,
@@ -49,11 +90,36 @@ export class EditProfileFormComponent implements OnInit {
       this.login = user?.login;
       this.password = user?.password;
       this._id = user?._id;
-      console.log(this.name, this.login, this.password);
     });
   }
+
+  getNameErrorMessage() {
+    this.nameErrors = ValidationService.getFormControlErrors(this.editProfileForm, 'name');
+  }
+
+  getLoginErrorMessage() {
+    this.loginErrors = ValidationService.getFormControlErrors(this.editProfileForm, 'login');
+  }
+
+  getPasswordErrorMessage() {
+    this.passwordErrors = ValidationService.getFormControlErrors(
+      this.editProfileForm,
+      'password',
+    );
+  }
+
+  getConfirmPasswordErrorMessage() {
+    this.confirmPasswordErrors = ValidationService.getFormControlErrors(
+      this.editProfileForm,
+      'confirmPassword',
+    );
+  }
+
+  private matchPassword(control: AbstractControl): ValidationErrors | null {
+    return ValidationService.matchPassword(control);
+  }
+
   onSubmit(ngForm: FormGroupDirective) {
-    console.log('submitted clicked');
     const _id = this._id;
     const { login, name, password } = this.editProfileForm.value;
     this.authFacade.updateUser({ _id, login, name, password });
@@ -61,14 +127,8 @@ export class EditProfileFormComponent implements OnInit {
     ngForm.resetForm();
   }
 
-  private customValidator(control: AbstractControl): ValidationErrors | null {
-    // return { customValue: true }
-    return null;
-  }
-
   openDialog() {
     if (!this._id) return;
-
     const [_id, name] = [this._id, this.name];
     const dialogConfig = this.sharedService.createConfigDialog({
       name: 'confirmDelete',

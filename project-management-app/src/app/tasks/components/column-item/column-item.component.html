@@ -1,9 +1,8 @@
 <div *ngIf="column" id="{{ column._id }}" class="column-wrapper">
   <mat-card [class]="'column-item'">
-    <div class="container-header">
-      <h2 class="card-container__inner__heading" *ngIf="!formVisible" (click)="update()">
+      <div class="card-container__inner__heading" *ngIf="!formVisible" (click)="update()">
         {{ column.title }}
-      </h2>
+      </div>
 
       <form
         *ngIf="formVisible"
@@ -21,10 +20,15 @@
             required
           />
         </mat-form-field>
-        <button (click)="cancel()" type="submit" mat-icon-button>
+        <button (click)="cancel()" type="submit" title="cancel" mat-icon-button>
           <mat-icon>cancel</mat-icon>
         </button>
-        <button [disabled]="!updateColumnForm.valid" type="submit" mat-icon-button>
+        <button
+          [disabled]="!updateColumnForm.valid"
+          title="save changes"
+          type="submit"
+          mat-icon-button
+        >
           <mat-icon>save</mat-icon>
         </button>
       </form>
@@ -38,7 +42,6 @@
       >
         <mat-icon>delete</mat-icon>
       </button>
-    </div>
   </mat-card>
 
   <div>

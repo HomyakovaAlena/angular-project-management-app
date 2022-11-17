@@ -1,8 +1,6 @@
-<!-- <div class="container"> -->
   <app-boards-list
     [user]="user$ | async"
     [users]="usersList$ | async"
     [boardsList]="boardsList$ | async"
     (deleteBoard)="openDialog($event)"
   ></app-boards-list>
-<!-- </div> -->

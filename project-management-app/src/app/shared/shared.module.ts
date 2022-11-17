@@ -11,6 +11,7 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 import { ModalConfirmComponent } from './components/modal-confirm/modal-confirm.component';
 import { SnackBarComponent } from './components/snack-bar/snack-bar.component';
@@ -30,6 +31,7 @@ import { UsernameByIdPipe } from './pipes/username-by-id.pipe';
     MatSnackBarModule,
     // StoreModule.forFeature('shared', sharedReducer),
     EffectsModule.forFeature([SharedEffects]),
+    MatTooltipModule,
   ],
   exports: [ModalConfirmComponent, TasksByColumnsPipe, UsernameByIdPipe],
 })

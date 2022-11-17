@@ -1,14 +1,7 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { User } from '../../models/user.model';
-import {
-  AbstractControl,
-  FormBuilder,
-  FormControl,
-  FormGroup,
-  FormGroupDirective,
-  ValidationErrors,
-} from '@angular/forms';
+import { FormBuilder, FormGroup, FormGroupDirective, ValidationErrors } from '@angular/forms';
 import { Validators } from '@angular/forms';
+import { ValidationService } from 'src/app/shared/services/validation.service';
 import { AuthFacade } from '../../store/auth.facade';
 
 @Component({
@@ -17,30 +10,62 @@ import { AuthFacade } from '../../store/auth.facade';
   styleUrls: ['./signup-form.component.scss'],
 })
 export class SignupFormComponent {
+  nameErrors: string[] | undefined = [];
+  loginErrors: string[] | undefined = [];
+  passwordErrors: string[] | undefined = [];
+
   signupForm: FormGroup = this.fb.group({
-    name: ['', [Validators.required, Validators.maxLength(50)]],
-    login: ['', [Validators.required, this.customValidator]],
-    password: ['', [Validators.required]],
+    name: [
+      '',
+      [
+        Validators.required,
+        Validators.minLength(2),
+        Validators.maxLength(20),
+        Validators.pattern('^[a-zA-Z][a-zA-Z0-9-_.]{1,20}$'),
+      ],
+    ],
+    login: [
+      '',
+      [
+        Validators.required,
+        Validators.minLength(2),
+        Validators.maxLength(20),
+        Validators.pattern('^[a-zA-Z][a-zA-Z0-9-_.]{1,20}$'),
+      ],
+    ],
+    password: [
+      '',
+      [
+        Validators.required,
+        Validators.minLength(8),
+        Validators.maxLength(20),
+        Validators.pattern('^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,20}$'),
+      ],
+    ],
   });
 
-  constructor(private fb: FormBuilder, private authFacade: AuthFacade) {}
+  constructor(
+    private fb: FormBuilder,
+    private authFacade: AuthFacade,
+  ) // private validationService: ValidationService,
+  {}
+
+  getNameErrorMessage() {
+    this.nameErrors = ValidationService.getFormControlErrors(this.signupForm, 'name');
+  }
+
+  getLoginErrorMessage() {
+    this.loginErrors = ValidationService.getFormControlErrors(this.signupForm, 'login');
+  }
+
+  getPasswordErrorMessage() {
+    this.passwordErrors = ValidationService.getFormControlErrors(this.signupForm, 'password');
+  }
 
   onSubmit(ngForm: FormGroupDirective) {
-    console.log('reactive form submitted - in login');
-    console.log(this.signupForm);
-    // this.loginSignupForm.emit({
-    //   ...this.loginSignupForm.value,
-    // });
     const { name, login, password } = this.signupForm.value;
     this.authFacade.signup(name, login, password);
     this.signupForm.reset();
     ngForm.resetForm();
-    console.log('logged in');
-  }
-
-  private customValidator(control: AbstractControl): ValidationErrors | null {
-    // console.log(control);
-    // return { customValue: true }
-    return null;
   }
 }

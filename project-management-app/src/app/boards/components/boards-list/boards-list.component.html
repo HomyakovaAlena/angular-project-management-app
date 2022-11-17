@@ -5,6 +5,10 @@
 </mat-card>
 <div class="container">
   <div class="boards-list">
+    <div *ngIf="!boardsList?.length">
+      <mat-card>You have no boards yet</mat-card>
+    </div>
+
     <app-board-preview
       *ngFor="let board of boardsList"
       [board]="board"

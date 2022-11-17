@@ -30,6 +30,8 @@ import { CreateTaskButtonComponent } from './components/create-task-button/creat
 import { CreateTaskDialogComponent } from './components/create-task-dialog/create-task-dialog.component';
 import { TasksByColumnsPipe } from '../shared/pipes/tasks-by-columns.pipe';
 import { SharedModule } from '../shared/shared.module';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatChipsModule } from '@angular/material/chips';
 
 @NgModule({
   declarations: [
@@ -55,6 +57,8 @@ import { SharedModule } from '../shared/shared.module';
     MatButtonModule,
     MatIconModule,
     MatCardModule,
+    MatTooltipModule,
+    MatChipsModule,
     UsersModule,
     StoreModule.forFeature('columns', columnsReducer),
     EffectsModule.forFeature([ColumnsEffects]),

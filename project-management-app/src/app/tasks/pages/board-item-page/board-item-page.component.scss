@@ -1,11 +1,10 @@
 .columns-container {
-  width: 90vw;
+  max-width: 99vw;
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
   justify-content: flex-start;
   overflow-x: auto;
-  margin-bottom: 20px;
 }
 
 .columns-container::-webkit-scrollbar {

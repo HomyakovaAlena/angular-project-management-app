@@ -62,12 +62,55 @@ a:visited {
 .container {
   display: flex;
   flex-direction: column;
-  margin: 0 auto;
-  // max-width: 80vw;
-  justify-content: baseline;
+  justify-content: center;
   align-items: center;
-  min-height: calc(100vh - 260px);
+  margin: 0 auto;
+  align-items: center;
+  min-height: calc(100vh - 250px);
   justify-content: flex-start;
+  // height: max-content;
+  overflow: hidden;
+}
+
+.container__users-form {
+  display: flex;
+  flex-direction: column;
+  margin: 30px auto;
+  justify-content: center;
+  align-items: center;
+  min-height: calc(100vh - 130px);
   height: max-content;
   overflow-x: hidden;
+  max-width: 900px;
+}
+.mat-tooltip {
+  background-color: darken(#e0e0e0, 70);
+  font-size: 12px;
+  white-space: pre-line;
+
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -o-user-select: none;
+  user-select: none;
+}
+
+body::-webkit-scrollbar {
+  width: 15px;
+}
+
+body::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px rgb(45, 46, 51);
+  border-radius: 15px;
+}
+
+body::-webkit-scrollbar-thumb {
+  background: rgb(146, 153, 163);
+  border-radius: 10px;
+}
+
+body::-webkit-scrollbar-thumb:hover {
+  background: darken(rgb(146, 153, 163), 20);
 }

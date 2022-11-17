@@ -1,8 +1,12 @@
-
-<div class="container">
+<div class="container__users-form">
   <h2>Sign Up</h2>
-  <form (ngSubmit)="onSubmit(ngForm)" #ngForm="ngForm" [formGroup]="signupForm">
-    <p>
+  <form
+    (ngSubmit)="onSubmit(ngForm)"
+    #ngForm="ngForm"
+    [formGroup]="signupForm"
+    class="form-container"
+  >
+    <div>
       <mat-form-field>
         <mat-label for="name">Username: </mat-label>
         <input
@@ -12,13 +16,11 @@
           placeholder="name"
           name="name"
           formControlName="name"
+          (blur)="getNameErrorMessage()"
         />
-        <mat-error *ngIf="signupForm.get('name')?.errors?.['required']"
-          >Username is required</mat-error
-        >
       </mat-form-field>
-    </p>
-    <p>
+    </div>
+    <div>
       <mat-form-field>
         <mat-label for="login">Login: </mat-label>
         <input
@@ -28,10 +30,11 @@
           placeholder="login"
           name="login"
           formControlName="login"
+          (blur)="getLoginErrorMessage()"
         />
       </mat-form-field>
-    </p>
-    <p>
+    </div>
+    <div class="inputForm">
       <mat-form-field>
         <mat-label for="password">Password: </mat-label>
         <input
@@ -41,10 +44,21 @@
           name="password"
           placeholder="password"
           formControlName="password"
+          (blur)="getPasswordErrorMessage()"
         />
       </mat-form-field>
-    </p>
-
+    </div>
+    <div class="errors-container">
+      <div class="errors-container__type" *ngIf="signupForm.get('name')?.invalid">
+        <mat-error *ngFor="let error of nameErrors">{{ error }} </mat-error>
+      </div>
+      <div class="errors-container__type" *ngIf="signupForm.get('login')?.invalid">
+        <mat-error *ngFor="let error of loginErrors">{{ error }} </mat-error>
+      </div>
+      <div class="errors-container__type" *ngIf="signupForm.get('password')?.invalid">
+        <mat-error *ngFor="let error of passwordErrors">{{ error }} </mat-error>
+      </div>
+    </div>
     <button
       mat-stroked-button
       color="primary"

@@ -23,10 +23,10 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatRippleModule } from '@angular/material/core';
 import { CreateBoardButtonComponent } from './components/create-board-button/create-board-button.component';
 import { UsersModule } from '../users/users.module';
-import { UsernameByIdPipe } from '../users/pipes/username-by-id.pipe';
 import { BoardViewComponent } from './components/board-view/board-view.component';
 import { TasksModule } from '../tasks/tasks.module';
 import { MatChipsModule } from '@angular/material/chips';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 @NgModule({
   declarations: [
@@ -52,6 +52,7 @@ import { MatChipsModule } from '@angular/material/chips';
     MatDialogModule,
     MatRippleModule,
     MatChipsModule,
+    MatTooltipModule,
     SharedModule,
 
     UsersModule,

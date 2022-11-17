@@ -22,6 +22,7 @@ import { authReducer, AUTH_FEATURE_KEY } from './store/reducer/auth.reducer';
 import { LoginFormComponent } from './components/login-form/login-form.component';
 import { EditProfileFormComponent } from './components/edit-profile-form/edit-profile-form.component';
 
+
 @NgModule({
   declarations: [
     LoginComponent,
@@ -45,7 +46,9 @@ import { EditProfileFormComponent } from './components/edit-profile-form/edit-pr
     EffectsModule.forFeature([AuthEffects]),
   ],
   exports: [LoginComponent, LogoutComponent, SignupComponent, EditProfileComponent],
-  providers: [AuthFacade, AuthService,
+  providers: [
+    AuthFacade,
+    AuthService,
     // authServiceInitProvider
   ],
 })

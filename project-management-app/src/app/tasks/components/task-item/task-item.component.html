@@ -1,17 +1,51 @@
 <mat-card *ngIf="task" class="task-item">
-  <!-- <div > -->
-  <h3 (click)="onEdit()" class="task-item__heading">{{ task.title }}</h3>
-  <!-- <h4>Order of Task: {{ task.order }}</h4> -->
-  <!-- <h4>Id: {{ task._id }}</h4> -->
-  <!-- </div> -->
-  <button
-    mat-icon-button
-    type="button"
-    class="delete"
-    title="delete task"
-    (click)="onDelete()"
-    color="primary"
-  >
-    <mat-icon>delete</mat-icon>
-  </button>
+  <div class="task-item__header">
+    <h3
+      matTooltip="Task: {{ task.title }}
+      Description: {{ task.description }}"
+      [matTooltipShowDelay]="500"
+      matTooltipPosition="above"
+      (click)="onEdit()"
+      class="task-item__heading"
+    >
+      {{ task.title }}
+    </h3>
+
+    <button
+      mat-icon-button
+      type="button"
+      class="delete"
+      title="delete task"
+      (click)="onDelete()"
+      color="primary"
+    >
+      <mat-icon>delete</mat-icon>
+    </button>
+  </div>
+  <div class="task-item__footer">
+    <mat-chip-list aria-label="Owner" class="task-item__chips-container">
+      <mat-chip
+        class="task-item__chips"
+        matTooltip="Task owner: {{ task.userId | usernameById | async }}"
+        [matTooltipShowDelay]="500"
+        matTooltipPosition="above"
+        >{{ task.userId | usernameById | async | slice: 0:1 | uppercase }}</mat-chip
+      >
+    </mat-chip-list>
+    <mat-chip-list aria-label="Users" class="task-item__mat-chip-list">
+      <div class="task-item__chips-container">
+        <mat-chip
+          class="task-item__chips"
+          matTooltip="Responsible: {{ user | usernameById | async }}"
+          [matTooltipShowDelay]="500"
+          matTooltipPosition="above"
+          *ngFor="let user of task.users"
+          >{{ user | usernameById | async | slice: 0:1 | uppercase }}</mat-chip
+        >
+      </div>
+      <div *ngIf="task.users.length > 3" (click)="showMore($event)">
+        <mat-icon>more_vert</mat-icon>
+      </div>
+    </mat-chip-list>
+  </div>
 </mat-card>

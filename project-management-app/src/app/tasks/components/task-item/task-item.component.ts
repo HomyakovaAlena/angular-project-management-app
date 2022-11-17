@@ -25,4 +25,12 @@ export class TaskItemComponent implements OnInit {
   onEdit() {
     this.editTask.emit(this.task);
   }
+
+  showMore(event: MouseEvent) {
+    event.stopPropagation();
+    const showMoreButton = event?.currentTarget as HTMLElement;
+    const chipList = showMoreButton.closest('.task-item__mat-chip-list') as HTMLElement;
+    const chipsContainer = chipList.querySelector('.task-item__chips-container') as HTMLElement;
+    chipsContainer.classList.toggle('task-item__chips-container__full');
+  }
 }

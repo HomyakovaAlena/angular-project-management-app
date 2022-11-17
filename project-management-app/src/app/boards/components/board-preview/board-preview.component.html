@@ -18,10 +18,16 @@
       <mat-form-field class="form-field">
         <input matInput name="title" class="textarea" formControlName="title" required />
       </mat-form-field>
-      <button (click)="cancel($event)" type="submit" mat-icon-button color="primary">
+      <button (click)="cancel($event)" type="submit" title="cancel" mat-icon-button color="primary">
         <mat-icon>cancel</mat-icon>
       </button>
-      <button [disabled]="!updateBoardForm.valid" type="submit" mat-icon-button color="primary">
+      <button
+        [disabled]="!updateBoardForm.valid"
+        title="save changes"
+        type="submit"
+        mat-icon-button
+        color="primary"
+      >
         <mat-icon>save</mat-icon>
       </button>
     </form>
@@ -36,12 +42,23 @@
   >
     <mat-chip-list aria-label="Owner"
       >Owner:
-      <mat-chip>{{ board.owner | usernameById | async }}</mat-chip>
+      <mat-chip
+        matTooltip="{{ board.owner | usernameById | async }}"
+        [matTooltipShowDelay]="500"
+        matTooltipPosition="above"
+        >{{ board.owner | usernameById | async | slice: 0:1 | uppercase }}</mat-chip
+      >
     </mat-chip-list>
     <mat-chip-list aria-label="Users"
       >Users:
       <div class="hidden-overflow">
-        <mat-chip *ngFor="let user of board.users">{{ user | usernameById | async }}</mat-chip>
+        <mat-chip
+          *ngFor="let user of board.users"
+          matTooltip="{{ user | usernameById | async }}"
+          [matTooltipShowDelay]="500"
+          matTooltipPosition="above"
+          >{{ user | usernameById | async | slice: 0:1 | uppercase }}</mat-chip
+        >
       </div>
     </mat-chip-list>
   </mat-card-content>

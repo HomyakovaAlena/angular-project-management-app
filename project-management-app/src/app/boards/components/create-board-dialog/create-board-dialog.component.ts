@@ -1,17 +1,12 @@
 import { Component, EventEmitter, Inject, OnInit, Output } from '@angular/core';
 import { Board } from '../../models/board.model';
 import {
-  AbstractControl,
   FormBuilder,
   FormGroup,
   FormGroupDirective,
-  ValidationErrors,
 } from '@angular/forms';
 import { Validators } from '@angular/forms';
-import {
-  MatDialogRef,
-  MAT_DIALOG_DATA,
-} from '@angular/material/dialog';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Store } from '@ngrx/store';
 import * as fromBoards from '../../store/reducers/boards.reducer';
 import * as BoardsActions from '../../store/actions/boards.actions';
@@ -27,7 +22,7 @@ import { AuthFacade } from 'src/app/auth/store/auth.facade';
   styleUrls: ['./create-board-dialog.component.scss'],
 })
 export class CreateBoardDialogComponent implements OnInit {
-  value = 'Canban Board #1'
+  value = 'Canban Board #1';
   user$ = this.authFacade.user$;
   owner: string | undefined = '';
   @Output() createBoard = new EventEmitter<Board>();
@@ -35,7 +30,7 @@ export class CreateBoardDialogComponent implements OnInit {
   selectedUsers: User[] = [];
 
   createBoardForm: FormGroup = this.fb.group({
-    title: ['', [Validators.required, Validators.maxLength(50), this.customValidator]],
+    title: ['', [Validators.required]],
     users: [''],
   });
 
@@ -46,9 +41,7 @@ export class CreateBoardDialogComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public configDialog: ModalData,
     private usersStore: Store<fromUsers.UsersState>,
     private authFacade: AuthFacade,
-  ) {
-    console.log(configDialog, 'from constructor');
-  }
+  ) {}
 
   ngOnInit(): void {}
 
@@ -61,12 +54,6 @@ export class CreateBoardDialogComponent implements OnInit {
     this.store.dispatch(BoardsActions.createBoard({ board: { title, owner, users } }));
     this.createBoardForm.reset();
     ngForm.resetForm();
-  }
-
-  private customValidator(control: AbstractControl): ValidationErrors | null {
-    // console.log(control);
-    // return { customValue: true }
-    return null;
   }
 
   closeModal() {

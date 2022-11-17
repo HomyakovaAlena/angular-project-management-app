@@ -1,8 +1,12 @@
-
-<div class="container">
+<div class="container__users-form">
   <h2>Login</h2>
-  <form (ngSubmit)="onSubmit(ngForm)" #ngForm="ngForm" [formGroup]="loginForm">
-    <p>
+  <form
+    (ngSubmit)="onSubmit(ngForm)"
+    #ngForm="ngForm"
+    [formGroup]="loginForm"
+    class="form-container"
+  >
+    <div>
       <mat-form-field>
         <mat-label for="login">Login: </mat-label>
         <input
@@ -12,10 +16,11 @@
           placeholder="login"
           name="login"
           formControlName="login"
+          (blur)="getLoginErrorMessage()"
         />
       </mat-form-field>
-    </p>
-    <p>
+    </div>
+    <div>
       <mat-form-field>
         <mat-label for="password">Password: </mat-label>
         <input
@@ -25,10 +30,18 @@
           name="password"
           placeholder="password"
           formControlName="password"
+          (blur)="getPasswordErrorMessage()"
         />
       </mat-form-field>
-    </p>
-
+    </div>
+    <div class="errors-container">
+      <div class="errors-container__type" *ngIf="loginForm.get('login')?.invalid">
+        <mat-error *ngFor="let error of loginErrors">{{ error }} </mat-error>
+      </div>
+      <div class="errors-container__type" *ngIf="loginForm.get('password')?.invalid">
+        <mat-error *ngFor="let error of passwordErrors">{{ error }} </mat-error>
+      </div>
+    </div>
     <button
       mat-stroked-button
       color="primary"
