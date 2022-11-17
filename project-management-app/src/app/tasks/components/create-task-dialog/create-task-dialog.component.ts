@@ -1,11 +1,5 @@
-import { Component, EventEmitter, Inject, OnInit, Output, OnDestroy } from '@angular/core';
-import {
-  AbstractControl,
-  FormBuilder,
-  FormGroup,
-  FormGroupDirective,
-  ValidationErrors,
-} from '@angular/forms';
+import { Component, Inject, OnInit, OnDestroy } from '@angular/core';
+import { FormBuilder, FormGroup, FormGroupDirective } from '@angular/forms';
 import { Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Store } from '@ngrx/store';
@@ -17,6 +11,7 @@ import * as fromUsers from '../../../users/store/reducers/users.reducer';
 import * as UsersActions from '../../../users/store/actions/users.actions';
 import { AuthFacade } from 'src/app/auth/store/auth.facade';
 import { Subscription } from 'rxjs';
+import { ValidationService } from 'src/app/shared/services/validation.service';
 
 @Component({
   selector: 'app-create-task-dialog',
@@ -34,11 +29,15 @@ export class CreateTaskDialogComponent implements OnInit, OnDestroy {
   tasksList$ = this.store.select(fromTasks.getTasks);
   orders: number[] = [];
   order = 65536;
+
+  titleErrors: string[] | undefined = [];
+  descriptionErrors: string[] | undefined = [];
+
   subscription!: Subscription;
 
   createTaskForm: FormGroup = this.fb.group({
-    title: ['', [Validators.required, Validators.maxLength(50), this.customValidator]],
-    description: ['', [Validators.required, Validators.maxLength(50), this.customValidator]],
+    title: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(20)]],
+    description: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
     users: [''],
   });
 
@@ -58,6 +57,17 @@ export class CreateTaskDialogComponent implements OnInit, OnDestroy {
         if (task.columnId === this.configDialog.parameters?.columnId) this.orders.push(task.order);
       });
     });
+  }
+
+  getTitleErrorMessage() {
+    this.titleErrors = ValidationService.getFormControlErrors(this.createTaskForm, 'title');
+  }
+
+  getDescriptionErrorMessage() {
+    this.descriptionErrors = ValidationService.getFormControlErrors(
+      this.createTaskForm,
+      'description',
+    );
   }
 
   onSubmit(ngForm: FormGroupDirective) {
@@ -97,10 +107,6 @@ export class CreateTaskDialogComponent implements OnInit, OnDestroy {
             },
           }),
         );
-  }
-
-  private customValidator(control: AbstractControl): ValidationErrors | null {
-    return null;
   }
 
   closeModal() {

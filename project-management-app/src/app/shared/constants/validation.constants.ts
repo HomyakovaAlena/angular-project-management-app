@@ -37,9 +37,23 @@ const ConfirmPasswordErrorMessage = {
   matchPassword: 'Password and Confirm password fields must match',
 };
 
+const TitleErrorMessage = {
+  required: 'Title is required',
+  minlength: 'Title must be at least 2 symbols',
+  maxlength: 'Title is too long. Please, use no more than 20 symbols',
+};
+
+const DescriptionErrorMessage = {
+  required: 'Description is required',
+  minlength: 'Description must be at least 2 symbols',
+  maxlength: 'Description is too long. Please, use no more than 50 symbols',
+};
+
 export const FormControlsErrorsMessageMap = {
   name: NameErrorMessage,
   login: LoginErrorMessage,
   password: PasswordErrorMessage,
   confirmPassword: ConfirmPasswordErrorMessage,
+  title: TitleErrorMessage,
+  description: DescriptionErrorMessage,
 };

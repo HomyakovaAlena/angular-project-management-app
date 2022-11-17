@@ -46,9 +46,8 @@ export class SignupFormComponent {
 
   constructor(
     private fb: FormBuilder,
-    private authFacade: AuthFacade,
-  ) // private validationService: ValidationService,
-  {}
+    private authFacade: AuthFacade, // private validationService: ValidationService,
+  ) {}
 
   getNameErrorMessage() {
     this.nameErrors = ValidationService.getFormControlErrors(this.signupForm, 'name');

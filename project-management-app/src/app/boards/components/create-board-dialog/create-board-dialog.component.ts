@@ -1,10 +1,6 @@
 import { Component, EventEmitter, Inject, OnInit, Output } from '@angular/core';
 import { Board } from '../../models/board.model';
-import {
-  FormBuilder,
-  FormGroup,
-  FormGroupDirective,
-} from '@angular/forms';
+import { FormBuilder, FormGroup, FormGroupDirective } from '@angular/forms';
 import { Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Store } from '@ngrx/store';
@@ -15,6 +11,7 @@ import { User } from 'src/app/auth/models/user.model';
 import * as fromUsers from '../../../users/store/reducers/users.reducer';
 import * as UsersActions from '../../../users/store/actions/users.actions';
 import { AuthFacade } from 'src/app/auth/store/auth.facade';
+import { ValidationService } from 'src/app/shared/services/validation.service';
 
 @Component({
   selector: 'app-create-board-dialog',
@@ -28,9 +25,10 @@ export class CreateBoardDialogComponent implements OnInit {
   @Output() createBoard = new EventEmitter<Board>();
   usersList$ = this.store.select(fromUsers.getUsers);
   selectedUsers: User[] = [];
+  titleErrors: string[] | undefined = [];
 
   createBoardForm: FormGroup = this.fb.group({
-    title: ['', [Validators.required]],
+    title: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(20)]],
     users: [''],
   });
 
@@ -45,10 +43,18 @@ export class CreateBoardDialogComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  onSubmit(ngForm: FormGroupDirective) {
+  getTitleErrorMessage() {
+    this.titleErrors = ValidationService.getFormControlErrors(this.createBoardForm, 'title');
+  }
+
+  getOwner() {
     this.usersStore.dispatch(UsersActions.loadUsers());
-    const { title } = this.createBoardForm.value;
     this.user$.subscribe((user) => (this.owner = user?._id));
+  }
+
+  onSubmit(ngForm: FormGroupDirective) {
+    this.getOwner();
+    const { title } = this.createBoardForm.value;
     const owner = this.owner as string;
     const users = this.selectedUsers.map((user) => user._id) as string[];
     this.store.dispatch(BoardsActions.createBoard({ board: { title, owner, users } }));

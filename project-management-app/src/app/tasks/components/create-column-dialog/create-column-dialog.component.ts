@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Inject, OnInit, Output, OnDestroy } from '@angular/core';
+import { Component, Inject, OnInit, OnDestroy } from '@angular/core';
 import {
   AbstractControl,
   FormBuilder,
@@ -13,6 +13,7 @@ import * as fromColumns from '../..//store/reducers/columns.reducer';
 import * as ColumnsActions from '../../store/actions/columns.actions';
 import { ModalData } from 'src/app/shared/models/shared.model';
 import { Subscription } from 'rxjs';
+import { ValidationService } from 'src/app/shared/services/validation.service';
 
 @Component({
   selector: 'app-create-column-dialog',
@@ -24,10 +25,11 @@ export class CreateColumnDialogComponent implements OnInit, OnDestroy {
   orderStep = 65536;
   columnsList$ = this.store.select(fromColumns.getColumns);
   orders: number[] = [];
+  titleErrors: string[] | undefined = [];
   subscription!: Subscription;
 
   createColumnForm: FormGroup = this.fb.group({
-    title: ['', [Validators.required, Validators.maxLength(50), this.customValidator]],
+    title: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(20)]],
   });
 
   constructor(
@@ -44,6 +46,10 @@ export class CreateColumnDialogComponent implements OnInit, OnDestroy {
     });
   }
 
+  getTitleErrorMessage() {
+    this.titleErrors = ValidationService.getFormControlErrors(this.createColumnForm, 'title');
+  }
+
   onSubmit(ngForm: FormGroupDirective) {
     const { title } = this.createColumnForm.value;
     const order = this.orders.length ? Math.max(...this.orders) + this.orderStep : this.orderStep;
@@ -51,10 +57,6 @@ export class CreateColumnDialogComponent implements OnInit, OnDestroy {
     this.store.dispatch(ColumnsActions.createColumn({ column: { title, order, boardId } }));
     this.createColumnForm.reset();
     ngForm.resetForm();
-  }
-
-  private customValidator(control: AbstractControl): ValidationErrors | null {
-    return null;
   }
 
   closeModal() {

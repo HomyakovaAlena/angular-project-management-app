@@ -15,6 +15,7 @@
           name="title"
           formControlName="title"
           [(ngModel)]="value1"
+          (blur)="getTitleErrorMessage()"
         />
         <button *ngIf="value1" matSuffix mat-icon-button aria-label="Clear" (click)="value1 = ''">
           <mat-icon>close</mat-icon>
@@ -35,15 +36,12 @@
           name="description"
           formControlName="description"
           [(ngModel)]="value2"
+          (blur)="getDescriptionErrorMessage()"
         />
         <button *ngIf="value2" matSuffix mat-icon-button aria-label="Clear" (click)="value2 = ''">
           <mat-icon>close</mat-icon>
         </button>
       </mat-form-field>
-
-      <div *ngIf="createTaskForm.get('description')?.errors?.['required']">
-        Description is required
-      </div>
     </div>
 
     <div>
@@ -60,6 +58,14 @@
       ></app-users-search>
     </div>
   </mat-dialog-content>
+  <div class="errors-container">
+    <div class="errors-container__type" *ngIf="createTaskForm.get('title')?.invalid">
+      <mat-error *ngFor="let error of titleErrors">{{ error }} </mat-error>
+    </div>
+    <div class="errors-container__type" *ngIf="createTaskForm.get('description')?.invalid">
+      <mat-error *ngFor="let error of descriptionErrors">{{ error }} </mat-error>
+    </div>
+  </div>
   <mat-dialog-actions align="end">
     <button mat-button mat-dialog-close (click)="closeModal()">Cancel</button>
     <button

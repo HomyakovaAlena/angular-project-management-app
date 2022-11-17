@@ -1,11 +1,10 @@
-<mat-card *ngIf="task" class="task-item">
+<mat-card *ngIf="task" class="task-item" (click)="onEdit()">
   <div class="task-item__header">
     <h3
       matTooltip="Task: {{ task.title }}
       Description: {{ task.description }}"
       [matTooltipShowDelay]="500"
       matTooltipPosition="above"
-      (click)="onEdit()"
       class="task-item__heading"
     >
       {{ task.title }}

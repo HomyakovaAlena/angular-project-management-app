@@ -102,10 +102,7 @@ export class EditProfileFormComponent implements OnInit {
   }
 
   getPasswordErrorMessage() {
-    this.passwordErrors = ValidationService.getFormControlErrors(
-      this.editProfileForm,
-      'password',
-    );
+    this.passwordErrors = ValidationService.getFormControlErrors(this.editProfileForm, 'password');
   }
 
   getConfirmPasswordErrorMessage() {

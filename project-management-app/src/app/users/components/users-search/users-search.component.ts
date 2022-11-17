@@ -12,7 +12,7 @@ import { User } from 'src/app/auth/models/user.model';
 import { UserService } from '../../services/user.service';
 
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormGroup } from '@angular/forms';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { Store } from '@ngrx/store';
 import * as SharedActions from '../../../shared/store/actions/shared.actions';
