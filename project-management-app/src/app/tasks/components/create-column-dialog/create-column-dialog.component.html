@@ -14,10 +14,9 @@
           placeholder="title"
           name="title"
           formControlName="title"
-          [(ngModel)]="value"
           (blur)="getTitleErrorMessage()"
         />
-        <button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value = ''">
+        <button *ngIf="title" matSuffix mat-icon-button aria-label="Clear" (click)="title = ''">
           <mat-icon>close</mat-icon>
         </button>
       </mat-form-field>

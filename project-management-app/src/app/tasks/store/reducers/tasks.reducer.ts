@@ -4,6 +4,7 @@ import { Task } from '../../models/tasks.model';
 
 export interface TasksState {
   tasks: Task[];
+  selectedTask?: Task;
 }
 
 export const initialState: TasksState = {
@@ -28,7 +29,12 @@ export const tasksReducer = createReducer(
     ...state,
     tasks: [...state.tasks.filter((task) => task._id !== taskId)],
   })),
+  on(TasksActions.getTaskByIdSuccess, (state, { task }) => ({
+    ...state,
+    selectedTask: task,
+  })),
 );
 
 export const getTasksState = createFeatureSelector<TasksState>('tasks');
 export const getTasks = createSelector(getTasksState, (state: TasksState) => state.tasks);
+export const getTaskById = createSelector(getTasksState, (state: TasksState) => state.selectedTask);

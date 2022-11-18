@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit, OnDestroy } from '@angular/core';
+import { Component, Inject, OnInit, OnChanges, OnDestroy } from '@angular/core';
 import { FormBuilder, FormGroup, FormGroupDirective } from '@angular/forms';
 import { Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
@@ -19,21 +19,23 @@ import { ValidationService } from 'src/app/shared/services/validation.service';
   styleUrls: ['./create-task-dialog.component.scss'],
 })
 export class CreateTaskDialogComponent implements OnInit, OnDestroy {
-  value1 = 'Task #1';
-  value2 = 'Description #1';
+  title: string | undefined | null = '';
+  description: string | undefined | null = '';
   orderStep = 65536;
   user$ = this.authFacade.user$;
   usersList$ = this.store.select(fromUsers.getUsers);
   userId: string | undefined = '';
   selectedUsers: User[] = [];
   tasksList$ = this.store.select(fromTasks.getTasks);
+  selectedTask$ = this.store.select(fromTasks.getTaskById);
   orders: number[] = [];
   order = 65536;
 
   titleErrors: string[] | undefined = [];
   descriptionErrors: string[] | undefined = [];
 
-  subscription!: Subscription;
+  subscription1!: Subscription;
+  subscription2!: Subscription;
 
   createTaskForm: FormGroup = this.fb.group({
     title: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(20)]],
@@ -48,14 +50,41 @@ export class CreateTaskDialogComponent implements OnInit, OnDestroy {
     @Inject(MAT_DIALOG_DATA) public configDialog: ModalData,
     private usersStore: Store<fromUsers.UsersState>,
     private authFacade: AuthFacade,
-  ) {}
+  ) {
+    console.log(configDialog, configDialog?.itemId);
+  }
 
   ngOnInit(): void {
-    console.log(this.configDialog);
-    this.subscription = this.tasksList$.subscribe((tasks) => {
+    if (this.configDialog.itemId) {
+      console.log(this.configDialog.itemId, 'itemId');
+      this.store.dispatch(
+        TasksActions.getTaskById({
+          boardId: this.configDialog.parameters?.boardId,
+          columnId: this.configDialog.parameters?.columnId,
+          taskId: this.configDialog.itemId,
+        }),
+      );
+      this.subscription2 = this.selectedTask$.subscribe((task) => {
+        this.title = task?.title;
+        this.description = task?.description;
+        this.setValue();
+      });
+    } else {
+      this.title = 'Task #1';
+      this.description = 'Description #1';
+      this.setValue();
+    }
+    this.subscription1 = this.tasksList$.subscribe((tasks) => {
       tasks.forEach((task) => {
         if (task.columnId === this.configDialog.parameters?.columnId) this.orders.push(task.order);
       });
+    });
+  }
+
+  setValue() {
+    this.createTaskForm.patchValue({
+      title: this.title,
+      description: this.description,
     });
   }
 
@@ -118,6 +147,7 @@ export class CreateTaskDialogComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.subscription.unsubscribe();
+    if (this.subscription1) this.subscription1.unsubscribe();
+    if (this.subscription2) this.subscription2.unsubscribe();
   }
 }

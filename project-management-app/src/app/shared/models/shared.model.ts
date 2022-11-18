@@ -1,5 +1,3 @@
-import { ActivatedRoute } from '@angular/router';
-
 export interface ModalData {
   name: string;
   title: string;

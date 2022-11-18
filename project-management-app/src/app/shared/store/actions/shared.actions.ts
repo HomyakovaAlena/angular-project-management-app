@@ -10,15 +10,12 @@ export const confirmDialog = createAction(
   '[Confirmation Dialog] Confirm Action in Dialog ',
   props<{ data?: ModalData | undefined | null }>(),
 );
-export const confirmDialogSuccess = createAction(
-  '[Confirmation Dialog] Confirm Action in Dialog '
-);
+export const confirmDialogSuccess = createAction('[Confirmation Dialog] Confirm Action in Dialog ');
 export const confirmDialogFailed = createAction(
-  '[Confirmation Dialog] Confirm Action in Dialog ', props<{ error?: Error }>(),
+  '[Confirmation Dialog] Confirm Action in Dialog ',
+  props<{ error?: Error }>(),
 );
-export const closeDialog = createAction(
-  '[Confirmation Dialog] Close Confirmation Dialog '
-);
+export const closeDialog = createAction('[Confirmation Dialog] Close Confirmation Dialog ');
 
 export const openSnackBar = createAction(
   '[Snack-bar] Open Snack-bar',

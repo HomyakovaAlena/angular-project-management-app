@@ -8,6 +8,7 @@ import * as fromRoot from '../../../store/reducers/app.reducer';
 import * as AppActions from '../../../store/actions/app.actions';
 import { Store } from '@ngrx/store';
 import { MatDialog } from '@angular/material/dialog';
+import { ErrorHandlingService } from 'src/app/shared/services/error-handling.service';
 
 @Injectable()
 export class BoardsEffects {
@@ -16,6 +17,7 @@ export class BoardsEffects {
     private store: Store<fromRoot.AppState>,
     private boardService: BoardService,
     public dialog: MatDialog,
+    private errorHandlingService: ErrorHandlingService,
   ) {}
 
   fetchBoards$ = createEffect(() =>
@@ -102,8 +104,11 @@ export class BoardsEffects {
         tap(({ error }) => {
           console.log(error);
           this.store.dispatch(
-            SharedActions.openSnackBar({ message: `Failed, reason: ${error.message}` }),
+            SharedActions.openSnackBar({
+              message: this.errorHandlingService.getErrorHandlingMessages(error, 'board'),
+            }),
           );
+          console.log(error);
         }),
       );
     },

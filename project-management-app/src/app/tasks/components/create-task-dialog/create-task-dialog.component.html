@@ -14,10 +14,9 @@
           placeholder="title"
           name="title"
           formControlName="title"
-          [(ngModel)]="value1"
           (blur)="getTitleErrorMessage()"
         />
-        <button *ngIf="value1" matSuffix mat-icon-button aria-label="Clear" (click)="value1 = ''">
+        <button *ngIf="title" matSuffix mat-icon-button aria-label="Clear" (click)="title = ''">
           <mat-icon>close</mat-icon>
         </button>
       </mat-form-field>
@@ -35,10 +34,15 @@
           placeholder="description"
           name="description"
           formControlName="description"
-          [(ngModel)]="value2"
           (blur)="getDescriptionErrorMessage()"
         />
-        <button *ngIf="value2" matSuffix mat-icon-button aria-label="Clear" (click)="value2 = ''">
+        <button
+          *ngIf="description"
+          matSuffix
+          mat-icon-button
+          aria-label="Clear"
+          (click)="description = ''"
+        >
           <mat-icon>close</mat-icon>
         </button>
       </mat-form-field>

@@ -1,11 +1,5 @@
 import { Component, Inject, OnInit, OnDestroy } from '@angular/core';
-import {
-  AbstractControl,
-  FormBuilder,
-  FormGroup,
-  FormGroupDirective,
-  ValidationErrors,
-} from '@angular/forms';
+import { FormBuilder, FormGroup, FormGroupDirective } from '@angular/forms';
 import { Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Store } from '@ngrx/store';
@@ -21,12 +15,12 @@ import { ValidationService } from 'src/app/shared/services/validation.service';
   styleUrls: ['./create-column-dialog.component.scss'],
 })
 export class CreateColumnDialogComponent implements OnInit, OnDestroy {
-  value = 'Column #1';
   orderStep = 65536;
   columnsList$ = this.store.select(fromColumns.getColumns);
   orders: number[] = [];
   titleErrors: string[] | undefined = [];
   subscription!: Subscription;
+  protected title: string | undefined = 'Column #1';
 
   createColumnForm: FormGroup = this.fb.group({
     title: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(20)]],
@@ -40,9 +34,16 @@ export class CreateColumnDialogComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
+    this.setValue();
     this.subscription = this.columnsList$.subscribe((columns) => {
       this.orders = columns.length ? columns.map((column) => column.order) : [];
       console.log(this.orders);
+    });
+  }
+
+  setValue() {
+    this.createColumnForm.setValue({
+      title: this.title,
     });
   }
 

@@ -15,12 +15,15 @@ export class TaskService {
   constructor(private httpClient: HttpClient) {}
 
   getTasks(boardId: string | undefined): Observable<Task[]> {
-    // const url = `${this.boardsUrl}/${boardId}/${this.columnsUrl}/${columnId}/${this.url}`;
     const url = `${this.url}Set/${boardId}`;
     return this.httpClient.get<Task[]>(url);
   }
 
-  getTaskById(boardId: string | undefined, columnId: string, taskId: string): Observable<Task> {
+  getTaskById(
+    boardId: string | undefined,
+    columnId: string | undefined,
+    taskId: string | undefined,
+  ): Observable<Task> {
     const url = `${this.boardsUrl}/${boardId}/${this.columnsUrl}/${columnId}/${this.url}/${taskId}`;
     return this.httpClient.get<Task>(url);
   }

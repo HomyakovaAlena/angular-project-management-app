@@ -16,7 +16,6 @@
           placeholder="name"
           name="name"
           formControlName="name"
-          [(ngModel)]="name"
           (blur)="getNameErrorMessage()"
         />
         <button *ngIf="name" matSuffix mat-icon-button aria-label="Clear" (click)="name = ''">
@@ -34,7 +33,6 @@
           placeholder="login"
           name="login"
           formControlName="login"
-          [(ngModel)]="login"
           (blur)="getLoginErrorMessage()"
         />
         <button *ngIf="login" matSuffix mat-icon-button aria-label="Clear" (click)="login = ''">
@@ -52,7 +50,6 @@
           name="password"
           placeholder="password"
           formControlName="password"
-          [(ngModel)]="password"
           (blur)="getPasswordErrorMessage()"
         />
         <button
@@ -85,7 +82,6 @@
           name="confirmPassword"
           placeholder="confirmPassword"
           formControlName="confirmPassword"
-          [(ngModel)]="confirmPassword"
           (blur)="getConfirmPasswordErrorMessage()"
         />
         <button

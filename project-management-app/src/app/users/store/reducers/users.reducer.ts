@@ -4,6 +4,7 @@ import { User } from '../../../auth/models/user.model';
 
 export interface UsersState {
   users: User[];
+  // foundUsers?: User[];
 }
 
 export const initialState: UsersState = {
@@ -16,15 +17,12 @@ export const usersReducer = createReducer(
     ...state,
     users,
   })),
-  // on(BoardsActions.createBoardSuccess, (state, { board }) => ({
+  // on(UsersActions.searchUsersSuccess, (state, { users }) => ({
   //   ...state,
-  //   boards: [...state.boards, board],
-  // })),
-  // on(BoardsActions.deleteBoardSuccess, (state, { id }) => ({
-  //   ...state,
-  //   boards: [...state.boards.filter(board => board._id !== id)],
+  //   foundUsers: users,
   // })),
 );
 
 export const getUsersState = createFeatureSelector<UsersState>('users');
 export const getUsers = createSelector(getUsersState, (state: UsersState) => state.users);
+// export const getFoundUsers = createSelector(getUsersState, (state: UsersState) => state.foundUsers);

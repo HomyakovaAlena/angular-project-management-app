@@ -90,6 +90,14 @@ export class EditProfileFormComponent implements OnInit {
       this.login = user?.login;
       this.password = user?.password;
       this._id = user?._id;
+      this.setValue();
+    });
+  }
+
+  setValue() {
+    this.editProfileForm.patchValue({
+      name: this.name,
+      login: this.login,
     });
   }
 

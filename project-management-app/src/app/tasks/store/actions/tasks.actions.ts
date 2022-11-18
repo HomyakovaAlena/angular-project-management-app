@@ -1,16 +1,14 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { createAction, props } from '@ngrx/store';
 import { Task } from '../../models/tasks.model';
 
-export const loadTasks = createAction(
-  '[loadTasks] Load',
-  props<{ boardId: string | undefined }>(),
-);
+export const loadTasks = createAction('[loadTasks] Load', props<{ boardId: string | undefined }>());
 export const loadTasksSuccess = createAction('[Tasks] Load Success', props<{ tasks: Task[] }>());
-export const loadTasksFailed = createAction('[Tasks] Load Failed', props<{ error: Error }>());
+export const loadTasksFailed = createAction('[Tasks] Load Failed', props<{ error: HttpErrorResponse }>());
 
 export const createTask = createAction('[Tasks] Add Task', props<{ task: Task }>());
 export const createTaskSuccess = createAction('[Tasks] Add Task Success', props<{ task: Task }>());
-export const createTaskFailed = createAction('[Tasks] Add Task Failed', props<{ error: Error }>());
+export const createTaskFailed = createAction('[Tasks] Add Task Failed', props<{ error: HttpErrorResponse }>());
 
 export const updateTask = createAction('[Tasks] Update Task', props<{ task: Task }>());
 export const updateTaskSuccess = createAction(
@@ -19,7 +17,7 @@ export const updateTaskSuccess = createAction(
 );
 export const updateTaskFailed = createAction(
   '[Tasks] Update Task Failed',
-  props<{ error: Error }>(),
+  props<{ error: HttpErrorResponse }>(),
 );
 
 export const deleteTask = createAction(
@@ -32,7 +30,7 @@ export const deleteTaskSuccess = createAction(
 );
 export const deleteTaskFailed = createAction(
   '[Tasks] Delete Task Failed',
-  props<{ error: Error }>(),
+  props<{ error: HttpErrorResponse }>(),
 );
 
 export const changeTasksOrder = createAction(
@@ -45,5 +43,22 @@ export const changeTasksOrderSuccess = createAction(
 );
 export const changeTasksOrderFailed = createAction(
   '[Tasks] Change Task Order Failed',
-  props<{ error: Error }>(),
+  props<{ error: HttpErrorResponse }>(),
+);
+
+export const getTaskById = createAction(
+  '[Tasks] Get task by id',
+  props<{
+    boardId: string | undefined;
+    columnId: string | undefined;
+    taskId: string | undefined;
+  }>(),
+);
+export const getTaskByIdSuccess = createAction(
+  '[Tasks]  Get task by id Success',
+  props<{ task: Task }>(),
+);
+export const getTaskByIdFailed = createAction(
+  '[Tasks]  Get task by id Failed',
+  props<{ error: HttpErrorResponse }>(),
 );

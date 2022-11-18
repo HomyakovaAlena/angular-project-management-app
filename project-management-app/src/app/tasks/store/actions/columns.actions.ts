@@ -1,3 +1,4 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { createAction, props } from '@ngrx/store';
 import { Column } from '../../models/tasks.model';
 
@@ -9,7 +10,7 @@ export const loadColumnsSuccess = createAction(
   '[Columns] Load Success',
   props<{ columns: Column[] }>(),
 );
-export const loadColumnsFailed = createAction('[Columns] Load Failed', props<{ error: Error }>());
+export const loadColumnsFailed = createAction('[Columns] Load Failed', props<{ error: HttpErrorResponse }>());
 
 export const createColumn = createAction('[Columns] Add Column', props<{ column: Column }>());
 export const createColumnSuccess = createAction(
@@ -18,7 +19,7 @@ export const createColumnSuccess = createAction(
 );
 export const createColumnFailed = createAction(
   '[Columns] Add Column Failed',
-  props<{ error: Error }>(),
+  props<{ error: HttpErrorResponse }>(),
 );
 
 export const updateColumn = createAction('[Columns] Update Column', props<{ column: Column }>());
@@ -28,7 +29,7 @@ export const updateColumnSuccess = createAction(
 );
 export const updateColumnFailed = createAction(
   '[Columns] Update Column Failed',
-  props<{ error: Error }>(),
+  props<{ error: HttpErrorResponse }>(),
 );
 
 export const deleteColumn = createAction(
@@ -41,7 +42,7 @@ export const deleteColumnSuccess = createAction(
 );
 export const deleteColumnFailed = createAction(
   '[Columns] Delete Column Failed',
-  props<{ error: Error }>(),
+  props<{ error: HttpErrorResponse }>(),
 );
 
 export const changeColumnsOrder = createAction(
@@ -54,5 +55,5 @@ export const changeColumnsOrderSuccess = createAction(
 );
 export const changeColumnsOrderFailed = createAction(
   '[Columns] Change Column Order Failed',
-  props<{ error: Error }>(),
+  props<{ error: HttpErrorResponse }>(),
 );

@@ -8,6 +8,7 @@ import * as AppActions from '../../../store/actions/app.actions';
 import { Store } from '@ngrx/store';
 import { MatDialog } from '@angular/material/dialog';
 import { ColumnService } from '../../services/column.service';
+import { ErrorHandlingService } from 'src/app/shared/services/error-handling.service';
 
 @Injectable()
 export class ColumnsEffects {
@@ -16,6 +17,7 @@ export class ColumnsEffects {
     private store: Store<fromRoot.AppState>,
     private columnService: ColumnService,
     public dialog: MatDialog,
+    private errorHandlingService: ErrorHandlingService,
   ) {}
 
   fetchColumns$ = createEffect(() =>
@@ -124,11 +126,14 @@ export class ColumnsEffects {
           ColumnsActions.createColumnFailed,
           ColumnsActions.loadColumnsFailed,
           ColumnsActions.updateColumnFailed,
+          ColumnsActions.changeColumnsOrderFailed,
         ),
         tap(({ error }) => {
           console.log(error);
           this.store.dispatch(
-            SharedActions.openSnackBar({ message: `Failed, reason: ${error.message}` }),
+            SharedActions.openSnackBar({
+              message: this.errorHandlingService.getErrorHandlingMessages(error, 'column'),
+            }),
           );
         }),
       );

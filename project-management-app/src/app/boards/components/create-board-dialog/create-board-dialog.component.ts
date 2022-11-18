@@ -19,13 +19,13 @@ import { ValidationService } from 'src/app/shared/services/validation.service';
   styleUrls: ['./create-board-dialog.component.scss'],
 })
 export class CreateBoardDialogComponent implements OnInit {
-  value = 'Canban Board #1';
   user$ = this.authFacade.user$;
   owner: string | undefined = '';
   @Output() createBoard = new EventEmitter<Board>();
   usersList$ = this.store.select(fromUsers.getUsers);
   selectedUsers: User[] = [];
   titleErrors: string[] | undefined = [];
+  protected title: string | undefined = 'Canban Board #1';
 
   createBoardForm: FormGroup = this.fb.group({
     title: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(20)]],
@@ -41,7 +41,15 @@ export class CreateBoardDialogComponent implements OnInit {
     private authFacade: AuthFacade,
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.setValue();
+  }
+
+  setValue() {
+    this.createBoardForm.patchValue({
+      title: this.title,
+    });
+  }
 
   getTitleErrorMessage() {
     this.titleErrors = ValidationService.getFormControlErrors(this.createBoardForm, 'title');

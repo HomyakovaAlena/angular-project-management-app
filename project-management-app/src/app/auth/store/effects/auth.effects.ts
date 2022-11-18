@@ -10,6 +10,7 @@ import * as AuthActions from '../actions/auth.actions';
 import { AuthFacade } from '../auth.facade';
 import * as SharedActions from '../../../shared/store/actions/shared.actions';
 import { Store } from '@ngrx/store';
+import { ErrorHandlingService } from 'src/app/shared/services/error-handling.service';
 
 @Injectable()
 export class AuthEffects {
@@ -17,10 +18,10 @@ export class AuthEffects {
     private router: Router,
     private actions$: Actions,
     private authService: AuthService,
-    private activatedRoute: ActivatedRoute,
     private tokenStorageService: TokenStorageService,
     private authFacade: AuthFacade,
     private store: Store,
+    private errorHandlingService: ErrorHandlingService,
   ) {}
 
   signup$ = createEffect(() => {
@@ -184,7 +185,10 @@ export class AuthEffects {
         tap(({ error }) => {
           console.log(error);
           this.store.dispatch(
-            SharedActions.openSnackBar({ message: `Failed, reason: ${error.message}` }),
+            // SharedActions.openSnackBar({ message: `Failed, reason: ${error.message}` }),
+            SharedActions.openSnackBar({
+              message: this.errorHandlingService.getErrorHandlingMessages(error, 'auth'),
+            }),
           );
         }),
       );

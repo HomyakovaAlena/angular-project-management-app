@@ -36,7 +36,6 @@ export class SharedEffects {
           of(this.sharedService.confirmDialogAction(data)).pipe(
             tap(() => {
               this.store.dispatch(SharedActions.closeDialog());
-              this.store.dispatch(SharedActions.openSnackBar({ message: 'Success' }));
             }),
             catchError((error) => of(SharedActions.confirmDialogFailed(error))),
             finalize(() => this.store.dispatch(AppActions.setLoadingState({ isLoading: false }))),
