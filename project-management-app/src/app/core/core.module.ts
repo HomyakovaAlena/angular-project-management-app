@@ -19,7 +19,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
-
+import {MatCardModule} from '@angular/material/card';
 import { AuthModule } from '../auth/auth.module';
 import { BoardsModule } from '../boards/boards.module';
 
@@ -42,6 +42,7 @@ import { BoardsModule } from '../boards/boards.module';
     CoreRoutingModule,
     AuthModule,
     BoardsModule,
+    MatCardModule
   ],
   exports: [HeaderComponent, FooterComponent, NotFoundPageComponent, ProgressBarComponent],
   providers: [

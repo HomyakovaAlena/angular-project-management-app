@@ -5,10 +5,10 @@
   align-items: stretch;
   height: 80px;
   padding: 0px;
-  margin: 3px;
+  // margin: 3px;
   background-color: #dde2ed;
   border-radius: 2px;
-  border: none;
+  border: 1px solid darken(#dde2ed, 10);
   box-sizing: border-box;
   cursor: pointer;
 
@@ -23,6 +23,7 @@
   &:hover {
     box-shadow: 0px 3px 1px -1px rgb(0 0 0 / 20%), 0px 2px 1px 0px rgb(0 0 0 / 14%),
       0px 1px 3px 0px rgb(0 0 0 / 12%);
+    background-color: #c2cfe3;
     z-index: 2;
   }
 
