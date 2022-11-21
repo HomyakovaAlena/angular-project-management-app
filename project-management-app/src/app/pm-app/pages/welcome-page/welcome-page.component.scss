@@ -14,6 +14,7 @@
   align-items: baseline;
   color: darken(#3f51b5, 5);
   padding-top: 20px;
+  background-size: cover;
 }
 
 .quote {
@@ -26,6 +27,7 @@
   justify-content: center;
   align-items: center;
   gap: 30px;
+  position: relative;
 
   &__text {
     margin: 0px auto;
@@ -50,7 +52,7 @@
   &__down {
     align-self: flex-end;
     text-align: end;
-    margin: 20px;
+    margin: 15px;
     padding: 20px;
   }
 
@@ -79,10 +81,12 @@
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+
   justify-content: space-around;
   align-items: center;
   height: calc(100vh - 130px);
   background: no-repeat right/100% url('../../../../assets/clouds.jpg');
+  background-size: cover;
   gap: 0;
 
   &_1,
@@ -222,5 +226,78 @@
       gap: 5px;
       color: #3f51b5;
     }
+  }
+}
+@media (max-width: 1200px) {
+  .container_wide {
+    flex-direction: column;
+  }
+  .left {
+    width: 100%;
+    height: max-content;
+
+    .quote {
+      align-self: flex-start;
+      justify-content: flex-start;
+      align-items: flex-start;
+      margin: 30px;
+    }
+  }
+  .right {
+    width: 100%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: max-content;
+  }
+}
+
+@media (max-width: 500px) {
+  .container_wide {
+    flex-direction: column;
+  }
+  .left {
+    margin: 0 auto;
+    justify-content: space-between;
+    gap: 150px;
+
+    .quote {
+      width: 280px;
+      margin: 10px auto;
+      display: flex;
+      flex-direction: column;
+      align-self: flex-start;
+      justify-content: center;
+      align-items: center;
+      gap: 30px;
+      position: relative;
+
+      &__text {
+        margin: 0px auto;
+        padding: 00px;
+
+        &::before,
+        &::after {
+          font-size: 6rem;
+        }
+
+        &::after {
+          content: '”';
+          margin: 4rem 0rem 0 0;
+        }
+      }
+
+      &__down {
+        margin: 20px auto 20px;
+      }
+    }
+  }
+  .right .top {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 auto;
+    justify-content: center;
   }
 }
