@@ -36,6 +36,9 @@
   background-color: lighten(#d9dde3, 10);
   border-radius: 4px;
   display: block;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
 }
 
 .tasks-list::-webkit-scrollbar {

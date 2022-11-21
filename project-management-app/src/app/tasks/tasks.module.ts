@@ -32,6 +32,8 @@ import { TasksByColumnsPipe } from '../shared/pipes/tasks-by-columns.pipe';
 import { SharedModule } from '../shared/shared.module';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatChipsModule } from '@angular/material/chips';
+import { MatSelectModule } from '@angular/material/select';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 
 @NgModule({
   declarations: [
@@ -65,6 +67,8 @@ import { MatChipsModule } from '@angular/material/chips';
     StoreModule.forFeature('tasks', tasksReducer),
     EffectsModule.forFeature([TasksEffects]),
     SharedModule,
+    MatSelectModule,
+    MatAutocompleteModule,
   ],
   exports: [BoardItemPageComponent],
 })

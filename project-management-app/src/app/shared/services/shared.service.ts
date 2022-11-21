@@ -52,6 +52,7 @@ export class SharedService {
     dialogConfig.disableClose = false;
     dialogConfig.id = 'modal-component';
     dialogConfig.data = data;
+    console.log(data, 'from create config');
     return dialogConfig;
   }
 

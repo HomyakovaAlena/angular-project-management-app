@@ -1,7 +1,7 @@
 import { CdkDragDrop } from '@angular/cdk/drag-drop';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, of, tap } from 'rxjs';
 import { Task } from '../models/tasks.model';
 
 @Injectable({
@@ -82,5 +82,21 @@ export class TaskService {
       newOrder = ((beforeToOrder + toOrder) / 2) as number;
     }
     return { newOrder };
+  }
+
+  searchTasks(term: string): Observable<Task[]> {
+    const searchMessage = document.getElementById('search-message') as HTMLElement;
+    if (!term.trim()) {
+      return of([]);
+    }
+    return this.httpClient
+      .get<Task[]>(`${this.url}Set/?search=${term}`)
+      .pipe(
+        tap((x) =>
+          x.length
+            ? (searchMessage.textContent = `found ${x.length} task(s) matching "${term}"`)
+            : (searchMessage.textContent = `no tasks matching "${term}"`),
+        ),
+      );
   }
 }

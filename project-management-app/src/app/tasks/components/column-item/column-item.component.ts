@@ -67,7 +67,7 @@ export class ColumnItemComponent implements OnChanges, OnDestroy {
       itemName: title,
       itemId: _id,
       action: 'deleteTask',
-      parameters: { boardId: this.board?._id, columnId: this.column?._id},
+      parameters: { boardId: this.board?._id, columnId: this.column?._id },
     });
     this.store.dispatch(SharedActions.openDialog({ data: dialogConfig }));
   }
@@ -84,7 +84,7 @@ export class ColumnItemComponent implements OnChanges, OnDestroy {
       itemName: title,
       itemId: _id,
       action: 'editTask',
-      parameters: { boardId: this.board?._id, columnId: this.column?._id, order: task.order },
+      parameters: { boardId: task.boardId, columnId: task.columnId, order: task.order },
     });
     this.store.dispatch(SharedActions.openDialog({ data: dialogConfig }));
   }

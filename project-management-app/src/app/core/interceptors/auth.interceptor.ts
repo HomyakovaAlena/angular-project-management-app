@@ -16,9 +16,9 @@ export class AuthInterceptor implements HttpInterceptor {
 
   intercept(req: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
     const accessToken = this.tokenStorageService.getToken();
-    console.log({ accessToken }, '111 from interceptor');
+    // console.log({ accessToken }, '111 from interceptor');
     if (accessToken) {
-      console.log({ accessToken }, '222 from interceptor');
+      // console.log({ accessToken }, '222 from interceptor');
       req = req.clone({
         setHeaders: { Authorization: `Bearer ${accessToken}` },
         // !Attention: it used only at Fake API, remove it in real app

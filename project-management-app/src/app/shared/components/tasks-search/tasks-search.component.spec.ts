@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AuthComponent } from './auth.component';
+import { TasksSearchComponent } from './tasks-search.component';
 
-describe('AuthComponent', () => {
-  let component: AuthComponent;
-  let fixture: ComponentFixture<AuthComponent>;
+describe('TasksSearchComponent', () => {
+  let component: TasksSearchComponent;
+  let fixture: ComponentFixture<TasksSearchComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ AuthComponent ]
+      declarations: [ TasksSearchComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(AuthComponent);
+    fixture = TestBed.createComponent(TasksSearchComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

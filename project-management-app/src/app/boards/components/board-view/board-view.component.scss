@@ -9,7 +9,11 @@
   justify-content: center;
   align-items: center;
   background-color: #dde2ed;
-  // margin-bottom: 20px;
+  box-shadow: inset 0 0 15px rgb(190, 193, 213);
+
+  &:hover {
+    box-shadow: inset 0 0 45px #4747478a;
+  }
 
   &__inner {
     display: flex;
@@ -58,13 +62,16 @@
       // position: relative;
       overflow: visible;
       height: max-content;
-      background-color: darken(#e0e0e0, 60);
+      background-color: #e0e0e0;
       display: flex;
       flex-direction: row;
       flex-wrap: wrap;
       z-index: 10;
       border-radius: 7px;
     }
+  }
+  .item__chips {
+    background-color: rgb(63 81 181 / 18%);
   }
   .to-bottom {
     margin-top: 10px;

@@ -22,40 +22,42 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 import {MatCardModule} from '@angular/material/card';
 import { AuthModule } from '../auth/auth.module';
 import { BoardsModule } from '../boards/boards.module';
+import { SharedModule } from "../shared/shared.module";
 
 @NgModule({
-  declarations: [
-    HeaderComponent,
-    FooterComponent,
-    NotFoundPageComponent,
-    ProgressBarComponent,
-    LocalizationSwitcherComponent,
-    AllBoardsButtonComponent,
-  ],
-  imports: [
-    CommonModule,
-    MatToolbarModule,
-    MatProgressBarModule,
-    MatButtonModule,
-    MatSlideToggleModule,
-    MatIconModule,
-    CoreRoutingModule,
-    AuthModule,
-    BoardsModule,
-    MatCardModule
-  ],
-  exports: [HeaderComponent, FooterComponent, NotFoundPageComponent, ProgressBarComponent],
-  providers: [
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: ApiInterceptor,
-      multi: true,
-    },
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: AuthInterceptor,
-      multi: true,
-    },
-  ],
+    declarations: [
+        HeaderComponent,
+        FooterComponent,
+        NotFoundPageComponent,
+        ProgressBarComponent,
+        LocalizationSwitcherComponent,
+        AllBoardsButtonComponent,
+    ],
+    exports: [HeaderComponent, FooterComponent, NotFoundPageComponent, ProgressBarComponent],
+    providers: [
+        {
+            provide: HTTP_INTERCEPTORS,
+            useClass: ApiInterceptor,
+            multi: true,
+        },
+        {
+            provide: HTTP_INTERCEPTORS,
+            useClass: AuthInterceptor,
+            multi: true,
+        },
+    ],
+    imports: [
+        CommonModule,
+        MatToolbarModule,
+        MatProgressBarModule,
+        MatButtonModule,
+        MatSlideToggleModule,
+        MatIconModule,
+        CoreRoutingModule,
+        AuthModule,
+        BoardsModule,
+        MatCardModule,
+        SharedModule,
+    ]
 })
 export class CoreModule {}

@@ -10,6 +10,7 @@
         <h1 [innerText]="appTitle"></h1
       ></a>
     </div>
+    <app-tasks-search *ngIf="isLoggedIn$ | async"></app-tasks-search>
     <nav>
       <ul [class]="'header__nav-block'">
         <li [class]="'header__board-block'">
@@ -20,7 +21,7 @@
           <app-localization-switcher></app-localization-switcher>
         </li>
         <li [class]="'header__user-block'">
-          <app-edit-profile></app-edit-profile>
+          <app-edit-profile *ngIf="isLoggedIn$ | async"></app-edit-profile>
 
           <app-login *ngIf="!(isLoggedIn$ | async)"></app-login>
           <app-signup *ngIf="!(isLoggedIn$ | async)"></app-signup>
@@ -30,4 +31,3 @@
     </nav>
   </header>
 </mat-toolbar>
-

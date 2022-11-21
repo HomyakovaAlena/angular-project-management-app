@@ -22,24 +22,24 @@
         </button>
       </mat-chip>
     </div>
-    <!-- <mat-label for="users">Board Users: -->
     <input
       matInput
       #searchBox
       #usersInput
+      type="search"
       id="search-box users"
-      placeholder="Add user..."
+      placeholder="Begin type to search user..."
       [matChipInputFor]="chipList"
       [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
       [matChipInputAddOnBlur]="addOnBlur"
       (input)="search(searchBox.value)"
     />
-    <!-- </mat-label> -->
+    <mat-icon matSuffix>search</mat-icon>
   </mat-chip-list>
-  <div class="optionsFound">
+  <div class="optionsFound" *ngIf="usersInput.value">
     <mat-option *ngFor="let user of users$ | async" [value]="user"
       ><option (click)="selected(user)">{{ user.name }}</option></mat-option
     >
   </div>
 </mat-form-field>
-<div id="search-message"></div>
+<div *ngIf="usersInput.value" id="search-message"></div>

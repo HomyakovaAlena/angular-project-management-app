@@ -10,7 +10,6 @@ import { SignupFormComponent } from './components/signup-form/signup-form.compon
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { AuthComponent } from './pages/auth/auth.component';
 import { AuthRoutingModule } from './auth-routing.module';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
@@ -30,7 +29,6 @@ import { EditProfileFormComponent } from './components/edit-profile-form/edit-pr
     SignupComponent,
     EditProfileComponent,
     SignupFormComponent,
-    AuthComponent,
     LoginFormComponent,
     EditProfileFormComponent,
   ],

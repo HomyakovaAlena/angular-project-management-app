@@ -62,13 +62,10 @@ a:visited {
 .container {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
   margin: 0 auto;
   align-items: center;
   min-height: calc(100vh - 250px);
   justify-content: flex-start;
-  // height: max-content;
   overflow: hidden;
 }
 
@@ -78,8 +75,7 @@ a:visited {
   margin: 30px auto;
   justify-content: center;
   align-items: center;
-  min-height: calc(100vh - 130px);
-  height: max-content;
+  min-height: calc(100vh - 190px);
   overflow-x: hidden;
   max-width: 900px;
 }

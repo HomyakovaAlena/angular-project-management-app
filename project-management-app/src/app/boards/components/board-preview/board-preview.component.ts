@@ -11,7 +11,8 @@ import { Board } from '../../models/board.model';
 import * as fromBoards from '../../store/reducers/boards.reducer';
 import * as BoardsActions from '../../store/actions/boards.actions';
 import { Store } from '@ngrx/store';
-import { MatChipsModule } from '@angular/material/chips';
+// import { debounceTime } from 'rxjs';
+// import * as fromRoot from '../../../store/reducers/app.reducer';
 
 @Component({
   selector: 'app-board-preview',
@@ -22,12 +23,17 @@ export class BoardPreviewComponent implements OnInit {
   @Input() board: Board | null | undefined = null;
   @Output() deleteBoard = new EventEmitter<Board | null>();
   formVisible: boolean = false;
+  // isLoading$ = this.fromRootStore.select(fromRoot.getIsLoading).pipe(debounceTime(0));
 
   updateBoardForm: FormGroup = this.fb.group({
     title: ['', [Validators.required, Validators.maxLength(50), this.customValidator]],
   });
 
-  constructor(private fb: FormBuilder, private store: Store<fromBoards.BoardsState>) {}
+  constructor(
+    private fb: FormBuilder,
+    private store: Store<fromBoards.BoardsState>,
+  ) // private fromRootStore: Store<fromRoot.AppState>,
+  {}
   ngOnInit(): void {}
 
   onDelete(event: MouseEvent) {

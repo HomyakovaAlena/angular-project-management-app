@@ -1,0 +1,226 @@
+.container_wide {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+}
+
+.left {
+  width: 30%;
+  height: calc(100vh - 150px);
+  background: no-repeat right/100% url('../../../../assets/tall.jpg');
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: baseline;
+  color: darken(#3f51b5, 5);
+  padding-top: 20px;
+}
+
+.quote {
+  width: 300px;
+  height: 200px;
+  margin: 0px auto;
+  display: flex;
+  flex-direction: column;
+  align-self: flex-start;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+
+  &__text {
+    margin: 0px auto;
+    padding: 10px;
+
+    &::before,
+    &::after {
+      content: '“';
+      font-family: Georgia;
+      font-size: 8rem;
+      margin: 0 0 -6rem;
+      position: absolute;
+      opacity: 0.5;
+    }
+
+    &::after {
+      content: '”';
+      margin: 5rem 0rem 0 0;
+    }
+  }
+
+  &__down {
+    align-self: flex-end;
+    text-align: end;
+    margin: 20px;
+    padding: 20px;
+  }
+
+  span {
+    align-self: flex-start;
+    justify-self: flex-start;
+    text-align: left;
+    padding: 10px;
+  }
+}
+
+@keyframes float {
+  0% {
+    transform: translatey(0px);
+  }
+  50% {
+    transform: translatey(-10px);
+  }
+  100% {
+    transform: translatey(0px);
+  }
+}
+
+.right {
+  width: 70%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: center;
+  height: calc(100vh - 130px);
+  background: no-repeat right/100% url('../../../../assets/clouds.jpg');
+  gap: 0;
+
+  &_1,
+  &_2 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 40%;
+  }
+  .top {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 50px;
+    height: 100%;
+  }
+  .bottom {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+  }
+  .sticker {
+    will-change: transform;
+    -webkit-transform: translatey(0px);
+    transform: translatey(0px);
+    background: no-repeat center/100% url('../../../../assets/blue-cloud.png');
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+
+    &_1 {
+      width: 200px;
+      height: 200px;
+      animation: float 8s ease infinite;
+      animation-delay: 0.5s;
+    }
+    &_2 {
+      width: 230px;
+      height: 230px;
+      animation: float 9s ease infinite;
+      animation-delay: 1s;
+    }
+    &_3 {
+      width: 280px;
+      height: 280px;
+      animation: float 10s ease infinite;
+      animation-delay: 1.5s;
+    }
+    &_4 {
+      width: 340px;
+      height: 340px;
+      animation: float 7s ease infinite;
+      animation-delay: 1.5s;
+    }
+
+    &__inner {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      border-radius: 20px;
+      margin: 0 auto;
+      color: black;
+    }
+
+    &__imgContainer {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+
+      .logosRow {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        gap: 5px;
+        margin: 5px auto;
+      }
+    }
+
+    &__text {
+      margin: 5px auto;
+
+      &-link {
+        gap: 5px;
+        margin: 0;
+        padding: 5px;
+        border-radius: 7px;
+
+        h3 {
+          padding: 0;
+          margin: 0;
+        }
+
+        &:hover {
+          background-color: #c7cacf98;
+          color: #3f51b5;
+        }
+      }
+    }
+
+    &__course {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      gap: 5px;
+      padding: 5px;
+      border-radius: 7px;
+
+      &:hover {
+        background-color: #c7cacf98;
+        color: #3f51b5;
+      }
+    }
+  }
+
+  &__list {
+    margin: 0;
+    padding: 0;
+
+    &__list-item {
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+      color: #3f51b5;
+    }
+  }
+}

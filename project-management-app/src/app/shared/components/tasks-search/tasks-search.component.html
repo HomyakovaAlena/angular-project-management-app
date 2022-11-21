@@ -1,0 +1,30 @@
+<div class="search-container">
+  <mat-form-field class="matFormField" id="search-component">
+    <mat-label for="search-box"></mat-label>
+    <input
+      matInput
+      #searchBox
+      #tasksInput
+      type="search"
+      class="tasksInput"
+      id="tasksInput"
+      id="search-box tasks"
+      placeholder="Begin type to search task..."
+      (input)="search(searchBox.value)"
+    />
+    <mat-icon matPrefix>search</mat-icon>
+    <div class="optionsFound" *ngIf="tasksInput.value">
+      <mat-option class="option" *ngFor="let task of tasks$ | async" [value]="task"
+        ><option
+          [routerLink]="['/boards', task.boardId]"
+          routerLinkActive="active"
+          ariaCurrentWhenActive="page"
+          (click)="selected(task)"
+        >
+          {{ task.title }}
+        </option></mat-option
+      >
+    </div>
+  </mat-form-field>
+  <p *ngIf="tasksInput.value" id="search-message" class="search-message"></p>
+</div>

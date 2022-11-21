@@ -18,7 +18,7 @@ import { SharedModule } from './shared/shared.module';
 import { ReactiveFormsModule } from '@angular/forms';
 // import { UsersModule } from './users/users.module';
 // import { DragDropModule } from '@angular/cdk/drag-drop';
-
+!environment.production ? StoreDevtoolsModule.instrument() : [];
 @NgModule({
   declarations: [AppComponent],
   imports: [
