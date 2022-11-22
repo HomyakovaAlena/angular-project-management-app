@@ -94,8 +94,8 @@ export class TaskService {
       .pipe(
         tap((x) =>
           x.length
-            ? (searchMessage.textContent = `found ${x.length} task(s) matching "${term}"`)
-            : (searchMessage.textContent = `no tasks matching "${term}"`),
+            ? (searchMessage.textContent = $localize`found ${x.length}:found_quantity: task(s) matching "${term}:search_term:"`)
+            : (searchMessage.textContent = $localize`no tasks matching "${term}:search_term:"`),
         ),
       );
   }

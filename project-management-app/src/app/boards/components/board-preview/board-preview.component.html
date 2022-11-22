@@ -40,8 +40,8 @@
     *ngIf="board"
     [routerLink]="['/boards', board._id]"
   >
-    <mat-chip-list aria-label="Owner"
-      >Owner:
+    <mat-chip-list aria-label="Owner">
+      <ng-container i18n>Owner:</ng-container>
       <mat-chip
         matTooltip="{{ board.owner | usernameById | async }}"
         [matTooltipShowDelay]="500"
@@ -50,10 +50,9 @@
         >{{ board.owner | usernameById | async | slice: 0:1 | uppercase }}</mat-chip
       >
     </mat-chip-list>
-    <mat-chip-list aria-label="Users"
-      >Users:
+    <mat-chip-list aria-label="Users">
       <div class="hidden-overflow">
-        <!-- <div *ngIf="!(isLoading$ | async)"> -->
+        <ng-container i18n>Users:</ng-container>
         <mat-chip
           *ngFor="let user of board.users"
           matTooltip="{{ user | usernameById | async }}"
@@ -62,7 +61,6 @@
           class="item__chips"
           >{{ user | usernameById | async | slice: 0:1 | uppercase }}</mat-chip
         >
-        <!-- </div> -->
       </div>
     </mat-chip-list>
   </mat-card-content>

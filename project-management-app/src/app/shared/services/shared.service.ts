@@ -39,7 +39,6 @@ export class SharedService {
         this.dialog.open(CreateTaskDialogComponent, configMatDialog);
         break;
       case 'editTask':
-        console.log('edit in open dialog');
         this.dialog.open(CreateTaskDialogComponent, configMatDialog);
         break;
       default:
@@ -52,12 +51,10 @@ export class SharedService {
     dialogConfig.disableClose = false;
     dialogConfig.id = 'modal-component';
     dialogConfig.data = data;
-    console.log(data, 'from create config');
     return dialogConfig;
   }
 
   confirmDialogAction(data: ModalData | null | undefined) {
-    console.log('in confirm');
     const id = data?.['itemId'] as string;
     const boardId = data?.parameters?.boardId as string;
     const columnId = data?.parameters?.columnId as string;

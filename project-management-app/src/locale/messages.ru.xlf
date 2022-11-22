@@ -1,0 +1,1154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+  <file source-language="en-US" datatype="plaintext" original="ng2.template">
+    <body>
+      <trans-unit id="5265161251609188502" datatype="html">
+         <source>Edit profile</source>
+        <target>Редактировать профиль</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/auth/components/edit-profile-form/edit-profile-form.component.html</context>
+          <context context-type="linenumber">2</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5625146011024730344" datatype="html">
+         <source>Username: </source>
+        <target>Имя пользователя: </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/auth/components/edit-profile-form/edit-profile-form.component.html</context>
+          <context context-type="linenumber">11</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/auth/components/signup-form/signup-form.component.html</context>
+          <context context-type="linenumber">11</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7953640924889097632" datatype="html">
+          <source>Login: </source>
+        <target>Логин: </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/auth/components/edit-profile-form/edit-profile-form.component.html</context>
+          <context context-type="linenumber">29</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/auth/components/login-form/login-form.component.html</context>
+          <context context-type="linenumber">11</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/auth/components/signup-form/signup-form.component.html</context>
+          <context context-type="linenumber">26</context>
+
+        </context-group>
+        </trans-unit>
+        <trans-unit id="6542676228301148432" datatype="html">
+        <source>login</source>
+        <target>логин</target>
+        <context-group purpose="location">
+        <context context-type="sourcefile">src/app/auth/components/edit-profile-form/edit-profile-form.component.html</context>
+        <context context-type="linenumber">34</context>
+        </context-group>
+        <context-group purpose="location">
+        <context context-type="sourcefile">src/app/auth/components/login-form/login-form.component.html</context>
+        <context context-type="linenumber">16</context>
+        </context-group>
+        <context-group purpose="location">
+        <context context-type="sourcefile">src/app/auth/components/signup-form/signup-form.component.html</context>
+        <context context-type="linenumber">31</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8281836453106783702" datatype="html">
+       <source>Password: </source>
+        <target>Пароль: </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/auth/components/edit-profile-form/edit-profile-form.component.html</context>
+          <context context-type="linenumber">47</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/auth/components/login-form/login-form.component.html</context>
+          <context context-type="linenumber">26</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/auth/components/signup-form/signup-form.component.html</context>
+          <context context-type="linenumber">41</context>
+</context-group>
+</trans-unit>
+<trans-unit id="4809196861118879526" datatype="html">
+<source>password</source>
+<target>пароль</target>
+<context-group purpose="location">
+<context context-type="sourcefile">src/app/auth/components/edit-profile-form/edit-profile-form.component.html</context>
+<context context-type="linenumber">53</context>
+</context-group>
+<context-group purpose="location">
+<context context-type="sourcefile">src/app/auth/components/login-form/login-form.component.html</context>
+<context context-type="linenumber">32</context>
+</context-group>
+<context-group purpose="location">
+<context context-type="sourcefile">src/app/auth/components/signup-form/signup-form.component.html</context>
+<context context-type="linenumber">47</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3554290145965111758" datatype="html">
+       <source>Confirm password: </source>
+        <target>Подтвердите пароль: </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/auth/components/edit-profile-form/edit-profile-form.component.html</context>
+          <context context-type="linenumber">80</context>
+          </context-group>
+</trans-unit>
+<trans-unit id="3330329515985411103" datatype="html">
+<source>confirm password</source>
+<target>подтвердите пароль</target>
+<context-group purpose="location">
+<context context-type="sourcefile">src/app/auth/components/edit-profile-form/edit-profile-form.component.html</context>
+<context context-type="linenumber">86</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2592690450389009216" datatype="html">
+        <source> Update </source>
+        <target> Обновить </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/auth/components/edit-profile-form/edit-profile-form.component.html</context>
+          <context context-type="linenumber">135,137</context>
+          </context-group>
+</trans-unit>
+<trans-unit id="7913022656086109932" datatype="html">
+<source>Delete user</source>
+<source>Удалить пользователя</source>
+<context-group purpose="location">
+<context context-type="sourcefile">src/app/auth/components/edit-profile-form/edit-profile-form.component.html</context>
+<context context-type="linenumber">148</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3810800736263494803" datatype="html">
+        <source>Are you sure you want to delete your user?</source>
+        <target>Вы уверены, что хотите удалить своего пользователя?</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/auth/components/edit-profile-form/edit-profile-form.component.ts</context>
+          <context context-type="linenumber">140</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7432819480173067725" datatype="html">
+        <source>If you confirm, the user <x id="user_name" equiv-text="name"/> will be deleted.</source>
+        <target>Если вы подтвердите, пользователь <x id="user_name" equiv-text="name"/> будет удален.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/auth/components/edit-profile-form/edit-profile-form.component.ts</context>
+          <context context-type="linenumber">141</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7022070615528435141" datatype="html">
+        <source>Delete</source>
+        <target>Удалить</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/auth/components/edit-profile-form/edit-profile-form.component.ts</context>
+          <context context-type="linenumber">142</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/boards/pages/boards-page/boards-page.component.ts</context>
+          <context context-type="linenumber">42,38</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/tasks/components/column-item/column-item.component.ts</context>
+          <context context-type="linenumber">62</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/tasks/pages/board-item-page/board-item-page.component.ts</context>
+          <context context-type="linenumber">39</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2454050363478003966" datatype="html">
+        <source>Login</source>
+        <target>Авторизоваться</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/auth/components/login-form/login-form.component.html</context>
+          <context context-type="linenumber">2</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1908285951500318953" datatype="html">
+        <source> Login </source>
+        <target> Авторизоваться </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/auth/components/login-form/login-form.component.html</context>
+          <context context-type="linenumber">56,58</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="966309639335928681" datatype="html">
+        <source> Login
+</source>
+        <target> Логин
+</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/auth/components/login/login.component.html</context>
+          <context context-type="linenumber">9,11</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3797778920049399855" datatype="html">
+        <source>Logout</source>
+        <target>Выйти</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/auth/components/logout/logout.component.html</context>
+          <context context-type="linenumber">1</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1466012768716286509" datatype="html">
+        <source>Sign Up</source>
+        <target>Зарегистрироваться</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/auth/components/signup-form/signup-form.component.html</context>
+          <context context-type="linenumber">2</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3290138162449285102" datatype="html">
+        <source> SignUp </source>
+        <target> Зарегистрироваться </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/auth/components/signup-form/signup-form.component.html</context>
+          <context context-type="linenumber">74,76</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2564563352203976086" datatype="html">
+        <source> Sign Up
+</source>
+        <target> Зарегистрироваться
+</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/auth/components/signup/signup.component.html</context>
+          <context context-type="linenumber">8,10</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="63467807856692942" datatype="html">
+        <source>Welcome, <x id="userName" equiv-text="user.name"/>!</source>
+        <target>Добро пожаловать, <x id="userName" equiv-text="user.name"/>!</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/auth/store/effects/auth.effects.ts</context>
+          <context context-type="linenumber">47</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3112419678591144238" datatype="html">
+        <source>Successfully updated!</source>
+        <target>Успешно обновлено!</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/auth/store/effects/auth.effects.ts</context>
+          <context context-type="linenumber">124</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1406547658370058388" datatype="html">
+        <source>Come back!</source>
+        <target>Возвращайтесь!</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/auth/store/effects/auth.effects.ts</context>
+          <context context-type="linenumber">151</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2191775412581217688" datatype="html">
+        <source>Users:</source>
+        <target>Пользователи:</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/boards/components/board-view/board-view.component.html</context>
+          <context context-type="linenumber">18,19</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6250395144584635850" datatype="html">
+        <source>Boards List</source>
+        <target>Список досок</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/boards/components/boards-list/boards-list.component.html</context>
+          <context context-type="linenumber">3</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="750744835982152802" datatype="html">
+        <source>You have no boards yet</source>
+        <target>У вас пока нет ни одной доски</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/boards/components/boards-list/boards-list.component.html</context>
+          <context context-type="linenumber">15</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2768216758612317261" datatype="html">
+        <source>Creating board...</source>
+        <target>Создание доски...</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/boards/components/create-board-button/create-board-button.component.ts</context>
+          <context context-type="linenumber">24,22</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4945562005296669220" datatype="html">
+        <source>Fill in the form to create new board.</source>
+        <target>Заполните форму, чтобы создать новую доску.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/boards/components/create-board-button/create-board-button.component.ts</context>
+          <context context-type="linenumber">25,22</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6778994773524636030" datatype="html">
+        <source>Create new board</source>
+        <target>Создать новую доску</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/boards/components/create-board-button/create-board-button.component.ts</context>
+          <context context-type="linenumber">26,22</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3693941446371356749" datatype="html">
+        <source>Board Title</source>
+        <target>Название доски</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/boards/components/create-board-dialog/create-board-dialog.component.html</context>
+          <context context-type="linenumber">11</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8927837337329146438" datatype="html">
+        <source>Are you sure you want to delete this item?</source>
+        <target>Вы уверены, что хотите удалить этот элемент?</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/boards/pages/boards-page/boards-page.component.ts</context>
+          <context context-type="linenumber">40,38</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/tasks/components/column-item/column-item.component.ts</context>
+          <context context-type="linenumber">60</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/tasks/pages/board-item-page/board-item-page.component.ts</context>
+          <context context-type="linenumber">37</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3495174923343779197" datatype="html">
+        <source>If you confirm, the item <x id="boardTitle" equiv-text="title"/> will be deleted.</source>
+        <target>Если вы подтвердите, элемент <x id="boardTitle" equiv-text="title"/> будет удален.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/boards/pages/boards-page/boards-page.component.ts</context>
+          <context context-type="linenumber">41,38</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4836615552094365703" datatype="html">
+        <source>Success!</source>
+        <target>Успех!</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/boards/store/effects/boards.effects.ts</context>
+          <context context-type="linenumber">89</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/tasks/store/effects/columns.effects.ts</context>
+          <context context-type="linenumber">115</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/tasks/store/effects/tasks.effects.ts</context>
+          <context context-type="linenumber">118</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5501436328245117626" datatype="html">
+        <source>PM App</source>
+        <target>PM App</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/core/components/header/header.component.ts</context>
+          <context context-type="linenumber">10</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1315319706060259837" datatype="html">
+        <source>Looks like you are lost...</source>
+        <target>Похоже, ты заблудился...</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/core/pages/not-found-page/not-found-page.component.html</context>
+          <context context-type="linenumber">2</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="228215751746282240" datatype="html">
+        <source> To main page </source>
+        <target> На главную страницу </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/core/pages/not-found-page/not-found-page.component.html</context>
+          <context context-type="linenumber">11,13</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6448841973955281210" datatype="html">
+        <source> To boards page </source>
+        <target> На страницу досок </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/core/pages/not-found-page/not-found-page.component.html</context>
+          <context context-type="linenumber">21,23</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8225740984470518256" datatype="html">
+        <source> Everything you do should be done well, even if you commit madness. </source>
+        <target>Все, что делаешь, надо делать хорошо, даже если совершаешь безумство.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pm-app/pages/welcome-page/welcome-page.component.html</context>
+          <context context-type="linenumber">4,6</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3839856481650395797" datatype="html">
+        <source>Honore de Balzac</source>
+        <target>Оноре де Бальзак</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pm-app/pages/welcome-page/welcome-page.component.html</context>
+          <context context-type="linenumber">7</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3745707687336437314" datatype="html">
+        <source> Do it well<x id="LINE_BREAK" ctype="lb" equiv-text="&lt;br /&gt;"/> with our Kanban board! </source>
+        <target> Сделайте задуманное хорошо<x id="LINE_BREAK" ctype="lb" equiv-text="&lt;br /&gt;"/> с помощью нашей канбан-доски! </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pm-app/pages/welcome-page/welcome-page.component.html</context>
+          <context context-type="linenumber">11,14</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1913738090725564004" datatype="html">
+        <source> Just simple <x id="LINE_BREAK" ctype="lb" equiv-text="&lt;br /&gt;"/> Kanban Board </source>
+        <target> Простая <x id="LINE_BREAK" ctype="lb" equiv-text="&lt;br /&gt;"/> канбан-доска </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pm-app/pages/welcome-page/welcome-page.component.html</context>
+          <context context-type="linenumber">22,25</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5779944400142027938" datatype="html">
+        <source>Why to use<x id="LINE_BREAK" ctype="lb" equiv-text="&lt;br /&gt;"/>Kanban board?</source>
+        <target>Зачем нужна<x id="LINE_BREAK" ctype="lb" equiv-text="&lt;br /&gt;"/>канбан-доска?</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pm-app/pages/welcome-page/welcome-page.component.html</context>
+          <context context-type="linenumber">30</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6714162972538728944" datatype="html">
+        <source>Ask our competitors...</source>
+        <target>Спросите наших конкурентов...</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pm-app/pages/welcome-page/welcome-page.component.html</context>
+          <context context-type="linenumber">32</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="706452781756443846" datatype="html">
+        <source>...and return <x id="LINE_BREAK" ctype="lb" equiv-text="&lt;br /&gt;"/>to our simple board!</source>
+        <target>...и возвращайтесь <x id="LINE_BREAK" ctype="lb" equiv-text="&lt;br /&gt;"/>к нам!</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pm-app/pages/welcome-page/welcome-page.component.html</context>
+          <context context-type="linenumber">34</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4382887906654551268" datatype="html">
+        <source>Created with</source>
+        <target>Создано с</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pm-app/pages/welcome-page/welcome-page.component.html</context>
+          <context context-type="linenumber">66</context>
+          </context-group>
+      </trans-unit>
+      <trans-unit id="3929281485914893910" datatype="html">
+        <source>and</source>
+        <target>и</target>
+        <context-group purpose="location">
+        <context context-type="sourcefile">src/app/pm-app/pages/welcome-page/welcome-page.component.html</context>
+      <context context-type="linenumber">70</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1751729845814411820" datatype="html">
+        <source>during the</source>
+        <target>в рамках</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pm-app/pages/welcome-page/welcome-page.component.html</context>
+          <context context-type="linenumber">92</context>
+          </context-group>
+</trans-unit>
+<trans-unit id="8599456901337805837" datatype="html">
+<source>UpSkillMe course</source>
+<target>курса UpSkillMe</target>
+<context-group purpose="location">
+<context context-type="sourcefile">src/app/pm-app/pages/welcome-page/welcome-page.component.html</context>
+<context context-type="linenumber">98</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5207305371683485060" datatype="html">
+      <source>Begin type to search task...</source>
+      <target>Начните печатать для поиска задачи...</target>
+      <context-group purpose="location">
+<context context-type="sourcefile">src/app/shared/components/tasks-search/tasks-search.component.html</context>
+<context context-type="linenumber">12,13</context>
+</context-group>
+</trans-unit>
+
+     <trans-unit id="524722871991019849" datatype="html">
+        <source>Editing task...</source>
+        <target>Редактирование задачи...</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/components/tasks-search/tasks-search.component.ts</context>
+          <context context-type="linenumber">52,50</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/tasks/components/column-item/column-item.component.ts</context>
+          <context context-type="linenumber">76</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7053678046983881503" datatype="html">
+        <source>Fill in the form to edit task.</source>
+        <target>Заполните форму для редактирования задачи.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/components/tasks-search/tasks-search.component.ts</context>
+          <context context-type="linenumber">53,50</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/tasks/components/column-item/column-item.component.ts</context>
+          <context context-type="linenumber">77</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7585826646011739428" datatype="html">
+        <source>Edit</source>
+        <target>Редактировать</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/components/tasks-search/tasks-search.component.ts</context>
+          <context context-type="linenumber">54,50</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/tasks/components/column-item/column-item.component.ts</context>
+          <context context-type="linenumber">78</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2919010279518420772" datatype="html">
+        <source>Something wrong with your request. Please try again later</source>
+        <target>Что-то не так с вашим запросом. Пожалуйста, попробуйте позже</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/constants/errorsHandlingMessages.constants.ts</context>
+          <context context-type="linenumber">2</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/constants/errorsHandlingMessages.constants.ts</context>
+          <context context-type="linenumber">9</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/constants/errorsHandlingMessages.constants.ts</context>
+          <context context-type="linenumber">15</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/constants/errorsHandlingMessages.constants.ts</context>
+          <context context-type="linenumber">21</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/constants/errorsHandlingMessages.constants.ts</context>
+          <context context-type="linenumber">27</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4615512171676788075" datatype="html">
+        <source>Incorrect login/password combination. Please try again</source>
+        <target>Неверная комбинация логин/пароль. Пожалуйста, попробуйте еще раз</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/constants/errorsHandlingMessages.constants.ts</context>
+          <context context-type="linenumber">3</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8406289079122180386" datatype="html">
+        <source>Login already exist</source>
+        <target>Логин уже существует</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/constants/errorsHandlingMessages.constants.ts</context>
+          <context context-type="linenumber">4</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/constants/errorsHandlingMessages.constants.ts</context>
+          <context context-type="linenumber">29</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4851212788818476697" datatype="html">
+        <source>Board(s) not found</source>
+        <target>Доска(и) не найдена(ы)</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/constants/errorsHandlingMessages.constants.ts</context>
+          <context context-type="linenumber">10</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5292046875247499355" datatype="html">
+        <source>Whoops, looks like something went wrong. Please try again later</source>
+        <target>Упс, похоже, что-то пошло не так. Пожалуйста, попробуйте позже</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/constants/errorsHandlingMessages.constants.ts</context>
+          <context context-type="linenumber">11</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/constants/errorsHandlingMessages.constants.ts</context>
+          <context context-type="linenumber">17</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/constants/errorsHandlingMessages.constants.ts</context>
+          <context context-type="linenumber">23</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/constants/errorsHandlingMessages.constants.ts</context>
+          <context context-type="linenumber">30</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5113556701498821357" datatype="html">
+        <source>Column(s) not found</source>
+        <target>Столбцы не найдены</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/constants/errorsHandlingMessages.constants.ts</context>
+          <context context-type="linenumber">16</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7411686190325219141" datatype="html">
+        <source>Task(s) not found</source>
+        <target>Задача(и) не найдена(ы)</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/constants/errorsHandlingMessages.constants.ts</context>
+          <context context-type="linenumber">22</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="673094125578975905" datatype="html">
+        <source>User(s) not found</source>
+        <target>Пользователи не найдены</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/constants/errorsHandlingMessages.constants.ts</context>
+          <context context-type="linenumber">28</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3702338872876040900" datatype="html">
+        <source>Username is required</source>
+        <target>Требуется Имя пользователя</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/constants/validation.constants.ts</context>
+          <context context-type="linenumber">2</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="372908941127080925" datatype="html">
+        <source>Username must be at least 2 symbols</source>
+        <target>Имя пользователя должно быть не менее 2 символов</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/constants/validation.constants.ts</context>
+          <context context-type="linenumber">3</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3759538595216419878" datatype="html">
+        <source>Username is too long. Please, use no more than 20 symbols</source>
+        <target>Имя пользователя слишком длинное. Пожалуйста, используйте не более 20 символов</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/constants/validation.constants.ts</context>
+          <context context-type="linenumber">4</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2229350076245481816" datatype="html">
+        <source>Please, use letters or numbers, or symbols &apos;-_.&apos; for your username.
+        The first character must be a letter</source>
+        <target>Пожалуйста, используйте буквы или цифры, или символы &apos;-_&apos;. для вашего имени пользователя.
+Первый символ должен быть буквой</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/constants/validation.constants.ts</context>
+          <context context-type="linenumber">5,6</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2460289297734292654" datatype="html">
+        <source>Login is required</source>
+        <target>Требуется логин</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/constants/validation.constants.ts</context>
+          <context context-type="linenumber">10</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="131588707375244745" datatype="html">
+        <source>Login must be at least 2 symbols</source>
+        <target>Логин должен быть не менее 2-х символов</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/constants/validation.constants.ts</context>
+          <context context-type="linenumber">11</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5544757244664806978" datatype="html">
+        <source>Login is too long. Please, use no more than 20 symbols</source>
+        <target>Логин слишком длинный. Пожалуйста, используйте не более 20 символов</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/constants/validation.constants.ts</context>
+          <context context-type="linenumber">12</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2980691908682987199" datatype="html">
+        <source>Please, use letters or numbers, or symbols &apos;-_.&apos; for your login.
+            The first character must be a letter</source>
+        <target>Пожалуйста, используйте буквы или цифры, или символы &apos;-_&apos;. для входа.
+Первый символ должен быть буквой</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/constants/validation.constants.ts</context>
+          <context context-type="linenumber">13,14</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="205044832662301680" datatype="html">
+        <source>Password is required</source>
+        <target>требуется пароль</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/constants/validation.constants.ts</context>
+          <context context-type="linenumber">18</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="927356882146678939" datatype="html">
+        <source>Password must be at least 8 symbols</source>
+        <target>Пароль должен быть не менее 8 символов</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/constants/validation.constants.ts</context>
+          <context context-type="linenumber">19</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/constants/validation.constants.ts</context>
+          <context context-type="linenumber">30</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="703526605927198673" datatype="html">
+        <source>Password is too long. Please, use no more than 20 symbols</source>
+        <target>Пароль слишком длинный. Пожалуйста, используйте не более 20 символов</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/constants/validation.constants.ts</context>
+          <context context-type="linenumber">20</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/constants/validation.constants.ts</context>
+          <context context-type="linenumber">31</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1055745033161390235" datatype="html">
+        <source>Password must include:
+            - at least one upper case Latin letter,
+            - at least one lower case Latin letter,
+            - at least one digit,
+            - at least one special character ?=.*[#?!@$%^&amp;*-]</source>
+        <target>Пароль должен включать:
+            - хотя бы одна заглавная латинская буква,
+            - хотя бы одна строчная латинская буква,
+            - хотя бы одна цифра,
+            - хотя бы один специальный символ ?=.*[#?!@$%^&amp;*-]</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/constants/validation.constants.ts</context>
+          <context context-type="linenumber">21,25</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/constants/validation.constants.ts</context>
+          <context context-type="linenumber">32,36</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2575156019754950480" datatype="html">
+        <source>Please, confirm password</source>
+        <target>Пожалуйста, подтвердите пароль</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/constants/validation.constants.ts</context>
+          <context context-type="linenumber">29</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5872190716671434287" datatype="html">
+        <source>Password and Confirm password fields must match</source>
+        <target>Поля «Пароль» и «Подтверждение пароля» должны совпадать</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/constants/validation.constants.ts</context>
+          <context context-type="linenumber">37</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5642836248241530789" datatype="html">
+        <source>Title is required</source>
+        <target>Требуется Название</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/constants/validation.constants.ts</context>
+          <context context-type="linenumber">41</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8148257694257189320" datatype="html">
+        <source>Title must be at least 2 symbols</source>
+        <target>Название должно содержать не менее 2 символов</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/constants/validation.constants.ts</context>
+          <context context-type="linenumber">42</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7899285355067297967" datatype="html">
+        <source>Title is too long. Please, use no more than 20 symbols</source>
+        <target>Название слишком длинное. Пожалуйста, используйте не более 20 символов</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/constants/validation.constants.ts</context>
+          <context context-type="linenumber">43</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6240684629381435026" datatype="html">
+        <source>Description is required</source>
+        <target>Требуется описание</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/constants/validation.constants.ts</context>
+          <context context-type="linenumber">47</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5841391420390132985" datatype="html">
+        <source>Description must be at least 2 symbols</source>
+        <target>Описание должно быть не менее 2 символов</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/constants/validation.constants.ts</context>
+          <context context-type="linenumber">48</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3373063367237310195" datatype="html">
+        <source>Description is too long. Please, use no more than 50 symbols</source>
+        <target>Описание слишком длинное. Пожалуйста, используйте не более 50 символов</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/constants/validation.constants.ts</context>
+          <context context-type="linenumber">49</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4360625694078026967" datatype="html">
+        <source>If you confirm, the item <x id="column_title" equiv-text="title"/> will be deleted.</source>
+        <target>Если вы подтвердите, элемент <x id="column_title" equiv-text="title"/> будет удален.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/tasks/components/column-item/column-item.component.ts</context>
+          <context context-type="linenumber">61</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/tasks/pages/board-item-page/board-item-page.component.ts</context>
+          <context context-type="linenumber">38</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3566228199184109176" datatype="html">
+        <source>Creating column...</source>
+        <target>Создание столбца...</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/tasks/components/create-column-button/create-column-button.component.ts</context>
+          <context context-type="linenumber">24</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="146921238091401743" datatype="html">
+        <source>Fill in the form to create new column</source>
+        <target>Заполните форму, чтобы создать новую колонку</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/tasks/components/create-column-button/create-column-button.component.ts</context>
+          <context context-type="linenumber">25</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1149997874969812833" datatype="html">
+        <source>Create new column</source>
+        <target>Создать новый столбец</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/tasks/components/create-column-button/create-column-button.component.ts</context>
+          <context context-type="linenumber">26</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2424494401750416921" datatype="html">
+        <source>Column Title</source>
+        <target>Название столбца</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/tasks/components/create-column-dialog/create-column-dialog.component.html</context>
+          <context context-type="linenumber">8</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2862659309905626692" datatype="html">
+        <source>Column #1</source>
+        <target>Колонка №1</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/tasks/components/create-column-dialog/create-column-dialog.component.ts</context>
+          <context context-type="linenumber">23</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4270049643841688858" datatype="html">
+        <source>Creating task...</source>
+        <target>Создание задачи...</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/tasks/components/create-task-button/create-task-button.component.ts</context>
+          <context context-type="linenumber">26</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="9212723171895925310" datatype="html">
+        <source>Fill in the form to create new task</source>
+        <target>Заполните форму, чтобы создать новую задачу</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/tasks/components/create-task-button/create-task-button.component.ts</context>
+          <context context-type="linenumber">27</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5488786542879754401" datatype="html">
+        <source>Create new task</source>
+        <target>Создать новую задачу</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/tasks/components/create-task-button/create-task-button.component.ts</context>
+          <context context-type="linenumber">28</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2123508767715376052" datatype="html">
+        <source>Task Title</source>
+        <target>Название задачи</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/tasks/components/create-task-dialog/create-task-dialog.component.html</context>
+          <context context-type="linenumber">12</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6772346984514203066" datatype="html">
+        <source>Task Description</source>
+        <target>Описание задачи</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/tasks/components/create-task-dialog/create-task-dialog.component.html</context>
+          <context context-type="linenumber">37</context>
+</context-group>
+</trans-unit>
+<trans-unit id="6777974573583289938" datatype="html">
+<source>description</source>
+<target>описание</target>
+<context-group purpose="location">
+<context context-type="sourcefile">src/app/tasks/components/create-task-dialog/create-task-dialog.component.html</context>
+<context context-type="linenumber">42,43</context>
+
+
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7137736270040531887" datatype="html">
+        <source>Task #1</source>
+        <target>Задача 1</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/tasks/components/create-task-dialog/create-task-dialog.component.ts</context>
+          <context context-type="linenumber">70</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1196773003757805244" datatype="html">
+        <source>Description #1</source>
+        <target>Описание №1</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/tasks/components/create-task-dialog/create-task-dialog.component.ts</context>
+          <context context-type="linenumber">71</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3031639047165483549" datatype="html">
+        <source>found <x id="found_quantity" equiv-text="x.length"/> task(s) matching &quot;<x id="search_term" equiv-text="term"/>&quot;</source>
+        <target>найдено <x id="found_quantity" equiv-text="x.length"/> задач, соответствующих &quot;<x id="search_term" equiv-text="term"/>&quot;</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/tasks/services/task.service.ts</context>
+          <context context-type="linenumber">97</context>
+        </context-group>
+      </trans-unit>
+      	<trans-unit id="1626155951228227921" datatype="html">
+        <source>no tasks matching &quot;<x id="search_term" equiv-text="term"/>&quot;</source>
+        <target>нет задач, соответствующих &quot;<x id="search_term" equiv-text="term"/>&quot;</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/tasks/services/task.service.ts</context>
+          <context context-type="linenumber">98</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5988261248133013329" datatype="html">
+        <source>User <x id="user_name" equiv-text="user.name"/> has already been selected</source>
+        <target>Пользователь <x id="user_name" equiv-text="user.name"/> уже выбран</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/users/components/users-search/users-search.component.ts</context>
+          <context context-type="linenumber">79</context>
+        </context-group>
+      </trans-unit>
+
+
+
+
+
+<trans-unit id="1411214360177743011" datatype="html">
+        <source>Back to Boards</source>
+        <target>Назад к доскам</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/boards/components/board-view/board-view.component.html</context>
+          <context context-type="linenumber">44</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="8960751581762457344" datatype="html">
+        <source> Create Board</source>
+        <target> Создать Доску</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/boards/components/create-board-button/create-board-button.component.html</context>
+          <context context-type="linenumber">15</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="3423895644333210479" datatype="html">
+        <source>Board Owner:</source>
+        <target>Владелец Доски:</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/boards/components/create-board-dialog/create-board-dialog.component.html</context>
+          <context context-type="linenumber">5</context>
+        </context-group>
+      </trans-unit>
+
+<trans-unit id="7107218117130409950" datatype="html">
+        <source>Boards</source>
+        <target>Доски</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/core/components/all-boards-button/all-boards-button.component.html</context>
+          <context context-type="linenumber">11</context>
+        </context-group>
+      </trans-unit>
+
+
+ <trans-unit id="5592690242510908298" datatype="html">
+        <source>Create boards</source>
+        <target>Создавать доски</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pm-app/pages/welcome-page/welcome-page.component.html</context>
+          <context context-type="linenumber">44</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4507176883585998494" datatype="html">
+        <source>Rearrange tasks / columns</source>
+        <target>Перемещать задачи / столбцы</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pm-app/pages/welcome-page/welcome-page.component.html</context>
+          <context context-type="linenumber">48</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3570013039254960445" datatype="html">
+        <source>Search tasks</source>
+        <target>Искать задачи</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pm-app/pages/welcome-page/welcome-page.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5087958391422476432" datatype="html">
+        <source>Select users</source>
+        <target>Выбирать пользователей</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pm-app/pages/welcome-page/welcome-page.component.html</context>
+          <context context-type="linenumber">56</context>
+        </context-group>
+      </trans-unit>
+
+ <trans-unit id="153241562216149499" datatype="html">
+        <source>Task Owner:</source>
+        <target>Владелец задачи:</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/tasks/components/create-task-dialog/create-task-dialog.component.html</context>
+          <context context-type="linenumber">5</context>
+        </context-group>
+      </trans-unit>
+
+
+	<trans-unit id="3325180562659478330" datatype="html">
+<source>name</source>
+<target>имя</target>
+<context-group purpose="location">
+<context context-type="sourcefile">src/app/auth/components/edit-profile-form/edit-profile-form.component.html</context>
+<context context-type="linenumber">16</context>
+</context-group>
+<context-group purpose="location">
+<context context-type="sourcefile">src/app/auth/components/signup-form/signup-form.component.html</context>
+<context context-type="linenumber">16</context>
+</context-group>
+</trans-unit>
+
+
+
+<trans-unit id="6035283612400841811" datatype="html">
+        <source>Owner:</source>
+        <target>Владелец:</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/boards/components/board-view/board-view.component.html</context>
+          <context context-type="linenumber">7</context>
+        </context-group>
+   <context-group purpose="location">
+<context context-type="sourcefile">src/app/boards/components/board-preview/board-preview.component.html</context>
+<context context-type="linenumber">44</context>
+</context-group>
+<context-group purpose="location">
+<context context-type="sourcefile">src/app/boards/components/board-preview/board-preview.component.html</context>
+<context context-type="linenumber">55</context>
+</context-group>
+<context-group purpose="location">
+<context context-type="sourcefile">src/app/users/components/users-search/users-search.component.html</context>
+<context context-type="linenumber">1,2</context>
+</context-group>
+      </trans-unit>
+
+<trans-unit id="125111376198337295" datatype="html">
+<source>title</source>
+<target>название</target>
+<context-group purpose="location">
+<context context-type="sourcefile">src/app/boards/components/create-board-dialog/create-board-dialog.component.html</context>
+<context context-type="linenumber">17</context>
+</context-group>
+<context-group purpose="location">
+<context context-type="sourcefile">src/app/tasks/components/create-column-dialog/create-column-dialog.component.html</context>
+<context context-type="linenumber">13</context>
+</context-group>
+<context-group purpose="location">
+<context context-type="sourcefile">src/app/tasks/components/create-task-dialog/create-task-dialog.component.html</context>
+<context context-type="linenumber">18</context>
+</context-group>
+</trans-unit>
+<trans-unit id="1670306451865226564" datatype="html">
+<source>users</source>
+<target>пользователи</target>
+<context-group purpose="location">
+<context context-type="sourcefile">src/app/boards/components/create-board-dialog/create-board-dialog.component.html</context>
+<context context-type="linenumber">34</context>
+</context-group>
+<context-group purpose="location">
+<context context-type="sourcefile">src/app/tasks/components/create-task-dialog/create-task-dialog.component.html</context>
+<context context-type="linenumber">67</context>
+</context-group>
+</trans-unit>
+<trans-unit id="2159130950882492111" datatype="html">
+<source>Cancel</source>
+<target>Отмена</target>
+<context-group purpose="location">
+<context context-type="sourcefile">src/app/boards/components/create-board-dialog/create-board-dialog.component.html</context>
+<context context-type="linenumber">48,49</context>
+</context-group>
+<context-group purpose="location">
+<context context-type="sourcefile">src/app/shared/components/modal-confirm/modal-confirm.component.html</context>
+<context context-type="linenumber">7</context>
+</context-group>
+<context-group purpose="location">
+<context context-type="sourcefile">src/app/tasks/components/create-column-dialog/create-column-dialog.component.html</context>
+<context context-type="linenumber">31</context>
+</context-group>
+<context-group purpose="location">
+<context context-type="sourcefile">src/app/tasks/components/create-task-dialog/create-task-dialog.component.html</context>
+<context context-type="linenumber">84,85</context>
+</context-group>
+</trans-unit>
+
+
+<trans-unit id="9082946950301286394" datatype="html">
+<source><x id="error_message" equiv-text="errorMessageType[errorResponse.status as keyof typeof errorMessageType]"/>.
+Error <x id="error_status" equiv-text="errorResponse.status"/></source>
+<target><x id="error_message" equiv-text="errorMessageType[errorResponse.status as keyof typeof errorMessageType]"/>.
+Ошибка <x id="error_status" equiv-text="errorResponse.status"/></target>
+<context-group purpose="location">
+<context context-type="sourcefile">src/app/shared/services/error-handling.service.ts</context>
+<context context-type="linenumber">15,16</context>
+</context-group>
+<context-group purpose="location">
+<context context-type="sourcefile">src/app/shared/services/error-handling.service.ts</context>
+<context context-type="linenumber">17,18</context>
+</context-group>
+</trans-unit>
+<trans-unit id="177464697756799888" datatype="html">
+<source>Create Column</source>
+<target>Создать столбец</target>
+<context-group purpose="location">
+<context context-type="sourcefile">src/app/tasks/components/create-column-button/create-column-button.component.html</context>
+<context context-type="linenumber">10</context>
+</context-group>
+</trans-unit>
+<trans-unit id="6164296601931172481" datatype="html">
+<source>Create Task</source>
+<target>Создать Задачу</target>
+<context-group purpose="location">
+<context context-type="sourcefile">src/app/tasks/components/create-task-button/create-task-button.component.html</context>
+<context context-type="linenumber">9</context>
+</context-group>
+</trans-unit>
+
+
+<trans-unit id="4617382061885366946" datatype="html">
+<source>Begin type to search user...</source>
+<target>Начните печатать, чтобы искать пользователя...</target>
+<context-group purpose="location">
+<context context-type="sourcefile">src/app/users/components/users-search/users-search.component.html</context>
+<context context-type="linenumber">31,32</context>
+</context-group>
+</trans-unit>
+<trans-unit id="4884506319330833080" datatype="html">
+<source>found <x id="users_count" equiv-text="x.length"/> user(s) matching &quot;<x id="term" equiv-text="term"/>&quot;</source>
+<target>найдено <x id="users_count" equiv-text="x.length"/> пользователя(ей), соответствующих &quot;<x id="term" equiv-text="term"/>&quot;</target>
+<context-group purpose="location">
+<context context-type="sourcefile">src/app/users/services/user.service.ts</context>
+<context context-type="linenumber">49</context>
+</context-group>
+</trans-unit>
+<trans-unit id="1837801066566864880" datatype="html">
+<source>no users matching &quot;<x id="term" equiv-text="term"/>&quot;</source>
+<target>пользователей, соответствующих &quot;<x id="term" equiv-text="term"/>&quot;, не найдено</target>
+<context-group purpose="location">
+<context context-type="sourcefile">src/app/users/services/user.service.ts</context>
+<context context-type="linenumber">50</context>
+</context-group>
+</trans-unit>
+    </body>
+  </file>
+</xliff>

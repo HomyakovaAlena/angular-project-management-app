@@ -13,7 +13,6 @@ export const initialState: AuthState = {
   isLoggedIn: false,
   user: undefined,
   accessTokenStatus: TokenStatus.PENDING,
-  // refreshTokenStatus: TokenStatus.PENDING,
   isLoadingLogin: false,
   hasLoginError: false,
 };

@@ -156,6 +156,10 @@
       border-radius: 20px;
       margin: 0 auto;
       color: black;
+      h3 {
+        padding: 0;
+        margin: 0;
+      }
     }
 
     &__imgContainer {
@@ -177,7 +181,7 @@
 
     &__text {
       margin: 5px auto;
-
+      padding: 0;
       &-link {
         gap: 5px;
         margin: 0;

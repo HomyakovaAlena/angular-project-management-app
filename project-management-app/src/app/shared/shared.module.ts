@@ -43,7 +43,6 @@ import { RouterModule } from '@angular/router';
     MatToolbarModule,
     MatProgressBarModule,
     MatSnackBarModule,
-    // StoreModule.forFeature('shared', sharedReducer),
     EffectsModule.forFeature([SharedEffects]),
     MatTooltipModule,
     MatSelectModule,

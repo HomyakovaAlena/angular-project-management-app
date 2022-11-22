@@ -20,12 +20,12 @@ export class CreateBoardButtonComponent implements OnInit {
   ngOnInit(): void {}
   openDialog() {
     const dialogConfig = this.sharedService.createConfigDialog({
-      name: 'createBoard',
-      title: 'Creating board...',
-      description: 'Fill in the form to create new board.',
-      actionButtonText: 'Create new board',
-      action: 'createBoard',
+      name: `createBoard`,
+      title: $localize`Creating board...`,
+      description: $localize`Fill in the form to create new board.`,
+      actionButtonText: $localize`Create new board`,
+      action: `createBoard`,
     });
-    this.store.dispatch(SharedActions.openDialog({ data: dialogConfig } ));
+    this.store.dispatch(SharedActions.openDialog({ data: dialogConfig }));
   }
 }

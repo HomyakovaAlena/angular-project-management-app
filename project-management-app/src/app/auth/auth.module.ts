@@ -15,7 +15,6 @@ import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { AuthFacade } from './store/auth.facade';
 import { AuthService } from './services/auth.service';
-// import { authServiceInitProvider } from './services/auth.service';
 import { AuthEffects } from './store/effects/auth.effects';
 import { authReducer, AUTH_FEATURE_KEY } from './store/reducer/auth.reducer';
 import { LoginFormComponent } from './components/login-form/login-form.component';
@@ -47,7 +46,6 @@ import { EditProfileFormComponent } from './components/edit-profile-form/edit-pr
   providers: [
     AuthFacade,
     AuthService,
-    // authServiceInitProvider
   ],
 })
 export class AuthModule {}

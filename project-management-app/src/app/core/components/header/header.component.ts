@@ -7,7 +7,7 @@ import { AuthFacade } from 'src/app/auth/store/auth.facade';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit {
-  appTitle = 'PM App';
+  appTitle = $localize`PM App`;
   constructor(private authFacade: AuthFacade) {}
   isLoggedIn$ = this.authFacade.isLoggedIn$;
 

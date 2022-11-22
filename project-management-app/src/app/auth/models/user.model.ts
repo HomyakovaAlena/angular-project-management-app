@@ -16,7 +16,6 @@ export interface AuthState {
   isLoggedIn: boolean;
   user?: User;
   accessTokenStatus: TokenStatus;
-  // refreshTokenStatus: TokenStatus;
   isLoadingLogin: boolean;
   hasLoginError: boolean;
 }

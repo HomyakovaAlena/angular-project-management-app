@@ -1,5 +1,5 @@
 <div class="container__users-form">
-  <h2>Edit profile</h2>
+  <h2 i18n>Edit profile</h2>
   <form
     (ngSubmit)="onSubmit(ngForm)"
     #ngForm="ngForm"
@@ -8,53 +8,71 @@
   >
     <div>
       <mat-form-field class="input__edit-profile">
-        <mat-label for="name">Username: </mat-label>
+        <mat-label for="name" i18n>Username: </mat-label>
         <input
           matInput
           id="name"
           type="text"
           placeholder="name"
+          i18n-placeholder
           name="name"
           formControlName="name"
           (blur)="getNameErrorMessage()"
         />
-        <button *ngIf="name" matSuffix mat-icon-button aria-label="Clear" (click)="name = ''">
+        <button
+          *ngIf="name"
+          type="button"
+          matSuffix
+          mat-icon-button
+          aria-label="Clear"
+          (click)="editProfileForm.patchValue({ name: '' })"
+        >
           <mat-icon>close</mat-icon>
         </button>
       </mat-form-field>
     </div>
     <div>
       <mat-form-field class="input__edit-profile">
-        <mat-label for="login">Login: </mat-label>
+        <mat-label for="login" i18n>Login: </mat-label>
         <input
           matInput
           id="login"
           type="text"
           placeholder="login"
+          i18n-placeholder
           name="login"
           formControlName="login"
           (blur)="getLoginErrorMessage()"
         />
-        <button *ngIf="login" matSuffix mat-icon-button aria-label="Clear" (click)="login = ''">
+        <button
+          *ngIf="login"
+          matSuffix
+          type="button"
+          mat-icon-button
+          aria-label="Clear"
+          (click)="editProfileForm.patchValue({ login: '' })"
+        >
           <mat-icon>close</mat-icon>
         </button>
       </mat-form-field>
     </div>
     <div>
       <mat-form-field class="input__edit-profile">
-        <mat-label for="password">Password: </mat-label>
+        <mat-label for="password" i18n>Password: </mat-label>
         <input
           matInput
           id="password"
           [type]="hide ? 'password' : 'text'"
           name="password"
           placeholder="password"
+          i18n-placeholder
           formControlName="password"
           (blur)="getPasswordErrorMessage()"
         />
         <button
           mat-icon-button
           matSuffix
+          type="button"
           (click)="hide = !hide"
           [attr.aria-label]="'Hide password'"
           [attr.aria-pressed]="hide"
@@ -65,8 +83,9 @@
           *ngIf="password"
           matSuffix
           mat-icon-button
-          aria-label="Clear"
-          (click)="password = ''"
+          type="button"
+          [attr.aria-label]="'Clear'"
+          (click)="editProfileForm.patchValue({ password: '' })"
         >
           <mat-icon>close</mat-icon>
         </button>
@@ -74,21 +93,23 @@
     </div>
     <div>
       <mat-form-field class="input__edit-profile">
-        <mat-label for="confirmPassword">Confirm password: </mat-label>
+        <mat-label for="confirmPassword" i18n>Confirm password: </mat-label>
         <input
           matInput
           id="confirmPassword"
           [type]="hide ? 'password' : 'text'"
           name="confirmPassword"
-          placeholder="confirmPassword"
+          placeholder="confirm password"
+          i18n-placeholder
           formControlName="confirmPassword"
           (blur)="getConfirmPasswordErrorMessage()"
         />
         <button
           mat-icon-button
           matSuffix
+          type="button"
           (click)="hide = !hide"
-          [attr.aria-label]="'Hide password'"
+          aria-label="Hide password"
           [attr.aria-pressed]="hide"
         >
           <mat-icon>{{ hide ? 'visibility_off' : 'visibility' }}</mat-icon>
@@ -97,8 +118,9 @@
           *ngIf="confirmPassword"
           matSuffix
           mat-icon-button
+          type="button"
           aria-label="Clear"
-          (click)="confirmPassword = ''"
+          (click)="editProfileForm.patchValue({ confirmPassword: '' })"
         >
           <mat-icon>close</mat-icon>
         </button>
@@ -122,24 +144,26 @@
       <button
         mat-raised-button
         color="primary"
-        aria-label="icon button with a create_new_folder icon"
+        aria-label="icon button with icon"
         [class]="'button'"
         ariaCurrentWhenActive="page"
         type="submit"
         [disabled]="!editProfileForm.valid"
+        i18n
       >
         Update
       </button>
       <button
         mat-raised-button
         color="warn"
-        aria-label="icon button with a create_new_folder icon"
+        aria-label="icon button with icon"
         [class]="'button'"
         ariaCurrentWhenActive="page"
         type="button"
         (click)="openDialog()"
       >
-        <mat-icon>close</mat-icon> Delete user
+        <mat-icon>close</mat-icon>
+        <ng-container i18n>Delete user</ng-container>
       </button>
     </div>
   </form>

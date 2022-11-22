@@ -15,7 +15,6 @@ import * as SharedActions from '../../../shared/store/actions/shared.actions';
 export class TasksSearchComponent implements OnInit {
   tasks$!: Observable<Task[]>;
   private searchTerms = new Subject<string>();
-
   selectedTasks: Task[] = [];
 
   @ViewChild('tasksInput') tasksInput!: ElementRef<HTMLInputElement>;
@@ -47,16 +46,15 @@ export class TasksSearchComponent implements OnInit {
     searchMessage.textContent = '';
 
     if (!task) return;
-    console.log('editing task');
     const { _id, title } = task;
     const dialogConfig = this.sharedService.createConfigDialog({
-      name: 'editTask',
-      title: 'Editing task...',
-      description: 'Fill in the form to edit task.',
-      actionButtonText: 'Edit',
+      name: `editTask`,
+      title: $localize`Editing task...`,
+      description: $localize`Fill in the form to edit task.`,
+      actionButtonText: $localize`Edit`,
       itemName: title,
       itemId: _id,
-      action: 'editTask',
+      action: `editTask`,
       parameters: { boardId: task.boardId, columnId: task.columnId, order: task.order },
     });
     this.store.dispatch(SharedActions.openDialog({ data: dialogConfig }));

@@ -4,12 +4,6 @@ import { Injectable } from '@angular/core';
 export class LocalStorageService {
   static readonly APP_PREFIX = 'NG-AUTH-';
 
-  /**
-   * Sets item in local storage
-   *
-   * @param {string} key
-   * @param {unknown} value
-   */
   setItem(key: string, value: unknown) {
     try {
       localStorage.setItem(`${LocalStorageService.APP_PREFIX}${key}`, JSON.stringify(value));
@@ -18,12 +12,6 @@ export class LocalStorageService {
     }
   }
 
-  /**
-   * Gets item from local storage by key
-   *
-   * @param {string} key
-   * @return {*}  {unknown}
-   */
   getItem(key: string): unknown {
     const value = localStorage.getItem(`${LocalStorageService.APP_PREFIX}${key}`);
     try {
@@ -33,11 +21,6 @@ export class LocalStorageService {
     }
   }
 
-  /**
-   * Removes item from local storage by key
-   *
-   * @param {string} key
-   */
   removeItem(key: string) {
     console.log(`${LocalStorageService.APP_PREFIX}${key}`);
     localStorage.removeItem(`${LocalStorageService.APP_PREFIX}${key}`);

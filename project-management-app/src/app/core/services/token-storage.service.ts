@@ -1,4 +1,4 @@
-import { Inject, Injectable } from '@angular/core';
+import { Injectable } from '@angular/core';
 
 import { ConfigService } from './config.service';
 import { LocalStorageService } from './local-storage.service';
@@ -24,8 +24,6 @@ export class TokenStorageService {
   }
 
   removeToken() {
-    console.log(this.accessTokenKey, 'access token');
     this.localStorageService.removeItem(this.accessTokenKey);
-    console.log('removed token');
   }
 }

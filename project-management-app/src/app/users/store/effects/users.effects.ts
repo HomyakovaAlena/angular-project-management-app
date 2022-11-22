@@ -74,10 +74,8 @@ export class UsersEffects {
     () => {
       return this.actions$.pipe(
         ofType(UsersActions.loadUsersFailed,
-          // UsersActions.searchUsersFailed
         ),
         map(({ error }) => {
-          console.log(error);
           this.store.dispatch(
             SharedActions.openSnackBar({
               message: this.errorHandlingService.getErrorHandlingMessages(error, 'user'),

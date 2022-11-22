@@ -4,7 +4,7 @@
   }}</mat-card-title>
   <mat-card-content class="ripple-container">
     <mat-chip-list aria-label="Owner"
-      >Owner:
+      ><ng-container i18n>Owner:</ng-container>
       <mat-chip
         matTooltip="{{ board.owner | usernameById | async }}"
         [matTooltipShowDelay]="500"
@@ -15,7 +15,7 @@
     </mat-chip-list>
     <mat-chip-list aria-label="Users">
       <div class="board-view__mat-chip-list">
-        <span class="to-bottom">Users:</span>
+        <span class="to-bottom" i18n>Users:</span>
         <div class="board-view__chips-container">
           <mat-chip
             matTooltip="{{ user | usernameById | async }}"
@@ -40,7 +40,8 @@
       (click)="gotoBoards(board)"
       color="primary"
     >
-      <mat-icon>arrow_back_ios</mat-icon> Back to Boards
+      <mat-icon>arrow_back_ios</mat-icon>
+      <ng-container i18n>Back to Boards</ng-container>
     </button>
   </mat-card-actions>
 </mat-card>

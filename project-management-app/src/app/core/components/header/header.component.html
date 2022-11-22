@@ -10,24 +10,25 @@
         <h1 [innerText]="appTitle"></h1
       ></a>
     </div>
-    <app-tasks-search *ngIf="isLoggedIn$ | async"></app-tasks-search>
-    <nav>
-      <ul [class]="'header__nav-block'">
-        <li [class]="'header__board-block'">
-          <app-all-boards-button></app-all-boards-button>
-          <app-create-board-button></app-create-board-button>
-        </li>
-        <li [class]="'header__localization-block'">
-          <app-localization-switcher></app-localization-switcher>
-        </li>
-        <li [class]="'header__user-block'">
-          <app-edit-profile *ngIf="isLoggedIn$ | async"></app-edit-profile>
-
-          <app-login *ngIf="!(isLoggedIn$ | async)"></app-login>
-          <app-signup *ngIf="!(isLoggedIn$ | async)"></app-signup>
-          <app-logout *ngIf="isLoggedIn$ | async"></app-logout>
-        </li>
-      </ul>
-    </nav>
+    <div class="nav__right">
+      <app-tasks-search *ngIf="isLoggedIn$ | async"></app-tasks-search>
+      <nav>
+        <ul [class]="'header__nav-block'">
+          <li [class]="'header__board-block'">
+            <app-all-boards-button></app-all-boards-button>
+            <app-create-board-button></app-create-board-button>
+          </li>
+          <li [class]="'header__localization-block'">
+            <app-localization-switcher></app-localization-switcher>
+          </li>
+          <li [class]="'header__user-block'">
+            <app-edit-profile *ngIf="isLoggedIn$ | async"></app-edit-profile>
+            <app-login *ngIf="!(isLoggedIn$ | async)"></app-login>
+            <app-signup *ngIf="!(isLoggedIn$ | async)"></app-signup>
+            <app-logout *ngIf="isLoggedIn$ | async"></app-logout>
+          </li>
+        </ul>
+      </nav>
+    </div>
   </header>
 </mat-toolbar>

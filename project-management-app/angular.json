@@ -13,6 +13,14 @@
       "root": "",
       "sourceRoot": "src",
       "prefix": "app",
+      "i18n": {
+        "sourceLocale": "en-US",
+        "locales": {
+          "ru": {
+            "translation": "src/locale/messages.ru.xlf"
+          }
+        }
+      },
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
@@ -37,8 +45,8 @@
                 },
                 {
                   "type": "anyComponentStyle",
-                  "maximumWarning": "2kb",
-                  "maximumError": "4kb"
+                  "maximumWarning": "5kb",
+                  "maximumError": "8kb"
                 }
               ],
               "fileReplacements": [
@@ -56,8 +64,12 @@
               "extractLicenses": false,
               "sourceMap": true,
               "namedChunks": true
+            },
+            "ru": {
+              "localize": ["ru"]
             }
           },
+
           "defaultConfiguration": "production"
         },
         "serve": {
@@ -68,6 +80,12 @@
             },
             "development": {
               "browserTarget": "project-management-app:build:development"
+            },
+            "ru": {
+              "browserTarget": "project-management-app:build:development,ru"
+            },
+            "en": {
+              "browserTarget": "project-management-app:build:development,en"
             }
           },
           "defaultConfiguration": "development"

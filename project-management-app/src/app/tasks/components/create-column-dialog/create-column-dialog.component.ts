@@ -20,7 +20,7 @@ export class CreateColumnDialogComponent implements OnInit, OnDestroy {
   orders: number[] = [];
   titleErrors: string[] | undefined = [];
   subscription!: Subscription;
-  protected title: string | undefined = 'Column #1';
+  protected title: string | undefined = $localize`Column #1`;
 
   createColumnForm: FormGroup = this.fb.group({
     title: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(20)]],
@@ -37,7 +37,6 @@ export class CreateColumnDialogComponent implements OnInit, OnDestroy {
     this.setValue();
     this.subscription = this.columnsList$.subscribe((columns) => {
       this.orders = columns.length ? columns.map((column) => column.order) : [];
-      console.log(this.orders);
     });
   }
 

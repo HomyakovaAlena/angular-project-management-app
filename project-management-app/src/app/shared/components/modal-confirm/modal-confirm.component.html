@@ -1,12 +1,11 @@
-<h2 mat-dialog-title>Delete confirmation</h2>
+<h3 mat-dialog-title>{{ configDialog.title }}</h3>
 <mat-dialog-content class="mat-typography">
-  <h3>{{ configDialog.title }}</h3>
   <h5>{{ configDialog.description }}</h5>
 </mat-dialog-content>
 
 <mat-dialog-actions align="end">
-  <button mat-button mat-dialog-close (click)="closeModal()">Cancel</button>
-  <button mat-button cdkFocusInitial (click)="actionFunction()">
+  <button type="button" mat-button mat-dialog-close (click)="closeModal()" i18n>Cancel</button>
+  <button type="button" mat-button cdkFocusInitial (click)="actionFunction()">
     {{ configDialog.actionButtonText }}
   </button>
 </mat-dialog-actions>

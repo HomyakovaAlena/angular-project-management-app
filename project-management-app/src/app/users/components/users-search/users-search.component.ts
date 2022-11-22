@@ -12,24 +12,18 @@ import {
   debounceTime,
   distinctUntilChanged,
   filter,
-  map,
   Observable,
-  of,
   Subject,
   switchMap,
-  tap,
 } from 'rxjs';
 import { User } from 'src/app/auth/models/user.model';
 import { UserService } from '../../services/user.service';
-import * as UserActions from '../../store/actions/users.actions';
 
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { FormGroup } from '@angular/forms';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { Store } from '@ngrx/store';
 import * as SharedActions from '../../../shared/store/actions/shared.actions';
-import * as fromUsers from '../../../users/store/reducers/users.reducer';
-import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-users-search',
@@ -37,9 +31,7 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./users-search.component.scss'],
 })
 export class UsersSearchComponent implements OnInit {
-  // users$ = this.store.select(fromUsers.getFoundUsers);
   users$!: Observable<User[]>;
-  // boardId: string | undefined;
   private searchTerms = new Subject<string>();
 
   addOnBlur = true;
@@ -68,14 +60,7 @@ export class UsersSearchComponent implements OnInit {
       debounceTime(50),
       distinctUntilChanged(),
       switchMap((term: string) => this.userService.searchUsers(term)),
-      // tap((term: string) => {
-      //   console.log(term, 'from ngOnChanges');
-      //   this.store.dispatch(UserActions.searchUsers({ term }));
-      //   this.users$.subscribe((users) => console.log(users, 'from search terms 1'));
-      // }),
     );
-
-    // this.users$.subscribe((users) => console.log(users, 'from search terms 2'));
   }
 
   remove(selectedUser: User): void {
@@ -91,7 +76,7 @@ export class UsersSearchComponent implements OnInit {
       this.selectedUsers.push(user);
     } else {
       this.store.dispatch(
-        SharedActions.openSnackBar({ message: `User ${user.name} has already been selected` }),
+        SharedActions.openSnackBar({ message: $localize`User ${user.name}:user_name: has already been selected` }),
       );
     }
     this.selectedUsersIdsFromChild.emit({
@@ -101,9 +86,6 @@ export class UsersSearchComponent implements OnInit {
     const searchMessage = document.getElementById('search-message') as HTMLElement;
     searchMessage.textContent = '';
     this.ngOnInit();
-
-    // this.editProfileForm.reset();
-    // ngForm.resetForm();
   }
 
   drop(event: CdkDragDrop<string[]>) {

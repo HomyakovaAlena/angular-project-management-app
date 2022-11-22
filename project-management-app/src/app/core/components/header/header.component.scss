@@ -22,6 +22,11 @@
     }
   }
 
+  .nav__right {
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
+  }
   &__nav-block {
     display: flex;
     flex-direction: row;

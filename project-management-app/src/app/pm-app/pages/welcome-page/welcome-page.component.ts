@@ -9,5 +9,4 @@ export class WelcomePageComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {}
-  title = 'project-management-app';
 }

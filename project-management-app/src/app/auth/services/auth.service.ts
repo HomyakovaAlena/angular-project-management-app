@@ -1,14 +1,9 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { APP_INITIALIZER, Injectable, Provider } from '@angular/core';
-import { Store } from '@ngrx/store';
-import { lastValueFrom, Observable, throwError } from 'rxjs';
-import { filter, map, take, tap } from 'rxjs/operators';
-
-import { ConfigService } from '../../core/services/config.service';
+import { Injectable } from '@angular/core';
+import {  Observable, } from 'rxjs';
+import {  tap } from 'rxjs/operators';
 import { TokenStorageService } from '../../core/services/token-storage.service';
-import * as AuthActions from '../store/actions/auth.actions';
-import { AuthState, User, TokenStatus } from '../models/user.model';
-import * as AuthSelectors from '../store/selectors/auth.selectors';
+import {  User, } from '../models/user.model';
 import * as Utils from '../utils/auth.utils';
 
 @Injectable({
@@ -21,7 +16,6 @@ export class AuthService {
   constructor(private httpClient: HttpClient, private tokenStorageService: TokenStorageService) {}
 
   signup(name: string, login: string, password: string): Observable<User> {
-    console.log(name, login, password);
     return this.httpClient.post<User>(`${this.url}/signup`, {
       name,
       login,
@@ -30,7 +24,6 @@ export class AuthService {
   }
 
   login(login: string, password: string): Observable<{ token: string }> {
-    console.log(login, password);
     return this.httpClient.post<{ token: string }>(`${this.url}/signin`, {
       login,
       password,
@@ -38,11 +31,7 @@ export class AuthService {
   }
 
   logout(): void {
-    console.log('logout');
-
-    console.log('aaa');
     this.tokenStorageService.removeToken();
-    console.log('bbb');
   }
 
   getAuthUser(data: { token: string }): Observable<User> {

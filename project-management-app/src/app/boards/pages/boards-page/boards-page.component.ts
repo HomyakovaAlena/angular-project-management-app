@@ -36,13 +36,13 @@ export class BoardsPageComponent implements OnInit {
     if (!board) return;
     const { _id, title } = board;
     const dialogConfig = this.sharedService.createConfigDialog({
-      name: 'confirmDelete',
-      title: 'Are you sure you want to delete this item?',
-      description: 'If you confirm, the item ' + title + ' will be deleted.',
-      actionButtonText: 'Delete',
+      name: `confirmDelete`,
+      title: $localize`Are you sure you want to delete this item?`,
+      description: $localize`If you confirm, the item ${title}:boardTitle: will be deleted.`,
+      actionButtonText: $localize`Delete`,
       itemName: title,
       itemId: _id,
-      action: 'deleteBoard',
+      action: `deleteBoard`,
     });
     this.store.dispatch(SharedActions.openDialog({ data: dialogConfig }));
   }

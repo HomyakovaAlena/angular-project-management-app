@@ -1,47 +1,58 @@
 <h2 mat-dialog-title>{{ configDialog.title }}</h2>
 
 <form (ngSubmit)="onSubmit(ngForm)" #ngForm="ngForm" [formGroup]="createTaskForm">
-  <div class="owner" *ngIf="user$ | async as user">Task Assignee: {{ user.name }}</div>
+  <div class="owner" *ngIf="user$ | async as user">
+    <ng-container i18n>Task Owner:</ng-container>
+    {{ user.name }}
+  </div>
   <h5 class="description">{{ configDialog.description }}</h5>
   <mat-dialog-content class="mat-typography modalContent">
     <div>
       <mat-form-field class="form-field" appearance="fill">
-        <mat-label for="title">Task Title</mat-label>
+        <mat-label for="title" i18n>Task Title</mat-label>
         <input
           matInput
           id="title"
           type="text"
           placeholder="title"
+          i18n-placeholder
           name="title"
           formControlName="title"
           (blur)="getTitleErrorMessage()"
         />
-        <button *ngIf="title" matSuffix mat-icon-button aria-label="Clear" (click)="title = ''">
+        <button
+          *ngIf="title"
+          type="button"
+          matSuffix
+          mat-icon-button
+          aria-label="Clear"
+          (click)="createTaskForm.patchValue({ title: '' })"
+        >
           <mat-icon>close</mat-icon>
         </button>
       </mat-form-field>
-
-      <div *ngIf="createTaskForm.get('title')?.errors?.['required']">Title is required</div>
     </div>
 
     <div>
       <mat-form-field class="form-field" appearance="fill">
-        <mat-label for="description">Task Description</mat-label>
+        <mat-label for="description" i18n>Task Description</mat-label>
         <input
           matInput
           id="description"
           type="text"
           placeholder="description"
+          i18n-placeholder
           name="description"
           formControlName="description"
           (blur)="getDescriptionErrorMessage()"
         />
         <button
           *ngIf="description"
+          type="button"
           matSuffix
           mat-icon-button
           aria-label="Clear"
-          (click)="description = ''"
+          (click)="createTaskForm.patchValue({ description: '' })"
         >
           <mat-icon>close</mat-icon>
         </button>
@@ -55,6 +66,7 @@
         type="text"
         name="users"
         placeholder="users"
+        i18n-placeholder
         controlName="users"
         selectedUsers="selectedUsers"
         [parentGroup]="createTaskForm"
@@ -71,11 +83,11 @@
     </div>
   </div>
   <mat-dialog-actions align="end">
-    <button mat-button mat-dialog-close (click)="closeModal()">Cancel</button>
+    <button type="button" mat-button mat-dialog-close (click)="closeModal()" i18n>Cancel</button>
     <button
       mat-stroked-button
       color="primary"
-      aria-label="icon button with a create_new_folder icon"
+      aria-label="icon button with icon"
       [class]="'button'"
       ariaCurrentWhenActive="page"
       type="submit"

@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Board } from 'src/app/boards/models/board.model';
 import { Column } from '../../models/tasks.model';
-import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
+import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import * as fromColumns from '../../store/reducers/columns.reducer';
 import { Store } from '@ngrx/store';
 import * as ColumnsActions from '../../store/actions/columns.actions';

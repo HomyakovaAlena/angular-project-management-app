@@ -12,9 +12,9 @@ export class ErrorHandlingService {
     const errorMessageType =
       ErrorsHandlingMessagesMap[module as keyof typeof ErrorsHandlingMessagesMap];
     return errorMessageType[errorResponse.status as keyof typeof errorMessageType]
-      ? `${errorMessageType[errorResponse.status as keyof typeof errorMessageType]}.
-              Error ${errorResponse.status}`
-      : `${errorMessageType.default}.
-              Error ${errorResponse.status}`;
+      ? $localize`${errorMessageType[errorResponse.status as keyof typeof errorMessageType]}:error_message:.
+              Error ${errorResponse.status}:error_status:`
+      : $localize`${errorMessageType.default}:error_message:.
+              Error ${errorResponse.status}:error_status:`;
   }
 }

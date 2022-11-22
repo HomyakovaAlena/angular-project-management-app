@@ -21,9 +21,9 @@ export class CreateColumnButtonComponent implements OnInit {
   openDialog() {
     const dialogConfig = this.sharedService.createConfigDialog({
       name: 'createColumn',
-      title: 'Creating column...',
-      description: 'Fill in the form to create new column',
-      actionButtonText: 'Create new column',
+      title: $localize`Creating column...`,
+      description: $localize`Fill in the form to create new column`,
+      actionButtonText: $localize`Create new column`,
       action: 'createColumn',
       parameters: { boardId: this.board?._id },
     });

@@ -137,9 +137,9 @@ export class EditProfileFormComponent implements OnInit {
     const [_id, name] = [this._id, this.name];
     const dialogConfig = this.sharedService.createConfigDialog({
       name: 'confirmDelete',
-      title: 'Are you sure you want to delete your user?',
-      description: 'If you confirm, the user ' + name + ' will be deleted.',
-      actionButtonText: 'Delete',
+      title: $localize`Are you sure you want to delete your user?`,
+      description: $localize`If you confirm, the user ${name}:user_name: will be deleted.`,
+      actionButtonText: $localize`Delete`,
       itemName: name,
       itemId: _id,
       action: 'deleteUser',

@@ -29,7 +29,6 @@ export class CreateTaskDialogComponent implements OnInit, OnDestroy {
   tasksList$ = this.store.select(fromTasks.getTasks);
   selectedTask$ = this.store.select(fromTasks.getTaskById);
   orders: number[] = [];
-  order = 65536;
 
   titleErrors: string[] | undefined = [];
   descriptionErrors: string[] | undefined = [];
@@ -51,12 +50,10 @@ export class CreateTaskDialogComponent implements OnInit, OnDestroy {
     private usersStore: Store<fromUsers.UsersState>,
     private authFacade: AuthFacade,
   ) {
-    console.log(configDialog, configDialog?.itemId);
   }
 
   ngOnInit(): void {
     if (this.configDialog.itemId) {
-      console.log(this.configDialog.itemId, 'itemId');
       this.store.dispatch(
         TasksActions.getTaskById({
           boardId: this.configDialog.parameters?.boardId,
@@ -70,8 +67,8 @@ export class CreateTaskDialogComponent implements OnInit, OnDestroy {
         this.setValue();
       });
     } else {
-      this.title = 'Task #1';
-      this.description = 'Description #1';
+      this.title = $localize`Task #1`;
+      this.description = $localize`Description #1`;
       this.setValue();
     }
     this.subscription1 = this.tasksList$.subscribe((tasks) => {

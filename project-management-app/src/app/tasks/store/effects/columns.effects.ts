@@ -112,7 +112,7 @@ export class ColumnsEffects {
         ),
         tap(() => {
           this.store.dispatch(SharedActions.closeDialog());
-          this.store.dispatch(SharedActions.openSnackBar({ message: 'Success!' }));
+          this.store.dispatch(SharedActions.openSnackBar({ message: $localize`Success!` }));
         }),
       ),
     { dispatch: false },

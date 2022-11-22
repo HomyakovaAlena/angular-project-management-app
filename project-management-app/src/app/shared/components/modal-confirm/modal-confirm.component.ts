@@ -1,7 +1,5 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import {
-  MatDialog,
-  MatDialogConfig,
   MatDialogRef,
   MAT_DIALOG_DATA,
 } from '@angular/material/dialog';
@@ -22,7 +20,6 @@ export class ModalConfirmComponent {
     private sharedService: SharedService,
     private store: Store,
   ) {
-    console.log(this.configDialog, 'from modal data');
   }
 
   actionFunction() {

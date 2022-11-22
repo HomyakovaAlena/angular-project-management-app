@@ -1,8 +1,8 @@
 <mat-card *ngIf="task" class="task-item" (click)="onEdit()">
   <div class="task-item__header">
     <h3
-      matTooltip="Task: {{ task.title }}
-      Description: {{ task.description }}"
+      matTooltip="Task {{task.title}}
+                  Description {{task.description}}"
       [matTooltipShowDelay]="500"
       matTooltipPosition="above"
       class="task-item__heading"
@@ -25,17 +25,17 @@
     <mat-chip-list aria-label="Owner" class="task-item__chips-container">
       <mat-chip
         class="task-item__chips"
-        matTooltip="Task owner: {{ task.userId | usernameById | async }}"
+        matTooltip="Task owner {{task.userId | usernameById | async}}:userName:"
         [matTooltipShowDelay]="500"
         matTooltipPosition="above"
         >{{ task.userId | usernameById | async | slice: 0:1 | uppercase }}</mat-chip
       >
     </mat-chip-list>
-    <mat-chip-list aria-label="Users" class="task-item__mat-chip-list">
+    <mat-chip-list aria-label=$localize`Users` class="task-item__mat-chip-list">
       <div class="task-item__chips-container">
         <mat-chip
           class="task-item__chips"
-          matTooltip="Responsible: {{ user | usernameById | async }}"
+          matTooltip="Responsible: {{ user | usernameById | async }}:userName:"
           [matTooltipShowDelay]="500"
           matTooltipPosition="above"
           *ngFor="let user of task.users"

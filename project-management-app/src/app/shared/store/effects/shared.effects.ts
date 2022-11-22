@@ -1,6 +1,6 @@
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import * as SharedActions from '../actions/shared.actions';
-import { catchError, concat, exhaustMap, finalize, map, of, switchMap, tap, zip } from 'rxjs';
+import { catchError, finalize, of, switchMap, tap } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { SharedService } from '../../services/shared.service';
 import * as fromRoot from '../../../store/reducers/app.reducer';
@@ -20,7 +20,6 @@ export class SharedEffects {
       this.actions$.pipe(
         ofType(SharedActions.openDialog),
         tap(({ data }) => {
-          console.log('in effects');
           this.sharedService.openDialog(data);
         }),
       ),
@@ -45,17 +44,6 @@ export class SharedEffects {
     { dispatch: false },
   );
 
-  // confirmDialogFailed$ = createEffect(
-  //   () =>
-  //     this.actions$.pipe(
-  //       ofType(SharedActions.confirmDialogFailed),
-  //       tap((error) => {
-  //         console.log(error, 'from failed');
-  //         this.store.dispatch(SharedActions.openSnackBar({ message: 'Failed' }));
-  //       }),
-  //     ),
-  //   { dispatch: false },
-  // );
 
   closeDialog$ = createEffect(
     () =>

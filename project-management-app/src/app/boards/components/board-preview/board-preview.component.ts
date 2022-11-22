@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output, OnChanges } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import {
   AbstractControl,
   FormBuilder,
@@ -11,8 +11,6 @@ import { Board } from '../../models/board.model';
 import * as fromBoards from '../../store/reducers/boards.reducer';
 import * as BoardsActions from '../../store/actions/boards.actions';
 import { Store } from '@ngrx/store';
-// import { debounceTime } from 'rxjs';
-// import * as fromRoot from '../../../store/reducers/app.reducer';
 
 @Component({
   selector: 'app-board-preview',
@@ -23,16 +21,15 @@ export class BoardPreviewComponent implements OnInit {
   @Input() board: Board | null | undefined = null;
   @Output() deleteBoard = new EventEmitter<Board | null>();
   formVisible: boolean = false;
-  // isLoading$ = this.fromRootStore.select(fromRoot.getIsLoading).pipe(debounceTime(0));
 
   updateBoardForm: FormGroup = this.fb.group({
-    title: ['', [Validators.required, Validators.maxLength(50), this.customValidator]],
+    title: ['', [Validators.required, Validators.maxLength(50)]],
   });
 
   constructor(
     private fb: FormBuilder,
     private store: Store<fromBoards.BoardsState>,
-  ) // private fromRootStore: Store<fromRoot.AppState>,
+  )
   {}
   ngOnInit(): void {}
 
@@ -44,17 +41,11 @@ export class BoardPreviewComponent implements OnInit {
   onSubmit(ngForm: FormGroupDirective) {
     const { title } = this.updateBoardForm.value;
     const { owner, users, _id } = this.board! as Board;
-    console.log(title, users, owner);
     this.store.dispatch(BoardsActions.updateBoard({ board: { title, owner, users, _id } }));
     this.updateBoardForm.reset();
     ngForm.resetForm();
   }
 
-  private customValidator(control: AbstractControl): ValidationErrors | null {
-    // console.log(control);
-    // return { customValue: true }
-    return null;
-  }
 
   update(event: MouseEvent) {
     event.stopPropagation();

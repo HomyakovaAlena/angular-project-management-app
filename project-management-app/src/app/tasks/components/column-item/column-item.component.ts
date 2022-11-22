@@ -2,7 +2,6 @@ import {
   Component,
   EventEmitter,
   Input,
-  OnInit,
   Output,
   OnChanges,
   OnDestroy,
@@ -17,11 +16,9 @@ import { SharedService } from 'src/app/shared/services/shared.service';
 import * as SharedActions from '../../../shared/store/actions/shared.actions';
 import { Subscription } from 'rxjs';
 import {
-  AbstractControl,
   FormBuilder,
   FormGroup,
   FormGroupDirective,
-  ValidationErrors,
   Validators,
 } from '@angular/forms';
 
@@ -48,7 +45,6 @@ export class ColumnItemComponent implements OnChanges, OnDestroy {
     this.store.dispatch(TasksActions.loadTasks({ boardId: this.board?._id }));
     this.sub = this.tasksList$.subscribe((tasksList) => {
       this.sortedTasksList = [...tasksList].sort((a: Task, b: Task) => a.order - b.order);
-      console.log('view changed');
     });
   }
 
@@ -61,9 +57,9 @@ export class ColumnItemComponent implements OnChanges, OnDestroy {
     const { _id, title } = task;
     const dialogConfig = this.sharedService.createConfigDialog({
       name: 'confirmDelete',
-      title: 'Are you sure you want to delete this item?',
-      description: 'If you confirm, the item ' + title + ' will be deleted.',
-      actionButtonText: 'Delete',
+      title: $localize`Are you sure you want to delete this item?`,
+      description: $localize`If you confirm, the item ${title}:column_title: will be deleted.`,
+      actionButtonText: $localize`Delete`,
       itemName: title,
       itemId: _id,
       action: 'deleteTask',
@@ -74,13 +70,12 @@ export class ColumnItemComponent implements OnChanges, OnDestroy {
 
   openDialogForEdit(task: Task | null | undefined) {
     if (!task) return;
-    console.log('editing task');
     const { _id, title } = task;
     const dialogConfig = this.sharedService.createConfigDialog({
       name: 'editTask',
-      title: 'Editing task...',
-      description: 'Fill in the form to edit task.',
-      actionButtonText: 'Edit',
+      title: $localize`Editing task...`,
+      description: $localize`Fill in the form to edit task.`,
+      actionButtonText: $localize`Edit`,
       itemName: title,
       itemId: _id,
       action: 'editTask',
@@ -90,22 +85,15 @@ export class ColumnItemComponent implements OnChanges, OnDestroy {
   }
 
   updateColumnForm: FormGroup = this.fb.group({
-    title: ['', [Validators.required, Validators.maxLength(50), this.customValidator]],
+    title: ['', [Validators.required, Validators.maxLength(50)]],
   });
 
   onSubmit(ngForm: FormGroupDirective) {
     const { title } = this.updateColumnForm.value;
     const { _id, boardId, order } = this.column!;
-    console.log(title);
     this.store.dispatch(ColumnsActions.updateColumn({ column: { title, order, _id, boardId } }));
     this.updateColumnForm.reset();
     ngForm.resetForm();
-  }
-
-  private customValidator(control: AbstractControl): ValidationErrors | null {
-    // console.log(control);
-    // return { customValue: true }
-    return null;
   }
 
   update() {

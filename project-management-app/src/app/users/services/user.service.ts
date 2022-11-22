@@ -12,7 +12,6 @@ export class UserService {
   constructor(private httpClient: HttpClient) {}
 
   getUsers(): Observable<User[]> {
-    console.log(this.url);
     return this.httpClient.get<User[]>(`${this.url}`);
   }
 
@@ -47,8 +46,8 @@ export class UserService {
       .pipe(
         tap((x) =>
           x.length
-            ? (searchMessage.textContent = `found ${x.length} user(s) matching "${term}"`)
-            : (searchMessage.textContent = `no users matching "${term}"`),
+            ? (searchMessage.textContent = $localize`found ${x.length}:users_count: user(s) matching "${term}:term:"`)
+            : (searchMessage.textContent = $localize`no users matching "${term}:term:"`),
         ),
       );
   }
