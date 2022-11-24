@@ -90,17 +90,6 @@ export class ColumnsEffects {
     ),
   );
 
-  onSuccededLoadActions$ = createEffect(
-    () =>
-      this.actions$.pipe(
-        ofType(ColumnsActions.loadColumns),
-        tap(() => {
-          console.log('loaded');
-        }),
-      ),
-    { dispatch: false },
-  );
-
   onSuccededActions$ = createEffect(
     () =>
       this.actions$.pipe(
@@ -108,7 +97,6 @@ export class ColumnsEffects {
           ColumnsActions.createColumnSuccess,
           ColumnsActions.deleteColumnSuccess,
           ColumnsActions.updateColumnSuccess,
-          ColumnsActions.changeColumnsOrderSuccess,
         ),
         tap(() => {
           this.store.dispatch(SharedActions.closeDialog());
@@ -129,7 +117,6 @@ export class ColumnsEffects {
           ColumnsActions.changeColumnsOrderFailed,
         ),
         tap(({ error }) => {
-          console.log(error);
           this.store.dispatch(
             SharedActions.openSnackBar({
               message: this.errorHandlingService.getErrorHandlingMessages(error, 'column'),

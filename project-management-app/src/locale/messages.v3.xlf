@@ -1048,15 +1048,15 @@
           <context context-type="linenumber">19,20</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="556880445121257205" datatype="html">
-        <source>Task owner <x id="INTERPOLATION" equiv-text="{{ task.userId | usernameById | async }}"/></source>
+      <trans-unit id="8460775504300218279" datatype="html">
+        <source>Task owner <x id="INTERPOLATION" equiv-text="{{ task.userId | usernameById | async }}"/>:userName:</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/tasks/components/task-item/task-item.component.html</context>
           <context context-type="linenumber">31,32</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="2462512608528673270" datatype="html">
-        <source>Responsible: <x id="INTERPOLATION" equiv-text="{{ user | usernameById | async }}"/></source>
+      <trans-unit id="2345288032862050864" datatype="html">
+        <source>Responsible: <x id="INTERPOLATION" equiv-text="{{ user | usernameById | async }}"/>:userName:</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/tasks/components/task-item/task-item.component.html</context>
           <context context-type="linenumber">42,43</context>

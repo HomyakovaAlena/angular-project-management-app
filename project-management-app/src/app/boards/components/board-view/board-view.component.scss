@@ -38,15 +38,16 @@
   margin: 0;
   display: flex;
   flex-direction: column;
-  // justify-content: center;
-  // align-items: center;
+  justify-content: center;
+  gap: 10px;
 
   & .board-view__mat-chip-list {
     display: flex;
     flex-direction: row;
     align-items: flex-start;
     justify-content: center;
-    margin-top: 10px;
+    align-items: center;
+    margin: 0px;
     gap: 10px;
   }
 
@@ -56,24 +57,39 @@
     overflow: hidden;
     white-space: nowrap;
     height: 40px;
-    // padding: 10px;
+    padding: 0px;
     align-self: flex-start;
-    &__full {
-      // position: relative;
-      overflow: visible;
-      height: max-content;
-      background-color: #e0e0e0;
-      display: flex;
-      flex-direction: row;
-      flex-wrap: wrap;
-      z-index: 10;
-      border-radius: 7px;
-    }
   }
   .item__chips {
     background-color: rgb(63 81 181 / 18%);
   }
   .to-bottom {
     margin-top: 10px;
+  }
+}
+
+@media (max-width: 650px) {
+  .card-container {
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+    gap: 0px;
+
+    .ripple-container {
+      width: 90%;
+    }
+
+    &__inner {
+      justify-content: center;
+
+      &__heading {
+        margin: 0 auto;
+        width: 90%;
+        font-size: 18px;
+      }
+    }
   }
 }

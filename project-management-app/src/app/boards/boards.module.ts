@@ -27,6 +27,7 @@ import { BoardViewComponent } from './components/board-view/board-view.component
 import { TasksModule } from '../tasks/tasks.module';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatMenuModule } from '@angular/material/menu';
 
 @NgModule({
   declarations: [
@@ -54,6 +55,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     MatChipsModule,
     MatTooltipModule,
     SharedModule,
+    MatMenuModule,
 
     UsersModule,
     TasksModule,

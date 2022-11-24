@@ -1,7 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
-import { UsersRoutingModule } from './users-routing.module';
 import { usersReducer } from './store/reducers/users.reducer';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
@@ -16,6 +14,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { DragDropModule } from '@angular/cdk/drag-drop';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [UsersSearchComponent],
@@ -23,7 +22,6 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
     CommonModule,
     StoreModule.forFeature('users', usersReducer),
     EffectsModule.forFeature([UsersEffects]),
-    UsersRoutingModule,
     FormsModule,
     ReactiveFormsModule,
 
@@ -33,6 +31,7 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
     MatSelectModule,
     MatAutocompleteModule,
     DragDropModule,
+    RouterModule,
   ],
   exports: [UsersSearchComponent],
   providers: [UserService],

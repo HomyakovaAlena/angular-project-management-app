@@ -1,4 +1,4 @@
-<mat-toolbar color="primary">
+<mat-toolbar color="primary" class="wrapper">
   <header [class]="'header'">
     <div [class]="'header__logo-block'">
       <a
@@ -7,12 +7,24 @@
         ariaCurrentWhenActive="page"
         [class]="'header__logo-link'"
         ><mat-icon> terrain</mat-icon>
-        <h1 [innerText]="appTitle"></h1
+        <h1 [innerText]="appTitle" class="headerH1"></h1
       ></a>
     </div>
     <div class="nav__right">
-      <app-tasks-search *ngIf="isLoggedIn$ | async"></app-tasks-search>
-      <nav>
+      <button
+        mat-icon-button
+        color="accent"
+        aria-label="icon button with a search icon"
+        (click)="showSearch($event)"
+        class="showSearchButton"
+      >
+        <mat-icon>search</mat-icon>
+      </button>
+
+      <div class="tasks_search_simple">
+        <app-tasks-search *ngIf="isLoggedIn$ | async"></app-tasks-search>
+      </div>
+      <nav class="simple_nav">
         <ul [class]="'header__nav-block'">
           <li [class]="'header__board-block'">
             <app-all-boards-button></app-all-boards-button>
@@ -29,6 +41,38 @@
           </li>
         </ul>
       </nav>
+
+      <nav class="burger_nav">
+        <app-localization-switcher></app-localization-switcher>
+        <button
+          class="burger_menu"
+          mat-icon-button
+          [matMenuTriggerFor]="menu"
+          aria-label="Example icon-button with a menu"
+          color="accent"
+        >
+          <mat-icon>menu</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu" class="matMenu">
+          <button mat-menu-item class="matMenuItemFlex">
+            <app-all-boards-button></app-all-boards-button>
+          </button>
+          <button mat-menu-item *ngIf="isLoggedIn$ | async" class="matMenuItemFlex">
+            <app-create-board-button></app-create-board-button>
+          </button>
+          <button mat-menu-item *ngIf="isLoggedIn$ | async" class="matMenuItemFlex">
+            <app-edit-profile></app-edit-profile>
+            <app-logout></app-logout>
+          </button>
+          <button mat-menu-item *ngIf="!(isLoggedIn$ | async)" class="matMenuItemFlex">
+            <app-login></app-login>
+            <app-signup></app-signup>
+          </button>
+        </mat-menu>
+      </nav>
     </div>
   </header>
+  <div class="burger_tasks_search hidden">
+    <app-tasks-search *ngIf="isLoggedIn$ | async"></app-tasks-search>
+  </div>
 </mat-toolbar>

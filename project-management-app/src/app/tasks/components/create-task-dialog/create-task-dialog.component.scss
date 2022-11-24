@@ -1,0 +1,13 @@
+@media (max-width: 350px) {
+  .modalContent {
+    margin: 0 auto;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+  }
+  .modalContent .form-field {
+    max-width: 90%;
+  }
+}

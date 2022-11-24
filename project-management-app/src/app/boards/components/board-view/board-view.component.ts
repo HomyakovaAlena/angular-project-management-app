@@ -28,12 +28,4 @@ export class BoardViewComponent implements OnInit {
     this.router.navigate([`/boards`]);
   }
 
-  showMore(event: MouseEvent) {
-    event.stopPropagation();
-    const showMoreButton = event?.currentTarget as HTMLElement;
-    const chipList = showMoreButton.closest('.board-view__mat-chip-list') as HTMLElement;
-    const chipsContainer = chipList.querySelector('.board-view__chips-container') as HTMLElement;
-    chipsContainer.classList.toggle('board-view__chips-container__full');
-    console.log(chipsContainer);
-  }
 }

@@ -4,8 +4,10 @@
 </mat-dialog-content>
 
 <mat-dialog-actions align="end">
-  <button type="button" mat-button mat-dialog-close (click)="closeModal()" i18n>Cancel</button>
-  <button type="button" mat-button cdkFocusInitial (click)="actionFunction()">
+  <button type="button" mat-button mat-dialog-close cdkFocusInitial (click)="closeModal()" i18n>
+    Cancel
+  </button>
+  <button type="button" mat-flat-button color="warn" (click)="actionFunction()">
     {{ configDialog.actionButtonText }}
   </button>
 </mat-dialog-actions>

@@ -6,6 +6,8 @@
   routerLinkActive="active"
   ariaCurrentWhenActive="page"
 >
-  <mat-icon aria-hidden="false" aria-label="person icon" fontIcon="person">person</mat-icon>
+  <mat-icon aria-hidden="false" aria-label="person icon" fontIcon="person" color="accent"
+    >person</mat-icon
+  >
   <span *ngIf="user$ | async as user">{{ user.name | slice: 0:1 | uppercase }}</span>
 </button>

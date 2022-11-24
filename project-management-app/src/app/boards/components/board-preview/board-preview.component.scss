@@ -1,11 +1,12 @@
 .card-container {
-  width: 90%;
-  height: 60px;
+  width: min(700px, 90%);
+  height: 100px;
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
   justify-content: center;
   align-items: center;
+  gap: 5px;
   cursor: pointer;
   background-color: lighten(#d9dde3, 10);
   box-shadow: inset 0 0 15px rgb(190, 193, 213);
@@ -19,12 +20,16 @@
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    width: 280px;
+    width: 30%;
 
     &__heading {
       padding: 0;
       margin: 0;
-      display: inline-block;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
       font-size: 20px;
       text-align: center;
     }
@@ -33,10 +38,15 @@
 
 .ripple-container {
   padding: 20px;
-  width: 350px;
+  width: 300px;
   height: 90%;
   cursor: pointer;
   margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: baseline;
+  justify-content: center;
+  gap: 10px;
 }
 
 .item__chips {
@@ -44,9 +54,76 @@
 }
 
 .hidden-overflow {
-  width: 80%;
+  max-width: 280px;
+  padding: 0 10px;
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
   content-visibility: auto;
+}
+
+.card_actions {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: nowrap;
+  padding: 0;
+}
+
+@media (max-width: 750px) {
+  .card-container {
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+    gap: 0px;
+
+    .full_width {
+      width: 100%;
+    }
+
+    &__inner {
+      max-width: 95%;
+      margin: 0 auto 20px;
+      &__heading {
+        font-size: 16px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: nowrap;
+        margin: 0px;
+        width: 250px;
+
+        .form-field {
+          width: 60%;
+        }
+      }
+    }
+
+    .ripple-container {
+      padding: 0px;
+      width: min(310px, 100%);
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: baseline;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .hidden-overflow {
+      max-width: 90%;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+
+    .mat-chip-list-wrapper {
+      margin: 0;
+    }
+  }
 }

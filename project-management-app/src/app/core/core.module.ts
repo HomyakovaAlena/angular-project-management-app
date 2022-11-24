@@ -11,7 +11,6 @@ import { LocalizationSwitcherComponent } from './components/localization-switche
 import { AllBoardsButtonComponent } from './components/all-boards-button/all-boards-button.component';
 import { ApiInterceptor } from './interceptors/api.interceptor';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { CoreRoutingModule } from './core-routing.module';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
 
 import { MatIconModule } from '@angular/material/icon';
@@ -19,45 +18,51 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
-import {MatCardModule} from '@angular/material/card';
+import { MatCardModule } from '@angular/material/card';
+import { MatSelectModule } from '@angular/material/select';
+
 import { AuthModule } from '../auth/auth.module';
 import { BoardsModule } from '../boards/boards.module';
-import { SharedModule } from "../shared/shared.module";
+import { SharedModule } from '../shared/shared.module';
+import { RouterModule } from '@angular/router';
+import { MatMenuModule } from '@angular/material/menu';
 
 @NgModule({
-    declarations: [
-        HeaderComponent,
-        FooterComponent,
-        NotFoundPageComponent,
-        ProgressBarComponent,
-        LocalizationSwitcherComponent,
-        AllBoardsButtonComponent,
-    ],
-    exports: [HeaderComponent, FooterComponent, NotFoundPageComponent, ProgressBarComponent],
-    providers: [
-        {
-            provide: HTTP_INTERCEPTORS,
-            useClass: ApiInterceptor,
-            multi: true,
-        },
-        {
-            provide: HTTP_INTERCEPTORS,
-            useClass: AuthInterceptor,
-            multi: true,
-        },
-    ],
-    imports: [
-        CommonModule,
-        MatToolbarModule,
-        MatProgressBarModule,
-        MatButtonModule,
-        MatSlideToggleModule,
-        MatIconModule,
-        CoreRoutingModule,
-        AuthModule,
-        BoardsModule,
-        MatCardModule,
-        SharedModule,
-    ]
+  declarations: [
+    HeaderComponent,
+    FooterComponent,
+    NotFoundPageComponent,
+    ProgressBarComponent,
+    LocalizationSwitcherComponent,
+    AllBoardsButtonComponent,
+  ],
+  exports: [HeaderComponent, FooterComponent, NotFoundPageComponent, ProgressBarComponent],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: ApiInterceptor,
+      multi: true,
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true,
+    },
+  ],
+  imports: [
+    CommonModule,
+    MatToolbarModule,
+    MatProgressBarModule,
+    MatButtonModule,
+    MatSlideToggleModule,
+    MatIconModule,
+    MatSelectModule,
+    AuthModule,
+    BoardsModule,
+    MatCardModule,
+    SharedModule,
+    RouterModule,
+    MatMenuModule,
+  ],
 })
 export class CoreModule {}

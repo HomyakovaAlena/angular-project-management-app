@@ -20,9 +20,10 @@ export class AuthGuardGuard implements CanActivate {
     return this.store.select(selectIsLoggedIn).pipe(
       take(1),
       tap((isLoggedIn) => {
-        console.log('AuthGuard#canActivate called');
+        console.log('check if login in auth guard');
         if (!isLoggedIn) {
-          console.log({ queryParams: { returnUrl: state.url } }, 'from auth guard');
+          console.log('not logged in, so go to auth login')
+          // console.log({ queryParams: { returnUrl: state.url } }, 'from auth guard');
           this.router.navigate(['/auth/login']);
         }
       }),

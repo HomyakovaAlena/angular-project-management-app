@@ -1,29 +1,26 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthGuardGuard } from './auth/guards/auth-guard.guard';
+import { NoAuthGuardGuard } from './auth/guards/no-auth-guard.guard';
 import { BoardViewComponent } from './boards/components/board-view/board-view.component';
 import { NotFoundPageComponent } from './core/pages/not-found-page/not-found-page.component';
+import { WelcomePageComponent } from './pm-app/pages/welcome-page/welcome-page.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'pm-app', pathMatch: 'full' },
   {
     path: 'pm-app',
-    loadChildren: () => import('./pm-app/pm-app.module').then((m) => m.PmAppModule),
+    component: WelcomePageComponent,
+  },
+  {
+    path: 'auth',
+    loadChildren: () => import('./auth/auth.module').then((m) => m.AuthModule),
   },
   {
     path: 'boards',
     canActivate: [AuthGuardGuard],
     loadChildren: () => import('./boards/boards.module').then((m) => m.BoardsModule),
   },
-  // { path: 'boards/:id', component: BoardViewComponent },
-  {
-    path: 'auth',
-    loadChildren: () => import('./auth/auth.module').then((m) => m.AuthModule),
-  },
-  {
-    path: 'users',
-    loadChildren: () => import('./users/users.module').then((m) => m.UsersModule),
-  },
+  { path: '', redirectTo: '/pm-app', pathMatch: 'full' },
   { path: '**', component: NotFoundPageComponent },
 ];
 

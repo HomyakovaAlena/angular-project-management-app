@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { TasksRoutingModule } from './tasks-routing.module';
 import { ColumnsListComponent } from './components/columns-list/columns-list.component';
 import { ColumnItemComponent } from './components/column-item/column-item.component';
 import { TasksListComponent } from './components/tasks-list/tasks-list.component';
@@ -34,6 +33,8 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatSelectModule } from '@angular/material/select';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { RouterModule } from '@angular/router';
+import { MatMenuModule } from '@angular/material/menu';
 
 @NgModule({
   declarations: [
@@ -49,7 +50,6 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
   ],
   imports: [
     CommonModule,
-    TasksRoutingModule,
     DragDropModule,
     MatRippleModule,
     ReactiveFormsModule,
@@ -69,6 +69,8 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
     SharedModule,
     MatSelectModule,
     MatAutocompleteModule,
+    RouterModule,
+    MatMenuModule,
   ],
   exports: [BoardItemPageComponent],
 })

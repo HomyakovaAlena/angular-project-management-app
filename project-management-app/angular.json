@@ -17,7 +17,8 @@
         "sourceLocale": "en-US",
         "locales": {
           "ru": {
-            "translation": "src/locale/messages.ru.xlf"
+            "translation": "src/locale/messages.ru.xlf",
+            "baseHref": "/ru/"
           }
         }
       },
@@ -25,7 +26,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/project-management-app",
+            "outputPath": "dist",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -69,7 +70,6 @@
               "localize": ["ru"]
             }
           },
-
           "defaultConfiguration": "production"
         },
         "serve": {

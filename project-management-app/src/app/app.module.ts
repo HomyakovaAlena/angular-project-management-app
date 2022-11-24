@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { LOCALE_ID, ModuleWithComponentFactories, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
@@ -16,29 +16,32 @@ import { StoreRouterConnectingModule } from '@ngrx/router-store';
 import { appReducer } from './store/reducers/app.reducer';
 import { SharedModule } from './shared/shared.module';
 import { ReactiveFormsModule } from '@angular/forms';
-// import { UsersModule } from './users/users.module';
-// import { DragDropModule } from '@angular/cdk/drag-drop';
+import { AuthModule } from './auth/auth.module';
 !environment.production ? StoreDevtoolsModule.instrument() : [];
 @NgModule({
   declarations: [AppComponent],
   imports: [
     BrowserModule,
     HttpClientModule,
+    StoreRouterConnectingModule.forRoot(),
     AppRoutingModule,
     BrowserAnimationsModule,
     PmAppModule,
     CoreModule,
     BoardsModule,
+    AuthModule,
     StoreModule.forRoot({ app: appReducer }, {}),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
     EffectsModule.forRoot([]),
-    StoreRouterConnectingModule.forRoot(),
     SharedModule,
     ReactiveFormsModule,
-    // UsersModule,
-    // DragDropModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: LOCALE_ID,
+      useValue: 'en-US',
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

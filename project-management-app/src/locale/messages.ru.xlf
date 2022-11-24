@@ -900,7 +900,7 @@
       </trans-unit>
       <trans-unit id="3031639047165483549" datatype="html">
         <source>found <x id="found_quantity" equiv-text="x.length"/> task(s) matching &quot;<x id="search_term" equiv-text="term"/>&quot;</source>
-        <target>найдено <x id="found_quantity" equiv-text="x.length"/> задач, соответствующих &quot;<x id="search_term" equiv-text="term"/>&quot;</target>
+        <target>задач, соответствующих &quot;<x id="search_term" equiv-text="term"/>&quot;, найдено <x id="found_quantity" equiv-text="x.length"/></target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/tasks/services/task.service.ts</context>
           <context context-type="linenumber">97</context>
@@ -1149,6 +1149,134 @@ Error <x id="error_status" equiv-text="errorResponse.status"/></source>
 <context context-type="linenumber">50</context>
 </context-group>
 </trans-unit>
+
+<trans-unit id="774304494633898889" datatype="html">
+<source>edit board</source>
+<target>редактировать доску</target>
+<context-group purpose="location">
+<context context-type="sourcefile">src/app/boards/components/board-preview/board-preview.component.html</context>
+<context context-type="linenumber">69,70</context>
+</context-group>
+</trans-unit>
+<trans-unit id="755203136382919695" datatype="html">
+<source>delete board</source>
+<target>удалить доску</target>
+<context-group purpose="location">
+<context context-type="sourcefile">src/app/boards/components/board-preview/board-preview.component.html</context>
+<context context-type="linenumber">80,81</context>
+</context-group>
+</trans-unit>
+
+<trans-unit id="8463330441299446367" datatype="html">
+<source>Github Logo</source>
+<target>Логотип ГитХаба</target>
+<context-group purpose="location">
+<context context-type="sourcefile">src/app/core/components/footer/footer.component.html</context>
+<context context-type="linenumber">4</context>
+</context-group>
+</trans-unit>
+<trans-unit id="2716402122399094378" datatype="html">
+<source>Course Logo</source>
+<target>Логотип курса</target>
+<context-group purpose="location">
+<context context-type="sourcefile">src/app/core/components/footer/footer.component.html</context>
+<context context-type="linenumber">8</context>
+</context-group>
+</trans-unit>
+<trans-unit id="2275328567992347600" datatype="html">
+<source>Page not found</source>
+<target>Страница не найдена</target>
+<context-group purpose="location">
+<context context-type="sourcefile">src/app/core/pages/not-found-page/not-found-page.component.html</context>
+<context context-type="linenumber">25</context>
+</context-group>
+</trans-unit>
+<trans-unit id="7627931378905943368" datatype="html">
+<source>heart</source>
+<target>сердце</target>
+<context-group purpose="location">
+<context context-type="sourcefile">src/app/pm-app/pages/welcome-page/welcome-page.component.html</context>
+<context context-type="linenumber">69</context>
+</context-group>
+</trans-unit>
+<trans-unit id="6067996484531801151" datatype="html">
+<source>angular Logo</source>
+<target>логотип Ангуляра</target>
+<context-group purpose="location">
+<context context-type="sourcefile">src/app/pm-app/pages/welcome-page/welcome-page.component.html</context>
+<context context-type="linenumber">77</context>
+</context-group>
+</trans-unit>
+<trans-unit id="2748938368002879450" datatype="html">
+<source>Typescript_logo Logo</source>
+<target>Логотип Тайпскрипта</target>
+<context-group purpose="location">
+<context context-type="sourcefile">src/app/pm-app/pages/welcome-page/welcome-page.component.html</context>
+<context context-type="linenumber">84</context>
+</context-group>
+</trans-unit>
+
+
+<trans-unit id="7381144033110975955" datatype="html">
+<source>save changes</source>
+<target>сохранить изменения</target>
+<context-group purpose="location">
+<context context-type="sourcefile">src/app/tasks/components/column-item/column-item.component.html</context>
+<context context-type="linenumber">29</context>
+</context-group>
+</trans-unit>
+<trans-unit id="6748727396953010464" datatype="html">
+<source>delete column</source>
+<target>удалить колонку</target>
+<context-group purpose="location">
+<context context-type="sourcefile">src/app/tasks/components/column-item/column-item.component.html</context>
+<context context-type="linenumber">41</context>
+</context-group>
+</trans-unit>
+
+<trans-unit id="2102054158684860496" datatype="html">
+<source>Task <x id="INTERPOLATION" equiv-text="{{ task.title }}"/>
+Description <x id="INTERPOLATION_1" equiv-text="{{ task.description }}"/></source>
+<target>Задача <x id="INTERPOLATION" equiv-text="{{ task.title }}"/>
+Описание <x id="INTERPOLATION_1" equiv-text="{{ task.description }}"/></target>
+<context-group purpose="location">
+<context context-type="sourcefile">src/app/tasks/components/task-item/task-item.component.html</context>
+<context context-type="linenumber">5,7</context>
+</context-group>
+</trans-unit>
+<trans-unit id="566482267300179477" datatype="html">
+<source>delete task</source>
+<target>удалить задачу</target>
+<context-group purpose="location">
+<context context-type="sourcefile">src/app/tasks/components/task-item/task-item.component.html</context>
+<context context-type="linenumber">19,20</context>
+</context-group>
+</trans-unit>
+<trans-unit id="556880445121257205" datatype="html">
+        <source>Task owner <x id="INTERPOLATION" equiv-text="{{ task.userId | usernameById | async }}"/></source>
+        <target>Владелец задачи <x id="INTERPOLATION" equiv-text="{{ task.userId | usernameById | async }}"/></target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/tasks/components/task-item/task-item.component.html</context>
+          <context context-type="linenumber">31,32</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2462512608528673270" datatype="html">
+        <source>Responsible: <x id="INTERPOLATION" equiv-text="{{ user | usernameById | async }}"/></source>
+        <target>Ответственные: <x id="INTERPOLATION" equiv-text="{{ user | usernameById | async }}"/></target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/tasks/components/task-item/task-item.component.html</context>
+          <context context-type="linenumber">42,43</context>
+        </context-group>
+      </trans-unit>
+ <trans-unit id="1213586102361411836" datatype="html">
+        <source>epam logo</source>
+        <target>логотип epam</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pm-app/pages/welcome-page/welcome-page.component.html</context>
+          <context context-type="linenumber">99</context>
+        </context-group>
+      </trans-unit>
+
     </body>
   </file>
 </xliff>

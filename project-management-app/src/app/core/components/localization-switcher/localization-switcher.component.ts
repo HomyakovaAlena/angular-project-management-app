@@ -1,15 +1,28 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Inject, LOCALE_ID, OnChanges, Output } from '@angular/core';
+import { MatSelectChange } from '@angular/material/select';
+
+interface Locales {
+  code: string;
+  name: string;
+}
 
 @Component({
   selector: 'app-localization-switcher',
   templateUrl: './localization-switcher.component.html',
-  styleUrls: ['./localization-switcher.component.scss']
+  styleUrls: ['./localization-switcher.component.scss'],
 })
-export class LocalizationSwitcherComponent implements OnInit {
-  checked = false;
-  constructor() { }
+export class LocalizationSwitcherComponent {
+  constructor(@Inject(LOCALE_ID) private localeId: string) {}
 
-  ngOnInit(): void {
+  selected(event: MatSelectChange) {
+    console.log(this.selectedLocale);
+    const code = this.selectedLocale;
+    location.replace(`/${code}/`);
   }
+  locales: Locales[] = [
+    { code: 'en-US', name: 'EN' },
+    { code: 'ru', name: 'RU' },
+  ];
+  public selectedLocale: string = this.localeId;
 
 }

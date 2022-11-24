@@ -3,16 +3,16 @@
     >Boards List</mat-card-title
   >
 </mat-card>
-<div class="container">
-  <div class="boards-list">
+<div class="container_boardsList">
+  <div class="boards-list" *ngIf="boardsList?.length; else elseBlock">
     <app-board-preview
       *ngFor="let board of boardsList"
       [board]="board"
       (deleteBoard)="onDelete($event)"
     >
     </app-board-preview>
-    <div *ngIf="!boardsList?.length">
-      <mat-card i18n>You have no boards yet</mat-card>
-    </div>
   </div>
+  <ng-template #elseBlock>
+    <mat-card i18n>You have no boards yet</mat-card>
+  </ng-template>
 </div>

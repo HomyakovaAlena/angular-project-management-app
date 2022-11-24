@@ -44,7 +44,9 @@ export class AuthEffects {
         ofType(AuthActions.signupSuccess),
         tap(({ user }) => {
           this.router.navigate(['/boards']);
-          this.store.dispatch(SharedActions.openSnackBar({ message:  $localize`Welcome, ${user.name}:userName:!` }));
+          this.store.dispatch(
+            SharedActions.openSnackBar({ message: $localize`Welcome, ${user.name}:userName:!` }),
+          );
         }),
       );
     },
@@ -70,7 +72,10 @@ export class AuthEffects {
     return this.actions$.pipe(
       ofType(AuthActions.loginSuccess),
       map((data) => {
-        this.router.navigate(['/boards']);
+        if (this.router.url == '/auth/login') {
+          this.router.navigateByUrl('/boards');
+        }
+        console.log('login success!!');
         return AuthActions.getAuthUserRequest(data);
       }),
     );
@@ -83,6 +88,7 @@ export class AuthEffects {
         map(() => {
           this.router.navigateByUrl('/');
           this.authService.logout();
+          console.log('log outed');
           return AuthActions.logoutSuccess();
         }),
       );
@@ -121,7 +127,9 @@ export class AuthEffects {
       return this.actions$.pipe(
         ofType(AuthActions.editUserSuccess),
         tap(({ user }) => {
-          this.store.dispatch(SharedActions.openSnackBar({ message:  $localize`Successfully updated!` }));
+          this.store.dispatch(
+            SharedActions.openSnackBar({ message: $localize`Successfully updated!` }),
+          );
           this.authFacade.authIfTokenNotExpired();
         }),
       );
@@ -148,7 +156,7 @@ export class AuthEffects {
       return this.actions$.pipe(
         ofType(AuthActions.deleteUserSuccess),
         tap(({}) => {
-          this.store.dispatch(SharedActions.openSnackBar({ message:  $localize`Come back!` }));
+          this.store.dispatch(SharedActions.openSnackBar({ message: $localize`Come back!` }));
           this.authFacade.logout();
         }),
       );

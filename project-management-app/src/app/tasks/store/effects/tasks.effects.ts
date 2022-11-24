@@ -111,7 +111,6 @@ export class TasksEffects {
           TasksActions.createTaskSuccess,
           TasksActions.deleteTaskSuccess,
           TasksActions.updateTaskSuccess,
-          TasksActions.changeTasksOrderSuccess,
         ),
         tap(() => {
           this.store.dispatch(SharedActions.closeDialog());
@@ -148,7 +147,6 @@ export class TasksEffects {
       return this.actions$.pipe(
         ofType(TasksActions.changeTasksOrderFailed),
         tap(({ error }) => {
-          console.log(error);
           this.store.dispatch(
             SharedActions.openSnackBar({
               message: this.errorHandlingService.getErrorHandlingMessages(error, 'task'),

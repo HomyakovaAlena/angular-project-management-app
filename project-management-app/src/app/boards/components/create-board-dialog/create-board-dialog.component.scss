@@ -1,38 +1,13 @@
-// .ng-valid[required],
-// .ng-valid.required {
-//   border-right: 5px solid #42a948; /* green */
-// }
-
-// .ng-invalid:not(form) {
-//   border-right: 5px solid #a94442; /* red */
-// }
-
-.modalContent {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  justify-content: center;
-}
-
-.description {
-  margin-bottom: 20px;
-}
-
-.owner {
-  margin-bottom: 20px;
-}
-.inputForm {
-  display: flex;
-  flex-direction: row;
-  gap: 20px;
-  width: 100%;
-
-  &__label {
-    width: 30%;
-    display: inline-block;
+@media (max-width: 350px) {
+  .modalContent {
+    margin: 0 auto;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
   }
-  &__input {
-    width: 30%;
-    display: inline-block;
+  .modalContent .form-field {
+    max-width: 95%;
   }
 }

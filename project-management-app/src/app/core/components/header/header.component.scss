@@ -1,21 +1,41 @@
+.wrapper {
+  height: 80px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
 .header {
   width: 100%;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  align-items: baseline;
-  height: 80px;
+  align-items: center;
+  height: 100%;
   box-sizing: border-box;
-  // padding: 10px;
+  padding: 10px;
+  margin: 0 auto;
+
+  &__logo-block {
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    align-self: center;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    cursor: pointer;
+  }
 
   &__logo-link {
     display: flex;
     flex-direction: row;
-    gap: 10px;
     align-self: center;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
-    color: white;
+    gap: 10px;
+    padding-top: 10px;
 
     &:visited {
       color: white;
@@ -23,16 +43,26 @@
   }
 
   .nav__right {
+    height: 100%;
     display: flex;
     flex-direction: row;
-    align-items: baseline;
+    align-self: center;
+    justify-content: center;
+    align-items: center;
+    gap: 70px;
+
+    .tasks_search_simple {
+      align-self: baseline;
+    }
   }
   &__nav-block {
     display: flex;
     flex-direction: row;
     gap: 40px;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
+    padding: 0;
+    margin: 0;
   }
 
   &__board-block {
@@ -45,5 +75,120 @@
     display: flex;
     flex-direction: row;
     gap: 10px;
+  }
+
+  .burger_nav {
+    display: none;
+  }
+}
+.showSearchButton {
+  display: none;
+}
+.burger_tasks_search.hidden {
+  display: none;
+}
+
+@media (max-width: 1100px) {
+  .wrapper .nav__right {
+    gap: 20px;
+  }
+}
+@media (max-width: 950px) {
+  .wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    max-width: 100vw;
+  }
+  .enlarge {
+    height: 180px;
+  }
+  .headerH1 {
+    font-size: 16px;
+  }
+  .header {
+    height: 80px;
+    padding: 10px 0px;
+
+    .nav__right {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+
+      .nav__right .mat-icon {
+        vertical-align: bottom;
+        text-align: end;
+      }
+    }
+  }
+
+  .burger_tasks_search {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    width: 100vw;
+    z-index: 10;
+  }
+
+  ::ng-deep .matMenu {
+    background: #3f51b5;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 10px;
+    margin: 10px;
+
+    .matMenuItemFlex {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+  }
+
+  .nav__right {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: flex-end;
+
+    .simple_nav {
+      display: none;
+    }
+    & .burger_nav {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: nowrap;
+      height: 24px;
+      gap: 10px;
+
+      .burger_menu .mat-icon {
+        vertical-align: bottom;
+        text-align: end;
+      }
+    }
+  }
+}
+
+@media (max-width: 600px) {
+  .wrapper .nav__right {
+    gap: 10px;
+  }
+  .showSearchButton {
+    display: flex;
+  }
+  .showSearchButton .mat-icon {
+    vertical-align: bottom;
+    text-align: end;
+  }
+
+  .tasks_search_simple {
+    display: none;
   }
 }

@@ -15,16 +15,17 @@
     />
     <mat-icon matPrefix>search</mat-icon>
     <div class="optionsFound" *ngIf="tasksInput.value">
-      <mat-option class="option" *ngFor="let task of tasks$ | async" [value]="task"
-        ><option
-          [routerLink]="['/boards', task.boardId]"
-          routerLinkActive="active"
-          ariaCurrentWhenActive="page"
-          (click)="selected(task)"
-        >
-          {{ task.title }}
-        </option></mat-option
+      <mat-option
+        class="option"
+        *ngFor="let task of tasks$ | async"
+        [value]="task"
+        [routerLink]="['/boards', task.boardId]"
+        routerLinkActive="active"
+        ariaCurrentWhenActive="page"
+        (click)="selected(task)"
       >
+        {{ task.title }}
+      </mat-option>
     </div>
   </mat-form-field>
   <p *ngIf="tasksInput.value" id="search-message" class="search-message"></p>

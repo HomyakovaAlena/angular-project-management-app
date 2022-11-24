@@ -1,10 +1,7 @@
 import { Injectable } from '@angular/core';
 import {
-  ActivatedRouteSnapshot,
   CanActivate,
   Router,
-  RouterStateSnapshot,
-  UrlTree,
 } from '@angular/router';
 import { map, Observable, take } from 'rxjs';
 import { selectIsLoggedIn } from '../store/selectors/auth.selectors';
@@ -20,9 +17,9 @@ export class NoAuthGuardGuard implements CanActivate {
     return this.store.select(selectIsLoggedIn).pipe(
       take(1),
       map((isLoggedIn) => {
-        console.log('no-AuthGuard#canActivate called');
+        console.log('check if login in no-auth-guard');
         if (isLoggedIn) {
-          console.log('isLoggedIn in guard');
+          console.log('is LoggedIn in guard so go to boards');
           this.router.navigateByUrl('/boards');
         }
         return !isLoggedIn;

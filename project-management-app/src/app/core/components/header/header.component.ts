@@ -12,4 +12,12 @@ export class HeaderComponent implements OnInit {
   isLoggedIn$ = this.authFacade.isLoggedIn$;
 
   ngOnInit(): void {}
+
+  showSearch(event: Event) {
+    event.stopImmediatePropagation();
+    const tasksSearch = document.querySelector('.burger_tasks_search');
+    tasksSearch?.classList.toggle('hidden');
+    const headerWrapper = document.querySelector('.wrapper');
+    headerWrapper?.classList.toggle('enlarge');
+  }
 }
