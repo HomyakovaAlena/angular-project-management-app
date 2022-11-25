@@ -1276,7 +1276,14 @@ Description <x id="INTERPOLATION_1" equiv-text="{{ task.description }}"/></sourc
           <context context-type="linenumber">99</context>
         </context-group>
       </trans-unit>
-
+   <trans-unit id="2330577642930707695" datatype="html">
+        <source> Cancel </source>
+        <source> Отмена </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/components/modal-confirm/modal-confirm.component.html</context>
+          <context context-type="linenumber">7,9</context>
+        </context-group>
+      </trans-unit>
     </body>
   </file>
 </xliff>

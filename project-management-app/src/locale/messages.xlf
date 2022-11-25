@@ -228,7 +228,7 @@
         <source>Owner:</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/boards/components/board-preview/board-preview.component.html</context>
-          <context context-type="linenumber">41</context>
+          <context context-type="linenumber">42</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/boards/components/board-view/board-view.component.html</context>
@@ -239,11 +239,11 @@
         <source>Users:</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/boards/components/board-preview/board-preview.component.html</context>
-          <context context-type="linenumber">52</context>
+          <context context-type="linenumber">54</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/boards/components/board-view/board-view.component.html</context>
-          <context context-type="linenumber">19,20</context>
+          <context context-type="linenumber">18,19</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/users/components/users-search/users-search.component.html</context>
@@ -254,21 +254,21 @@
         <source>edit board</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/boards/components/board-preview/board-preview.component.html</context>
-          <context context-type="linenumber">69,70</context>
+          <context context-type="linenumber">72,73</context>
         </context-group>
       </trans-unit>
       <trans-unit id="755203136382919695" datatype="html">
         <source>delete board</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/boards/components/board-preview/board-preview.component.html</context>
-          <context context-type="linenumber">80,81</context>
+          <context context-type="linenumber">83,84</context>
         </context-group>
       </trans-unit>
       <trans-unit id="1411214360177743011" datatype="html">
         <source>Back to Boards</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/boards/components/board-view/board-view.component.html</context>
-          <context context-type="linenumber">46</context>
+          <context context-type="linenumber">59</context>
         </context-group>
       </trans-unit>
       <trans-unit id="6250395144584635850" datatype="html">
@@ -289,7 +289,7 @@
         <source> Create Board</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/boards/components/create-board-button/create-board-button.component.html</context>
-          <context context-type="linenumber">15</context>
+          <context context-type="linenumber">19</context>
         </context-group>
       </trans-unit>
       <trans-unit id="2768216758612317261" datatype="html">
@@ -360,10 +360,6 @@
           <context context-type="linenumber">55,56</context>
         </context-group>
         <context-group purpose="location">
-          <context context-type="sourcefile">src/app/shared/components/modal-confirm/modal-confirm.component.html</context>
-          <context context-type="linenumber">7</context>
-        </context-group>
-        <context-group purpose="location">
           <context context-type="sourcefile">src/app/tasks/components/create-column-dialog/create-column-dialog.component.html</context>
           <context context-type="linenumber">38</context>
         </context-group>
@@ -402,11 +398,11 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/tasks/store/effects/columns.effects.ts</context>
-          <context context-type="linenumber">115</context>
+          <context context-type="linenumber">103</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/tasks/store/effects/tasks.effects.ts</context>
-          <context context-type="linenumber">118</context>
+          <context context-type="linenumber">117</context>
         </context-group>
       </trans-unit>
       <trans-unit id="7107218117130409950" datatype="html">
@@ -596,6 +592,13 @@
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/pm-app/pages/welcome-page/welcome-page.component.html</context>
           <context context-type="linenumber">100</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2330577642930707695" datatype="html">
+        <source> Cancel </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/components/modal-confirm/modal-confirm.component.html</context>
+          <context context-type="linenumber">7,9</context>
         </context-group>
       </trans-unit>
       <trans-unit id="5207305371683485060" datatype="html">
