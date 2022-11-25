@@ -37,10 +37,7 @@ import { AuthModule } from './auth/auth.module';
     ReactiveFormsModule,
   ],
   providers: [
-    {
-      provide: LOCALE_ID,
-      useValue: 'en-US',
-    },
+    
   ],
   bootstrap: [AppComponent],
 })

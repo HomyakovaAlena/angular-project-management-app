@@ -12,17 +12,18 @@ interface Locales {
   styleUrls: ['./localization-switcher.component.scss'],
 })
 export class LocalizationSwitcherComponent {
-  constructor(@Inject(LOCALE_ID) private localeId: string) {}
-
+  constructor() {}
+  public selectedLocale: string = location.pathname.includes('/angular-project-management-app/ru')?'ru':'en';
   selected(event: MatSelectChange) {
     console.log(this.selectedLocale);
     const code = this.selectedLocale;
     location.replace(`/angular-project-management-app/${code}/`);
+
   }
   locales: Locales[] = [
-    { code: 'en-US', name: 'EN' },
+    { code: 'en', name: 'EN' },
     { code: 'ru', name: 'RU' },
   ];
-  public selectedLocale: string = this.localeId;
+
 
 }
