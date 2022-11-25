@@ -17,7 +17,7 @@ export class LocalizationSwitcherComponent {
   selected(event: MatSelectChange) {
     console.log(this.selectedLocale);
     const code = this.selectedLocale;
-    location.replace(`/${code}/`);
+    location.replace(`/angular-project-management-app/${code}/`);
   }
   locales: Locales[] = [
     { code: 'en-US', name: 'EN' },

@@ -69,11 +69,11 @@
             },
             "ru": {
           "localize": ["ru"],
-          "baseHref": "/ru/"
+          "baseHref": "/angular-project-management-app/ru/"
         },
         "en": {
           "localize": ["en"],
-          "baseHref": "/en/"
+          "baseHref": "/angular-project-management-app/en/"
         }
           },
           "defaultConfiguration": "production"
