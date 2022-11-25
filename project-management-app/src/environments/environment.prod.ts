@@ -3,11 +3,9 @@ export const environment = {
   API_URL: 'https://pm-app-angular-backend-production.up.railway.app',
   settings: {
     auth: {
-      // OAuth2 credentials
-      clientId: 'fake-client-id', // <Your auth client id here>
-      secretId: 'fake-secret-id', // <Your auth secret id here>
+      clientId: 'fake-client-id',
+      secretId: 'fake-secret-id',
 
-      // keys to store tokens at local storage
       accessTokenKey: 'DoPS3ZrQjM',
       refreshTokenKey: 'nmlP8PW2nb',
     },
