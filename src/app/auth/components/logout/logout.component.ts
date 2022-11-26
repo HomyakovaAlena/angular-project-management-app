@@ -12,8 +12,6 @@ export class LogoutComponent implements OnInit {
   ngOnInit(): void {}
 
   logout() {
-    // console.log('get user', this.authFacade.getAuthUser());
     this.authFacade.logout();
-    console.log('logged out');
   }
 }

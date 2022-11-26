@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, FormGroupDirective, ValidationErrors } from '@angular/forms';
+import { FormBuilder, FormGroup, FormGroupDirective } from '@angular/forms';
 import { Validators } from '@angular/forms';
 import { ValidationService } from 'src/app/shared/services/validation.service';
 import { AuthFacade } from '../../store/auth.facade';
@@ -10,10 +10,10 @@ import { AuthFacade } from '../../store/auth.facade';
   styleUrls: ['./login-form.component.scss'],
 })
 export class LoginFormComponent {
-  loginErrors: string[] | undefined = [];
-  passwordErrors: string[] | undefined = [];
+  protected loginErrors: string[] | undefined = [];
+  protected passwordErrors: string[] | undefined = [];
 
-  loginForm: FormGroup = this.fb.group({
+  protected loginForm: FormGroup = this.fb.group({
     login: [
       '',
       [

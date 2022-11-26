@@ -1,5 +1,5 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { FormBuilder, FormGroup, FormGroupDirective, ValidationErrors } from '@angular/forms';
+import { Component } from '@angular/core';
+import { FormBuilder, FormGroup, FormGroupDirective } from '@angular/forms';
 import { Validators } from '@angular/forms';
 import { ValidationService } from 'src/app/shared/services/validation.service';
 import { AuthFacade } from '../../store/auth.facade';
@@ -10,11 +10,11 @@ import { AuthFacade } from '../../store/auth.facade';
   styleUrls: ['./signup-form.component.scss'],
 })
 export class SignupFormComponent {
-  nameErrors: string[] | undefined = [];
-  loginErrors: string[] | undefined = [];
-  passwordErrors: string[] | undefined = [];
+  protected nameErrors: string[] | undefined = [];
+  protected loginErrors: string[] | undefined = [];
+  protected passwordErrors: string[] | undefined = [];
 
-  signupForm: FormGroup = this.fb.group({
+  protected signupForm: FormGroup = this.fb.group({
     name: [
       '',
       [
@@ -44,10 +44,7 @@ export class SignupFormComponent {
     ],
   });
 
-  constructor(
-    private fb: FormBuilder,
-    private authFacade: AuthFacade, 
-  ) {}
+  constructor(private fb: FormBuilder, private authFacade: AuthFacade) {}
 
   getNameErrorMessage() {
     this.nameErrors = ValidationService.getFormControlErrors(this.signupForm, 'name');

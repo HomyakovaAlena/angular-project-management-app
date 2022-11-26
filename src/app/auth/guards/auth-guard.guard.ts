@@ -4,7 +4,6 @@ import {
   CanActivate,
   Router,
   RouterStateSnapshot,
-  UrlTree,
 } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Observable, take, tap } from 'rxjs';
@@ -20,10 +19,7 @@ export class AuthGuardGuard implements CanActivate {
     return this.store.select(selectIsLoggedIn).pipe(
       take(1),
       tap((isLoggedIn) => {
-        console.log('check if login in auth guard');
         if (!isLoggedIn) {
-          console.log('not logged in, so go to auth login')
-          // console.log({ queryParams: { returnUrl: state.url } }, 'from auth guard');
           this.router.navigate(['/auth/login']);
         }
       }),

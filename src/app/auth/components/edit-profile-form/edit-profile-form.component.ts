@@ -20,20 +20,20 @@ import { ValidationService } from 'src/app/shared/services/validation.service';
   styleUrls: ['./edit-profile-form.component.scss'],
 })
 export class EditProfileFormComponent implements OnInit {
-  hide = true;
-  user$ = this.authFacade.user$;
+  protected hide = true;
+  private user$ = this.authFacade.user$;
   private _id: string | undefined = '';
   protected name: string | undefined = '';
   protected login: string | undefined = '';
   protected password: string | undefined = '';
   protected confirmPassword: string | undefined = '';
 
-  nameErrors: string[] | undefined = [];
-  loginErrors: string[] | undefined = [];
-  passwordErrors: string[] | undefined = [];
-  confirmPasswordErrors: string[] | undefined = [];
+  protected nameErrors: string[] | undefined = [];
+  protected loginErrors: string[] | undefined = [];
+  protected passwordErrors: string[] | undefined = [];
+  protected confirmPasswordErrors: string[] | undefined = [];
 
-  editProfileForm: FormGroup = this.fb.group(
+  protected editProfileForm: FormGroup = this.fb.group(
     {
       name: [
         '',

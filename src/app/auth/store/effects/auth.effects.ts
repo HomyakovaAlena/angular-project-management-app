@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { of } from 'rxjs';
 import { catchError, exhaustMap, finalize, map, tap } from 'rxjs/operators';
-
+import * as AppActions from '../../../store/actions/app.actions';
 import { TokenStorageService } from '../../../core/services/token-storage.service';
 import { AuthService } from '../../services/auth.service';
 import * as AuthActions from '../actions/auth.actions';
@@ -27,12 +27,14 @@ export class AuthEffects {
   signup$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(AuthActions.signupRequest),
+      tap(() => this.store.dispatch(AppActions.setLoadingState({ isLoading: true }))),
       exhaustMap((credentials) =>
         this.authService.signup(credentials.name, credentials.login, credentials.password).pipe(
           map((user) => {
             return AuthActions.signupSuccess({ user });
           }),
           catchError((error) => of(AuthActions.signupFailure({ error }))),
+          finalize(() => this.store.dispatch(AppActions.setLoadingState({ isLoading: false }))),
         ),
       ),
     );
@@ -56,6 +58,7 @@ export class AuthEffects {
   login$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(AuthActions.loginRequest),
+      tap(() => this.store.dispatch(AppActions.setLoadingState({ isLoading: true }))),
       exhaustMap((credentials) =>
         this.authService.login(credentials.login, credentials.password).pipe(
           map((data) => {
@@ -63,6 +66,7 @@ export class AuthEffects {
             return AuthActions.loginSuccess({ data });
           }),
           catchError((error) => of(AuthActions.loginFailure({ error }))),
+          finalize(() => this.store.dispatch(AppActions.setLoadingState({ isLoading: false }))),
         ),
       ),
     );
@@ -75,7 +79,6 @@ export class AuthEffects {
         if (this.router.url == '/auth/login') {
           this.router.navigateByUrl('/boards');
         }
-        console.log('login success!!');
         return AuthActions.getAuthUserRequest(data);
       }),
     );
@@ -88,7 +91,6 @@ export class AuthEffects {
         map(() => {
           this.router.navigateByUrl('/');
           this.authService.logout();
-          console.log('log outed');
           return AuthActions.logoutSuccess();
         }),
       );
@@ -99,10 +101,12 @@ export class AuthEffects {
   getUser$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(AuthActions.getAuthUserRequest),
+      tap(() => this.store.dispatch(AppActions.setLoadingState({ isLoading: true }))),
       exhaustMap(({ data }) =>
         this.authService.getAuthUser(data).pipe(
           map((user) => AuthActions.getAuthUserSuccess({ user })),
           catchError((error) => of(AuthActions.getAuthUserFailure({ error }))),
+          finalize(() => this.store.dispatch(AppActions.setLoadingState({ isLoading: false }))),
         ),
       ),
     );
@@ -111,12 +115,14 @@ export class AuthEffects {
   editUser$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(AuthActions.editUser),
+      tap(() => this.store.dispatch(AppActions.setLoadingState({ isLoading: true }))),
       exhaustMap(({ user }) =>
         this.authService.updateUser(user).pipe(
           map((user) => {
             return AuthActions.editUserSuccess({ user });
           }),
           catchError((error) => of(AuthActions.editUserFailure({ error }))),
+          finalize(() => this.store.dispatch(AppActions.setLoadingState({ isLoading: false }))),
         ),
       ),
     );
@@ -140,12 +146,14 @@ export class AuthEffects {
   deleteUser$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(AuthActions.deleteUser),
+      tap(() => this.store.dispatch(AppActions.setLoadingState({ isLoading: true }))),
       exhaustMap(({ id }) =>
         this.authService.deleteUser(id).pipe(
           map((user) => {
             return AuthActions.deleteUserSuccess({ user });
           }),
           catchError((error) => of(AuthActions.deleteUserFailure({ error }))),
+          finalize(() => this.store.dispatch(AppActions.setLoadingState({ isLoading: false }))),
         ),
       ),
     );
@@ -176,7 +184,6 @@ export class AuthEffects {
           AuthActions.getSignUpedUserFailure,
         ),
         tap(({ error }) => {
-          console.log(error);
           this.store.dispatch(
             SharedActions.openSnackBar({
               message: this.errorHandlingService.getErrorHandlingMessages(error, 'auth'),

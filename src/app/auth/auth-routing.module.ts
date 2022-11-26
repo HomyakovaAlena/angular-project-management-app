@@ -3,11 +3,10 @@ import { Routes, RouterModule } from '@angular/router';
 import { LoginFormComponent } from './components/login-form/login-form.component';
 import { SignupFormComponent } from './components/signup-form/signup-form.component';
 import { EditProfileFormComponent } from './components/edit-profile-form/edit-profile-form.component';
-import { NoAuthGuardGuard } from './guards/no-auth-guard.guard';
 
 const routes: Routes = [
-  { path: 'login', component: LoginFormComponent, canActivate: [NoAuthGuardGuard] },
-  { path: 'signup', component: SignupFormComponent, canActivate: [NoAuthGuardGuard] },
+  { path: 'login', component: LoginFormComponent },
+  { path: 'signup', component: SignupFormComponent },
   { path: 'profile', component: EditProfileFormComponent },
 ];
 

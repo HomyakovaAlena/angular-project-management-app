@@ -1,9 +1,8 @@
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import {  Observable, } from 'rxjs';
-import {  tap } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 import { TokenStorageService } from '../../core/services/token-storage.service';
-import {  User, } from '../models/user.model';
+import { User } from '../models/user.model';
 import * as Utils from '../utils/auth.utils';
 
 @Injectable({
@@ -50,6 +49,6 @@ export class AuthService {
 
   deleteUser(id: string): Observable<User> {
     const url = `${this.usersUrl}/${id}`;
-    return this.httpClient.delete<User>(url).pipe(tap((_) => console.log(`deleted user id=${id}`)));
+    return this.httpClient.delete<User>(url);
   }
 }

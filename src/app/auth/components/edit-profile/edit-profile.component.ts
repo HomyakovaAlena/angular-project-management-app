@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { of } from 'rxjs';
 import { AuthFacade } from '../../store/auth.facade';
 
 @Component({
@@ -9,8 +8,6 @@ import { AuthFacade } from '../../store/auth.facade';
 })
 export class EditProfileComponent implements OnInit {
   constructor(private authFacade: AuthFacade) {}
-  user$ = this.authFacade.user$;
-  ngOnInit(): void {
-    console.log(this.user$, of(this.user$), 'user$ from header');
-  }
+  protected user$ = this.authFacade.user$;
+  ngOnInit(): void {}
 }

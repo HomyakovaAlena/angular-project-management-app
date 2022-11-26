@@ -1,8 +1,6 @@
 import { Action, createReducer, on } from '@ngrx/store';
-
 import * as AuthActions from '../actions/auth.actions';
-import { AuthState, TokenStatus } from '../../models/user.model';
-
+import { AuthState } from '../../models/user.model';
 export const AUTH_FEATURE_KEY = 'auth';
 
 export interface AuthPartialState {
@@ -12,7 +10,6 @@ export interface AuthPartialState {
 export const initialState: AuthState = {
   isLoggedIn: false,
   user: undefined,
-  accessTokenStatus: TokenStatus.PENDING,
   isLoadingLogin: false,
   hasLoginError: false,
 };
@@ -24,7 +21,6 @@ const reducer = createReducer(
     AuthActions.signupRequest,
     (state): AuthState => ({
       ...state,
-      accessTokenStatus: TokenStatus.VALIDATING,
       isLoadingLogin: true,
       hasLoginError: false,
     }),
@@ -34,7 +30,6 @@ const reducer = createReducer(
     AuthActions.loginRequest,
     (state): AuthState => ({
       ...state,
-      accessTokenStatus: TokenStatus.VALIDATING,
       isLoadingLogin: false,
       hasLoginError: false,
     }),
@@ -46,7 +41,6 @@ const reducer = createReducer(
       ...state,
       isLoggedIn: true,
       isLoadingLogin: false,
-      accessTokenStatus: TokenStatus.VALID,
     }),
   ),
 
@@ -75,7 +69,6 @@ const reducer = createReducer(
     AuthActions.editUser,
     (state): AuthState => ({
       ...state,
-      accessTokenStatus: TokenStatus.VALIDATING,
       isLoadingLogin: true,
       hasLoginError: false,
     }),

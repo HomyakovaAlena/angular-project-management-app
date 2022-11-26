@@ -1,5 +1,4 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
-
 import { AuthState } from '../../models/user.model';
 import { AUTH_FEATURE_KEY } from '../reducer/auth.reducer';
 
