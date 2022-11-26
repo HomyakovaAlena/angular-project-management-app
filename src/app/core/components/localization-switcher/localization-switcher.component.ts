@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Inject, LOCALE_ID, OnChanges, Output } from '@angular/core';
+import { Component } from '@angular/core';
 import { MatSelectChange } from '@angular/material/select';
 
 interface Locales {
@@ -12,18 +12,17 @@ interface Locales {
   styleUrls: ['./localization-switcher.component.scss'],
 })
 export class LocalizationSwitcherComponent {
-  constructor() {}
-  public selectedLocale: string = location.pathname.includes('/angular-project-management-app/ru')?'ru':'en';
-  selected(event: MatSelectChange) {
-    console.log(this.selectedLocale);
-    const code = this.selectedLocale;
-    location.replace(`/angular-project-management-app/${code}/`);
+  public selectedLocale: string = location.pathname.includes('/angular-project-management-app/ru')
+    ? 'ru'
+    : 'en';
 
-  }
-  locales: Locales[] = [
+  protected locales: Locales[] = [
     { code: 'en', name: 'EN' },
     { code: 'ru', name: 'RU' },
   ];
 
-
+  protected selected(event: MatSelectChange) {
+    const code = this.selectedLocale;
+    location.replace(`/angular-project-management-app/${code}/`);
+  }
 }

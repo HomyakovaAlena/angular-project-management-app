@@ -1,11 +1,11 @@
 <mat-toolbar color="primary" class="wrapper">
-  <header [class]="'header'">
-    <div [class]="'header__logo-block'">
+  <header class="header">
+    <div class="header__logo-block">
       <a
         routerLink="/pm-app"
         routerLinkActive="active"
         ariaCurrentWhenActive="page"
-        [class]="'header__logo-link'"
+        class="header__logo-link"
         ><mat-icon> terrain</mat-icon>
         <h1 [innerText]="appTitle" class="headerH1"></h1
       ></a>
@@ -25,15 +25,15 @@
         <app-tasks-search *ngIf="isLoggedIn$ | async"></app-tasks-search>
       </div>
       <nav class="simple_nav">
-        <ul [class]="'header__nav-block'">
-          <li [class]="'header__board-block'">
+        <ul class="header__nav-block">
+          <li class="header__board-block">
             <app-all-boards-button></app-all-boards-button>
             <app-create-board-button></app-create-board-button>
           </li>
-          <li [class]="'header__localization-block'">
+          <li class="header__localization-block">
             <app-localization-switcher></app-localization-switcher>
           </li>
-          <li [class]="'header__user-block'">
+          <li class="header__user-block">
             <app-edit-profile *ngIf="isLoggedIn$ | async"></app-edit-profile>
             <app-login *ngIf="!(isLoggedIn$ | async)"></app-login>
             <app-signup *ngIf="!(isLoggedIn$ | async)"></app-signup>

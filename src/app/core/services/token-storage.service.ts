@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-
 import { ConfigService } from './config.service';
 import { LocalStorageService } from './local-storage.service';
 
@@ -15,15 +14,15 @@ export class TokenStorageService {
     this.accessTokenKey = authSettings.accessTokenKey || 'accessToken';
   }
 
-  getToken(): string {
+  public getToken(): string {
     return this.localStorageService.getItem(this.accessTokenKey) as string;
   }
 
-  saveToken(token: string) {
+  public saveToken(token: string) {
     this.localStorageService.setItem(this.accessTokenKey, token);
   }
 
-  removeToken() {
+  public removeToken() {
     this.localStorageService.removeItem(this.accessTokenKey);
   }
 }
