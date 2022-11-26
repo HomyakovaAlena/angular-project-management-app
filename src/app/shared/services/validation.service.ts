@@ -6,8 +6,6 @@ import { FormControlsErrorsMessageMap } from '../constants/validation.constants'
   providedIn: 'root',
 })
 export class ValidationService {
-  constructor() {}
-
   static getFormControlErrors(form: AbstractControl, formControlName: string) {
     if (!form.get(formControlName)?.errors) return;
     const validationErrors = form.get(formControlName)?.errors as ValidationErrors;

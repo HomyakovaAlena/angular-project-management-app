@@ -18,7 +18,8 @@ export class TaskItemComponent implements OnInit {
   constructor() {}
   ngOnInit(): void {}
 
-  onDelete() {
+  onDelete(event: Event) {
+    event.stopImmediatePropagation();
     this.deleteTask.emit(this.task);
   }
 

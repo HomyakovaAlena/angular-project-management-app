@@ -1,9 +1,5 @@
-import { Component, Inject, OnInit } from '@angular/core';
-import {
-  MatDialogRef,
-  MAT_DIALOG_DATA,
-} from '@angular/material/dialog';
-import { SharedService } from '../../services/shared.service';
+import { Component, Inject } from '@angular/core';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Store } from '@ngrx/store';
 import * as SharedActions from '../../store/actions/shared.actions';
 import { ModalData } from '../../models/shared.model';
@@ -16,17 +12,15 @@ import { ModalData } from '../../models/shared.model';
 export class ModalConfirmComponent {
   constructor(
     public dialogRef: MatDialogRef<ModalConfirmComponent>,
-    @Inject(MAT_DIALOG_DATA) public configDialog: ModalData,
-    private sharedService: SharedService,
     private store: Store,
-  ) {
-  }
+    @Inject(MAT_DIALOG_DATA) public configDialog: ModalData,
+  ) {}
 
-  actionFunction() {
+  protected actionFunction(): void {
     this.store.dispatch(SharedActions.confirmDialog({ data: this.configDialog }));
   }
 
-  closeModal() {
+  protected closeModal(): void {
     this.dialogRef.close();
   }
 }

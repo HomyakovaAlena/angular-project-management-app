@@ -6,9 +6,7 @@ import { ErrorsHandlingMessagesMap } from '../constants/errorsHandlingMessages.c
   providedIn: 'root',
 })
 export class ErrorHandlingService {
-  constructor() {}
-
-  getErrorHandlingMessages(errorResponse: HttpErrorResponse, module: string): string {
+  public getErrorHandlingMessages(errorResponse: HttpErrorResponse, module: string): string {
     const errorMessageType =
       ErrorsHandlingMessagesMap[module as keyof typeof ErrorsHandlingMessagesMap];
     return errorMessageType[errorResponse.status as keyof typeof errorMessageType]
