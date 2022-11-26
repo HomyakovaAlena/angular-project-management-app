@@ -1,5 +1,4 @@
-import { Component, OnChanges, OnInit } from '@angular/core';
-
+import { Component, OnInit } from '@angular/core';
 import * as fromBoards from '../../store/reducers/boards.reducer';
 import * as fromUsers from '../../../users/store/reducers/users.reducer';
 import * as BoardsActions from '../../store/actions/boards.actions';
@@ -15,9 +14,9 @@ import { Board } from '../../models/board.model';
   styleUrls: ['./boards-page.component.scss'],
 })
 export class BoardsPageComponent implements OnInit {
-  boardsList$ = this.store.select(fromBoards.getBoards);
-  user$ = this.authFacade.user$;
-  usersList$ = this.store.select(fromUsers.getUsers);
+  protected boardsList$ = this.store.select(fromBoards.getBoards);
+  protected user$ = this.authFacade.user$;
+  protected usersList$ = this.store.select(fromUsers.getUsers);
 
   constructor(
     private store: Store<fromBoards.BoardsState>,
@@ -26,13 +25,12 @@ export class BoardsPageComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    console.log('on init boards page');
     this.user$.subscribe((user) => {
       if (user) this.store.dispatch(BoardsActions.loadBoards({ userId: user?._id }));
     });
   }
 
-  openDialog(board: Board | null | undefined) {
+  protected openDialog(board: Board | null | undefined): void {
     if (!board) return;
     const { _id, title } = board;
     const dialogConfig = this.sharedService.createConfigDialog({

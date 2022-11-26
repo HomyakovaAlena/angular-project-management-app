@@ -102,13 +102,11 @@ export class BoardsEffects {
           BoardsActions.updateBoardFailed,
         ),
         tap(({ error }) => {
-          console.log(error);
           this.store.dispatch(
             SharedActions.openSnackBar({
               message: this.errorHandlingService.getErrorHandlingMessages(error, 'board'),
             }),
           );
-          console.log(error);
         }),
       );
     },

@@ -46,19 +46,19 @@ export class SignupFormComponent {
 
   constructor(private fb: FormBuilder, private authFacade: AuthFacade) {}
 
-  getNameErrorMessage() {
+  protected getNameErrorMessage(): void {
     this.nameErrors = ValidationService.getFormControlErrors(this.signupForm, 'name');
   }
 
-  getLoginErrorMessage() {
+  protected getLoginErrorMessage(): void {
     this.loginErrors = ValidationService.getFormControlErrors(this.signupForm, 'login');
   }
 
-  getPasswordErrorMessage() {
+  protected getPasswordErrorMessage(): void {
     this.passwordErrors = ValidationService.getFormControlErrors(this.signupForm, 'password');
   }
 
-  onSubmit(ngForm: FormGroupDirective) {
+  protected onSubmit(ngForm: FormGroupDirective): void {
     const { name, login, password } = this.signupForm.value;
     this.authFacade.signup(name, login, password);
     this.signupForm.reset();

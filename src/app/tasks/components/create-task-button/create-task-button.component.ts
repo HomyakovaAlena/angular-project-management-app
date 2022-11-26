@@ -11,8 +11,8 @@ import * as SharedActions from '../../../shared/store/actions/shared.actions';
   styleUrls: ['./create-task-button.component.scss'],
 })
 export class CreateTaskButtonComponent implements OnInit {
-  @Input() column: Column | null | undefined = null;
-  @Input() board: Board | null | undefined = null;
+  @Input() public column: Column | null | undefined = null;
+  @Input() public board: Board | null | undefined = null;
   constructor(
     private sharedService: SharedService,
     private store: Store,

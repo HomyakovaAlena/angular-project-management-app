@@ -11,26 +11,26 @@ export class BoardService {
 
   constructor(private httpClient: HttpClient) {}
 
-  getBoards(userId: string | undefined): Observable<Board[]> {
+  public getBoards(userId: string | undefined): Observable<Board[]> {
     return this.httpClient.get<Board[]>(`${this.url}Set/${userId}`);
   }
 
-  getBoardById(boardId: string): Observable<Board> {
+  public getBoardById(boardId: string): Observable<Board> {
     const url = `${this.url}/${boardId}`;
     return this.httpClient.get<Board>(url);
   }
 
-  createBoard(board: Board): Observable<Board> {
+  public createBoard(board: Board): Observable<Board> {
     return this.httpClient.post<Board>(this.url, board);
   }
 
-  updateBoard(board: Board): Observable<Board> {
+  public updateBoard(board: Board): Observable<Board> {
     const url = `${this.url}/${board._id}`;
     const { title, owner, users } = board;
     return this.httpClient.put<Board>(url, { title, owner, users });
   }
 
-  deleteBoard(id: string) {
+  public deleteBoard(id: string) {
     const url = `${this.url}/${id}`;
     return this.httpClient.delete<Board>(url);
   }

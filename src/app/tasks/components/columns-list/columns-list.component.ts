@@ -12,9 +12,9 @@ import { ColumnService } from '../../services/column.service';
   styleUrls: ['./columns-list.component.scss'],
 })
 export class ColumnsListComponent implements OnInit {
-  @Input() columnsList: Column[] | null | undefined = [];
-  @Input() board: Board | null | undefined = null;
-  @Output() deleteColumn = new EventEmitter<Column | null>();
+  @Input() public columnsList: Column[] | null | undefined = [];
+  @Input() public board: Board | null | undefined = null;
+  @Output() protected deleteColumn = new EventEmitter<Column | null>();
 
   constructor(
     private store: Store<fromColumns.ColumnsState>,

@@ -8,12 +8,12 @@ import { Task, Column } from '../../models/tasks.model';
   styleUrls: ['./task-item.component.scss'],
 })
 export class TaskItemComponent implements OnInit {
-  @Input() tasksList: Task[] | null | undefined = null;
-  @Input() task: Task | null | undefined = null;
-  @Input() column: Column | null | undefined = null;
-  @Input() board: Board | null | undefined = null;
-  @Output() deleteTask = new EventEmitter<Task | null>();
-  @Output() editTask = new EventEmitter<Task | null>();
+  @Input() public tasksList: Task[] | null | undefined = null;
+  @Input() public task: Task | null | undefined = null;
+  @Input() public column: Column | null | undefined = null;
+  @Input() public board: Board | null | undefined = null;
+  @Output() protected deleteTask = new EventEmitter<Task | null>();
+  @Output() protected editTask = new EventEmitter<Task | null>();
 
   constructor() {}
   ngOnInit(): void {}

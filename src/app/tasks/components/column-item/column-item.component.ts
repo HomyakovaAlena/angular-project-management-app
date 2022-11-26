@@ -28,9 +28,9 @@ import {
   styleUrls: ['./column-item.component.scss'],
 })
 export class ColumnItemComponent implements OnChanges, OnDestroy {
-  @Input() column: Column | null | undefined = null;
-  @Input() board: Board | null | undefined = null;
-  @Output() deleteColumn = new EventEmitter<Column | null>();
+  @Input() public column: Column | null | undefined = null;
+  @Input() public board: Board | null | undefined = null;
+  @Output() protected deleteColumn = new EventEmitter<Column | null>();
   tasksList$ = this.store.select(fromTasks.getTasks);
   sortedTasksList: Task[] = [];
   formVisible: boolean = false;

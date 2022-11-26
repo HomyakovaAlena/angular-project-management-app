@@ -13,7 +13,7 @@ import * as ColumnsActions from '../../store/actions/columns.actions';
   styleUrls: ['./board-item-page.component.scss'],
 })
 export class BoardItemPageComponent implements OnChanges {
-  @Input() board: Board | null | undefined = null;
+  @Input() public board: Board | null | undefined = null;
   columnsList$ = this.store.select(fromColumns.getColumns);
   sortedColumnsList: Column[] = [];
 

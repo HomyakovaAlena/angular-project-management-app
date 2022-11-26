@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { Observable, switchMap } from 'rxjs';
 import { Board } from '../../models/board.model';
@@ -10,7 +10,7 @@ import { BoardService } from '../../services/board.service';
   styleUrls: ['./board-view.component.scss'],
 })
 export class BoardViewComponent implements OnInit {
-  board$!: Observable<Board>;
+  protected board$!: Observable<Board>;
   constructor(
     private route: ActivatedRoute,
     private router: Router,
@@ -23,9 +23,7 @@ export class BoardViewComponent implements OnInit {
     );
   }
 
-  gotoBoards(board: Board) {
-    const boardId = board ? board._id : null;
+  protected gotoBoards(): void {
     this.router.navigate([`/boards`]);
   }
-
 }

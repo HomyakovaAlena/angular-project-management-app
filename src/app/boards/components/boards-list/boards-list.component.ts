@@ -8,16 +8,15 @@ import { Board } from '../../models/board.model';
   styleUrls: ['./boards-list.component.scss'],
 })
 export class BoardsListComponent implements OnInit {
-  @Input() boardsList: Board[] | null | undefined = [];
-  @Input() user: User | null | undefined;
-  @Input() users: User[] | null | undefined;
-  @Output() deleteBoard = new EventEmitter<Board | null>();
+  @Input() public boardsList: Board[] | null | undefined = [];
+  @Input() public user: User | null | undefined;
+  @Input() public users: User[] | null | undefined;
+  @Output() protected deleteBoard = new EventEmitter<Board | null>();
 
   constructor() {}
+  ngOnInit(): void {}
 
-  ngOnInit(): void { }
-
-  onDelete(board: Board | null | undefined) {
+  protected onDelete(board: Board | null | undefined): void {
     this.deleteBoard.emit(board);
   }
 }

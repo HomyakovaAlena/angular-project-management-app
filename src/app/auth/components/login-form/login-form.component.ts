@@ -36,15 +36,15 @@ export class LoginFormComponent {
 
   constructor(private fb: FormBuilder, private authFacade: AuthFacade) {}
 
-  getLoginErrorMessage() {
+  protected getLoginErrorMessage(): void {
     this.loginErrors = ValidationService.getFormControlErrors(this.loginForm, 'login');
   }
 
-  getPasswordErrorMessage() {
+  protected getPasswordErrorMessage(): void {
     this.passwordErrors = ValidationService.getFormControlErrors(this.loginForm, 'password');
   }
 
-  onSubmit(ngForm: FormGroupDirective) {
+  protected onSubmit(ngForm: FormGroupDirective): void {
     const { login, password } = this.loginForm.value;
     this.authFacade.login(login, password);
     this.loginForm.reset();

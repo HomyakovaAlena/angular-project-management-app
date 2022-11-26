@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthGuardGuard } from './auth/guards/auth-guard.guard';
-import { BoardViewComponent } from './boards/components/board-view/board-view.component';
 import { NotFoundPageComponent } from './core/pages/not-found-page/not-found-page.component';
 import { WelcomePageComponent } from './pm-app/pages/welcome-page/welcome-page.component';
 

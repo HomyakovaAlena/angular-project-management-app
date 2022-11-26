@@ -10,7 +10,7 @@ import * as SharedActions from '../../../shared/store/actions/shared.actions';
   styleUrls: ['./create-column-button.component.scss'],
 })
 export class CreateColumnButtonComponent implements OnInit {
-  @Input() board: Board | null | undefined = null;
+  @Input() public board: Board | null | undefined = null;
   constructor(
     private sharedService: SharedService,
     private store: Store,

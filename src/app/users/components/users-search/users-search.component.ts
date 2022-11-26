@@ -37,10 +37,10 @@ export class UsersSearchComponent implements OnInit {
   addOnBlur = true;
   readonly separatorKeysCodes = [ENTER, COMMA] as const;
 
-  @Input() parentGroup!: FormGroup;
-  @Input() controlName!: string;
-  @Input() boardUsersIds!: string | undefined;
-  @Output() selectedUsersIdsFromChild = new EventEmitter<{
+  @Input() public parentGroup!: FormGroup;
+  @Input() public controlName!: string;
+  @Input() public boardUsersIds!: string | undefined;
+  @Output() protected selectedUsersIdsFromChild = new EventEmitter<{
     selectedUsers: User[];
   }>();
   selectedUsers: User[] = [];

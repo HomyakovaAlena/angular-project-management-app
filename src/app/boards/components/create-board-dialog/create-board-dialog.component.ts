@@ -19,12 +19,11 @@ import { ValidationService } from 'src/app/shared/services/validation.service';
   styleUrls: ['./create-board-dialog.component.scss'],
 })
 export class CreateBoardDialogComponent implements OnInit {
-  user$ = this.authFacade.user$;
-  owner: string | undefined = '';
-  @Output() createBoard = new EventEmitter<Board>();
-  usersList$ = this.store.select(fromUsers.getUsers);
-  selectedUsers: User[] = [];
-  titleErrors: string[] | undefined = [];
+  @Output() protected createBoard = new EventEmitter<Board>();
+  protected user$ = this.authFacade.user$;
+  private owner: string | undefined = '';
+  private selectedUsers: User[] = [];
+  protected titleErrors: string[] | undefined = [];
   protected title: string | undefined = 'Canban Board #1';
 
   createBoardForm: FormGroup = this.fb.group({
@@ -36,31 +35,31 @@ export class CreateBoardDialogComponent implements OnInit {
     private fb: FormBuilder,
     public dialogRef: MatDialogRef<CreateBoardDialogComponent>,
     private store: Store<fromBoards.BoardsState>,
-    @Inject(MAT_DIALOG_DATA) public configDialog: ModalData,
     private usersStore: Store<fromUsers.UsersState>,
     private authFacade: AuthFacade,
+    @Inject(MAT_DIALOG_DATA) public configDialog: ModalData,
   ) {}
 
   ngOnInit(): void {
     this.setValue();
   }
 
-  setValue() {
+  protected setValue(): void {
     this.createBoardForm.patchValue({
       title: this.title,
     });
   }
 
-  getTitleErrorMessage() {
+  protected getTitleErrorMessage(): void {
     this.titleErrors = ValidationService.getFormControlErrors(this.createBoardForm, 'title');
   }
 
-  getOwner() {
+  private getOwner(): void {
     this.usersStore.dispatch(UsersActions.loadUsers());
     this.user$.subscribe((user) => (this.owner = user?._id));
   }
 
-  onSubmit(ngForm: FormGroupDirective) {
+  protected onSubmit(ngForm: FormGroupDirective): void {
     this.getOwner();
     const { title } = this.createBoardForm.value;
     const owner = this.owner as string;
@@ -70,11 +69,11 @@ export class CreateBoardDialogComponent implements OnInit {
     ngForm.resetForm();
   }
 
-  closeModal() {
+  protected closeModal(): void {
     this.dialogRef.close();
   }
 
-  selected(eventData: { selectedUsers: User[] }) {
+  protected selected(eventData: { selectedUsers: User[] }): void {
     this.selectedUsers = eventData.selectedUsers;
   }
 }

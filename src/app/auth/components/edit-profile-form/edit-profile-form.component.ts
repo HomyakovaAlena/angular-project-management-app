@@ -94,26 +94,26 @@ export class EditProfileFormComponent implements OnInit {
     });
   }
 
-  setValue() {
+  private setValue(): void {
     this.editProfileForm.patchValue({
       name: this.name,
       login: this.login,
     });
   }
 
-  getNameErrorMessage() {
+  protected getNameErrorMessage(): void {
     this.nameErrors = ValidationService.getFormControlErrors(this.editProfileForm, 'name');
   }
 
-  getLoginErrorMessage() {
+  protected getLoginErrorMessage(): void {
     this.loginErrors = ValidationService.getFormControlErrors(this.editProfileForm, 'login');
   }
 
-  getPasswordErrorMessage() {
+  protected getPasswordErrorMessage(): void {
     this.passwordErrors = ValidationService.getFormControlErrors(this.editProfileForm, 'password');
   }
 
-  getConfirmPasswordErrorMessage() {
+  protected getConfirmPasswordErrorMessage(): void {
     this.confirmPasswordErrors = ValidationService.getFormControlErrors(
       this.editProfileForm,
       'confirmPassword',
@@ -124,7 +124,7 @@ export class EditProfileFormComponent implements OnInit {
     return ValidationService.matchPassword(control);
   }
 
-  onSubmit(ngForm: FormGroupDirective) {
+  protected onSubmit(ngForm: FormGroupDirective): void {
     const _id = this._id;
     const { login, name, password } = this.editProfileForm.value;
     this.authFacade.updateUser({ _id, login, name, password });
@@ -132,7 +132,7 @@ export class EditProfileFormComponent implements OnInit {
     ngForm.resetForm();
   }
 
-  openDialog() {
+  protected openDialog(): void {
     if (!this._id) return;
     const [_id, name] = [this._id, this.name];
     const dialogConfig = this.sharedService.createConfigDialog({

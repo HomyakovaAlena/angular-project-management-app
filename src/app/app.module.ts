@@ -1,4 +1,4 @@
-import { LOCALE_ID, ModuleWithComponentFactories, NgModule } from '@angular/core';
+import {  NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
@@ -13,7 +13,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
-import { appReducer } from './store/reducers/app.reducer';
+import { appReducer, reset } from './store/reducers/app.reducer';
 import { SharedModule } from './shared/shared.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AuthModule } from './auth/auth.module';
@@ -30,14 +30,14 @@ import { AuthModule } from './auth/auth.module';
     CoreModule,
     BoardsModule,
     AuthModule,
-    StoreModule.forRoot({ app: appReducer }, {}),
-    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
+    StoreModule.forRoot({ app: appReducer }, { metaReducers: [reset] }),
     EffectsModule.forRoot([]),
+    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
     SharedModule,
     ReactiveFormsModule,
   ],
   providers: [
-    
+
   ],
   bootstrap: [AppComponent],
 })

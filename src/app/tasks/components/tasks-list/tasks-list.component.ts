@@ -13,11 +13,11 @@ import { TaskService } from '../../services/task.service';
   styleUrls: ['./tasks-list.component.scss'],
 })
 export class TasksListComponent implements OnChanges {
-  @Input() tasksList: Task[] | null | undefined = null;
-  @Input() column: Column | null | undefined = null;
-  @Input() board: Board | null | undefined = null;
-  @Output() deleteTask = new EventEmitter<Task | null>();
-  @Output() editTask = new EventEmitter<Task | null>();
+  @Input() public tasksList: Task[] | null | undefined = null;
+  @Input() public column: Column | null | undefined = null;
+  @Input() public board: Board | null | undefined = null;
+  @Output() protected deleteTask = new EventEmitter<Task | null>();
+  @Output() protected editTask = new EventEmitter<Task | null>();
 
   constructor(private store: Store<fromTasks.TasksState>, private taskService: TaskService) {}
 
