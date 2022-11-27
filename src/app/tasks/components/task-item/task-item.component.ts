@@ -18,16 +18,16 @@ export class TaskItemComponent implements OnInit {
   constructor() {}
   ngOnInit(): void {}
 
-  onDelete(event: Event) {
+  protected onDelete(event: Event): void {
     event.stopImmediatePropagation();
     this.deleteTask.emit(this.task);
   }
 
-  onEdit() {
+  protected onEdit(): void {
     this.editTask.emit(this.task);
   }
 
-  showMore(event: MouseEvent) {
+  protected showMore(event: MouseEvent): void {
     event.stopPropagation();
   }
 }

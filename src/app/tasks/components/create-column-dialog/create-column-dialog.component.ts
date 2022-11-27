@@ -1,12 +1,12 @@
 import { Component, Inject, OnInit, OnDestroy } from '@angular/core';
 import { FormBuilder, FormGroup, FormGroupDirective } from '@angular/forms';
 import { Validators } from '@angular/forms';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { Subscription } from 'rxjs';
 import { Store } from '@ngrx/store';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import * as fromColumns from '../..//store/reducers/columns.reducer';
 import * as ColumnsActions from '../../store/actions/columns.actions';
 import { ModalData } from 'src/app/shared/models/shared.model';
-import { Subscription } from 'rxjs';
 import { ValidationService } from 'src/app/shared/services/validation.service';
 
 @Component({
@@ -15,14 +15,14 @@ import { ValidationService } from 'src/app/shared/services/validation.service';
   styleUrls: ['./create-column-dialog.component.scss'],
 })
 export class CreateColumnDialogComponent implements OnInit, OnDestroy {
-  orderStep = 65536;
-  columnsList$ = this.store.select(fromColumns.getColumns);
-  orders: number[] = [];
-  titleErrors: string[] | undefined = [];
-  subscription!: Subscription;
+  private readonly orderStep = 65536;
+  protected columnsList$ = this.store.select(fromColumns.getColumns);
+  private orders: number[] = [];
+  protected titleErrors: string[] | undefined = [];
+  private subscription!: Subscription;
   protected title: string | undefined = $localize`Column #1`;
 
-  createColumnForm: FormGroup = this.fb.group({
+  protected createColumnForm: FormGroup = this.fb.group({
     title: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(20)]],
   });
 
@@ -40,17 +40,17 @@ export class CreateColumnDialogComponent implements OnInit, OnDestroy {
     });
   }
 
-  setValue() {
+  protected setValue(): void {
     this.createColumnForm.setValue({
       title: this.title,
     });
   }
 
-  getTitleErrorMessage() {
+  protected getTitleErrorMessage(): void {
     this.titleErrors = ValidationService.getFormControlErrors(this.createColumnForm, 'title');
   }
 
-  onSubmit(ngForm: FormGroupDirective) {
+  protected onSubmit(ngForm: FormGroupDirective): void {
     const { title } = this.createColumnForm.value;
     const order = this.orders.length ? Math.max(...this.orders) + this.orderStep : this.orderStep;
     const boardId = this.configDialog.parameters?.boardId as string;
@@ -59,7 +59,7 @@ export class CreateColumnDialogComponent implements OnInit, OnDestroy {
     ngForm.resetForm();
   }
 
-  closeModal() {
+  protected closeModal(): void {
     this.dialogRef.close();
   }
 

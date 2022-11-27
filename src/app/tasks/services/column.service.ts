@@ -13,23 +13,23 @@ export class ColumnService {
 
   constructor(private httpClient: HttpClient) {}
 
-  getColumns(boardId: string | undefined): Observable<Column[]> {
+  public getColumns(boardId: string | undefined): Observable<Column[]> {
     const url = `${this.boardsUrl}/${boardId}/${this.url}`;
     return this.httpClient.get<Column[]>(url);
   }
 
-  getColumnById(boardId: string | undefined, columnId: string): Observable<Column> {
+  public getColumnById(boardId: string | undefined, columnId: string): Observable<Column> {
     const url = `${this.boardsUrl}/${boardId}/${this.url}/${columnId}`;
     return this.httpClient.get<Column>(url);
   }
 
-  createColumn(column: Column): Observable<Column> {
+  public createColumn(column: Column): Observable<Column> {
     const { boardId, title, order } = column;
     const url = `${this.boardsUrl}/${boardId}/${this.url}`;
     return this.httpClient.post<Column>(url, { title, order });
   }
 
-  updateColumn(column: Column): Observable<Column> {
+  public updateColumn(column: Column): Observable<Column> {
     const { boardId, _id, title, order } = column;
     const url = `${this.boardsUrl}/${boardId}/${this.url}/${_id}`;
     return this.httpClient.put<Column>(url, {
@@ -38,36 +38,35 @@ export class ColumnService {
     });
   }
 
-  deleteColumn(boardId: string | undefined, columnId: string): Observable<Column> {
+  public deleteColumn(boardId: string | undefined, columnId: string): Observable<Column> {
     const url = `${this.boardsUrl}/${boardId}/${this.url}/${columnId}`;
     return this.httpClient.delete<Column>(url);
   }
 
-  changeColumnsOrder(columnsArray: { _id: string; order: number }[]): Observable<Column> {
+  public changeColumnsOrder(columnsArray: { _id: string; order: number }[]): Observable<Column> {
     const url = `${this.url}Set`;
     return this.httpClient.patch<Column>(url, columnsArray);
   }
 
-  defineColumnOrder(
+  public defineColumnOrder(
     columnsList: Column[],
     event: CdkDragDrop<string[]>,
   ): { draggedItemId: string; newOrder: number } {
     const orderStep = 65536;
     let newOrder: number;
-
     const from = event.previousIndex;
     const to = event.currentIndex;
+    const beforeTo = event.currentIndex - 1;
+    const afterTo = event.currentIndex + 1;
     const toOrder = columnsList[to].order;
+    const beforeToOrder = beforeTo >= 0 ? columnsList[beforeTo].order : 0;
+    const afterToOrder =
+      afterTo < columnsList.length ? columnsList[afterTo].order : toOrder + orderStep;
 
     if (from > to) {
-      const beforeTo = event.currentIndex - 1;
-      const beforeToOrder = beforeTo >= 0 ? columnsList[beforeTo].order : 0;
-      newOrder = ((beforeToOrder + toOrder) / 2) as number;
+      newOrder = ((beforeToOrder + toOrder) / 2);
     } else {
-      const afterTo = event.currentIndex + 1;
-      const afterToOrder =
-        afterTo < columnsList.length ? columnsList[afterTo].order : toOrder + orderStep;
-      newOrder = ((afterToOrder + toOrder) / 2) as number;
+      newOrder = ((afterToOrder + toOrder) / 2);
     }
 
     const draggedItemId = columnsList[from]._id as string;

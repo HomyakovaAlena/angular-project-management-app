@@ -1,26 +1,14 @@
-import {
-  Component,
-  EventEmitter,
-  Input,
-  Output,
-  OnChanges,
-  OnDestroy,
-} from '@angular/core';
+import { Component, EventEmitter, Input, Output, OnChanges, OnDestroy } from '@angular/core';
+import { FormBuilder, FormGroup, FormGroupDirective, Validators } from '@angular/forms';
+import { Subscription } from 'rxjs';
+import { Store } from '@ngrx/store';
 import { Board } from 'src/app/boards/models/board.model';
 import { Column, Task } from '../../models/tasks.model';
-import { Store } from '@ngrx/store';
 import * as fromTasks from '../../store/reducers/tasks.reducer';
 import * as TasksActions from '../../store/actions/tasks.actions';
 import * as ColumnsActions from '../../store/actions/columns.actions';
 import { SharedService } from 'src/app/shared/services/shared.service';
 import * as SharedActions from '../../../shared/store/actions/shared.actions';
-import { Subscription } from 'rxjs';
-import {
-  FormBuilder,
-  FormGroup,
-  FormGroupDirective,
-  Validators,
-} from '@angular/forms';
 
 @Component({
   selector: 'app-column-item',
@@ -31,10 +19,10 @@ export class ColumnItemComponent implements OnChanges, OnDestroy {
   @Input() public column: Column | null | undefined = null;
   @Input() public board: Board | null | undefined = null;
   @Output() protected deleteColumn = new EventEmitter<Column | null>();
-  tasksList$ = this.store.select(fromTasks.getTasks);
-  sortedTasksList: Task[] = [];
-  formVisible: boolean = false;
-  sub!: Subscription;
+  protected tasksList$ = this.store.select(fromTasks.getTasks);
+  protected sortedTasksList: Task[] = [];
+  protected formVisible: boolean = false;
+  private sub!: Subscription;
 
   constructor(
     private store: Store<fromTasks.TasksState>,
@@ -48,11 +36,11 @@ export class ColumnItemComponent implements OnChanges, OnDestroy {
     });
   }
 
-  onDelete() {
+  protected onDelete(): void {
     this.deleteColumn.emit(this.column);
   }
 
-  openDialogForDelete(task: Task | null | undefined) {
+  protected openDialogForDelete(task: Task | null | undefined): void {
     if (!task) return;
     const { _id, title } = task;
     const dialogConfig = this.sharedService.createConfigDialog({
@@ -68,7 +56,7 @@ export class ColumnItemComponent implements OnChanges, OnDestroy {
     this.store.dispatch(SharedActions.openDialog({ data: dialogConfig }));
   }
 
-  openDialogForEdit(task: Task | null | undefined) {
+  protected openDialogForEdit(task: Task | null | undefined) {
     if (!task) return;
     const { _id, title } = task;
     const dialogConfig = this.sharedService.createConfigDialog({
@@ -84,11 +72,11 @@ export class ColumnItemComponent implements OnChanges, OnDestroy {
     this.store.dispatch(SharedActions.openDialog({ data: dialogConfig }));
   }
 
-  updateColumnForm: FormGroup = this.fb.group({
+  protected updateColumnForm: FormGroup = this.fb.group({
     title: ['', [Validators.required, Validators.maxLength(50)]],
   });
 
-  onSubmit(ngForm: FormGroupDirective) {
+  protected onSubmit(ngForm: FormGroupDirective) {
     const { title } = this.updateColumnForm.value;
     const { _id, boardId, order } = this.column!;
     this.store.dispatch(ColumnsActions.updateColumn({ column: { title, order, _id, boardId } }));
@@ -96,12 +84,12 @@ export class ColumnItemComponent implements OnChanges, OnDestroy {
     ngForm.resetForm();
   }
 
-  update() {
+  protected update() {
     this.formVisible = true;
     this.updateColumnForm.setValue({ title: this.column?.title });
   }
 
-  cancel() {
+  protected cancel() {
     this.formVisible = false;
   }
 

@@ -22,20 +22,19 @@ export class TasksListComponent implements OnChanges {
   constructor(private store: Store<fromTasks.TasksState>, private taskService: TaskService) {}
 
   ngOnChanges(): void {
-    this.tasksList = this.tasksList?.length ? this.tasksList : [];;
+    this.tasksList = this.tasksList?.length ? this.tasksList : [];
   }
 
-  onDelete(task: Task | null | undefined) {
+  protected onDelete(task: Task | null | undefined): void {
     this.deleteTask.emit(task);
   }
 
-  onEdit(task: Task | null | undefined) {
+  protected onEdit(task: Task | null | undefined): void {
     this.editTask.emit(task);
   }
 
-  drop(event: CdkDragDrop<Task[]>) {
+  protected drop(event: CdkDragDrop<Task[]>): void {
     if (!this.tasksList) return;
-
     const { newOrder } = this.taskService.defineTaskOrder(this.tasksList, event);
     const draggedItemId = event.previousContainer.data[event.previousIndex]._id as string;
 

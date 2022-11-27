@@ -11,14 +11,11 @@ import * as SharedActions from '../../../shared/store/actions/shared.actions';
 })
 export class CreateColumnButtonComponent implements OnInit {
   @Input() public board: Board | null | undefined = null;
-  constructor(
-    private sharedService: SharedService,
-    private store: Store,
-  ) {}
+  constructor(private sharedService: SharedService, private store: Store) {}
 
   ngOnInit(): void {}
 
-  openDialog() {
+  protected openDialog(): void {
     const dialogConfig = this.sharedService.createConfigDialog({
       name: 'createColumn',
       title: $localize`Creating column...`,

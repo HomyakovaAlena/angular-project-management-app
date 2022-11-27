@@ -14,12 +14,12 @@ export class TaskService {
 
   constructor(private httpClient: HttpClient) {}
 
-  getTasks(boardId: string | undefined): Observable<Task[]> {
+  public getTasks(boardId: string | undefined): Observable<Task[]> {
     const url = `${this.url}Set/${boardId}`;
     return this.httpClient.get<Task[]>(url);
   }
 
-  getTaskById(
+  public getTaskById(
     boardId: string | undefined,
     columnId: string | undefined,
     taskId: string | undefined,
@@ -28,13 +28,13 @@ export class TaskService {
     return this.httpClient.get<Task>(url);
   }
 
-  createTask(task: Task): Observable<Task> {
+  public createTask(task: Task): Observable<Task> {
     const { title, description, order, users, userId, boardId, columnId } = task;
     const url = `${this.boardsUrl}/${boardId}/${this.columnsUrl}/${columnId}/${this.url}`;
     return this.httpClient.post<Task>(url, { title, description, order, users, userId });
   }
 
-  updateTask(task: Task): Observable<Task> {
+  public updateTask(task: Task): Observable<Task> {
     const { title, description, order, users, userId, boardId, columnId, _id } = task;
     const url = `${this.boardsUrl}/${boardId}/${this.columnsUrl}/${columnId}/${this.url}/${_id}`;
     return this.httpClient.put<Task>(url, {
@@ -47,44 +47,42 @@ export class TaskService {
     });
   }
 
-  deleteTask(boardId: string | undefined, columnId: string, taskId: string) {
+  public deleteTask(boardId: string | undefined, columnId: string, taskId: string) {
     const url = `${this.boardsUrl}/${boardId}/${this.columnsUrl}/${columnId}/${this.url}/${taskId}`;
     return this.httpClient.delete<Task>(url);
   }
 
-  changeTasksOrder(
+  public changeTasksOrder(
     columnsArray: { _id: string; columnId: string; order: number }[],
   ): Observable<Task> {
     const url = `${this.url}Set`;
     return this.httpClient.patch<Task>(url, columnsArray);
   }
 
-  defineTaskOrder(taskList: Task[], event: CdkDragDrop<Task[]>): { newOrder: number } {
+  public defineTaskOrder(taskList: Task[], event: CdkDragDrop<Task[]>): { newOrder: number } {
     const orderStep = 65536;
     let newOrder = 0;
     const from = event.previousIndex;
     const to = event.currentIndex;
+    const beforeTo = event.currentIndex - 1;
+    const afterTo = event.currentIndex + 1;
     const toOrder = taskList[to]?.order || orderStep;
+    const beforeToOrder = beforeTo >= 0 ? taskList[beforeTo].order : 0;
+    const afterToOrder = afterTo < taskList.length ? taskList[afterTo].order : toOrder + orderStep;
+
     if (event.previousContainer === event.container) {
       if (from > to) {
-        const beforeTo = event.currentIndex - 1;
-        const beforeToOrder = beforeTo >= 0 ? taskList[beforeTo].order : 0;
-        newOrder = ((beforeToOrder + toOrder) / 2) as number;
+        newOrder = ((beforeToOrder + toOrder) / 2);
       } else {
-        const afterTo = event.currentIndex + 1;
-        const afterToOrder =
-          afterTo < taskList.length ? taskList[afterTo].order : toOrder + orderStep;
-        newOrder = ((afterToOrder + toOrder) / 2) as number;
+        newOrder = ((afterToOrder + toOrder) / 2);
       }
     } else {
-      const beforeTo = event.currentIndex - 1;
-      const beforeToOrder = beforeTo >= 0 ? taskList[beforeTo].order : 0;
-      newOrder = ((beforeToOrder + toOrder) / 2) as number;
+      newOrder = ((beforeToOrder + toOrder) / 2);
     }
     return { newOrder };
   }
 
-  searchTasks(term: string): Observable<Task[]> {
+  public searchTasks(term: string): Observable<Task[]> {
     const searchMessage = document.getElementById('search-message') as HTMLElement;
     if (!term.trim()) {
       return of([]);

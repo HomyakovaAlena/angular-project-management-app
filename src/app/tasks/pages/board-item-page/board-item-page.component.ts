@@ -14,8 +14,8 @@ import * as ColumnsActions from '../../store/actions/columns.actions';
 })
 export class BoardItemPageComponent implements OnChanges {
   @Input() public board: Board | null | undefined = null;
-  columnsList$ = this.store.select(fromColumns.getColumns);
-  sortedColumnsList: Column[] = [];
+  protected columnsList$ = this.store.select(fromColumns.getColumns);
+  protected sortedColumnsList: Column[] = [];
 
   constructor(
     private store: Store<fromColumns.ColumnsState>,
@@ -29,7 +29,7 @@ export class BoardItemPageComponent implements OnChanges {
     });
   }
 
-  openDialog(column: Column | null | undefined) {
+  protected openDialog(column: Column | null | undefined): void {
     if (!column) return;
     const { _id, title } = column;
     const dialogConfig = this.sharedService.createConfigDialog({

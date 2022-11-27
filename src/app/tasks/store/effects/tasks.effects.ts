@@ -128,24 +128,8 @@ export class TasksEffects {
           TasksActions.createTaskFailed,
           TasksActions.loadTasksFailed,
           TasksActions.updateTaskFailed,
+          TasksActions.changeTasksOrderFailed,
         ),
-        tap(({ error }) => {
-          console.log(error);
-          this.store.dispatch(
-            SharedActions.openSnackBar({
-              message: this.errorHandlingService.getErrorHandlingMessages(error, 'task'),
-            }),
-          );
-        }),
-      );
-    },
-    { dispatch: false },
-  );
-
-  onChangeTasksOrderFailed$ = createEffect(
-    () => {
-      return this.actions$.pipe(
-        ofType(TasksActions.changeTasksOrderFailed),
         tap(({ error }) => {
           this.store.dispatch(
             SharedActions.openSnackBar({

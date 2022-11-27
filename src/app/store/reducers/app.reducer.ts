@@ -1,5 +1,12 @@
-import { ActionReducer, createFeatureSelector, createReducer, createSelector, on, State } from '@ngrx/store';
-import { Action } from 'rxjs/internal/scheduler/Action';
+import {
+  Action,
+  ActionReducer,
+  createFeatureSelector,
+  createReducer,
+  createSelector,
+  on,
+  State,
+} from '@ngrx/store';
 import * as appActions from '../actions/app.actions';
 
 export interface AppState {
@@ -18,10 +25,8 @@ export const appReducer = createReducer(
   })),
 );
 
-
 export function reset(reducer: ActionReducer<any>) {
   return function (state: any, action: any) {
-
     if (action.type === appActions.reset.type) {
       return reducer(undefined, action);
     }

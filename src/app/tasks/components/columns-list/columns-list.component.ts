@@ -1,9 +1,9 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
+import { Store } from '@ngrx/store';
 import { Board } from 'src/app/boards/models/board.model';
 import { Column } from '../../models/tasks.model';
-import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import * as fromColumns from '../../store/reducers/columns.reducer';
-import { Store } from '@ngrx/store';
 import * as ColumnsActions from '../../store/actions/columns.actions';
 import { ColumnService } from '../../services/column.service';
 @Component({
@@ -23,11 +23,11 @@ export class ColumnsListComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  onDelete(column: Column | null | undefined) {
+  protected onDelete(column: Column | null | undefined) {
     this.deleteColumn.emit(column);
   }
 
-  drop(event: CdkDragDrop<string[]>) {
+  protected drop(event: CdkDragDrop<string[]>) {
     if (!this.columnsList) return;
     if (event.previousIndex === event.currentIndex) return;
     const { draggedItemId, newOrder } = this.columnService.defineColumnOrder(
