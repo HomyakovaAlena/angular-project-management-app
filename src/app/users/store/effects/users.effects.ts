@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { UserService } from '../../services/user.service';
-import * as UsersActions from '../actions/users.actions';
+import { Store } from '@ngrx/store';
 import { catchError, finalize, map, of, switchMap, tap } from 'rxjs';
+import * as UsersActions from '../actions/users.actions';
 import * as fromRoot from '../../../store/reducers/app.reducer';
 import * as AppActions from '../../../store/actions/app.actions';
-import { Store } from '@ngrx/store';
 import * as SharedActions from '../../../shared/store/actions/shared.actions';
 import { ErrorHandlingService } from 'src/app/shared/services/error-handling.service';
+import { UserService } from '../../services/user.service';
 
 @Injectable()
 export class UsersEffects {
@@ -34,47 +34,10 @@ export class UsersEffects {
     { dispatch: false },
   );
 
-  loadUsersSuccess$ = createEffect(() =>
-    this.actions$.pipe(
-      ofType(UsersActions.loadUsersSuccess),
-      tap((users) => console.log({ users }, 'loadUsersSuccess effects')),
-    ),
-  );
-
-  // searchUsers$ = createEffect(
-  //   () =>
-  //     this.actions$.pipe(
-  //       ofType(UsersActions.searchUsers),
-  //       tap(() => this.store.dispatch(AppActions.setLoadingState({ isLoading: true }))),
-  //       switchMap(({ term }) =>
-  //         this.userService.searchUsers(term).pipe(
-  //           map((users) => {
-  //             console.log(users, 'from searchUsers$');
-  //             UsersActions.searchUsersSuccess({ users, term });
-  //           }),
-  //           catchError((error) => of(UsersActions.searchUsersFailed({ error }))),
-  //           finalize(() => this.store.dispatch(AppActions.setLoadingState({ isLoading: false }))),
-  //         ),
-  //       ),
-  //     ),
-  //   { dispatch: false },
-  // );
-
-  // searchUsersSuccess$ = createEffect(() =>
-  //   this.actions$.pipe(
-  //     ofType(UsersActions.searchUsersSuccess),
-  //     tap(({ users, term }) => {
-  //       console.log(users, 'from searchUsersSuccess$');
-  //       this.userService.onSearchUsersSuccess(users, term);
-  //     }),
-  //   ),
-  // );
-
   onFailedActions$ = createEffect(
     () => {
       return this.actions$.pipe(
-        ofType(UsersActions.loadUsersFailed,
-        ),
+        ofType(UsersActions.loadUsersFailed),
         map(({ error }) => {
           this.store.dispatch(
             SharedActions.openSnackBar({

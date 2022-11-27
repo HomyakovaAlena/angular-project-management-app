@@ -39,7 +39,7 @@
   </mat-chip-list>
   <div class="optionsFound" *ngIf="usersInput.value">
     <mat-option *ngFor="let user of users$ | async" [value]="user"
-      ><option (click)="selected(user)">{{ user.name }}</option></mat-option
+      ><option (click)="select(user)">{{ user.name }}</option></mat-option
     >
   </div>
 </mat-form-field>

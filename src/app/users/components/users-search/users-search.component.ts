@@ -4,25 +4,16 @@ import {
   EventEmitter,
   Input,
   OnInit,
-  OnChanges,
   Output,
   ViewChild,
 } from '@angular/core';
-import {
-  debounceTime,
-  distinctUntilChanged,
-  filter,
-  Observable,
-  Subject,
-  switchMap,
-} from 'rxjs';
-import { User } from 'src/app/auth/models/user.model';
-import { UserService } from '../../services/user.service';
-
+import { debounceTime, distinctUntilChanged, filter, Observable, Subject, switchMap } from 'rxjs';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { FormGroup } from '@angular/forms';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { Store } from '@ngrx/store';
+import { User } from 'src/app/auth/models/user.model';
+import { UserService } from '../../services/user.service';
 import * as SharedActions from '../../../shared/store/actions/shared.actions';
 
 @Component({
@@ -31,28 +22,22 @@ import * as SharedActions from '../../../shared/store/actions/shared.actions';
   styleUrls: ['./users-search.component.scss'],
 })
 export class UsersSearchComponent implements OnInit {
-  users$!: Observable<User[]>;
-  private searchTerms = new Subject<string>();
-
-  addOnBlur = true;
-  readonly separatorKeysCodes = [ENTER, COMMA] as const;
-
   @Input() public parentGroup!: FormGroup;
   @Input() public controlName!: string;
   @Input() public boardUsersIds!: string | undefined;
   @Output() protected selectedUsersIdsFromChild = new EventEmitter<{
     selectedUsers: User[];
   }>();
-  selectedUsers: User[] = [];
-  user!: User;
+  protected users$!: Observable<User[]>;
+  private searchTerms = new Subject<string>();
+  protected addOnBlur = true;
+  readonly separatorKeysCodes = [ENTER, COMMA] as const;
+  protected selectedUsers: User[] = [];
+  protected user!: User;
 
   @ViewChild('usersInput') usersInput!: ElementRef<HTMLInputElement>;
 
   constructor(private userService: UserService, private store: Store) {}
-
-  search(term: string): void {
-    this.searchTerms.next(term);
-  }
 
   ngOnInit(): void {
     this.users$ = this.searchTerms.pipe(
@@ -63,20 +48,25 @@ export class UsersSearchComponent implements OnInit {
     );
   }
 
-  remove(selectedUser: User): void {
-    const index = this.selectedUsers.indexOf(selectedUser);
+  protected search(term: string): void {
+    this.searchTerms.next(term);
+  }
 
+  protected remove(selectedUser: User): void {
+    const index = this.selectedUsers.indexOf(selectedUser);
     if (index >= 0) {
       this.selectedUsers.splice(index, 1);
     }
   }
 
-  selected(user: User): void {
+  protected select(user: User): void {
     if (!this.selectedUsers.some((selectedUser) => selectedUser._id === user._id)) {
       this.selectedUsers.push(user);
     } else {
       this.store.dispatch(
-        SharedActions.openSnackBar({ message: $localize`User ${user.name}:user_name: has already been selected` }),
+        SharedActions.openSnackBar({
+          message: $localize`User ${user.name}:user_name: has already been selected`,
+        }),
       );
     }
     this.selectedUsersIdsFromChild.emit({
@@ -88,7 +78,7 @@ export class UsersSearchComponent implements OnInit {
     this.ngOnInit();
   }
 
-  drop(event: CdkDragDrop<string[]>) {
+  protected drop(event: CdkDragDrop<string[]>): void {
     moveItemInArray(this.selectedUsers, event.previousIndex, event.currentIndex);
   }
 }

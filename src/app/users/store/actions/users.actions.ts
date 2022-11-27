@@ -12,12 +12,3 @@ export const loadUsersFailed = createAction(
   props<{ error: HttpErrorResponse }>(),
 );
 
-// export const searchUsers = createAction('[Users] Search Users', props<{ term: string }>());
-// export const searchUsersSuccess = createAction(
-//   '[Users] Search Users Success',
-//   props<{ users: User[]; term: string }>(),
-// );
-// export const searchUsersFailed = createAction(
-//   '[Users] Search Users Failed',
-//   props<{ error: HttpErrorResponse }>(),
-// );

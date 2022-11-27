@@ -11,32 +11,15 @@ export class UserService {
 
   constructor(private httpClient: HttpClient) {}
 
-  getUsers(): Observable<User[]> {
+  public getUsers(): Observable<User[]> {
     return this.httpClient.get<User[]>(`${this.url}`);
   }
 
-  getUserById(id: string | undefined): Observable<User> {
+  public getUserById(id: string | undefined): Observable<User> {
     return this.httpClient.get<User>(`users/${id}`);
   }
 
-  // searchUsers(term: string): Observable<User[]> {
-  //   console.log(term, 'from searchUsers Service');
-  //   if (!term.trim()) {
-  //     return of([]);
-  //   }
-  //   return this.httpClient.get<User[]>(`${this.url}/?name=${term}`);
-  // }
-
-  //   onSearchUsersSuccess(users: User[], term: string): string {
-  //     const searchMessage = document.getElementById('search-message') as HTMLElement;
-  //     console.log(users, 'from onSearchUsersSuccess Service');
-  //     return users.length
-  //       ? (searchMessage.textContent = `found ${users.length} user(s) matching "${term}"`)
-  //       : (searchMessage.textContent = `no users matching "${term}"`);
-  //   }
-  // }
-
-  searchUsers(term: string): Observable<User[]> {
+  public searchUsers(term: string): Observable<User[]> {
     const searchMessage = document.getElementById('search-message') as HTMLElement;
     if (!term.trim()) {
       return of([]);
