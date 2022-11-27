@@ -1,17 +1,22 @@
-.footer {
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px;
+.footer__container {
+  height: 60px;
+  box-sizing: border-box;
 
-  &__year {
-    font-size: 14px;
+  .footer {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+
+    &__year {
+      font-size: 14px;
+    }
   }
-}
 
-.link-footer {
-  display: flex;
-  align-items: center;
+  .link-footer {
+    display: flex;
+    align-items: center;
+  }
 }

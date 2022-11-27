@@ -1,3 +1,5 @@
+@use 'src/variables' as vars;
+
 .wrapper {
   height: 80px;
   display: flex;
@@ -133,7 +135,7 @@
   }
 
   ::ng-deep .matMenu {
-    background: #3f51b5;
+    background: vars.$indigo;
     display: flex;
     flex-direction: column;
     align-items: flex-start;

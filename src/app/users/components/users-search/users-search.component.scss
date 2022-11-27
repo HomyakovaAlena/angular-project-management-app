@@ -1,3 +1,5 @@
+@use 'src/variables' as vars;
+
 label {
   display: block;
   font-weight: bold;
@@ -14,7 +16,7 @@ input {
 }
 
 input:focus {
-  outline: #3f51b5 auto 1px;
+  outline: vars.$indigo auto 1px;
 }
 
 li {
@@ -30,7 +32,7 @@ li {
   padding: 0.5rem;
   box-sizing: border-box;
   text-decoration: none;
-  color: black;
+  color: vars.$black;
 }
 
 .search-result li a:hover {
@@ -70,16 +72,17 @@ ul.search-result {
   }
 
   &::-webkit-scrollbar-track {
-    box-shadow: inset 0 0 5px rgb(45, 46, 51);
+    box-shadow: inset 0 0 5px vars.$dark-blue;
     border-radius: 10px;
   }
 
   &::-webkit-scrollbar-thumb {
-    background: rgb(146, 153, 163);
+    background: vars.$blue-gray;
     border-radius: 10px;
+    box-shadow: inset 0 0 5px vars.$dark-blue;
   }
 
   &::-webkit-scrollbar-thumb:hover {
-    background: darken(rgb(146, 153, 163), 20);
+    background: darken(vars.$blue-gray, 20);
   }
 }
