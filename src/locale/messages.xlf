@@ -141,11 +141,11 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/boards/pages/boards-page/boards-page.component.ts</context>
-          <context context-type="linenumber">42,38</context>
+          <context context-type="linenumber">40,36</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/tasks/components/column-item/column-item.component.ts</context>
-          <context context-type="linenumber">62</context>
+          <context context-type="linenumber">50</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/tasks/pages/board-item-page/board-item-page.component.ts</context>
@@ -207,21 +207,21 @@
         <source>Welcome, <x id="userName" equiv-text="user.name"/>!</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/auth/store/effects/auth.effects.ts</context>
-          <context context-type="linenumber">48</context>
+          <context context-type="linenumber">50</context>
         </context-group>
       </trans-unit>
       <trans-unit id="3112419678591144238" datatype="html">
         <source>Successfully updated!</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/auth/store/effects/auth.effects.ts</context>
-          <context context-type="linenumber">131</context>
+          <context context-type="linenumber">137</context>
         </context-group>
       </trans-unit>
       <trans-unit id="1406547658370058388" datatype="html">
         <source>Come back!</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/auth/store/effects/auth.effects.ts</context>
-          <context context-type="linenumber">159</context>
+          <context context-type="linenumber">167</context>
         </context-group>
       </trans-unit>
       <trans-unit id="6035283612400841811" datatype="html">
@@ -372,11 +372,11 @@
         <source>Are you sure you want to delete this item?</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/boards/pages/boards-page/boards-page.component.ts</context>
-          <context context-type="linenumber">40,38</context>
+          <context context-type="linenumber">38,36</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/tasks/components/column-item/column-item.component.ts</context>
-          <context context-type="linenumber">60</context>
+          <context context-type="linenumber">48</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/tasks/pages/board-item-page/board-item-page.component.ts</context>
@@ -387,7 +387,7 @@
         <source>If you confirm, the item <x id="boardTitle" equiv-text="title"/> will be deleted.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/boards/pages/boards-page/boards-page.component.ts</context>
-          <context context-type="linenumber">41,38</context>
+          <context context-type="linenumber">39,36</context>
         </context-group>
       </trans-unit>
       <trans-unit id="4836615552094365703" datatype="html">
@@ -461,8 +461,8 @@
           <context context-type="linenumber">25</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="8225740984470518256" datatype="html">
-        <source> Everything you do should be done well, even if you commit madness. </source>
+      <trans-unit id="3842720293200731607" datatype="html">
+        <source> Everything you do should be done well,<x id="LINE_BREAK" ctype="lb" equiv-text="&lt;br /&gt;"/>even if you commit madness. </source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/pm-app/pages/welcome-page/welcome-page.component.html</context>
           <context context-type="linenumber">4,6</context>
@@ -644,7 +644,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/tasks/components/column-item/column-item.component.ts</context>
-          <context context-type="linenumber">76</context>
+          <context context-type="linenumber">64</context>
         </context-group>
       </trans-unit>
       <trans-unit id="7053678046983881503" datatype="html">
@@ -655,7 +655,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/tasks/components/column-item/column-item.component.ts</context>
-          <context context-type="linenumber">77</context>
+          <context context-type="linenumber">65</context>
         </context-group>
       </trans-unit>
       <trans-unit id="7585826646011739428" datatype="html">
@@ -666,7 +666,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/tasks/components/column-item/column-item.component.ts</context>
-          <context context-type="linenumber">78</context>
+          <context context-type="linenumber">66</context>
         </context-group>
       </trans-unit>
       <trans-unit id="2919010279518420772" datatype="html">
@@ -920,11 +920,11 @@
               Error <x id="error_status" equiv-text="errorResponse.status"/></source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/services/error-handling.service.ts</context>
-          <context context-type="linenumber">15,16</context>
+          <context context-type="linenumber">13,14</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/services/error-handling.service.ts</context>
-          <context context-type="linenumber">17,18</context>
+          <context context-type="linenumber">15,16</context>
         </context-group>
       </trans-unit>
       <trans-unit id="7381144033110975955" datatype="html">
@@ -945,7 +945,7 @@
         <source>If you confirm, the item <x id="column_title" equiv-text="title"/> will be deleted.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/tasks/components/column-item/column-item.component.ts</context>
-          <context context-type="linenumber">61</context>
+          <context context-type="linenumber">49</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/tasks/pages/board-item-page/board-item-page.component.ts</context>
@@ -963,21 +963,21 @@
         <source>Creating column...</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/tasks/components/create-column-button/create-column-button.component.ts</context>
-          <context context-type="linenumber">24</context>
+          <context context-type="linenumber">21</context>
         </context-group>
       </trans-unit>
       <trans-unit id="146921238091401743" datatype="html">
         <source>Fill in the form to create new column</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/tasks/components/create-column-button/create-column-button.component.ts</context>
-          <context context-type="linenumber">25</context>
+          <context context-type="linenumber">22</context>
         </context-group>
       </trans-unit>
       <trans-unit id="1149997874969812833" datatype="html">
         <source>Create new column</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/tasks/components/create-column-button/create-column-button.component.ts</context>
-          <context context-type="linenumber">26</context>
+          <context context-type="linenumber">23</context>
         </context-group>
       </trans-unit>
       <trans-unit id="2424494401750416921" datatype="html">
@@ -1005,21 +1005,21 @@
         <source>Creating task...</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/tasks/components/create-task-button/create-task-button.component.ts</context>
-          <context context-type="linenumber">26</context>
+          <context context-type="linenumber">23</context>
         </context-group>
       </trans-unit>
       <trans-unit id="9212723171895925310" datatype="html">
         <source>Fill in the form to create new task</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/tasks/components/create-task-button/create-task-button.component.ts</context>
-          <context context-type="linenumber">27</context>
+          <context context-type="linenumber">24</context>
         </context-group>
       </trans-unit>
       <trans-unit id="5488786542879754401" datatype="html">
         <source>Create new task</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/tasks/components/create-task-button/create-task-button.component.ts</context>
-          <context context-type="linenumber">28</context>
+          <context context-type="linenumber">25</context>
         </context-group>
       </trans-unit>
       <trans-unit id="153241562216149499" datatype="html">
@@ -1054,14 +1054,14 @@
         <source>Task #1</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/tasks/components/create-task-dialog/create-task-dialog.component.ts</context>
-          <context context-type="linenumber">70</context>
+          <context context-type="linenumber">72</context>
         </context-group>
       </trans-unit>
       <trans-unit id="1196773003757805244" datatype="html">
         <source>Description #1</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/tasks/components/create-task-dialog/create-task-dialog.component.ts</context>
-          <context context-type="linenumber">71</context>
+          <context context-type="linenumber">73</context>
         </context-group>
       </trans-unit>
       <trans-unit id="2102054158684860496" datatype="html">
@@ -1097,14 +1097,14 @@
         <source>found <x id="found_quantity" equiv-text="x.length"/> task(s) matching &quot;<x id="search_term" equiv-text="term"/>&quot;</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/tasks/services/task.service.ts</context>
-          <context context-type="linenumber">97</context>
+          <context context-type="linenumber">95</context>
         </context-group>
       </trans-unit>
       <trans-unit id="1626155951228227921" datatype="html">
         <source>no tasks matching &quot;<x id="search_term" equiv-text="term"/>&quot;</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/tasks/services/task.service.ts</context>
-          <context context-type="linenumber">98</context>
+          <context context-type="linenumber">96</context>
         </context-group>
       </trans-unit>
       <trans-unit id="4617382061885366946" datatype="html">
@@ -1118,21 +1118,21 @@
         <source>User <x id="user_name" equiv-text="user.name"/> has already been selected</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/users/components/users-search/users-search.component.ts</context>
-          <context context-type="linenumber">79</context>
+          <context context-type="linenumber">68</context>
         </context-group>
       </trans-unit>
       <trans-unit id="4884506319330833080" datatype="html">
         <source>found <x id="users_count" equiv-text="x.length"/> user(s) matching &quot;<x id="term" equiv-text="term"/>&quot;</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/users/services/user.service.ts</context>
-          <context context-type="linenumber">49</context>
+          <context context-type="linenumber">32</context>
         </context-group>
       </trans-unit>
       <trans-unit id="1837801066566864880" datatype="html">
         <source>no users matching &quot;<x id="term" equiv-text="term"/>&quot;</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/users/services/user.service.ts</context>
-          <context context-type="linenumber">50</context>
+          <context context-type="linenumber">33</context>
         </context-group>
       </trans-unit>
     </body>

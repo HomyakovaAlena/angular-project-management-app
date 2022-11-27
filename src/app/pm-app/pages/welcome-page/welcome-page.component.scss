@@ -20,14 +20,14 @@
 }
 
 .quote {
-  width: 300px;
+  max-width: 400px;
   height: 200px;
   margin: 0px auto;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 30px;
+  gap: 40px;
 
   &__text {
     margin: 0px auto;
@@ -53,7 +53,7 @@
   &__down {
     align-self: flex-end;
     text-align: end;
-    margin: 15px;
+    margin: 15px 0 0;
     padding: 18px;
 
     &__text {
@@ -243,6 +243,7 @@
   .left {
     width: 100%;
     height: max-content;
+    min-height: calc(100vh - 160px);
 
     .quote {
       align-self: flex-start;
@@ -254,7 +255,7 @@
       }
 
       &__down__text {
-        margin: 20px auto 20px;
+        margin: 20px auto 0px;
         font-size: 16px;
       }
     }
@@ -278,14 +279,13 @@
     gap: 150px;
 
     .quote {
-      width: 280px;
+      max-width: 280px;
       margin: 10px auto;
       display: flex;
       flex-direction: column;
       align-self: flex-start;
       justify-content: center;
       align-items: center;
-      gap: 30px;
       position: relative;
 
       &__text {

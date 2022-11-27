@@ -367,9 +367,9 @@
           <context context-type="linenumber">21,23</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="8225740984470518256" datatype="html">
-        <source> Everything you do should be done well, even if you commit madness. </source>
-        <target>Все, что делаешь, надо делать хорошо, даже если совершаешь безумство.</target>
+      <trans-unit id="3842720293200731607" datatype="html">
+        <source> Everything you do should be done well,<x id="LINE_BREAK" ctype="lb" equiv-text="&lt;br /&gt;"/>even if you commit madness. </source>
+        <target>Все, что делаешь, надо делать хорошо,<x id="LINE_BREAK" ctype="lb" equiv-text="&lt;br /&gt;"/>даже если совершаешь безумство.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/pm-app/pages/welcome-page/welcome-page.component.html</context>
           <context context-type="linenumber">4,6</context>
