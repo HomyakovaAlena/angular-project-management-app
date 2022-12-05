@@ -17,6 +17,7 @@
         aria-label="icon button with a search icon"
         (click)="showSearch($event)"
         class="showSearchButton"
+        *ngIf="isLoggedIn$ | async"
       >
         <mat-icon>search</mat-icon>
       </button>

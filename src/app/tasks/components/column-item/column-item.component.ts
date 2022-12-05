@@ -1,6 +1,6 @@
-import { Component, EventEmitter, Input, Output, OnChanges, OnDestroy } from '@angular/core';
+import { Component, EventEmitter, Input, Output, OnChanges, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormGroupDirective, Validators } from '@angular/forms';
-import { Subscription } from 'rxjs';
+import { Observable, tap } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { Board } from 'src/app/boards/models/board.model';
 import { Column, Task } from '../../models/tasks.model';
@@ -15,32 +15,50 @@ import * as SharedActions from '../../../shared/store/actions/shared.actions';
   templateUrl: './column-item.component.html',
   styleUrls: ['./column-item.component.scss'],
 })
-export class ColumnItemComponent implements OnChanges, OnDestroy {
-  @Input() public column: Column | null | undefined = null;
-  @Input() public board: Board | null | undefined = null;
-  @Output() protected deleteColumn = new EventEmitter<Column | null>();
-  protected tasksList$ = this.store.select(fromTasks.getTasks);
-  protected sortedTasksList: Task[] = [];
-  protected formVisible: boolean = false;
-  private sub!: Subscription;
+export class ColumnItemComponent implements OnInit, OnChanges {
+  @Input() public column!: Column;
+  @Input() public board!: Board;
+  @Output() deleteColumn = new EventEmitter<Column>();
+  tasksList$ = this.store.select(fromTasks.getTasks);
+  sortedTasksList: Task[] = [];
+  formVisible: boolean = false;
+  updateColumnForm!: FormGroup;
+  taskSubscription$!: Observable<Task[]>;
+
+  initForm() {
+    this.updateColumnForm = this.fb.group({
+      title: ['', [Validators.required, Validators.maxLength(50)]],
+    });
+  }
 
   constructor(
     private store: Store<fromTasks.TasksState>,
     private sharedService: SharedService,
     private fb: FormBuilder,
   ) {}
-  ngOnChanges(): void {
-    this.store.dispatch(TasksActions.loadTasks({ boardId: this.board?._id }));
-    this.sub = this.tasksList$.subscribe((tasksList) => {
-      this.sortedTasksList = [...tasksList].sort((a: Task, b: Task) => a.order - b.order);
-    });
+
+  ngOnInit(): void {
+    this.initForm();
   }
 
-  protected onDelete(): void {
+  ngOnChanges(): void {
+    this.store.dispatch(TasksActions.loadTasks({ boardId: this.board._id as string }));
+    this.sortTasks();
+  }
+
+  sortTasks() {
+    this.taskSubscription$ = this.tasksList$.pipe(
+      tap((tasksList) => {
+        this.sortedTasksList = [...tasksList].sort((a: Task, b: Task) => a.order - b.order);
+      }),
+    );
+  }
+
+  onDelete(): void {
     this.deleteColumn.emit(this.column);
   }
 
-  protected openDialogForDelete(task: Task | null | undefined): void {
+  openDialogForDelete(task: Task): void {
     if (!task) return;
     const { _id, title } = task;
     const dialogConfig = this.sharedService.createConfigDialog({
@@ -56,7 +74,7 @@ export class ColumnItemComponent implements OnChanges, OnDestroy {
     this.store.dispatch(SharedActions.openDialog({ data: dialogConfig }));
   }
 
-  protected openDialogForEdit(task: Task | null | undefined) {
+  openDialogForEdit(task: Task) {
     if (!task) return;
     const { _id, title } = task;
     const dialogConfig = this.sharedService.createConfigDialog({
@@ -72,11 +90,7 @@ export class ColumnItemComponent implements OnChanges, OnDestroy {
     this.store.dispatch(SharedActions.openDialog({ data: dialogConfig }));
   }
 
-  protected updateColumnForm: FormGroup = this.fb.group({
-    title: ['', [Validators.required, Validators.maxLength(50)]],
-  });
-
-  protected onSubmit(ngForm: FormGroupDirective) {
+  onSubmit(ngForm: FormGroupDirective) {
     const { title } = this.updateColumnForm.value;
     const { _id, boardId, order } = this.column!;
     this.store.dispatch(ColumnsActions.updateColumn({ column: { title, order, _id, boardId } }));
@@ -84,16 +98,12 @@ export class ColumnItemComponent implements OnChanges, OnDestroy {
     ngForm.resetForm();
   }
 
-  protected update() {
+  update() {
     this.formVisible = true;
     this.updateColumnForm.setValue({ title: this.column?.title });
   }
 
-  protected cancel() {
+  cancel() {
     this.formVisible = false;
-  }
-
-  ngOnDestroy(): void {
-    this.sub.unsubscribe();
   }
 }

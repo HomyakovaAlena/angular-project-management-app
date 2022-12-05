@@ -28,6 +28,23 @@ export const columnsReducer = createReducer(
     ...state,
     columns: [...state.columns.filter((column) => column._id !== columnId)],
   })),
+  on(ColumnsActions.changeColumnsOrderSuccess, (state, { columnsArray }) => ({
+    ...state,
+    columns: [
+      ...state.columns.map((column) => {
+        const columnFound = columnsArray.filter(
+          (filteredColumn) => filteredColumn._id === column._id,
+        );
+        if (columnFound.length) {
+          column = { ...column, order: columnFound[0].order };
+        }
+        return column;
+      }),
+    ],
+  })),
+  on(ColumnsActions.resetColumnsState, (state) => ({
+    ...initialState,
+  })),
 );
 
 export const getColumnsState = createFeatureSelector<ColumnsState>('columns');

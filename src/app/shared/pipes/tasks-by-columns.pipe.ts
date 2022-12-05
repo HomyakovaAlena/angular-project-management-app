@@ -4,7 +4,7 @@ import { Task } from 'src/app/tasks/models/tasks.model';
   name: 'tasksByColumns',
 })
 export class TasksByColumnsPipe implements PipeTransform {
-  transform(value: Task[] | null | undefined, columnId: string): Task[] | undefined {
-    return value?.filter((item) => item?.columnId === columnId);
+  transform(value: Task[], columnId: string): Task[] {
+    return value.filter((item) => item?.columnId === columnId);
   }
 }

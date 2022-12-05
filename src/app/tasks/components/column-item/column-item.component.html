@@ -1,5 +1,6 @@
 <div *ngIf="column" id="{{ column._id }}" class="column-wrapper">
-  <mat-card [class]="'column-item'">
+  <ng-container *ngIf="taskSubscription$ | async"></ng-container>
+  <mat-card class="column-item">
     <div class="card-container__inner__heading" *ngIf="!formVisible" (click)="update()">
       {{ column.title }}
     </div>

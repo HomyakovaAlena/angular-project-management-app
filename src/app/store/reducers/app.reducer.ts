@@ -1,11 +1,9 @@
 import {
-  Action,
   ActionReducer,
   createFeatureSelector,
   createReducer,
   createSelector,
   on,
-  State,
 } from '@ngrx/store';
 import * as appActions from '../actions/app.actions';
 

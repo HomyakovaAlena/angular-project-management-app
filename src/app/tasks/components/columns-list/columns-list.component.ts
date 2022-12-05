@@ -12,9 +12,9 @@ import { ColumnService } from '../../services/column.service';
   styleUrls: ['./columns-list.component.scss'],
 })
 export class ColumnsListComponent implements OnInit {
-  @Input() public columnsList: Column[] | null | undefined = [];
-  @Input() public board: Board | null | undefined = null;
-  @Output() protected deleteColumn = new EventEmitter<Column | null>();
+  @Input() public columnsList!: Column[];
+  @Input() public board!: Board;
+  @Output() deleteColumn = new EventEmitter<Column>();
 
   constructor(
     private store: Store<fromColumns.ColumnsState>,
@@ -23,11 +23,11 @@ export class ColumnsListComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  protected onDelete(column: Column | null | undefined) {
+  onDelete(column: Column) {
     this.deleteColumn.emit(column);
   }
 
-  protected drop(event: CdkDragDrop<string[]>) {
+  drop(event: CdkDragDrop<string[]>) {
     if (!this.columnsList) return;
     if (event.previousIndex === event.currentIndex) return;
     const { draggedItemId, newOrder } = this.columnService.defineColumnOrder(

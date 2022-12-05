@@ -1,4 +1,10 @@
-<mat-card class="card-container" *ngIf="board" [routerLink]="['/boards', board._id]">
+<mat-card
+  matRipple
+  [matRippleCentered]="true"
+  class="card-container"
+  *ngIf="board"
+  [routerLink]="['/boards', board._id]"
+>
   <div class="card-container__inner">
     <mat-card-title class="card-container__inner__heading" *ngIf="!formVisible">{{
       board.title
@@ -30,13 +36,7 @@
     </form>
   </div>
 
-  <mat-card-content
-    matRipple
-    [matRippleCentered]="true"
-    class="ripple-container"
-    *ngIf="board"
-    [routerLink]="['/boards', board._id]"
-  >
+  <mat-card-content class="ripple-container" *ngIf="board" [routerLink]="['/boards', board._id]">
     <mat-chip-list aria-label="Owner" class="full_width">
       <div class="hidden-overflow">
         <ng-container i18n>Owner:</ng-container>

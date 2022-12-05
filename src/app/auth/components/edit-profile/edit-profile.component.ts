@@ -8,6 +8,6 @@ import { AuthFacade } from '../../store/auth.facade';
 })
 export class EditProfileComponent implements OnInit {
   constructor(private authFacade: AuthFacade) {}
-  protected user$ = this.authFacade.user$;
+  user$ = this.authFacade.user$;
   ngOnInit(): void {}
 }

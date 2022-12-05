@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import * as fromBoards from '../../store/reducers/boards.reducer';
-import * as fromUsers from '../../../users/store/reducers/users.reducer';
-import * as BoardsActions from '../../store/actions/boards.actions';
 import { Store } from '@ngrx/store';
+import * as fromBoards from '../../store/reducers/boards.reducer';
+import * as BoardsActions from '../../store/actions/boards.actions';
 import * as SharedActions from '../../../shared/store/actions/shared.actions';
 import { SharedService } from 'src/app/shared/services/shared.service';
-import { AuthFacade } from 'src/app/auth/store/auth.facade';
 import { Board } from '../../models/board.model';
+import { User } from 'src/app/auth/models/user.model';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-boards-page',
@@ -14,23 +14,22 @@ import { Board } from '../../models/board.model';
   styleUrls: ['./boards-page.component.scss'],
 })
 export class BoardsPageComponent implements OnInit {
-  protected boardsList$ = this.store.select(fromBoards.getBoards);
-  protected user$ = this.authFacade.user$;
-  protected usersList$ = this.store.select(fromUsers.getUsers);
+  user!: User;
+  boardsList$ = this.store.select(fromBoards.getBoards);
 
   constructor(
     private store: Store<fromBoards.BoardsState>,
     private sharedService: SharedService,
-    private authFacade: AuthFacade,
+    private activatedroute: ActivatedRoute,
   ) {}
 
   ngOnInit(): void {
-    this.user$.subscribe((user) => {
-      if (user) this.store.dispatch(BoardsActions.loadBoards({ userId: user?._id }));
-    });
+    this.user = this.activatedroute.snapshot.data['user'];
+    const userId = this.user._id as string;
+    this.store.dispatch(BoardsActions.loadBoards({ userId }));
   }
 
-  protected openDialog(board: Board | null | undefined): void {
+  openDialog(board: Board): void {
     if (!board) return;
     const { _id, title } = board;
     const dialogConfig = this.sharedService.createConfigDialog({

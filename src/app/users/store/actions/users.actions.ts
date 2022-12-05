@@ -11,4 +11,3 @@ export const loadUsersFailed = createAction(
   '[Users] Get Users Failed',
   props<{ error: HttpErrorResponse }>(),
 );
-

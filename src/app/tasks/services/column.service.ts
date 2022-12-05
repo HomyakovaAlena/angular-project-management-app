@@ -13,12 +13,12 @@ export class ColumnService {
 
   constructor(private httpClient: HttpClient) {}
 
-  public getColumns(boardId: string | undefined): Observable<Column[]> {
+  public getColumns(boardId: string): Observable<Column[]> {
     const url = `${this.boardsUrl}/${boardId}/${this.url}`;
     return this.httpClient.get<Column[]>(url);
   }
 
-  public getColumnById(boardId: string | undefined, columnId: string): Observable<Column> {
+  public getColumnById(boardId: string, columnId: string): Observable<Column> {
     const url = `${this.boardsUrl}/${boardId}/${this.url}/${columnId}`;
     return this.httpClient.get<Column>(url);
   }
@@ -38,7 +38,7 @@ export class ColumnService {
     });
   }
 
-  public deleteColumn(boardId: string | undefined, columnId: string): Observable<Column> {
+  public deleteColumn(boardId: string, columnId: string): Observable<Column> {
     const url = `${this.boardsUrl}/${boardId}/${this.url}/${columnId}`;
     return this.httpClient.delete<Column>(url);
   }
@@ -64,9 +64,9 @@ export class ColumnService {
       afterTo < columnsList.length ? columnsList[afterTo].order : toOrder + orderStep;
 
     if (from > to) {
-      newOrder = ((beforeToOrder + toOrder) / 2);
+      newOrder = (beforeToOrder + toOrder) / 2;
     } else {
-      newOrder = ((afterToOrder + toOrder) / 2);
+      newOrder = (afterToOrder + toOrder) / 2;
     }
 
     const draggedItemId = columnsList[from]._id as string;

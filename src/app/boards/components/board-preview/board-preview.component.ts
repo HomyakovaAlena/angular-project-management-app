@@ -11,23 +11,28 @@ import { Store } from '@ngrx/store';
   styleUrls: ['./board-preview.component.scss'],
 })
 export class BoardPreviewComponent implements OnInit {
-  @Input() public board: Board | null | undefined = null;
-  @Output() protected deleteBoard = new EventEmitter<Board | null>();
-  protected formVisible: boolean = false;
+  @Input() public board!: Board;
+  @Output() deleteBoard = new EventEmitter<Board>();
+  formVisible: boolean = false;
+  updateBoardForm!: FormGroup;
 
-  protected updateBoardForm: FormGroup = this.fb.group({
-    title: ['', [Validators.required, Validators.maxLength(50)]],
-  });
+  initForm() {
+    this.updateBoardForm = this.fb.group({
+      title: ['', [Validators.required, Validators.maxLength(50)]],
+    });
+  }
 
   constructor(private fb: FormBuilder, private store: Store<fromBoards.BoardsState>) {}
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.initForm();
+  }
 
-  protected onDelete(event: MouseEvent): void {
+  onDelete(event: MouseEvent): void {
     event.stopPropagation();
     this.deleteBoard.emit(this.board);
   }
 
-  protected onSubmit(ngForm: FormGroupDirective): void {
+  onSubmit(ngForm: FormGroupDirective): void {
     const { title } = this.updateBoardForm.value;
     const { owner, users, _id } = this.board! as Board;
     this.store.dispatch(BoardsActions.updateBoard({ board: { title, owner, users, _id } }));
@@ -35,18 +40,18 @@ export class BoardPreviewComponent implements OnInit {
     ngForm.resetForm();
   }
 
-  protected update(event: MouseEvent): void {
+  update(event: MouseEvent): void {
     event.stopPropagation();
     this.formVisible = true;
     this.updateBoardForm.setValue({ title: this.board?.title });
   }
 
-  protected cancel(event: MouseEvent): void {
+  cancel(event: MouseEvent): void {
     event.stopPropagation();
     this.formVisible = false;
   }
 
-  protected onClick(event: MouseEvent): void {
+  onClick(event: MouseEvent): void {
     event.stopPropagation();
   }
 }

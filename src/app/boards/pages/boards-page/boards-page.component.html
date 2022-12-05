@@ -1,6 +1,4 @@
 <app-boards-list
-  [user]="user$ | async"
-  [users]="usersList$ | async"
-  [boardsList]="boardsList$ | async"
   (deleteBoard)="openDialog($event)"
+  [boardsList]="boardsList$ | async"
 ></app-boards-list>

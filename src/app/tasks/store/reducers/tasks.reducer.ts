@@ -33,6 +33,21 @@ export const tasksReducer = createReducer(
     ...state,
     selectedTask: task,
   })),
+  on(TasksActions.changeTasksOrderSuccess, (state, { tasksArray }) => ({
+    ...state,
+    tasks: [
+      ...state.tasks.map((task) => {
+        const taskFound = tasksArray.filter((filteredTask) => filteredTask._id === task._id);
+        if (taskFound.length) {
+          task = { ...task, order: taskFound[0].order, columnId: taskFound[0].columnId };
+        }
+        return task;
+      }),
+    ],
+  })),
+  on(TasksActions.resetTasksState, (state) => ({
+    ...initialState,
+  })),
 );
 
 export const getTasksState = createFeatureSelector<TasksState>('tasks');

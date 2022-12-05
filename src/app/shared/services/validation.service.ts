@@ -7,7 +7,7 @@ import { FormControlsErrorsMessageMap } from '../constants/validation.constants'
 })
 export class ValidationService {
   static getFormControlErrors(form: AbstractControl, formControlName: string) {
-    if (!form.get(formControlName)?.errors) return;
+    if (!form.get(formControlName)?.errors) return [];
     const validationErrors = form.get(formControlName)?.errors as ValidationErrors;
     const errorsArray = Object.keys(validationErrors);
     const errorMessageType =

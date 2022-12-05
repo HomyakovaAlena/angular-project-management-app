@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormGroupDirective } from '@angular/forms';
 import { Validators } from '@angular/forms';
 import { ValidationService } from 'src/app/shared/services/validation.service';
@@ -9,56 +9,63 @@ import { AuthFacade } from '../../store/auth.facade';
   templateUrl: './signup-form.component.html',
   styleUrls: ['./signup-form.component.scss'],
 })
-export class SignupFormComponent {
-  protected nameErrors: string[] | undefined = [];
-  protected loginErrors: string[] | undefined = [];
-  protected passwordErrors: string[] | undefined = [];
+export class SignupFormComponent implements OnInit {
+  nameErrors: string[] = [];
+  loginErrors: string[] = [];
+  passwordErrors: string[] = [];
+  signupForm!: FormGroup;
 
-  protected signupForm: FormGroup = this.fb.group({
-    name: [
-      '',
-      [
-        Validators.required,
-        Validators.minLength(2),
-        Validators.maxLength(20),
-        Validators.pattern('^[a-zA-Z][a-zA-Z0-9-_.]{1,20}$'),
+  private initForm() {
+    this.signupForm = this.fb.group({
+      name: [
+        '',
+        [
+          Validators.required,
+          Validators.minLength(2),
+          Validators.maxLength(20),
+          Validators.pattern('^[a-zA-Z][a-zA-Z0-9-_.]{1,20}$'),
+        ],
       ],
-    ],
-    login: [
-      '',
-      [
-        Validators.required,
-        Validators.minLength(2),
-        Validators.maxLength(20),
-        Validators.pattern('^[a-zA-Z][a-zA-Z0-9-_.]{1,20}$'),
+      login: [
+        '',
+        [
+          Validators.required,
+          Validators.minLength(2),
+          Validators.maxLength(20),
+          Validators.pattern('^[a-zA-Z][a-zA-Z0-9-_.]{1,20}$'),
+        ],
       ],
-    ],
-    password: [
-      '',
-      [
-        Validators.required,
-        Validators.minLength(8),
-        Validators.maxLength(20),
-        Validators.pattern('^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,20}$'),
+      password: [
+        '',
+        [
+          Validators.required,
+          Validators.minLength(8),
+          Validators.maxLength(20),
+          Validators.pattern('^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,20}$'),
+        ],
       ],
-    ],
-  });
+    });
+  }
 
   constructor(private fb: FormBuilder, private authFacade: AuthFacade) {}
 
-  protected getNameErrorMessage(): void {
+  ngOnInit(): void {
+    this.initForm();
+  }
+
+  getNameErrorMessage(): void {
     this.nameErrors = ValidationService.getFormControlErrors(this.signupForm, 'name');
   }
 
-  protected getLoginErrorMessage(): void {
+  getLoginErrorMessage(): void {
     this.loginErrors = ValidationService.getFormControlErrors(this.signupForm, 'login');
   }
 
-  protected getPasswordErrorMessage(): void {
+  getPasswordErrorMessage(): void {
     this.passwordErrors = ValidationService.getFormControlErrors(this.signupForm, 'password');
   }
 
-  protected onSubmit(ngForm: FormGroupDirective): void {
+  onSubmit(ngForm: FormGroupDirective): void {
     const { name, login, password } = this.signupForm.value;
     this.authFacade.signup(name, login, password);
     this.signupForm.reset();

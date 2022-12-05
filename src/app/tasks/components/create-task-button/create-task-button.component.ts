@@ -11,13 +11,13 @@ import * as SharedActions from '../../../shared/store/actions/shared.actions';
   styleUrls: ['./create-task-button.component.scss'],
 })
 export class CreateTaskButtonComponent implements OnInit {
-  @Input() public column: Column | null | undefined = null;
-  @Input() public board: Board | null | undefined = null;
+  @Input() public column!: Column;
+  @Input() public board!: Board;
   constructor(private sharedService: SharedService, private store: Store) {}
 
   ngOnInit(): void {}
 
-  protected openDialog(): void {
+  openDialog(): void {
     const dialogConfig = this.sharedService.createConfigDialog({
       name: 'createTask',
       title: $localize`Creating task...`,

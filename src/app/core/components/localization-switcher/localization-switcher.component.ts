@@ -16,12 +16,12 @@ export class LocalizationSwitcherComponent {
     ? 'ru'
     : 'en';
 
-  protected locales: Locales[] = [
+  locales: Locales[] = [
     { code: 'en', name: 'EN' },
     { code: 'ru', name: 'RU' },
   ];
 
-  protected selected(event: MatSelectChange) {
+  selected(event: MatSelectChange) {
     const code = this.selectedLocale;
     location.replace(`/angular-project-management-app/${code}/`);
   }

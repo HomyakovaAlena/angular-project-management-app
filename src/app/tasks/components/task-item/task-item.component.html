@@ -1,4 +1,4 @@
-<mat-card *ngIf="task" class="task-item" (click)="onEdit()">
+<mat-card matRipple [matRippleCentered]="true" *ngIf="task" class="task-item" (click)="onEdit()">
   <div class="task-item__header">
     <h3
       i18n-matTooltip

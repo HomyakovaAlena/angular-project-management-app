@@ -1,4 +1,4 @@
-<mat-card class="card-container" *ngIf="board$ | async as board">
+<mat-card class="card-container" *ngIf="board">
   <mat-card-title class="card-container__inner" class="card-container__inner__heading">{{
     board.title
   }}</mat-card-title>
@@ -48,16 +48,10 @@
     </mat-chip-list>
   </mat-card-content>
   <mat-card-actions>
-    <button
-      mat-flat-button
-      *ngIf="board$ | async as board"
-      type="button"
-      (click)="gotoBoards()"
-      color="primary"
-    >
+    <button mat-flat-button *ngIf="board" type="button" (click)="gotoBoards()" color="primary">
       <mat-icon>arrow_back_ios</mat-icon>
       <ng-container i18n>Back to Boards</ng-container>
     </button>
   </mat-card-actions>
 </mat-card>
-<app-board-item-page *ngIf="board$ | async as board" [board]="board"></app-board-item-page>
+<app-board-item-page *ngIf="board" [board]="board"></app-board-item-page>

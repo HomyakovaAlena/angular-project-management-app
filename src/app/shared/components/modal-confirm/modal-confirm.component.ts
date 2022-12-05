@@ -16,11 +16,11 @@ export class ModalConfirmComponent {
     @Inject(MAT_DIALOG_DATA) public configDialog: ModalData,
   ) {}
 
-  protected actionFunction(): void {
+  actionFunction(): void {
     this.store.dispatch(SharedActions.confirmDialog({ data: this.configDialog }));
   }
 
-  protected closeModal(): void {
+  closeModal(): void {
     this.dialogRef.close();
   }
 }

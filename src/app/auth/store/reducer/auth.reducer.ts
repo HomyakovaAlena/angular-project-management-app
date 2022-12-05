@@ -1,8 +1,6 @@
 import { Action, createReducer, on } from '@ngrx/store';
 import * as AuthActions from '../actions/auth.actions';
 import { AuthState } from '../../models/user.model';
-import { BoardsState } from 'src/app/boards/store/reducers/boards.reducer';
-import { state } from '@angular/animations';
 export const AUTH_FEATURE_KEY = 'auth';
 
 export interface AuthPartialState {
@@ -84,6 +82,6 @@ const reducer = createReducer(
   ),
 );
 
-export function authReducer(state: AuthState | undefined, action: Action): AuthState {
+export function authReducer(state: AuthState, action: Action): AuthState {
   return reducer(state, action);
 }

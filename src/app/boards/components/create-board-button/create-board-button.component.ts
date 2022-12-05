@@ -10,7 +10,7 @@ import { AuthFacade } from 'src/app/auth/store/auth.facade';
   styleUrls: ['./create-board-button.component.scss'],
 })
 export class CreateBoardButtonComponent implements OnInit {
-  protected isLoggedIn$ = this.authFacade.isLoggedIn$;
+  isLoggedIn$ = this.authFacade.isLoggedIn$;
   constructor(
     private sharedService: SharedService,
     private store: Store<fromBoards.BoardsState>,
@@ -18,7 +18,7 @@ export class CreateBoardButtonComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {}
-  protected openDialog(): void {
+  openDialog(): void {
     const dialogConfig = this.sharedService.createConfigDialog({
       name: `createBoard`,
       title: $localize`Creating board...`,

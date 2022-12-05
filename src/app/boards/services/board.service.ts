@@ -11,7 +11,7 @@ export class BoardService {
 
   constructor(private httpClient: HttpClient) {}
 
-  public getBoards(userId: string | undefined): Observable<Board[]> {
+  public getBoards(userId: string): Observable<Board[]> {
     return this.httpClient.get<Board[]>(`${this.url}Set/${userId}`);
   }
 

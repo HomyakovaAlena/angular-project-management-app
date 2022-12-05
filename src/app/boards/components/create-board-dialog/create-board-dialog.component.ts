@@ -12,6 +12,7 @@ import * as fromUsers from '../../../users/store/reducers/users.reducer';
 import * as UsersActions from '../../../users/store/actions/users.actions';
 import { AuthFacade } from 'src/app/auth/store/auth.facade';
 import { ValidationService } from 'src/app/shared/services/validation.service';
+import { tap } from 'rxjs';
 
 @Component({
   selector: 'app-create-board-dialog',
@@ -19,17 +20,20 @@ import { ValidationService } from 'src/app/shared/services/validation.service';
   styleUrls: ['./create-board-dialog.component.scss'],
 })
 export class CreateBoardDialogComponent implements OnInit {
-  @Output() protected createBoard = new EventEmitter<Board>();
-  protected user$ = this.authFacade.user$;
-  private owner: string | undefined = '';
+  @Output() createBoard = new EventEmitter<Board>();
+  user$ = this.authFacade.user$;
+  private owner: string = '';
   private selectedUsers: User[] = [];
-  protected titleErrors: string[] | undefined = [];
-  protected title: string | undefined = 'Canban Board #1';
+  titleErrors: string[] = [];
+  title: string = 'Canban Board #1';
+  createBoardForm!: FormGroup;
 
-  createBoardForm: FormGroup = this.fb.group({
-    title: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(20)]],
-    users: [''],
-  });
+  initForm() {
+    this.createBoardForm = this.fb.group({
+      title: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(20)]],
+      users: [''],
+    });
+  }
 
   constructor(
     private fb: FormBuilder,
@@ -41,25 +45,37 @@ export class CreateBoardDialogComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.initForm();
     this.setValue();
   }
 
-  protected setValue(): void {
+  setValue(): void {
     this.createBoardForm.patchValue({
       title: this.title,
     });
   }
 
-  protected getTitleErrorMessage(): void {
+  getTitleErrorMessage(): void {
     this.titleErrors = ValidationService.getFormControlErrors(this.createBoardForm, 'title');
   }
 
   private getOwner(): void {
     this.usersStore.dispatch(UsersActions.loadUsers());
-    this.user$.subscribe((user) => (this.owner = user?._id));
+    this.user$
+      .pipe(
+        tap((user) => {
+          if (!user) return;
+          this.owner = user._id as string;
+        }),
+      )
+      .subscribe();
   }
 
-  protected onSubmit(ngForm: FormGroupDirective): void {
+  selected(eventData: { selectedUsers: User[] }): void {
+    this.selectedUsers = eventData.selectedUsers;
+  }
+
+  onSubmit(ngForm: FormGroupDirective): void {
     this.getOwner();
     const { title } = this.createBoardForm.value;
     const owner = this.owner as string;
@@ -69,11 +85,7 @@ export class CreateBoardDialogComponent implements OnInit {
     ngForm.resetForm();
   }
 
-  protected closeModal(): void {
+  closeModal(): void {
     this.dialogRef.close();
-  }
-
-  protected selected(eventData: { selectedUsers: User[] }): void {
-    this.selectedUsers = eventData.selectedUsers;
   }
 }

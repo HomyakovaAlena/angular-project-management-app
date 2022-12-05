@@ -8,26 +8,26 @@ import { Task, Column } from '../../models/tasks.model';
   styleUrls: ['./task-item.component.scss'],
 })
 export class TaskItemComponent implements OnInit {
-  @Input() public tasksList: Task[] | null | undefined = null;
-  @Input() public task: Task | null | undefined = null;
-  @Input() public column: Column | null | undefined = null;
-  @Input() public board: Board | null | undefined = null;
-  @Output() protected deleteTask = new EventEmitter<Task | null>();
-  @Output() protected editTask = new EventEmitter<Task | null>();
+  @Input() public tasksList!: Task[];
+  @Input() public task!: Task;
+  @Input() public column!: Column;
+  @Input() public board!: Board;
+  @Output() deleteTask = new EventEmitter<Task>();
+  @Output() editTask = new EventEmitter<Task>();
 
   constructor() {}
   ngOnInit(): void {}
 
-  protected onDelete(event: Event): void {
+  onDelete(event: Event): void {
     event.stopImmediatePropagation();
     this.deleteTask.emit(this.task);
   }
 
-  protected onEdit(): void {
+  onEdit(): void {
     this.editTask.emit(this.task);
   }
 
-  protected showMore(event: MouseEvent): void {
+  showMore(event: MouseEvent): void {
     event.stopPropagation();
   }
 }

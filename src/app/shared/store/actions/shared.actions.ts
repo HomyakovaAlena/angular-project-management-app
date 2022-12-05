@@ -4,11 +4,11 @@ import { ModalData } from '../../models/shared.model';
 
 export const openDialog = createAction(
   '[Confirmation Dialog] Open Confirmation Dialog ',
-  props<{ data?: MatDialogConfig<ModalData> | null | undefined }>(),
+  props<{ data: MatDialogConfig<ModalData> }>(),
 );
 export const confirmDialog = createAction(
   '[Confirmation Dialog] Confirm Action in Dialog ',
-  props<{ data?: ModalData | undefined | null }>(),
+  props<{ data: ModalData }>(),
 );
 export const confirmDialogSuccess = createAction('[Confirmation Dialog] Confirm Action in Dialog ');
 export const confirmDialogFailed = createAction(

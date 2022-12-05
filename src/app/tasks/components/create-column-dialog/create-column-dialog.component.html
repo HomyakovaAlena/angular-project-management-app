@@ -1,4 +1,5 @@
 <h2 mat-dialog-title>{{ configDialog.title }}</h2>
+<ng-container *ngIf="columnsList$ | async"></ng-container>
 
 <form (ngSubmit)="onSubmit(ngForm)" #ngForm="ngForm" [formGroup]="createColumnForm">
   <h5 class="description">{{ configDialog.description }}</h5>
@@ -40,7 +41,7 @@
       mat-stroked-button
       color="primary"
       aria-label="icon button with icon"
-      [class]="'button'"
+      class="button"
       ariaCurrentWhenActive="page"
       type="submit"
       [disabled]="!createColumnForm.valid"

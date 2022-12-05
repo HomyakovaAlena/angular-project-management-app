@@ -14,16 +14,12 @@ export class TaskService {
 
   constructor(private httpClient: HttpClient) {}
 
-  public getTasks(boardId: string | undefined): Observable<Task[]> {
+  public getTasks(boardId: string): Observable<Task[]> {
     const url = `${this.url}Set/${boardId}`;
     return this.httpClient.get<Task[]>(url);
   }
 
-  public getTaskById(
-    boardId: string | undefined,
-    columnId: string | undefined,
-    taskId: string | undefined,
-  ): Observable<Task> {
+  public getTaskById(boardId: string, columnId: string, taskId: string): Observable<Task> {
     const url = `${this.boardsUrl}/${boardId}/${this.columnsUrl}/${columnId}/${this.url}/${taskId}`;
     return this.httpClient.get<Task>(url);
   }
@@ -47,7 +43,7 @@ export class TaskService {
     });
   }
 
-  public deleteTask(boardId: string | undefined, columnId: string, taskId: string) {
+  public deleteTask(boardId: string, columnId: string, taskId: string) {
     const url = `${this.boardsUrl}/${boardId}/${this.columnsUrl}/${columnId}/${this.url}/${taskId}`;
     return this.httpClient.delete<Task>(url);
   }
@@ -72,12 +68,12 @@ export class TaskService {
 
     if (event.previousContainer === event.container) {
       if (from > to) {
-        newOrder = ((beforeToOrder + toOrder) / 2);
+        newOrder = (beforeToOrder + toOrder) / 2;
       } else {
-        newOrder = ((afterToOrder + toOrder) / 2);
+        newOrder = (afterToOrder + toOrder) / 2;
       }
     } else {
-      newOrder = ((beforeToOrder + toOrder) / 2);
+      newOrder = (beforeToOrder + toOrder) / 2;
     }
     return { newOrder };
   }

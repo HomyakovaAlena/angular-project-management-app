@@ -6,6 +6,7 @@ import { Column } from '../../models/tasks.model';
 import { SharedService } from 'src/app/shared/services/shared.service';
 import * as SharedActions from '../../../shared/store/actions/shared.actions';
 import * as ColumnsActions from '../../store/actions/columns.actions';
+import { Observable, tap } from 'rxjs';
 
 @Component({
   selector: 'app-board-item-page',
@@ -13,9 +14,10 @@ import * as ColumnsActions from '../../store/actions/columns.actions';
   styleUrls: ['./board-item-page.component.scss'],
 })
 export class BoardItemPageComponent implements OnChanges {
-  @Input() public board: Board | null | undefined = null;
-  protected columnsList$ = this.store.select(fromColumns.getColumns);
-  protected sortedColumnsList: Column[] = [];
+  @Input() public board!: Board;
+  columnsList$ = this.store.select(fromColumns.getColumns);
+  sortedColumnsList: Column[] = [];
+  columnsSubscription$!: Observable<Column[]>;
 
   constructor(
     private store: Store<fromColumns.ColumnsState>,
@@ -23,13 +25,19 @@ export class BoardItemPageComponent implements OnChanges {
   ) {}
 
   ngOnChanges(): void {
-    this.store.dispatch(ColumnsActions.loadColumns({ boardId: this.board?._id }));
-    this.columnsList$.subscribe((columnsList) => {
-      this.sortedColumnsList = [...columnsList].sort((a: Column, b: Column) => a.order - b.order);
-    });
+    this.store.dispatch(ColumnsActions.loadColumns({ boardId: this.board._id as string }));
+    this.sortColumns();
   }
 
-  protected openDialog(column: Column | null | undefined): void {
+  sortColumns() {
+    this.columnsSubscription$ = this.columnsList$.pipe(
+      tap((columnsList) => {
+        this.sortedColumnsList = [...columnsList].sort((a: Column, b: Column) => a.order - b.order);
+      }),
+    );
+  }
+
+  openDialog(column: Column): void {
     if (!column) return;
     const { _id, title } = column;
     const dialogConfig = this.sharedService.createConfigDialog({

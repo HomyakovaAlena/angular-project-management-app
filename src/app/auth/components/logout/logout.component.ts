@@ -11,7 +11,7 @@ export class LogoutComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  protected logout(): void {
+  logout(): void {
     this.authFacade.logout();
   }
 }

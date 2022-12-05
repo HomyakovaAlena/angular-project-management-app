@@ -24,16 +24,15 @@ import * as SharedActions from '../../../shared/store/actions/shared.actions';
 export class UsersSearchComponent implements OnInit {
   @Input() public parentGroup!: FormGroup;
   @Input() public controlName!: string;
-  @Input() public boardUsersIds!: string | undefined;
-  @Output() protected selectedUsersIdsFromChild = new EventEmitter<{
+  @Output() selectedUsersIdsFromChild = new EventEmitter<{
     selectedUsers: User[];
   }>();
-  protected users$!: Observable<User[]>;
+  users$!: Observable<User[]>;
   private searchTerms = new Subject<string>();
-  protected addOnBlur = true;
+  addOnBlur = true;
   readonly separatorKeysCodes = [ENTER, COMMA] as const;
-  protected selectedUsers: User[] = [];
-  protected user!: User;
+  selectedUsers: User[] = [];
+  user!: User;
 
   @ViewChild('usersInput') usersInput!: ElementRef<HTMLInputElement>;
 
@@ -48,18 +47,18 @@ export class UsersSearchComponent implements OnInit {
     );
   }
 
-  protected search(term: string): void {
+  search(term: string): void {
     this.searchTerms.next(term);
   }
 
-  protected remove(selectedUser: User): void {
+  remove(selectedUser: User): void {
     const index = this.selectedUsers.indexOf(selectedUser);
     if (index >= 0) {
       this.selectedUsers.splice(index, 1);
     }
   }
 
-  protected select(user: User): void {
+  select(user: User): void {
     if (!this.selectedUsers.some((selectedUser) => selectedUser._id === user._id)) {
       this.selectedUsers.push(user);
     } else {
@@ -78,7 +77,7 @@ export class UsersSearchComponent implements OnInit {
     this.ngOnInit();
   }
 
-  protected drop(event: CdkDragDrop<string[]>): void {
+  drop(event: CdkDragDrop<string[]>): void {
     moveItemInArray(this.selectedUsers, event.previousIndex, event.currentIndex);
   }
 }

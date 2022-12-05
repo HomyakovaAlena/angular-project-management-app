@@ -13,27 +13,27 @@ import { TaskService } from '../../services/task.service';
   styleUrls: ['./tasks-list.component.scss'],
 })
 export class TasksListComponent implements OnChanges {
-  @Input() public tasksList: Task[] | null | undefined = null;
-  @Input() public column: Column | null | undefined = null;
-  @Input() public board: Board | null | undefined = null;
-  @Output() protected deleteTask = new EventEmitter<Task | null>();
-  @Output() protected editTask = new EventEmitter<Task | null>();
+  @Input() public tasksList!: Task[];
+  @Input() public column!: Column;
+  @Input() public board!: Board;
+  @Output() deleteTask = new EventEmitter<Task>();
+  @Output() editTask = new EventEmitter<Task>();
 
   constructor(private store: Store<fromTasks.TasksState>, private taskService: TaskService) {}
 
   ngOnChanges(): void {
-    this.tasksList = this.tasksList?.length ? this.tasksList : [];
+    this.tasksList = this.tasksList.length ? this.tasksList : [];
   }
 
-  protected onDelete(task: Task | null | undefined): void {
+  onDelete(task: Task): void {
     this.deleteTask.emit(task);
   }
 
-  protected onEdit(task: Task | null | undefined): void {
+  onEdit(task: Task): void {
     this.editTask.emit(task);
   }
 
-  protected drop(event: CdkDragDrop<Task[]>): void {
+  drop(event: CdkDragDrop<Task[]>): void {
     if (!this.tasksList) return;
     const { newOrder } = this.taskService.defineTaskOrder(this.tasksList, event);
     const draggedItemId = event.previousContainer.data[event.previousIndex]._id as string;

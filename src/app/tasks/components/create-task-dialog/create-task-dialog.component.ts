@@ -3,15 +3,16 @@ import { FormBuilder, FormGroup, FormGroupDirective } from '@angular/forms';
 import { Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Store } from '@ngrx/store';
-import { Subscription } from 'rxjs';
+import { Observable, Subscription, tap } from 'rxjs';
 import { ModalData } from 'src/app/shared/models/shared.model';
 import { User } from 'src/app/auth/models/user.model';
-import * as fromTasks from '../..//store/reducers/tasks.reducer';
+import * as fromTasks from '../../store/reducers/tasks.reducer';
 import * as TasksActions from '../../store/actions/tasks.actions';
 import * as fromUsers from '../../../users/store/reducers/users.reducer';
 import * as UsersActions from '../../../users/store/actions/users.actions';
 import { AuthFacade } from 'src/app/auth/store/auth.facade';
 import { ValidationService } from 'src/app/shared/services/validation.service';
+import { Task } from 'src/app/tasks/models/tasks.model';
 
 @Component({
   selector: 'app-create-task-dialog',
@@ -19,30 +20,31 @@ import { ValidationService } from 'src/app/shared/services/validation.service';
   styleUrls: ['./create-task-dialog.component.scss'],
 })
 export class CreateTaskDialogComponent implements OnInit, OnDestroy {
-  private readonly orderStep = 65536;
+  private orderStep = 65536;
   private orders: number[] = [];
+  title: string = '';
+  description: string = '';
 
-  protected title: string | undefined | null = '';
-  protected description: string | undefined | null = '';
+  userId: string = '';
+  selectedUsers: User[] = [];
+  user$ = this.authFacade.user$;
+  usersList$ = this.store.select(fromUsers.getUsers);
+  tasksList$ = this.store.select(fromTasks.getTasks);
+  selectedTask$ = this.store.select(fromTasks.getTaskById);
+  taskSubscription$!: Observable<Task | undefined>;
+  tasksListSubscription!: Subscription;
 
-  protected userId: string | undefined = '';
-  protected selectedUsers: User[] = [];
-  protected user$ = this.authFacade.user$;
-  protected usersList$ = this.store.select(fromUsers.getUsers);
-  protected tasksList$ = this.store.select(fromTasks.getTasks);
-  protected selectedTask$ = this.store.select(fromTasks.getTaskById);
+  titleErrors: string[] = [];
+  descriptionErrors: string[] = [];
+  createTaskForm!: FormGroup;
 
-  protected titleErrors: string[] | undefined = [];
-  protected descriptionErrors: string[] | undefined = [];
-
-  private subscription1!: Subscription;
-  private subscription2!: Subscription;
-
-  protected createTaskForm: FormGroup = this.fb.group({
-    title: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(20)]],
-    description: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
-    users: [''],
-  });
+  initForm() {
+    this.createTaskForm = this.fb.group({
+      title: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(20)]],
+      description: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
+      users: [''],
+    });
+  }
 
   constructor(
     private fb: FormBuilder,
@@ -54,18 +56,22 @@ export class CreateTaskDialogComponent implements OnInit, OnDestroy {
   ) {}
 
   initTaskEditing() {
+    if (!this.configDialog.parameters || !this.configDialog.itemId) return;
     this.store.dispatch(
       TasksActions.getTaskById({
-        boardId: this.configDialog.parameters?.boardId,
-        columnId: this.configDialog.parameters?.columnId,
+        boardId: this.configDialog.parameters.boardId as string,
+        columnId: this.configDialog.parameters.columnId as string,
         taskId: this.configDialog.itemId,
       }),
     );
-    this.subscription2 = this.selectedTask$.subscribe((task) => {
-      this.title = task?.title;
-      this.description = task?.description;
-      this.setValue();
-    });
+    this.taskSubscription$ = this.selectedTask$.pipe(
+      tap((task) => {
+        if (!task) return;
+        this.title = task.title;
+        this.description = task.description;
+        this.setValue();
+      }),
+    );
   }
 
   initTaskCreation() {
@@ -75,37 +81,47 @@ export class CreateTaskDialogComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+    this.initForm();
     if (this.configDialog.itemId) {
       this.initTaskEditing();
     } else {
       this.initTaskCreation();
     }
-    this.subscription1 = this.tasksList$.subscribe((tasks) => {
-      tasks.forEach((task) => {
-        if (task.columnId === this.configDialog.parameters?.columnId) this.orders.push(task.order);
-      });
-    });
+    this.getOrders();
   }
 
-  protected setValue(): void {
+  setValue(): void {
     this.createTaskForm.patchValue({
       title: this.title,
       description: this.description,
     });
   }
 
-  protected getTitleErrorMessage(): void {
+  getOrders() {
+    this.tasksListSubscription = this.tasksList$
+      .pipe(
+        tap((tasks) => {
+          tasks.forEach((task) => {
+            if (task.columnId === this.configDialog.parameters?.columnId)
+              this.orders.push(task.order);
+          });
+        }),
+      )
+      .subscribe();
+  }
+
+  getTitleErrorMessage(): void {
     this.titleErrors = ValidationService.getFormControlErrors(this.createTaskForm, 'title');
   }
 
-  protected getDescriptionErrorMessage(): void {
+  getDescriptionErrorMessage(): void {
     this.descriptionErrors = ValidationService.getFormControlErrors(
       this.createTaskForm,
       'description',
     );
   }
 
-  protected onSubmit(ngForm: FormGroupDirective): void {
+  onSubmit(ngForm: FormGroupDirective): void {
     this.confirmAction();
     this.createTaskForm.reset();
     ngForm.resetForm();
@@ -118,14 +134,22 @@ export class CreateTaskDialogComponent implements OnInit, OnDestroy {
     const columnId = this.configDialog.parameters?.columnId as string;
 
     this.usersStore.dispatch(UsersActions.loadUsers());
-    this.user$.subscribe((user) => (this.userId = user?._id));
-    const userId = this.userId as string;
+    this.user$.subscribe((user) => (this.userId = user?._id as string));
     const users = this.selectedUsers.map((user) => user._id) as string[];
     const _id = this.configDialog.itemId;
-    return { title, description, order, boardId, columnId, userId, users, _id };
+    return {
+      title,
+      description,
+      order,
+      boardId,
+      columnId,
+      userId: this.userId as string,
+      users,
+      _id,
+    };
   }
 
-  protected confirmAction(): void {
+  confirmAction(): void {
     const { title, description, order, boardId, columnId, userId, users, _id } = this.getTaskData();
     const action = this.configDialog.name;
 
@@ -151,16 +175,15 @@ export class CreateTaskDialogComponent implements OnInit, OnDestroy {
         );
   }
 
-  protected selected(eventData: { selectedUsers: User[] }): void {
+  selected(eventData: { selectedUsers: User[] }): void {
     this.selectedUsers = eventData.selectedUsers;
   }
 
-  protected closeModal(): void {
+  closeModal(): void {
     this.dialogRef.close();
   }
 
   ngOnDestroy(): void {
-    if (this.subscription1) this.subscription1.unsubscribe();
-    if (this.subscription2) this.subscription2.unsubscribe();
+    if (this.tasksListSubscription) this.tasksListSubscription.unsubscribe();
   }
 }

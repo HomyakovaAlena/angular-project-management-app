@@ -1,10 +1,5 @@
 import { Injectable } from '@angular/core';
-import {
-  ActivatedRouteSnapshot,
-  CanActivate,
-  Router,
-  RouterStateSnapshot,
-} from '@angular/router';
+import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Observable, take, tap } from 'rxjs';
 import { selectIsLoggedIn } from '../store/selectors/auth.selectors';

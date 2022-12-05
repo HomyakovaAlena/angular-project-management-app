@@ -13,9 +13,9 @@ import * as SharedActions from '../../../shared/store/actions/shared.actions';
   encapsulation: ViewEncapsulation.None,
 })
 export class TasksSearchComponent implements OnInit {
-  protected tasks$!: Observable<Task[]>;
+  tasks$!: Observable<Task[]>;
   private searchTerms = new Subject<string>();
-  protected selectedTasks: Task[] = [];
+  selectedTasks: Task[] = [];
 
   @ViewChild('tasksInput') tasksInput!: ElementRef<HTMLInputElement>;
 
@@ -25,7 +25,7 @@ export class TasksSearchComponent implements OnInit {
     private sharedService: SharedService,
   ) {}
 
-  protected search(term: string): void {
+  search(term: string): void {
     this.searchTerms.next(term);
   }
 
@@ -40,7 +40,7 @@ export class TasksSearchComponent implements OnInit {
     if (searchMessage) searchMessage.textContent = '';
   }
 
-  protected selected(task: Task): void {
+  selected(task: Task): void {
     this.tasksInput.nativeElement.value = '';
     const searchMessage = document.getElementById('search-message') as HTMLElement;
     searchMessage.textContent = '';

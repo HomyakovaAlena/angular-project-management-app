@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
-
 import { ModalData } from '../models/shared.model';
 import * as BoardsActions from '../../boards/store/actions/boards.actions';
 import * as ColumnsActions from '../../tasks/store/actions/columns.actions';
@@ -23,7 +22,7 @@ export class SharedService {
     private store: Store,
   ) {}
 
-  public openDialog(configMatDialog: MatDialogConfig<ModalData> | null | undefined): void {
+  public openDialog(configMatDialog: MatDialogConfig<ModalData>): void {
     const dialogType = configMatDialog?.data?.name;
     const confirmComponent = ConfirmationComponentsMap[
       dialogType as keyof typeof ConfirmationComponentsMap
@@ -41,7 +40,7 @@ export class SharedService {
     return dialogConfig;
   }
 
-  public confirmDialogAction(data: ModalData | null | undefined): void {
+  public confirmDialogAction(data: ModalData): void {
     const action = data?.action;
     const id = data?.['itemId'] as string;
     const columnId = data?.parameters?.columnId as string;
@@ -50,19 +49,27 @@ export class SharedService {
   }
 
   private chooseConfirmationAction(
-    action: string | undefined,
-    id: string | undefined = '',
-    columnId: string | undefined = '',
-    boardId: string | undefined = '',
+    action: string,
+    id: string = '',
+    columnId: string = '',
+    boardId: string = '',
   ): void {
-    const confirmationActionMap = {
-      deleteUser: this.authFacade.deleteUser(id),
-      deleteBoard: this.store.dispatch(BoardsActions.deleteBoard({ id })),
-      deleteColumn: this.store.dispatch(ColumnsActions.deleteColumn({ boardId, columnId: id })),
-      deleteTask: this.store.dispatch(TasksActions.deleteTask({ boardId, columnId, taskId: id })),
-    };
-    const chosenAction = confirmationActionMap[action as keyof typeof confirmationActionMap];
-    return chosenAction;
+    switch (action) {
+      case 'deleteUser':
+        this.authFacade.deleteUser(id);
+        break;
+      case 'deleteBoard':
+        this.store.dispatch(BoardsActions.deleteBoard({ id }));
+        break;
+      case 'deleteColumn':
+        this.store.dispatch(ColumnsActions.deleteColumn({ boardId, columnId: id }));
+        break;
+      case 'deleteTask':
+        this.store.dispatch(TasksActions.deleteTask({ boardId, columnId, taskId: id }));
+        break;
+      default:
+        return;
+    }
   }
 
   public closeDialog(): void {

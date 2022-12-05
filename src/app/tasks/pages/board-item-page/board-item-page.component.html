@@ -1,4 +1,5 @@
 <div class="container">
+  <ng-container *ngIf="columnsSubscription$ | async"></ng-container>
   <div *ngIf="board" class="columns-container">
     <app-columns-list
       *ngIf="board"
@@ -6,6 +7,5 @@
       [board]="board"
       (deleteColumn)="openDialog($event)"
     ></app-columns-list>
-
   </div>
 </div>

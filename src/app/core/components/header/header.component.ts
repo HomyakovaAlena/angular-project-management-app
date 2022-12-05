@@ -7,13 +7,13 @@ import { AuthFacade } from 'src/app/auth/store/auth.facade';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit {
-  protected appTitle = $localize`PM App`;
-  protected isLoggedIn$ = this.authFacade.isLoggedIn$;
+  appTitle = $localize`PM App`;
+  isLoggedIn$ = this.authFacade.isLoggedIn$;
 
   constructor(private authFacade: AuthFacade) {}
   ngOnInit(): void {}
 
-  protected showSearch(event: Event) {
+  showSearch(event: Event) {
     event.stopImmediatePropagation();
     const tasksSearch = document.querySelector('.burger_tasks_search');
     tasksSearch?.classList.toggle('hidden');

@@ -1,29 +1,37 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, ParamMap, Router } from '@angular/router';
-import { Observable, switchMap } from 'rxjs';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Board } from '../../models/board.model';
-import { BoardService } from '../../services/board.service';
+import * as ColumnsActions from '../../../tasks/store/actions/columns.actions';
+import * as TasksActions from '../../../tasks/store/actions/tasks.actions';
+import { Store } from '@ngrx/store';
+import * as fromColumns from '../../../tasks/store/reducers/columns.reducer';
+import * as fromTasks from '../../../tasks/store/reducers/tasks.reducer';
 
 @Component({
   selector: 'app-board-view',
   templateUrl: './board-view.component.html',
   styleUrls: ['./board-view.component.scss'],
 })
-export class BoardViewComponent implements OnInit {
-  protected board$!: Observable<Board>;
+export class BoardViewComponent implements OnInit, OnDestroy {
+  board!: Board;
+
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private boardService: BoardService,
+    private columnsStore: Store<fromColumns.ColumnsState>,
+    private tasksStore: Store<fromTasks.TasksState>,
   ) {}
 
   ngOnInit() {
-    this.board$ = this.route.paramMap.pipe(
-      switchMap((params: ParamMap) => this.boardService.getBoardById(params.get('id')!)),
-    );
+    this.board = this.route.snapshot.data['board'];
   }
 
-  protected gotoBoards(): void {
+  gotoBoards(): void {
     this.router.navigate([`/boards`]);
+  }
+
+  ngOnDestroy(): void {
+    this.columnsStore.dispatch(ColumnsActions.resetColumnsState());
+    this.tasksStore.dispatch(TasksActions.resetTasksState());
   }
 }

@@ -10,12 +10,12 @@ import * as SharedActions from '../../../shared/store/actions/shared.actions';
   styleUrls: ['./create-column-button.component.scss'],
 })
 export class CreateColumnButtonComponent implements OnInit {
-  @Input() public board: Board | null | undefined = null;
+  @Input() public board!: Board;
   constructor(private sharedService: SharedService, private store: Store) {}
 
   ngOnInit(): void {}
 
-  protected openDialog(): void {
+  openDialog(): void {
     const dialogConfig = this.sharedService.createConfigDialog({
       name: 'createColumn',
       title: $localize`Creating column...`,

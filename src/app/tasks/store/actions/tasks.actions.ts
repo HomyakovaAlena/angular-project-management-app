@@ -2,13 +2,19 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { createAction, props } from '@ngrx/store';
 import { Task } from '../../models/tasks.model';
 
-export const loadTasks = createAction('[loadTasks] Load', props<{ boardId: string | undefined }>());
+export const loadTasks = createAction('[loadTasks] Load', props<{ boardId: string }>());
 export const loadTasksSuccess = createAction('[Tasks] Load Success', props<{ tasks: Task[] }>());
-export const loadTasksFailed = createAction('[Tasks] Load Failed', props<{ error: HttpErrorResponse }>());
+export const loadTasksFailed = createAction(
+  '[Tasks] Load Failed',
+  props<{ error: HttpErrorResponse }>(),
+);
 
 export const createTask = createAction('[Tasks] Add Task', props<{ task: Task }>());
 export const createTaskSuccess = createAction('[Tasks] Add Task Success', props<{ task: Task }>());
-export const createTaskFailed = createAction('[Tasks] Add Task Failed', props<{ error: HttpErrorResponse }>());
+export const createTaskFailed = createAction(
+  '[Tasks] Add Task Failed',
+  props<{ error: HttpErrorResponse }>(),
+);
 
 export const updateTask = createAction('[Tasks] Update Task', props<{ task: Task }>());
 export const updateTaskSuccess = createAction(
@@ -22,11 +28,11 @@ export const updateTaskFailed = createAction(
 
 export const deleteTask = createAction(
   '[Tasks] Delete Task',
-  props<{ boardId: string | undefined; columnId: string; taskId: string }>(),
+  props<{ boardId: string; columnId: string; taskId: string }>(),
 );
 export const deleteTaskSuccess = createAction(
   '[Tasks] Delete Task Success',
-  props<{ boardId: string | undefined; columnId: string; taskId: string }>(),
+  props<{ boardId: string; columnId: string; taskId: string }>(),
 );
 export const deleteTaskFailed = createAction(
   '[Tasks] Delete Task Failed',
@@ -49,9 +55,9 @@ export const changeTasksOrderFailed = createAction(
 export const getTaskById = createAction(
   '[Tasks] Get task by id',
   props<{
-    boardId: string | undefined;
-    columnId: string | undefined;
-    taskId: string | undefined;
+    boardId: string;
+    columnId: string;
+    taskId: string;
   }>(),
 );
 export const getTaskByIdSuccess = createAction(
@@ -62,3 +68,5 @@ export const getTaskByIdFailed = createAction(
   '[Tasks]  Get task by id Failed',
   props<{ error: HttpErrorResponse }>(),
 );
+
+export const resetTasksState = createAction('[Tasks] Reset Tasks State');
