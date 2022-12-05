@@ -1,0 +1,17 @@
+<div
+  class="columns-list"
+  cdkDropList
+  cdkDropListOrientation="horizontal"
+  (cdkDropListDropped)="drop($event)"
+  cdkDropListGroup
+>
+  <app-column-item
+    *ngFor="let column of columnsList"
+    [column]="column"
+    [board]="board"
+    (deleteColumn)="onDelete($event)"
+    cdkDrag
+  >
+  </app-column-item>
+  <app-create-column-button [board]="board"></app-create-column-button>
+</div>

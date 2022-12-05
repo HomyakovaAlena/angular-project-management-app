@@ -1,0 +1,79 @@
+@use 'src/variables' as vars;
+
+.task-item {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: stretch;
+  height: 80px;
+  padding: 0px;
+  background-color: vars.$light-gray;
+  border-radius: 2px;
+  border: 1px solid darken(vars.$light-gray, 10);
+  box-sizing: border-box;
+  cursor: pointer;
+  box-shadow: inset 0 0 15px rgb(190, 193, 213);
+
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -o-user-select: none;
+  user-select: none;
+
+  &:hover {
+    box-shadow: inset 0 0 35px #4747478a;
+  }
+
+  &__header,
+  &__footer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    margin: 0px;
+    height: 15px;
+  }
+  &__header {
+    padding: 0 10px 0 20px;
+  }
+  &__footer {
+    padding: 0 20px 0 20px;
+  }
+  &__chips-container {
+    max-width: 120px;
+    text-overflow: clip;
+    overflow: hidden;
+    white-space: nowrap;
+    height: 40px;
+    &__full {
+      position: relative;
+      overflow: visible;
+      height: max-content;
+      background-color: vars.$light-gray;
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      z-index: 10;
+      border-radius: 7px;
+    }
+  }
+  &__chips {
+    min-height: 30px;
+    font-size: 12px;
+    padding: 2px, 5px, 2px, 5px;
+    background-color: rgb(63 81 181 / 18%);
+  }
+  &__heading {
+    display: inline-block;
+    padding: 0;
+    margin: 0;
+    width: 220px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    align-self: center;
+  }
+}

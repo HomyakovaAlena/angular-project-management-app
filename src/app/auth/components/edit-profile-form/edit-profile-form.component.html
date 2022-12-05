@@ -1,0 +1,168 @@
+<div class="container__users-form">
+  <h2 i18n>Edit profile</h2>
+  <form
+    (ngSubmit)="onSubmit(ngForm)"
+    #ngForm="ngForm"
+    [formGroup]="editProfileForm"
+    class="form-container"
+  >
+    <div>
+      <mat-form-field class="input__edit-profile">
+        <mat-label for="name" i18n>Username: </mat-label>
+        <input
+          matInput
+          id="name"
+          type="text"
+          placeholder="name"
+          i18n-placeholder
+          name="name"
+          formControlName="name"
+          (blur)="getNameErrorMessage()"
+        />
+        <button
+          *ngIf="user.name"
+          type="button"
+          matSuffix
+          mat-icon-button
+          aria-label="Clear"
+          (click)="editProfileForm.patchValue({ name: '' })"
+        >
+          <mat-icon>close</mat-icon>
+        </button>
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field class="input__edit-profile">
+        <mat-label for="login" i18n>Login: </mat-label>
+        <input
+          matInput
+          id="login"
+          type="text"
+          placeholder="login"
+          i18n-placeholder
+          name="login"
+          formControlName="login"
+          (blur)="getLoginErrorMessage()"
+        />
+        <button
+          *ngIf="user.login"
+          matSuffix
+          type="button"
+          mat-icon-button
+          aria-label="Clear"
+          (click)="editProfileForm.patchValue({ login: '' })"
+        >
+          <mat-icon>close</mat-icon>
+        </button>
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field class="input__edit-profile">
+        <mat-label for="password" i18n>Password: </mat-label>
+        <input
+          matInput
+          id="password"
+          [type]="hide ? 'password' : 'text'"
+          name="password"
+          placeholder="password"
+          i18n-placeholder
+          formControlName="password"
+          (blur)="getPasswordErrorMessage()"
+        />
+        <button
+          mat-icon-button
+          matSuffix
+          type="button"
+          (click)="hide = !hide"
+          [attr.aria-label]="'Hide password'"
+          [attr.aria-pressed]="hide"
+        >
+          <mat-icon>{{ hide ? 'visibility_off' : 'visibility' }}</mat-icon>
+        </button>
+        <button
+          matSuffix
+          mat-icon-button
+          type="button"
+          [attr.aria-label]="'Clear'"
+          (click)="editProfileForm.patchValue({ password: '' })"
+        >
+          <mat-icon>close</mat-icon>
+        </button>
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field class="input__edit-profile">
+        <mat-label for="confirmPassword" i18n>Confirm password: </mat-label>
+        <input
+          matInput
+          id="confirmPassword"
+          [type]="hide ? 'password' : 'text'"
+          name="confirmPassword"
+          placeholder="confirm password"
+          i18n-placeholder
+          formControlName="confirmPassword"
+          (blur)="getConfirmPasswordErrorMessage()"
+        />
+        <button
+          mat-icon-button
+          matSuffix
+          type="button"
+          (click)="hide = !hide"
+          aria-label="Hide password"
+          [attr.aria-pressed]="hide"
+        >
+          <mat-icon>{{ hide ? 'visibility_off' : 'visibility' }}</mat-icon>
+        </button>
+        <button
+          matSuffix
+          mat-icon-button
+          type="button"
+          aria-label="Clear"
+          (click)="editProfileForm.patchValue({ confirmPassword: '' })"
+        >
+          <mat-icon>close</mat-icon>
+        </button>
+      </mat-form-field>
+    </div>
+    <div class="errors-container">
+      <div class="errors-container__type" *ngIf="editProfileForm.get('name')?.invalid">
+        <mat-error *ngFor="let error of nameErrors">{{ error }} </mat-error>
+      </div>
+      <div class="errors-container__type" *ngIf="editProfileForm.get('login')?.invalid">
+        <mat-error *ngFor="let error of loginErrors">{{ error }} </mat-error>
+      </div>
+      <div class="errors-container__type" *ngIf="editProfileForm.get('password')?.invalid">
+        <mat-error *ngFor="let error of passwordErrors">{{ error }} </mat-error>
+      </div>
+      <div class="errors-container__type" *ngIf="editProfileForm.get('confirmPassword')?.invalid">
+        <mat-error *ngFor="let error of confirmPasswordErrors">{{ error }} </mat-error>
+      </div>
+    </div>
+    <div class="edit__controls">
+      <button
+        mat-raised-button
+        color="primary"
+        aria-label="icon button with icon"
+        class="button"
+        ariaCurrentWhenActive="page"
+        type="submit"
+        [disabled]="!editProfileForm.valid"
+        i18n
+      >
+        Update
+      </button>
+      <button
+        mat-raised-button
+        color="warn"
+        aria-label="icon button with icon"
+        class="button"
+        ariaCurrentWhenActive="page"
+        type="button"
+        (click)="openDialog()"
+      >
+        <mat-icon>close</mat-icon>
+        <ng-container i18n>Delete user</ng-container>
+      </button>
+    </div>
+  </form>
+</div>

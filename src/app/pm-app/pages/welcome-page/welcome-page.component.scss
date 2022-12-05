@@ -1,0 +1,307 @@
+@use 'src/variables' as vars;
+
+.container_wide {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+}
+
+.left {
+  width: 30%;
+  height: calc(100vh - 160px);
+  background: no-repeat right/100% url('../../../../assets/tall.jpg');
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: baseline;
+  color: vars.$indigo;
+  padding-top: 20px;
+  background-size: cover;
+}
+
+.quote {
+  position: relative;
+  max-width: 400px;
+  height: 200px;
+  margin: 0px auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
+
+  &__text {
+    margin: 0px auto;
+    padding: 10px;
+    font-style: italic;
+    font-size: 18px;
+
+    &::before,
+    &::after {
+      content: '“';
+      font-size: 8rem;
+      margin: 0 0 -6rem -2rem;
+      position: absolute;
+      opacity: 0.5;
+    }
+
+    &::after {
+      content: '”';
+      margin: 5rem 0rem 0 -2rem;
+    }
+  }
+
+  &__down {
+    align-self: flex-end;
+    text-align: end;
+    margin: 15px 0 0;
+    padding: 18px;
+
+    &__text {
+      font-size: 18px;
+    }
+  }
+
+  span {
+    align-self: flex-start;
+    justify-self: flex-start;
+    text-align: left;
+    padding: 10px;
+  }
+}
+
+@keyframes float {
+  0% {
+    transform: translatey(0px);
+  }
+  50% {
+    transform: translatey(-10px);
+  }
+  100% {
+    transform: translatey(0px);
+  }
+}
+
+.right {
+  width: 70%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: center;
+  height: calc(100vh - 140px);
+  background: no-repeat right/100% url('../../../../assets/clouds.jpg');
+  background-size: cover;
+  gap: 0;
+
+  &_1,
+  &_2 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 40%;
+  }
+  .top {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 50px;
+    height: 100%;
+  }
+  .bottom {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+  }
+  .sticker {
+    will-change: transform;
+    -webkit-transform: translatey(0px);
+    transform: translatey(0px);
+    background: no-repeat center/100% url('../../../../assets/blue-cloud.png');
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+
+    &_1 {
+      width: 200px;
+      height: 200px;
+      animation: float 8s ease infinite;
+      animation-delay: 0.5s;
+    }
+    &_2 {
+      width: 230px;
+      height: 230px;
+      animation: float 9s ease infinite;
+      animation-delay: 1s;
+    }
+    &_3 {
+      width: 280px;
+      height: 280px;
+      animation: float 10s ease infinite;
+      animation-delay: 1.5s;
+    }
+    &_4 {
+      width: 340px;
+      height: 340px;
+      animation: float 7s ease infinite;
+      animation-delay: 1.5s;
+    }
+
+    &__inner {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      border-radius: 20px;
+      margin: 0 auto;
+      color: darken(vars.$indigo, 30);
+      h3 {
+        padding: 0;
+        margin: 0;
+      }
+    }
+
+    &__imgContainer {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+
+      .logosRow {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        gap: 5px;
+        margin: 5px auto;
+      }
+    }
+
+    &__text {
+      margin: 5px auto;
+      padding: 0;
+      &-link {
+        gap: 5px;
+        margin: 0;
+        padding: 5px;
+        border-radius: 7px;
+
+        h3 {
+          padding: 0;
+          margin: 0;
+        }
+
+        &:hover {
+          background-color: #c7cacf98;
+          color: vars.$indigo;
+        }
+      }
+    }
+
+    &__course {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      gap: 5px;
+      padding: 5px;
+      border-radius: 7px;
+
+      &:hover {
+        background-color: #c7cacf98;
+        color: vars.$indigo;
+      }
+    }
+  }
+
+  &__list {
+    margin: 0;
+    padding: 0;
+
+    &__list-item {
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+      color: vars.$indigo;
+    }
+  }
+}
+@media (max-width: 1200px) {
+  .container_wide {
+    flex-direction: column;
+  }
+  .left {
+    width: 100%;
+    height: max-content;
+    min-height: calc(100vh - 160px);
+
+    .quote {
+      align-self: flex-start;
+      justify-content: flex-start;
+      align-items: flex-start;
+      margin: 30px;
+      &__text {
+        font-size: 16px;
+      }
+
+      &__down__text {
+        margin: 20px auto 0px;
+        font-size: 16px;
+      }
+    }
+  }
+  .right {
+    width: 100%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: max-content;
+  }
+}
+
+@media (max-width: 500px) {
+  .container_wide {
+    flex-direction: column;
+  }
+  .left {
+    margin: 0 auto;
+    justify-content: space-between;
+    gap: 150px;
+
+    .quote {
+      max-width: 280px;
+      margin: 10px auto;
+      display: flex;
+      flex-direction: column;
+      align-self: flex-start;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+
+      &__text {
+        margin: 0px auto;
+        padding: 00px;
+        font-size: 16px;
+      }
+    }
+  }
+  .right .top {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 auto;
+    justify-content: center;
+  }
+}

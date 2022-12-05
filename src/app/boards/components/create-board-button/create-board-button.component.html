@@ -1,0 +1,20 @@
+<button
+  mat-stroked-button
+  color="accent"
+  aria-label="icon button with icon"
+  class="button"
+  routerLink="/boards"
+  routerLinkActive="active"
+  ariaCurrentWhenActive="page"
+  (click)="openDialog()"
+  [disabled]="!(isLoggedIn$ | async)"
+  type="button"
+>
+  <mat-icon
+    aria-hidden="false"
+    aria-label="create_new_folder icon"
+    fontIcon="create_new_folder"
+    color="accent"
+    >create_new_folder</mat-icon
+  ><ng-container i18n> Create Board</ng-container>
+</button>

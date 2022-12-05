@@ -1,0 +1,90 @@
+<mat-card
+  matRipple
+  [matRippleCentered]="true"
+  class="card-container"
+  *ngIf="board"
+  [routerLink]="['/boards', board._id]"
+>
+  <div class="card-container__inner">
+    <mat-card-title class="card-container__inner__heading" *ngIf="!formVisible">{{
+      board.title
+    }}</mat-card-title>
+
+    <form
+      (click)="onClick($event)"
+      class="card-container__inner__heading"
+      *ngIf="formVisible"
+      (ngSubmit)="onSubmit(ngForm)"
+      #ngForm="ngForm"
+      [formGroup]="updateBoardForm"
+    >
+      <mat-form-field class="form-field">
+        <input matInput name="title" class="textarea" formControlName="title" required />
+      </mat-form-field>
+      <button (click)="cancel($event)" type="submit" title="cancel" mat-icon-button color="primary">
+        <mat-icon>cancel</mat-icon>
+      </button>
+      <button
+        [disabled]="!updateBoardForm.valid"
+        title="save changes"
+        type="submit"
+        mat-icon-button
+        color="primary"
+      >
+        <mat-icon>save</mat-icon>
+      </button>
+    </form>
+  </div>
+
+  <mat-card-content class="ripple-container" *ngIf="board" [routerLink]="['/boards', board._id]">
+    <mat-chip-list aria-label="Owner" class="full_width">
+      <div class="hidden-overflow">
+        <ng-container i18n>Owner:</ng-container>
+        <mat-chip
+          matTooltip="{{ board.owner | usernameById | async }}"
+          [matTooltipShowDelay]="500"
+          matTooltipPosition="above"
+          class="item__chips"
+          >{{ board.owner | usernameById | async | slice: 0:1 | uppercase }}</mat-chip
+        >
+      </div>
+    </mat-chip-list>
+    <mat-chip-list aria-label="Users" class="full_width">
+      <div class="hidden-overflow">
+        <ng-container i18n>Users:</ng-container>
+        <mat-chip
+          *ngFor="let user of board.users"
+          matTooltip="{{ user | usernameById | async }}"
+          [matTooltipShowDelay]="500"
+          matTooltipPosition="above"
+          class="item__chips"
+          >{{ user | usernameById | async | slice: 0:1 | uppercase }}</mat-chip
+        >
+      </div>
+    </mat-chip-list>
+  </mat-card-content>
+  <mat-card-actions class="card_actions">
+    <button
+      i18n-title
+      mat-icon-button
+      type="button"
+      class="edit"
+      title="edit board"
+      (click)="update($event)"
+      color="primary"
+    >
+      <mat-icon>edit</mat-icon>
+    </button>
+    <button
+      i18n-title
+      mat-icon-button
+      type="button"
+      class="delete"
+      title="delete board"
+      (click)="onDelete($event)"
+      color="primary"
+    >
+      <mat-icon>delete</mat-icon>
+    </button>
+  </mat-card-actions>
+</mat-card>

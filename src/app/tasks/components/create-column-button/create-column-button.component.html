@@ -1,0 +1,11 @@
+<button
+  *ngIf="board"
+  class="button button-ripple"
+  type="button"
+  (click)="openDialog()"
+  mat-stroked-button
+  color="primary"
+>
+  <mat-icon>add_circle</mat-icon>
+  <ng-container i18n>Create Column</ng-container>
+</button>

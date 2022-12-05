@@ -1,0 +1,78 @@
+<div class="container__users-form">
+  <h2 i18n>Sign Up</h2>
+  <form
+    (ngSubmit)="onSubmit(ngForm)"
+    #ngForm="ngForm"
+    [formGroup]="signupForm"
+    class="form-container"
+  >
+    <div>
+      <mat-form-field>
+        <mat-label for="name" i18n>Username: </mat-label>
+        <input
+          matInput
+          id="name"
+          type="text"
+          placeholder="name"
+          i18n-placeholder
+          name="name"
+          formControlName="name"
+          (blur)="getNameErrorMessage()"
+        />
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field>
+        <mat-label for="login" i18n>Login: </mat-label>
+        <input
+          matInput
+          id="login"
+          type="text"
+          placeholder="login"
+          i18n-placeholder
+          name="login"
+          formControlName="login"
+          (blur)="getLoginErrorMessage()"
+        />
+      </mat-form-field>
+    </div>
+    <div class="inputForm">
+      <mat-form-field>
+        <mat-label for="password" i18n>Password: </mat-label>
+        <input
+          matInput
+          id="password"
+          type="password"
+          name="password"
+          placeholder="password"
+          i18n-placeholder
+          formControlName="password"
+          (blur)="getPasswordErrorMessage()"
+        />
+      </mat-form-field>
+    </div>
+    <div class="errors-container">
+      <div class="errors-container__type" *ngIf="signupForm.get('name')?.invalid">
+        <mat-error *ngFor="let error of nameErrors">{{ error }} </mat-error>
+      </div>
+      <div class="errors-container__type" *ngIf="signupForm.get('login')?.invalid">
+        <mat-error *ngFor="let error of loginErrors">{{ error }} </mat-error>
+      </div>
+      <div class="errors-container__type" *ngIf="signupForm.get('password')?.invalid">
+        <mat-error *ngFor="let error of passwordErrors">{{ error }} </mat-error>
+      </div>
+    </div>
+    <button
+      mat-flat-button
+      color="primary"
+      aria-label="icon button with icon"
+      class="button"
+      ariaCurrentWhenActive="page"
+      type="submit"
+      [disabled]="!signupForm.valid"
+      i18n
+    >
+      SignUp
+    </button>
+  </form>
+</div>

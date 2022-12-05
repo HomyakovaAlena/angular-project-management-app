@@ -1,0 +1,13 @@
+<h3 mat-dialog-title>{{ configDialog.title }}</h3>
+<mat-dialog-content class="mat-typography">
+  <h5>{{ configDialog.description }}</h5>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button type="button" mat-button mat-dialog-close cdkFocusInitial (click)="closeModal()" i18n>
+    Cancel
+  </button>
+  <button type="button" mat-flat-button color="warn" (click)="actionFunction()">
+    {{ configDialog.actionButtonText }}
+  </button>
+</mat-dialog-actions>

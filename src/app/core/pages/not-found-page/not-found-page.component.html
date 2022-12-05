@@ -1,0 +1,26 @@
+<div class="container page404">
+  <h2 class="page404__message" i18n>Looks like you are lost...</h2>
+  <div class="page404__controls">
+    <button
+      mat-raised-button
+      color="primary"
+      routerLink="/pm-app"
+      routerLinkActive="active"
+      ariaCurrentWhenActive="page"
+      i18n
+    >
+      To main page
+    </button>
+    <button
+      mat-raised-button
+      color="primary"
+      routerLink="/boards"
+      routerLinkActive="active"
+      ariaCurrentWhenActive="page"
+      i18n
+    >
+      To boards page
+    </button>
+  </div>
+  <img i18n-alt src="./assets/404-page-animation.gif" alt="Page not found" height="350" />
+</div>

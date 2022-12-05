@@ -1,0 +1,69 @@
+@use 'src/variables' as vars;
+
+.column-wrapper {
+  width: 300px;
+  box-sizing: border-box;
+  cursor: pointer;
+  border-radius: 2px;
+  overflow: hidden;
+  border-radius: 7px;
+  border: none;
+  margin: 2px;
+}
+
+.column-item {
+  box-sizing: border-box;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: nowrap;
+  height: 60px;
+  padding: 0px 10px 0px 20px;
+  margin: 0px;
+  width: 100%;
+  background-color: vars.$gray-medium;
+  color: white;
+  border-radius: 7px;
+  border: none;
+  overflow: hidden;
+  &:hover {
+    background-color: vars.$gray-medium;
+    box-shadow: inset 0 0 30px vars.$dark-blue;
+  }
+}
+
+.card-container {
+  &__inner {
+    &__heading {
+      padding: 0;
+      margin: 0;
+      display: center;
+      max-width: 200px;
+      font-size: 16px;
+    }
+  }
+}
+
+.formForTitle {
+  padding: 0;
+  margin: 0;
+  max-width: 180px;
+  font-size: 14px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+
+  &__textarea {
+    max-width: 120px;
+    padding: 0;
+    margin: 0;
+    height: 16px;
+  }
+  & button,
+  & icon {
+    margin: 0;
+    padding: 0;
+  }
+}
