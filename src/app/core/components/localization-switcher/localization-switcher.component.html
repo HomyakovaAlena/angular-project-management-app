@@ -1,0 +1,14 @@
+<div class="locale_nav">
+  <mat-form-field class="locale_nav__select">
+    <mat-select
+      [(value)]="selectedLocale"
+      name="selectedLocale"
+      class="form-control"
+      (selectionChange)="selected($event)"
+    >
+      <mat-option *ngFor="let locale of locales" [value]="locale.code">
+        {{ locale.name }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>

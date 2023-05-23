@@ -1,0 +1,57 @@
+<mat-card class="card-container" *ngIf="board">
+  <mat-card-title class="card-container__inner" class="card-container__inner__heading">{{
+    board.title
+  }}</mat-card-title>
+  <mat-card-content class="ripple-container">
+    <mat-chip-list aria-label="Owner"
+      ><ng-container i18n>Owner:</ng-container>
+      <mat-chip
+        matTooltip="{{ board.owner | usernameById | async }}"
+        [matTooltipShowDelay]="500"
+        matTooltipPosition="above"
+        class="item__chips"
+        >{{ board.owner | usernameById | async | slice: 0:1 | uppercase }}</mat-chip
+      >
+    </mat-chip-list>
+    <mat-chip-list aria-label="Users">
+      <div class="board-view__mat-chip-list">
+        <span class="to-bottom" i18n>Users:</span>
+        <div class="board-view__chips-container">
+          <mat-chip
+            matTooltip="{{ user | usernameById | async }}"
+            [matTooltipShowDelay]="500"
+            matTooltipPosition="above"
+            class="item__chips"
+            *ngFor="let user of board.users"
+            >{{ user | usernameById | async | slice: 0:1 | uppercase }}</mat-chip
+          >
+        </div>
+        <button
+          *ngIf="board.users.length > 5"
+          mat-icon-button
+          [matMenuTriggerFor]="menu"
+          aria-label="Example icon-button with a menu"
+        >
+          <mat-icon>more_vert</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu" class="menuIfMany">
+          <mat-chip
+            matTooltip="{{ user | usernameById | async }}"
+            [matTooltipShowDelay]="500"
+            matTooltipPosition="above"
+            class="item__chips"
+            *ngFor="let user of board.users"
+            >{{ user | usernameById | async | slice: 0:1 | uppercase }}</mat-chip
+          >
+        </mat-menu>
+      </div>
+    </mat-chip-list>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-flat-button *ngIf="board" type="button" (click)="gotoBoards()" color="primary">
+      <mat-icon>arrow_back_ios</mat-icon>
+      <ng-container i18n>Back to Boards</ng-container>
+    </button>
+  </mat-card-actions>
+</mat-card>
+<app-board-item-page *ngIf="board" [board]="board"></app-board-item-page>

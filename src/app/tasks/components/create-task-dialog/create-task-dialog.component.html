@@ -1,0 +1,103 @@
+<h2 mat-dialog-title>{{ configDialog.title }}</h2>
+<ng-container *ngIf="taskSubscription$ | async"></ng-container>
+
+<form (ngSubmit)="onSubmit(ngForm)" #ngForm="ngForm" [formGroup]="createTaskForm">
+  <div class="owner" *ngIf="user$ | async as user">
+    <ng-container i18n>Task Owner:</ng-container>
+    {{ user.name }}
+  </div>
+  <h5 class="description">{{ configDialog.description }}</h5>
+  <mat-dialog-content class="mat-typography modalContent">
+    <div>
+      <mat-form-field class="form-field" appearance="fill">
+        <mat-label for="title" i18n>Task Title</mat-label>
+        <input
+          matInput
+          id="title"
+          type="text"
+          placeholder="title"
+          i18n-placeholder
+          name="title"
+          formControlName="title"
+          (blur)="getTitleErrorMessage()"
+        />
+        <button
+          *ngIf="title"
+          type="button"
+          matSuffix
+          mat-icon-button
+          aria-label="Clear"
+          (click)="createTaskForm.patchValue({ title: '' })"
+        >
+          <mat-icon>close</mat-icon>
+        </button>
+      </mat-form-field>
+    </div>
+
+    <div>
+      <mat-form-field class="form-field" appearance="fill">
+        <mat-label for="description" i18n>Task Description</mat-label>
+        <input
+          matInput
+          id="description"
+          type="text"
+          placeholder="description"
+          i18n-placeholder
+          name="description"
+          formControlName="description"
+          (blur)="getDescriptionErrorMessage()"
+        />
+        <button
+          *ngIf="description"
+          type="button"
+          matSuffix
+          mat-icon-button
+          aria-label="Clear"
+          (click)="createTaskForm.patchValue({ description: '' })"
+        >
+          <mat-icon>close</mat-icon>
+        </button>
+      </mat-form-field>
+    </div>
+
+    <div>
+      <app-users-search
+        matInput
+        id="users"
+        type="text"
+        name="users"
+        placeholder="users"
+        i18n-placeholder
+        controlName="users"
+        selectedUsers="selectedUsers"
+        [parentGroup]="createTaskForm"
+        (selectedUsersIdsFromChild)="selected($event)"
+      ></app-users-search>
+    </div>
+  </mat-dialog-content>
+  <div class="errors-container">
+    <div class="errors-container__type" *ngIf="createTaskForm.get('title')?.invalid">
+      <mat-error *ngFor="let error of titleErrors">{{ error }} </mat-error>
+    </div>
+    <div class="errors-container__type" *ngIf="createTaskForm.get('description')?.invalid">
+      <mat-error *ngFor="let error of descriptionErrors">{{ error }} </mat-error>
+    </div>
+  </div>
+  <mat-dialog-actions align="end">
+    <button type="button" mat-button mat-dialog-close (click)="closeModal()" i18n>Cancel</button>
+    <button
+      mat-stroked-button
+      color="primary"
+      aria-label="icon button with icon"
+      class="button"
+      ariaCurrentWhenActive="page"
+      type="submit"
+      [disabled]="!createTaskForm.valid"
+    >
+      <mat-icon aria-hidden="false" aria-label="create_new_folder icon" fontIcon="create_new_folder"
+        >create_new_folder</mat-icon
+      >
+      {{ configDialog.actionButtonText }}
+    </button>
+  </mat-dialog-actions>
+</form>

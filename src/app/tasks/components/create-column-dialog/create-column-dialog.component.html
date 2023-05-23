@@ -1,0 +1,55 @@
+<h2 mat-dialog-title>{{ configDialog.title }}</h2>
+<ng-container *ngIf="columnsList$ | async"></ng-container>
+
+<form (ngSubmit)="onSubmit(ngForm)" #ngForm="ngForm" [formGroup]="createColumnForm">
+  <h5 class="description">{{ configDialog.description }}</h5>
+  <mat-dialog-content class="mat-typography modalContent">
+    <div>
+      <mat-form-field class="form-field" appearance="fill">
+        <mat-label for="title" i18n>Column Title</mat-label>
+        <input
+          matInput
+          id="title"
+          type="text"
+          placeholder="title"
+          i18n-placeholder
+          name="title"
+          formControlName="title"
+          (blur)="getTitleErrorMessage()"
+        />
+        <button
+          *ngIf="title"
+          type="button"
+          matSuffix
+          mat-icon-button
+          aria-label="Clear"
+          (click)="createColumnForm.patchValue({ title: '' })"
+        >
+          <mat-icon>close</mat-icon>
+        </button>
+      </mat-form-field>
+    </div>
+  </mat-dialog-content>
+  <div class="errors-container">
+    <div class="errors-container__type" *ngIf="createColumnForm.get('title')?.invalid">
+      <mat-error *ngFor="let error of titleErrors">{{ error }} </mat-error>
+    </div>
+  </div>
+  <mat-dialog-actions align="end">
+    <button type="button" mat-button mat-dialog-close (click)="closeModal()" i18n>Cancel</button>
+    <button
+      mat-stroked-button
+      color="primary"
+      aria-label="icon button with icon"
+      class="button"
+      ariaCurrentWhenActive="page"
+      type="submit"
+      [disabled]="!createColumnForm.valid"
+    >
+      <mat-icon aria-hidden="false" aria-label="create_new_folder icon" fontIcon="create_new_folder"
+        >create_new_folder</mat-icon
+      >
+      {{ configDialog.actionButtonText }}
+    </button>
+  </mat-dialog-actions>
+</form>

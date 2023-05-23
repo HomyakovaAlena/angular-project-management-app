@@ -1,0 +1,97 @@
+@use 'src/variables' as vars;
+
+.card-container {
+  width: 100%;
+  height: 90px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  gap: 30px;
+  justify-content: center;
+  align-items: center;
+  background-color: vars.$light-gray;
+  box-shadow: inset 0 0 15px rgb(190, 193, 213);
+
+  &:hover {
+    box-shadow: inset 0 0 45px #4747478a;
+  }
+
+  &__inner {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+
+    &__heading {
+      padding: 0;
+      margin: 0;
+      display: inline-block;
+      width: 280px;
+      font-size: 20px;
+    }
+  }
+}
+
+.ripple-container {
+  padding: 20px;
+  width: 300px;
+  height: 90%;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 10px;
+
+  & .board-view__mat-chip-list {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: center;
+    align-items: center;
+    margin: 0px;
+    gap: 10px;
+  }
+
+  .board-view__chips-container {
+    max-width: 200px;
+    text-overflow: clip;
+    overflow: hidden;
+    white-space: nowrap;
+    height: 40px;
+    padding: 0px;
+    align-self: flex-start;
+  }
+  .item__chips {
+    background-color: rgb(63 81 181 / 18%);
+  }
+  .to-bottom {
+    margin-top: 10px;
+  }
+}
+
+@media (max-width: 650px) {
+  .card-container {
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+    gap: 0px;
+
+    .ripple-container {
+      width: 90%;
+    }
+
+    &__inner {
+      justify-content: center;
+
+      &__heading {
+        margin: 0 auto;
+        width: 90%;
+        font-size: 18px;
+      }
+    }
+  }
+}

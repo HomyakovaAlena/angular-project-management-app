@@ -1,0 +1,10 @@
+<button
+  *ngIf="column"
+  mat-stroked-button
+  color="primary"
+  class="button button-ripple"
+  type="button"
+  (click)="openDialog()"
+>
+  <mat-icon>add_circle</mat-icon><ng-container i18n>Create Task</ng-container>
+</button>
